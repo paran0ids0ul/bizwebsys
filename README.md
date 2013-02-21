@@ -1,4 +1,4 @@
 Business Web Solution
 =====================
 
-Built on CodeIgniter. Modded for COMP2014.
+Built on CodeIgniter framework.
