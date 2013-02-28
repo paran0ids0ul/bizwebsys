@@ -1,23 +1,99 @@
-<div class="container">
-	<section id="typography">
-  <div class="page-header">
-    <h1>Typography <small>Headings, paragraphs, lists, and other inline type elements</small></h1>
-  </div>
+ <!-- Navbar
+    ================================================== -->
+ <div class="navbar navbar-fixed-top">
+   <div class="navbar-inner">
+     <div class="container">
+       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </a>
+       <a class="brand" href="../">Bootswatch</a>
+       <div class="nav-collapse collapse" id="main-menu">
+        <ul class="nav" id="main-menu-left">
+          <li><a onclick="pageTracker._link(this.href); return false;" href="http://news.bootswatch.com">News</a></li>
+          <li><a id="swatch-link" href="../#gallery">Gallery</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preview <b class="caret"></b></a>
+            <ul class="dropdown-menu" id="swatch-menu">
+              <li><a href="../default">Default</a></li>
+              <li class="divider"></li>
+              <li><a href="../amelia">Amelia</a></li>
+              <li><a href="../cerulean">Cerulean</a></li>
+              <li><a href="../cosmo">Cosmo</a></li>
+              <li><a href="../cyborg">Cyborg</a></li>
+              <li><a href="../journal">Journal</a></li>
+              <li><a href="../readable">Readable</a></li>
+              <li><a href="../simplex">Simplex</a></li>
+              <li><a href="../slate">Slate</a></li>
+              <li><a href="../spacelab">Spacelab</a></li>
+              <li><a href="../spruce">Spruce</a></li>
+              <li><a href="../superhero">Superhero</a></li>
+              <li><a href="../united">United</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" id="preview-menu">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Download <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a target="_blank" href="bootstrap.min.css">bootstrap.min.css</a></li>
+              <li><a target="_blank" href="bootstrap.css">bootstrap.css</a></li>
+              <li class="divider"></li>
+              <li><a target="_blank" href="variables.less">variables.less</a></li>
+              <li><a target="_blank" href="bootswatch.less">bootswatch.less</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav pull-right" id="main-menu-right">
+          <li><a rel="tooltip" target="_blank" href="http://builtwithbootstrap.com/" title="Showcase of Bootstrap sites &amp; apps" onclick="_gaq.push(['_trackEvent', 'click', 'outbound', 'builtwithbootstrap']);">Built With Bootstrap <i class="icon-share-alt"></i></a></li>
+          <li><a rel="tooltip" target="_blank" href="https://wrapbootstrap.com/?ref=bsw" title="Marketplace for premium Bootstrap templates" onclick="_gaq.push(['_trackEvent', 'click', 'outbound', 'wrapbootstrap']);">WrapBootstrap <i class="icon-share-alt"></i></a></li>
+        </ul>
+       </div>
+     </div>
+   </div>
+ </div>
 
-  <h2>Headings &amp; body copy</h2>
+    <div class="container">
+
+
+<!-- Masthead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="row">
+    <div class="span6">
+      <h1>United</h1>
+      <p class="lead">Ubuntu orange and unique font.</p>
+    </div>
+    <div class="span6">
+      <div class="bsa well">
+          <div id="bsap_1277971" class="bsarocks bsap_c466df00a3cd5ee8568b5c4983b6bb19"></div>
+      </div>
+    </div>
+  </div>
+  <div class="subnav">
+    <ul class="nav nav-pills">
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#navbar">Navbar</a></li>
+      <li><a href="#buttons">Buttons</a></li>
+      <li><a href="#forms">Forms</a></li>
+      <li><a href="#tables">Tables</a></li>
+      <li><a href="#miscellaneous">Miscellaneous</a></li>
+    </ul>
+  </div>
+</header>
+
+
+
+
+<!-- Typography
+================================================== -->
+<section id="typography">
+  <div class="page-header">
+    <h1>Typography</h1>
+  </div>
 
   <!-- Headings & Paragraph Copy -->
   <div class="row">
-    <div class="span4">
-      <h3>Typographic scale</h3>
-      <p>The entire typographic grid is based on two Less variables in our variables.less file: <code>@baseFontSize</code> and <code>@baseLineHeight</code>. The first is the base font-size used throughout and the second is the base line-height.</p>
-      <p>We use those variables, and some math, to create the margins, paddings, and line-heights of all our type and more.</p>
-    </div>
-    <div class="span4">
-      <h3>Example body text</h3>
-      <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-      <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
-    </div>
+
     <div class="span4">
       <div class="well">
         <h1>h1. Heading 1</h1>
@@ -28,76 +104,15 @@
         <h6>h6. Heading 6</h6>
       </div>
     </div>
-  </div>
 
-  <!-- Misc Elements -->
-  <h2>Emphasis, address, and abbreviation</h2>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Element</th>
-        <th>Usage</th>
-        <th>Optional</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <code>&lt;strong&gt;</code>
-        </td>
-        <td>
-          For emphasizing a snippet of text with <strong>important</strong>
-        </td>
-        <td>
-          <span class="muted">None</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <code>&lt;em&gt;</code>
-        </td>
-        <td>
-          For emphasizing a snippet of text with <em>stress</em>
-        </td>
-        <td>
-          <span class="muted">None</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <code>&lt;abbr&gt;</code>
-        </td>
-        <td>
-          Wraps abbreviations and acronyms to show the expanded version on hover
-        </td>
-        <td>
-          <p>Include optional <code>title</code> attribute for expanded text</p>
-          Use <code>.initialism</code> class for uppercase abbreviations.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <code>&lt;address&gt;</code>
-        </td>
-        <td>
-          For contact information for its nearest ancestor or the entire body of work
-        </td>
-        <td>
-          Preserve formatting by ending all lines with <code>&lt;br&gt;</code>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="row">
     <div class="span4">
-      <h3>Using emphasis</h3>
-      <p><a href="#">Fusce dapibus</a>, <strong>tellus ac cursus commodo</strong>, <em>tortor mauris condimentum nibh</em>, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue.</p>
-      <p><strong>Note:</strong> Feel free to use <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> in HTML5, but their usage has changed a bit. <code>&lt;b&gt;</code> is meant to highlight words or phrases without conveying additional importance while <code>&lt;i&gt;</code> is mostly for voice, technical terms, etc.</p>
+      <h3>Example body text</h3>
+      <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
     </div>
+
     <div class="span4">
       <h3>Example addresses</h3>
-      <p>Here are two examples of how the <code>&lt;address&gt;</code> tag can be used:</p>
       <address>
         <strong>Twitter, Inc.</strong><br>
         795 Folsom Ave, Suite 600<br>
@@ -109,170 +124,697 @@
         <a href="mailto:#">first.last@gmail.com</a>
       </address>
     </div>
-    <div class="span4">
-      <h3>Example abbreviations</h3>
-      <p>Abbreviations with a <code>title</code> attribute have a light dotted bottom border and a help cursor on hover. This gives users extra indication something will be shown on hover.</p>
-      <p>Add the <code>initialism</code> class to an abbreviation to increase typographic harmony by giving it a slightly smaller text size.</p>
-      <p><abbr title="HyperText Markup Language" class="initialism">HTML</abbr> is the best thing since sliced bread.</p>
-      <p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
+
+  </div>
+  
+  <div class="row">
+    <div class="span6">
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+      </blockquote>
+    </div>
+    <div class="span6">
+      <blockquote class="pull-right">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+      </blockquote>
     </div>
   </div>
 
+</section>
 
-  <!-- Blockquotes -->
-  <h2>Blockquotes</h2>
+
+<!-- Navbar
+================================================== -->
+<section id="navbar">
+  <div class="page-header">
+    <h1>Navbars</h1>
+  </div>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container" style="width: auto;">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Project name</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-search pull-left" action="">
+            <input type="text" class="search-query span2" placeholder="Search">
+          </form>
+          <ul class="nav pull-right">
+            <li><a href="#">Link</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+  </div><!-- /navbar -->
+
+  <div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container" style="width: auto;">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Project name</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-search pull-left" action="">
+            <input type="text" class="search-query span2" placeholder="Search">
+          </form>
+          <ul class="nav pull-right">
+            <li><a href="#">Link</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+  </div><!-- /navbar -->
+
+</section>
+
+
+
+<!-- Buttons
+================================================== -->
+<section id="buttons">
+  <div class="page-header">
+    <h1>Buttons</h1>
+  </div>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>Element</th>
-        <th>Usage</th>
-        <th>Optional</th>
+        <th>Button</th>
+        <th>Large Button</th>
+        <th>Small Button</th>
+        <th>Disabled Button</th>
+    <th>Button with Icon</th>
+    <th>Split Button</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>
-          <code>&lt;blockquote&gt;</code>
-        </td>
-        <td>
-          Block-level element for quoting content from another source
-        </td>
-        <td>
-          <p>Add <code>cite</code> attribute for source URL</p>
-          Use <code>.pull-left</code> and <code>.pull-right</code> classes for floated options
-        </td>
+        <td><a class="btn" href="#">Default</a></td>
+        <td><a class="btn btn-large" href="#">Default</a></td>
+        <td><a class="btn btn-small" href="#">Default</a></td>
+        <td><a class="btn disabled" href="#">Default</a></td>
+        <td><a class="btn" href="#"><i class="icon-cog"></i> Default</a></td>
+    <td>
+          <div class="btn-group">
+            <a class="btn" href="#">Default</a>
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+    </td>
       </tr>
       <tr>
-        <td>
-          <code>&lt;small&gt;</code>
-        </td>
-        <td>
-          Optional element for adding a user-facing citation, typically an author with title of work
-        </td>
-        <td>
-          Place the <code>&lt;cite&gt;</code> around the title or name of source
-        </td>
+        <td><a class="btn btn-primary" href="#">Primary</a></td>
+        <td><a class="btn btn-primary btn-large" href="#">Primary</a></td>
+        <td><a class="btn btn-primary btn-small" href="#">Primary</a></td>
+        <td><a class="btn btn-primary disabled" href="#">Primary</a></td>
+        <td><a class="btn btn-primary" href="#"><i class="icon-shopping-cart icon-white"></i> Primary</a></td>
+    <td>
+          <div class="btn-group">
+            <a class="btn btn-primary" href="#">Primary</a>
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+    </td>
+      </tr>
+      <tr>
+        <td><a class="btn btn-info" href="#">Info</a></td>
+        <td><a class="btn btn-info btn-large" href="#">Info</a></td>
+        <td><a class="btn btn-info btn-small" href="#">Info</a></td>
+        <td><a class="btn btn-info disabled" href="#">Info</a></td>
+        <td><a class="btn btn-info" href="#"><i class="icon-exclamation-sign icon-white"></i> Info</a></td>
+    <td>
+          <div class="btn-group">
+            <a class="btn btn-info" href="#">Info</a>
+            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+    </td>
+      </tr>
+      <tr>
+        <td><a class="btn btn-success" href="#">Success</a></td>
+        <td><a class="btn btn-success btn-large" href="#">Success</a></td>
+        <td><a class="btn btn-success btn-small" href="#">Success</a></td>
+        <td><a class="btn btn-success disabled" href="#">Success</a></td>
+        <td><a class="btn btn-success" href="#"><i class="icon-ok icon-white"></i> Success</a></td>
+    <td>
+          <div class="btn-group">
+            <a class="btn btn-success" href="#">Success</a>
+            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+    </td>
+      </tr>
+      <tr>
+        <td><a class="btn btn-warning" href="#">Warning</a></td>
+        <td><a class="btn btn-warning btn-large" href="#">Warning</a></td>
+        <td><a class="btn btn-warning btn-small" href="#">Warning</a></td>
+        <td><a class="btn btn-warning disabled" href="#">Warning</a></td>
+        <td><a class="btn btn-warning" href="#"><i class="icon-warning-sign icon-white"></i> Warning</a></td>
+    <td>
+          <div class="btn-group">
+            <a class="btn btn-warning" href="#">Warning</a>
+            <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+    </td>
+      </tr>
+      <tr>
+        <td><a class="btn btn-danger" href="#">Danger</a></td>
+        <td><a class="btn btn-danger btn-large" href="#">Danger</a></td>
+        <td><a class="btn btn-danger btn-small" href="#">Danger</a></td>
+        <td><a class="btn btn-danger disabled" href="#">Danger</a></td>
+        <td><a class="btn btn-danger" href="#"><i class="icon-remove icon-white"></i> Danger</a></td>
+    <td>
+          <div class="btn-group">
+            <a class="btn btn-danger" href="#">Danger</a>
+            <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+    </td>
+      </tr>
+      <tr>
+        <td><a class="btn btn-inverse" href="#">Inverse</a></td>
+        <td><a class="btn btn-inverse btn-large" href="#">Inverse</a></td>
+        <td><a class="btn btn-inverse btn-small" href="#">Inverse</a></td>
+        <td><a class="btn btn-inverse disabled" href="#">Inverse</a></td>
+        <td><a class="btn btn-inverse" href="#"><i class="icon-random icon-white"></i> Inverse</a></td>
+    <td>
+          <div class="btn-group">
+            <a class="btn btn-inverse" href="#">Inverse</a>
+            <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+    </td>
       </tr>
     </tbody>
   </table>
+
+</section>
+
+
+<!-- Forms
+================================================== -->
+<section id="forms">
+  <div class="page-header">
+    <h1>Forms</h1>
+  </div>
+
+  <div class="row">
+    <div class="span10 offset1">
+
+      <form class="well form-search">
+        <input type="text" class="input-medium search-query">
+        <button type="submit" class="btn">Search</button>
+      </form>
+
+        <form class="well form-search">
+          <input type="text" class="input-small" placeholder="Email">
+          <input type="password" class="input-small" placeholder="Password">
+          <button type="submit" class="btn">Go</button>
+        </form>
+
+
+      <form class="form-horizontal well">
+        <fieldset>
+          <legend>Controls Bootstrap supports</legend>
+          <div class="control-group">
+            <label class="control-label" for="input01">Text input</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="input01">
+              <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="optionsCheckbox">Checkbox</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="optionsCheckbox" value="option1">
+                Option one is this and that&mdash;be sure to include why it's great
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="select01">Select list</label>
+            <div class="controls">
+              <select id="select01">
+                <option>something</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="multiSelect">Multicon-select</label>
+            <div class="controls">
+              <select multiple="multiple" id="multiSelect">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="fileInput">File input</label>
+            <div class="controls">
+              <input class="input-file" id="fileInput" type="file">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="textarea">Textarea</label>
+            <div class="controls">
+              <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="focusedInput">Focused input</label>
+            <div class="controls">
+              <input class="input-xlarge focused" id="focusedInput" type="text" value="This is focused…">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Uneditable input</label>
+            <div class="controls">
+              <span class="input-xlarge uneditable-input">Some value here</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="disabledInput">Disabled input</label>
+            <div class="controls">
+              <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here…" disabled>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="optionsCheckbox2">Disabled checkbox</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="optionsCheckbox2" value="option1" disabled>
+                This is a disabled checkbox
+              </label>
+            </div>
+          </div>
+          <div class="control-group warning">
+            <label class="control-label" for="inputWarning">Input with warning</label>
+            <div class="controls">
+              <input type="text" id="inputWarning">
+              <span class="help-inline">Something may have gone wrong</span>
+            </div>
+          </div>
+          <div class="control-group error">
+            <label class="control-label" for="inputError">Input with error</label>
+            <div class="controls">
+              <input type="text" id="inputError">
+              <span class="help-inline">Please correct the error</span>
+            </div>
+          </div>
+          <div class="control-group success">
+            <label class="control-label" for="inputSuccess">Input with success</label>
+            <div class="controls">
+              <input type="text" id="inputSuccess">
+              <span class="help-inline">Woohoo!</span>
+            </div>
+          </div>
+          <div class="control-group success">
+            <label class="control-label" for="selectError">Select with success</label>
+            <div class="controls">
+              <select id="selectError">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <span class="help-inline">Woohoo!</span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="reset" class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+</section>
+
+<!-- Tables
+================================================== -->
+<section id="tables">
+  <div class="page-header">
+    <h1>Tables</h1>
+  </div>
+  
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- Miscellaneous
+================================================== -->
+<section id="miscellaneous">
+  <div class="page-header">
+    <h1>Miscellaneous</h1>
+  </div>
+
   <div class="row">
     <div class="span4">
-      <p>To include a blockquote, wrap <code>&lt;blockquote&gt;</code> around any <abbr title="HyperText Markup Language">HTML</abbr> as the quote. For straight quotes we recommend a <code>&lt;p&gt;</code>.</p>
-      <p>Include an optional <code>&lt;small&gt;</code> element to cite your source and you'll get an em dash <code>&amp;mdash;</code> before it for styling purposes.</p>
-    </div>
-    <div class="span8">
-<pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="tag">&lt;blockquote&gt;</span></li><li class="L1"><span class="pln">  </span><span class="tag">&lt;p&gt;</span><span class="pln">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis.</span><span class="tag">&lt;/p&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;small&gt;</span><span class="pln">Someone famous</span><span class="tag">&lt;/small&gt;</span></li><li class="L3"><span class="tag">&lt;/blockquote&gt;</span></li></ol></pre>
-    </div>
-  </div><!--/row-->
 
-  <h3>Example blockquotes</h3>
-  <div class="row">
-    <div class="span6">
-      <p>Default blockquotes are styled as such:</p>
-      <blockquote>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis.</p>
-        <small>Someone famous in <cite title="">Body of work</cite></small>
-      </blockquote>
+      <h3 id="breadcrumbs">Breadcrumbs</h3>
+      <ul class="breadcrumb">
+        <li class="active">Home</li>
+      </ul>
+      <ul class="breadcrumb">
+        <li><a href="#">Home</a> <span class="divider">/</span></li>
+        <li><a href="#">Library</a> <span class="divider">/</span></li>
+        <li class="active">Data</li>
+      </ul>
     </div>
-    <div class="span6">
-      <p>To float your blockquote to the right, add <code>class="pull-right"</code>:</p>
-      <blockquote class="pull-right">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis.</p>
-        <small>Someone famous in <cite title="">Body of work</cite></small>
-      </blockquote>
+    <div class="span4">
+      <h3 id="pagination">Pagination</h3>
+      <div class="pagination">
+        <ul>
+          <li><a href="#">&larr;</a></li>
+          <li class="active"><a href="#">10</a></li>
+          <li class="disabled"><a href="#">...</a></li>
+          <li><a href="#">20</a></li>
+          <li><a href="#">&rarr;</a></li>
+        </ul>
+      </div>
+      <div class="pagination pagination-centered">
+        <ul>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="span4">
+      <h3 id="pager">Pagers</h3>
+        
+        <ul class="pager">
+          <li><a href="#">Previous</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+        
+        <ul class="pager">
+          <li class="previous disabled"><a href="#">&larr; Older</a></li>
+          <li class="next"><a href="#">Newer &rarr;</a></li>
+        </ul>
     </div>
   </div>
 
 
-  <!-- Lists -->
-  <h2>Lists</h2>
-  <div class="row">
-    <div class="span4">
-      <h3>Unordered</h3>
-      <p><code>&lt;ul&gt;</code></p>
-      <ul>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Consectetur adipiscing elit</li>
-        <li>Integer molestie lorem at massa</li>
-        <li>Facilisis in pretium nisl aliquet</li>
-        <li>Nulla volutpat aliquam velit
-          <ul>
-            <li>Phasellus iaculis neque</li>
-            <li>Purus sodales ultricies</li>
-            <li>Vestibulum laoreet porttitor sem</li>
-            <li>Ac tristique libero volutpat at</li>
-          </ul>
-        </li>
-        <li>Faucibus porta lacus fringilla vel</li>
-        <li>Aenean sit amet erat nunc</li>
-        <li>Eget porttitor lorem</li>
-      </ul>
-    </div>
-    <div class="span4">
-      <h3>Unstyled</h3>
-      <p><code>&lt;ul class="unstyled"&gt;</code></p>
-      <ul class="unstyled">
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Consectetur adipiscing elit</li>
-        <li>Integer molestie lorem at massa</li>
-        <li>Facilisis in pretium nisl aliquet</li>
-        <li>Nulla volutpat aliquam velit
-          <ul>
-            <li>Phasellus iaculis neque</li>
-            <li>Purus sodales ultricies</li>
-            <li>Vestibulum laoreet porttitor sem</li>
-            <li>Ac tristique libero volutpat at</li>
-          </ul>
-        </li>
-        <li>Faucibus porta lacus fringilla vel</li>
-        <li>Aenean sit amet erat nunc</li>
-        <li>Eget porttitor lorem</li>
-      </ul>
-    </div>
-    <div class="span4">
-      <h3>Ordered</h3>
-      <p><code>&lt;ol&gt;</code></p>
-      <ol>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Consectetur adipiscing elit</li>
-        <li>Integer molestie lorem at massa</li>
-        <li>Facilisis in pretium nisl aliquet</li>
-        <li>Nulla volutpat aliquam velit</li>
-        <li>Faucibus porta lacus fringilla vel</li>
-        <li>Aenean sit amet erat nunc</li>
-        <li>Eget porttitor lorem</li>
-      </ol>
-    </div>
-  </div><!-- /row -->
-  <br>
-  <div class="row">
-    <div class="span4">
-      <h3>Description</h3>
-      <p><code>&lt;dl&gt;</code></p>
-      <dl>
-        <dt>Description lists</dt>
-        <dd>A description list is perfect for defining terms.</dd>
-        <dt>Euismod</dt>
-        <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-        <dt>Malesuada porta</dt>
-        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-      </dl>
-    </div>
-    <div class="span8">
-      <h3>Horizontal description</h3>
-      <p><code>&lt;dl class="dl-horizontal"&gt;</code></p>
-      <dl class="dl-horizontal">
-        <dt>Description lists</dt>
-        <dd>A description list is perfect for defining terms.</dd>
-        <dt>Euismod</dt>
-        <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-        <dt>Malesuada porta</dt>
-        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-      </dl>
-    </div>
-  </div><!-- /row -->
-</section>
-</div>
+  <!-- Navs
+  ================================================== -->
 
+  <div class="row">
+    <div class="span4">
+
+      <h3 id="tabs">Tabs</h3>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#A" data-toggle="tab">Section 1</a></li>
+        <li><a href="#B" data-toggle="tab">Section 2</a></li>
+        <li><a href="#C" data-toggle="tab">Section 3</a></li>
+      </ul>
+      <div class="tabbable">
+        <div class="tab-content">
+          <div class="tab-pane active" id="A">
+            <p>I'm in Section A.</p>
+          </div>
+          <div class="tab-pane" id="B">
+            <p>Howdy, I'm in Section B.</p>
+          </div>
+          <div class="tab-pane" id="C">
+            <p>What up girl, this is Section C.</p>
+          </div>
+        </div>
+      </div> <!-- /tabbable -->
+      
+    </div>
+    <div class="span4">
+      <h3 id="pills">Pills</h3>
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li class="disabled"><a href="#">Disabled link</a></li>
+      </ul>
+    </div>
+    
+    <div class="span4">
+      
+      <h3 id="list">Lists</h3>
+        
+      <div class="well" style="padding: 8px 0;">
+        <ul class="nav nav-list">
+          <li class="nav-header">List header</li>
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li><a href="#">Applications</a></li>
+          <li class="nav-header">Another list header</li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Settings</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Labels
+================================================== -->
+
+  <div class="row">
+    <div class="span6">
+      <h3 id="labels">Labels</h3>
+      <span class="label">Default</span>
+      <span class="label label-success">Success</span>
+      <span class="label label-warning">Warning</span>
+      <span class="label label-important">Important</span>
+      <span class="label label-info">Info</span>
+      <span class="label label-inverse">Inverse</span>
+    </div>
+    <div class="span6">
+      <h3 id="badges">Badges</h3>
+      <span class="badge">Default</span>
+      <span class="badge badge-success">Success</span>
+      <span class="badge badge-warning">Warning</span>
+      <span class="badge badge-important">Important</span>
+      <span class="badge badge-info">Info</span>
+      <span class="badge badge-inverse">Inverse</span>
+    </div>
+  </div>
+  <br />
+
+<!-- Progress bars
+================================================== -->
+
+
+  <h3 id="progressbars">Progress bars</h3>
+
+  <div class="row">
+    <div class="span4">
+      <div class="progress">
+        <div class="bar" style="width: 60%;"></div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="progress progress-info progress-striped">
+        <div class="bar" style="width: 20%;"></div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="progress progress-danger progress-striped active">
+        <div class="bar" style="width: 45%"></div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+
+<!-- Alerts & Messages
+================================================== -->
+
+
+  <h3 id="alerts">Alerts</h3>
+
+  <div class="row">
+    <div class="span12">
+        <div class="alert alert-block">
+          <a class="close">&times;</a>
+          <h4 class="alert-heading">Alert block</h4>
+          <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <div class="alert alert-error">
+        <a class="close">&times;</a>
+        <strong>Error</strong> Change a few things up and try submitting again.
+      </div>
+    </div>
+    <div class="span4">
+      <div class="alert alert-success">
+        <a class="close">&times;</a>
+        <strong>Success</strong> You successfully read this important alert message.
+      </div>
+    </div>
+    <div class="span4">
+      <div class="alert alert-info">
+        <a class="close">&times;</a>
+        <strong>Information</strong> This alert needs your attention, but it's not super important.
+      </div>
+    </div>
+  </div>
+
+
+</section>

@@ -15,6 +15,7 @@
 
 <link rel="stylesheet" href="<?php echo base_url(CSS."style.css");?>">
 <link rel="stylesheet" href="<?php echo base_url(CSS."global.css");?>">
+<link rel="stylesheet" href="<?php echo base_url(CSS."theme.css");?>">
 
 <!-- extra CSS-->
 <?php foreach($css as $c):?>
