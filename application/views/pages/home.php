@@ -60,7 +60,7 @@
 <header class="jumbotron subhead" id="overview">
   <div class="row">
     <div class="span6">
-      <h1>United</h1>
+      <h1>BizWebSys</h1>
       <p class="lead">Ubuntu orange and unique font.</p>
     </div>
     <div class="span6">
