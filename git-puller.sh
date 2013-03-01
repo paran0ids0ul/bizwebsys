@@ -1,1 +1,1 @@
-cd /var/www/BusinessWebSys && /usr/lib/git-core/git pull && cd -
+cd /var/www/bizwebsys && /usr/lib/git-core/git pull && cd -
