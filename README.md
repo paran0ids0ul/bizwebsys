@@ -13,7 +13,8 @@ Based on forks of:
 
 [jamierumbelow / codeigniter-base-model](https://github.com/jamierumbelow/codeigniter-base-model) v2.0.0
 
-[bootswatch](http://bootswatch.com/united/)
+[thomaspark / bootswatch / united](https://github.com/thomaspark/bootswatch/tree/gh-pages/united) v2.3.1
 
+[addyosmani / jquery-ui-bootstrap](https://github.com/addyosmani/jquery-ui-bootstrap) v0.5
 
-
+[FortAwesome / Font-Awesome](https://github.com/FortAwesome/Font-Awesome) v3.0.2

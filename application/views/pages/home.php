@@ -63,11 +63,6 @@
       <h1>BizWebSys</h1>
       <p class="lead">Ubuntu orange and unique font.</p>
     </div>
-    <div class="span6">
-      <div class="bsa well">
-          <div id="bsap_1277971" class="bsarocks bsap_c466df00a3cd5ee8568b5c4983b6bb19"></div>
-      </div>
-    </div>
   </div>
   <div class="subnav">
     <ul class="nav nav-pills">

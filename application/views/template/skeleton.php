@@ -12,10 +12,16 @@
 <meta name="keywords" content="<?php echo $keywords ?>" />
 <meta name="author" content="<?php echo $author ?>" />
 
+<link rel="stylesheet" href="<?php echo base_url(CSS."bootstrap-2.3.0-custom-responsive.min.css");?>">
+<link rel="stylesheet" href="<?php echo base_url(CSS."jqueryui-bootstrap/jquery-ui-1.10.0.custom.css");?>">
+<link rel="stylesheet" href="<?php echo base_url(CSS."font-awesome.min.css");?>">
+<!--[if IE 7]>
+	<link rel="stylesheet" href="<?php echo base_url(CSS."jqueryui-bootstrap/jquery.ui.1.10.0.ie.css");?>">
+	<link rel="stylesheet" href="<?php echo base_url(CSS."font-awesome-ie7.min.css");?>">
+<![endif]-->
 
-<link rel="stylesheet" href="<?php echo base_url(CSS."style.css");?>">
+
 <link rel="stylesheet" href="<?php echo base_url(CSS."global.css");?>">
-<link rel="stylesheet" href="<?php echo base_url(CSS."theme.css");?>">
 
 <!-- extra CSS-->
 <?php foreach($css as $c):?>
@@ -28,7 +34,7 @@
 	rel="stylesheet" type="text/css">
 <?php endforeach;?>
 
-<script src="<?php echo base_url(JS."libs/modernizr-2.6.1-respond-1.1.0.min.js");?>"></script>
+<script src="<?php echo base_url(JS."libs/modernizr-2.6.2-custom-respond-1.1.0.min.js");?>"></script>
 
 <!-- Le fav and touch icons -->
 <link rel="shortcut icon" href="<?php echo base_url(IMAGES.'ico/favicon.ico');?>">
@@ -43,8 +49,10 @@
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?php echo base_url(JS."libs/jquery-1.9.1.min.js");?>"><\/script>')</script>
-	<script src="<?php echo base_url(JS."libs/underscore-1.4.3.min.js");?>"></script>
-	<script src="<?php echo base_url(JS."plugins.js");?>"></script>
+	<script src="<?php echo base_url(JS."libs/underscore-1.4.4.min.js");?>"></script>
+	<script src="<?php echo base_url(JS."bootstrap-2.3.1.min.js");?>"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+	<script>window.jQuery.ui || document.write('<script src="<?php echo base_url(JS."libs/jquery-ui-1.10.0.custom.min.js");?>"><\/script>')</script>
 	<script src="<?php echo base_url(JS."script.js");?>"></script>
 
 	<!-- extra js-->
