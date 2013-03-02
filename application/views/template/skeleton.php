@@ -52,7 +52,7 @@
 	<script src="<?php echo base_url(JS."libs/underscore-1.4.4.min.js");?>"></script>
 	<script src="<?php echo base_url(JS."bootstrap-2.3.1.min.js");?>"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-	<script>window.jQuery.ui || document.write('<script src="<?php echo base_url(JS."libs/jquery-ui-1.10.0.custom.min.js");?>"><\/script>')</script>
+	<script>window.jQuery.ui || document.write('<script src="<?php echo base_url(JS."libs/jquery-ui-1.10.1.custom.min.js");?>"><\/script>')</script>
 	<script src="<?php echo base_url(JS."script.js");?>"></script>
 
 	<!-- extra js-->
