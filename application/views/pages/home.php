@@ -46,7 +46,7 @@
 	  </div>
 	  <div class="control-group">
 		<div class="controls">
-		  <a href="">Forget password</a>
+		  <a href="">Forgot password</a>
 		</div>
 	  </div>	  
 	  <div class="control-group">

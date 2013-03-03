@@ -2,7 +2,7 @@
   <div class="navbar-inner">
     <div class="container">
      <?php echo $nav?>
-	 <?php include 'user.php'; ?>
+	 <?php echo $user?>
     </div>
   </div>
 </header>
