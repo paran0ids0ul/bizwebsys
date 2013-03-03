@@ -136,26 +136,21 @@
  
 <div class="container">
 
-
-<!-- Masthead
-================================================== -->
-<header class="jumbotron subhead" id="overview">
-  <div class="row">
-    <div class="span6">
-      <h1>BizWebSys</h1>
-      <p class="lead">Ubuntu orange and unique font.</p>
-    </div>
+<div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item homeCarousel"><img src="resources/images/carousel_1.jpg" width="800" height="600" align="middle" alt="bizpic"></div>
+    <div class="item homeCarousel"><img src="resources/images/carousel_2.jpg" width="800" height="600" align="middle" alt="bizpic"></div>
+    <div class="item homeCarousel"><img src="resources/images/carousel_3.jpg" width="800" height="600" align="middle" alt="bizpic"></div>
   </div>
-  <div class="subnav">
-    <ul class="nav nav-pills">
-      <li><a href="#typography">Typography</a></li>
-      <li><a href="#navbar">Navbar</a></li>
-      <li><a href="#buttons">Buttons</a></li>
-      <li><a href="#forms">Forms</a></li>
-      <li><a href="#tables">Tables</a></li>
-      <li><a href="#miscellaneous">Miscellaneous</a></li>
-    </ul>
-  </div>
-</header>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
 
 

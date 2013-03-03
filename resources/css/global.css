@@ -178,3 +178,14 @@ section {
 		width: 1168px; /* 2px less to account for left/right borders being removed when in fixed mode */
 	}
 }
+
+
+.carousel-inner { text-align: center; }
+
+.carousel .item > img { display: inline-block; }
+
+.homeCarousel img {
+	width: auto;
+	height: 550px;
+	max-height: 550px;
+}
