@@ -1,1 +1,2 @@
-home_panel
+<div class="container">
+home panel

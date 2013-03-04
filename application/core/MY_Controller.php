@@ -51,8 +51,7 @@ class MY_Controller extends CI_Controller{
 		if($this->hasNav){
 			$this->load->helper("nav");
 			$toMenu["pageName"] = $this->pageName;
-			$toUser["username"] = "Jing";              // Model method required: getUsername()
-			$toUser["profilePic"] = "";                // Model method required: getUserPic()
+			$toUser["username"] = "Jing";              // TODO: Model method required: getUsername()
 			$toHeader["nav"] = $this->load->view("template/nav",$toMenu,true);
 			$toHeader["user"] = $this->load->view("template/user",$toUser,true);
 		}
