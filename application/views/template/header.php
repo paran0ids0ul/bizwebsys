@@ -9,8 +9,8 @@
        </a>
 	   <div class="nav-collapse collapse" id="main-menu">
 		   <?php echo $nav?>
-		</div>   
 		   <?php echo $user?>
+		</div>   
     </div>
   </div>
 </header>
