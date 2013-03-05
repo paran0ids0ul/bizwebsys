@@ -25,4 +25,5 @@ class Panel extends MY_Controller {
 	    $this->pageName = $page;
 		$this->_render('panel/'.$page);
 	}
+	
 }
