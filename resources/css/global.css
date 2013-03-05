@@ -191,3 +191,17 @@ section {
 }
 
 
+<<<<<<< HEAD
+=======
+.nav-header {
+	
+	margin-top: 20px;
+	font-size: medium;
+}
+
+#header {
+	margin-left: 0;
+	margin-right: 0;
+	width: inherit;
+}
+>>>>>>> modifying header
