@@ -10,7 +10,7 @@ class Home extends MY_Controller {
 		$this->title = 'Biz WebSys';
 		$this->keywords = 'UCL, COMP2014, COMP2013, CS';
 		
-		$this->_render('pages/home_panel');
+		$this->_render('pages/home');
 	}
 	
 }
