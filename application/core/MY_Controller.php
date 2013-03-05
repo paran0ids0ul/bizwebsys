@@ -4,7 +4,7 @@ class MY_Controller extends CI_Controller{
 	
 	//Page info
 	protected $data = Array();
-	protected $pageName = FALSE;
+	protected $pageName = False;
 	protected $template = "main";
 	protected $hasNav = TRUE;
 	//Page contents

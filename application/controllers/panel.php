@@ -21,7 +21,8 @@ class Panel extends MY_Controller {
 		$this->_render('panel/home_panel');
 	}
 	
-		public function view($page='home_panel'){	
+	public function view($page='home'){	
+	    $this->pageName = $page;
 		$this->_render('panel/'.$page);
 	}
 }
