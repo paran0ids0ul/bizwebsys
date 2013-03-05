@@ -191,12 +191,16 @@ section {
 }
 
 
-<<<<<<< HEAD
-=======
 .nav-header {
 	
-	margin-top: 20px;
+	margin-top: 25px;
 	font-size: medium;
+	margin-left: 0;
+}
+
+.sub-header {
+	padding-left: 20px;
+	padding-top: 13px;
 }
 
 #header {
@@ -204,4 +208,14 @@ section {
 	margin-right: 0;
 	width: inherit;
 }
->>>>>>> modifying header
+
+.content-header {
+	padding-left: 0;
+}
+
+#bulletin-board {
+	margin-left: auto;
+	height : 150px;
+}
+
+
