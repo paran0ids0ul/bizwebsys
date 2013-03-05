@@ -4,40 +4,29 @@
 <h3>ERP</h3>
 <ul class="thumbnails">
   <li class="span2">
-    <a href="#" class="thumbnail">
+    <div class="thumbnail">
       <img src="resources/images/applogo.png" alt="Inventory">
-    </a>
+	  <h4><center>Inventory</center></h4>
+	</div>
   </li>
   <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src="resources/images/applogo.png" alt="Contacts">
-    </a>
+    <div class="thumbnail">
+      <img src="resources/images/icons/contact.png" alt="Contacts">
+    <h4><center>Contacts</center></h4>
+	</div>
   </li>
   <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src="resources/images/applogo.png" alt="Invoicing">
-    </a>
+    <div class="thumbnail">
+      <img src="resources/images/icons/POS.png" alt="POS">
+	  <h4><center>POS</center></h4>
+    </div>
   </li>
   <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src="resources/images/applogo.png" alt="POS">
-    </a>
+    <div class="thumbnail">
+      <img src="resources/images/icons/sales&purchase.png" alt="sales&purchase">
+	  <h4><center>Sales&Purchase</center></h4>
+    </div>
   </li>  
-  <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src="resources/images/applogo.png" alt="purchase management">
-    </a>
-  </li>
-  <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src="resources/images/applogo.png" alt="employee">
-    </a>
-  </li>
-  <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src="resources/images/applogo.png" alt="Reporting">
-    </a>
-  </li>
 </ul>
 
 <hr/>
