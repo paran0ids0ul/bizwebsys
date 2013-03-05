@@ -10,7 +10,7 @@ class Home extends MY_Controller {
 		$this->title = 'home';
 		$this->keywords = 'UCL, COMP2014, COMP2013, CS';
 		
-		$this->_render('panel/home_panel');
+		$this->_render('panel/home');
 	}
 	
 }
