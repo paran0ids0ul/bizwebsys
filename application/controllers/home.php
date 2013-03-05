@@ -7,7 +7,7 @@ class Home extends MY_Controller {
 		/*
 		 *set up title and keywords (if not the default in custom.php config file will be set) 
 		 */
-		$this->title = 'Biz WebSys';
+		$this->title = 'home';
 		$this->keywords = 'UCL, COMP2014, COMP2013, CS';
 		
 		$this->_render('home');

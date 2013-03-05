@@ -15,13 +15,13 @@ class Panel extends MY_Controller {
 		/*
 		 *set up title and keywords (if not the default in custom.php config file will be set) 
 		 */
-		$this->title = 'Biz WebSys';
+		$this->title = 'Biz ';
 		$this->keywords = 'UCL, COMP2014, COMP2013, CS';
 		
-		$this->_render('pages/home_panel');
+		$this->_render('panel/home_panel');
 	}
 	
 		public function view($page='home_panel'){	
-		$this->_render('pages/'.$page);
+		$this->_render('panel/'.$page);
 	}
 }

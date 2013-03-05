@@ -37,10 +37,10 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['panel'] = 'panel';
 $route['default_controller'] = "home";
 $route['404_override'] = '';
-$route['home'] = "home";
-$route['index'] = "home";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
