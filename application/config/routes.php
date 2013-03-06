@@ -39,7 +39,7 @@
 */
 
 $route['home'] = 'panel/view/home';
-$route['workspace'] = 'panel/view/workspace';
+$route['workspace'] = 'workspace';
 $route['settings'] = 'panel/view/settings';
 $route['group'] = 'panel/view/group';
 $route['default_controller'] = "home";
