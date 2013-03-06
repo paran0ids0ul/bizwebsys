@@ -36,7 +36,7 @@
 <ul class="thumbnails">
   <li class="span2">
     <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="website builder">
+      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="Google+">
     </a>
   </li>
   <li class="span2">
@@ -51,9 +51,14 @@
   </li>
   <li class="span2">
     <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="Promotion & News Pusher">
+      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="Newsletter">
     </a>
   </li>  
+  <li class="span2">
+    <a href="#" class="thumbnail">
+      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="Google Analytics">
+    </a>
+  </li>   
 </ul> 
 
 <hr/>

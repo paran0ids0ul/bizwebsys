@@ -42,10 +42,6 @@ $route['home'] = 'panel/view/home';
 $route['workspace'] = 'panel/view/workspace';
 $route['settings'] = 'panel/view/settings';
 $route['group'] = 'panel/view/group';
-$route['inventory'] = 'panel/view/inventory';
-$route['contacts'] = 'panel/view/contacts';
-$route['pos'] = 'panel/view/pos';
-$route['sales'] = 'panel/view/sales';
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 
