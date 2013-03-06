@@ -30,9 +30,9 @@ class MY_Controller extends CI_Controller{
 		
 		$this->pageName = strToLower(get_class($this));
 	}
-	 
 	
-	protected function _render($view) {
+	private function preRender($view) {
+	
 		//static
 		$toTpl["javascript"] = $this->javascript;
 		$toTpl["css"] = $this->css;
@@ -62,9 +62,28 @@ class MY_Controller extends CI_Controller{
 		
 		$toTpl["body"] = $this->load->view("template/".$this->template,$toBody,true);
 		
+		return $toTpl;
+	}	
+	
+	protected function _render($view) {
+
+		$toTpl = $this->preRender($view);
 		
 		//render view
 		$this->load->view("template/skeleton",$toTpl);
 		
 	}
+	
+	protected function paramRender($view, $param) {
+	
+		$toTpl = $this->preRender($view);
+		
+		$toTpl['customHead'] = $param['customHead'];
+		
+		//render view
+		$this->load->view("template/skeleton",$toTpl);
+	
+	}
+	
+
 }
