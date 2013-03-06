@@ -1,5 +1,5 @@
-<div class="container-fluid">
-  <div class="row-fluid">
+<div class="container">
+  <div class="row">
     <div class="span2">
       <ul class="nav nav-list">
 			<li class="nav-header">Email</li>

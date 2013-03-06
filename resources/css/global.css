@@ -192,7 +192,6 @@ section {
 
 
 .nav-header {
-	
 	margin-top: 25px;
 	font-size: medium;
 	margin-left: 0;
@@ -203,11 +202,7 @@ section {
 	padding-top: 13px;
 }
 
-#header {
-	margin-left: 0;
-	margin-right: 0;
-	width: inherit;
-}
+
 
 .content-header {
 	padding-left: 0;
