@@ -17,7 +17,8 @@
     
       	<div class="row">
 		<!-- Bulletin Board -->
-			<p class="nav-header content-header">Bulletin Board:Whole Company</p>             <!--  TODO:dynamic get group name -->
+			<p class="nav-header content-header inline">Bulletin Board:Whole Company</p>             <!--  TODO:dynamic get group name -->
+			<a class="btn btn-primary inline" href="<?php echo site_url("group");?>">Info</a>
 			<pre class = "pre-scrollable" id="bulletin-board">Sample text here...</pre>
 		</div>	
 		<div class="row">

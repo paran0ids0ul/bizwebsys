@@ -8,19 +8,6 @@
  */
 
 class Panel extends MY_Controller {
-
-	
-	public function index(){	
-		
-		/*
-		 *set up title and keywords (if not the default in custom.php config file will be set) 
-		 */
-		$this->title = 'Biz ';
-		$this->keywords = 'UCL, COMP2014, COMP2013, CS';
-		
-		$this->_render('panel/home_panel');
-	}
-	
 	public function view($page='home'){	
 	    $this->pageName = $page;
 		$this->_render('panel/'.$page);
