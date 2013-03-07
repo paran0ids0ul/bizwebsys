@@ -61,8 +61,13 @@
 	<?php foreach($javascript as $js):?>
 	<script defer src="<?php echo base_url().JS.$js?>"></script>
 	<?php endforeach;?>
-
-<script>
+		<!-- DATEPICKER TODO:MOVE OUT-->
+								  <script>
+									  $(function() {
+										$( "#datepicker" ).datepicker();
+									  });
+								  </script>
+  <script>
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-39088572-1']);

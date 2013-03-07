@@ -208,8 +208,25 @@ section {
 	padding-left: 0;
 }
 
-.content{
+.mycontent{
 	margin-top:5px;
+}
+
+.myform-container{
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:#CCCECE;
+}
+.myform-headbar{
+	background-color:#F9F9F9;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.myform{
+	box-shadow: 10px 10px 5px #888;
+	background-color:#FFFFFF;
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
 
