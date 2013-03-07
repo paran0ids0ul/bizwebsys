@@ -17,21 +17,21 @@
 			</form>
 		</div>	
       	<div class="row">
-			<a href="#" class="btn btn-primary span1">Create</a>
+			<a href="<?php echo site_url("sales/new_order")?>" class="btn btn-primary span1">Create</a>
 		</div>
 		<div class="row content">
-      	<table class="table table-striped">
-			<tr>
-				<td><input type="checkbox"><td/>
-				<td>Customer<td/>
-				<td>Invoice Date<td/>
-				<td>Internal Reference<td/>
-				<td>Salesperson<td/>
-				<td>Due Date<td/>
-				<td>Outstanding<td/>
-				<td>Total<td/>
-			</tr>
-	    </table>
+			<table class="table table-striped span10">
+				<tr>
+					<td><input type="checkbox"><td/>
+					<td>Customer<td/>
+					<td>Invoice Date<td/>
+					<td>Internal Reference<td/>
+					<td>Salesperson<td/>
+					<td>Due Date<td/>
+					<td>Outstanding<td/>
+					<td>Total<td/>
+				</tr>
+			</table>
 		</div>
     </div>
   </div>

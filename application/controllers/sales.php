@@ -6,4 +6,8 @@ class Sales extends MY_Controller {
 		$this->_render('app/sales/sales');
 	}
 	
+	public function new_order(){
+		$this->_render('app/sales/new_order');
+	}
+	
 }
