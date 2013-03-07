@@ -1,5 +1,5 @@
 <script>
-var ARNY = (function(){
+var foobar = (function(){
 	var _baseUrl = "<?php echo base_url(); ?>";
 	return{
 		"language": "<?php echo $this->config->item('language'); ?>",

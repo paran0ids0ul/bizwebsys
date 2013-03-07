@@ -44,6 +44,8 @@ class MY_Controller extends CI_Controller{
 		$toTpl["keywords"] = $this->keywords;
 		$toTpl["author"] = $this->author;
 		
+		$toTpl['customHead'] = '';
+		
 		//data
 		$toBody["content_body"] = $this->load->view($view,array_merge($this->data,$toTpl),true);
 		
