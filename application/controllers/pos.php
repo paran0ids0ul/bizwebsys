@@ -3,7 +3,7 @@
 
 class Pos extends MY_Controller {
 	public function index(){	
-		$this->_render('panel/pos');
+		$this->_render('app/pos');
 	}
 	
 }

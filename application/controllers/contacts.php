@@ -3,7 +3,7 @@
 
 class Contacts extends MY_Controller {
 	public function index(){	
-		$this->_render('panel/contacts');
+		$this->_render('app/contacts');
 	}
 	
 }
