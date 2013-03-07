@@ -23,10 +23,16 @@
   </li>
   <li class="span2">
     <a href="<?php echo site_url("sales");?>" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/icons128/sales_purchases.png")?> alt="sales/purchases">
-	  <div class="text-center">Sales/Purchases</div>
+      <img src=<?php echo base_url("resources/images/icons128/sales_purchases.png")?> alt="Sales&Purchases">
+	  <div class="text-center">Sales&Purchases</div>
     </a>
   </li>  
+  <li class="span2">
+    <a href="<?php echo site_url("employee");?>" class="thumbnail">
+      <img src=<?php echo base_url("")?> alt="Employee">
+	  <div class="text-center">Employee</div>
+    </a>
+  </li>    
 </ul>
 
 <hr/>

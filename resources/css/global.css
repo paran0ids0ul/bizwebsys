@@ -208,9 +208,8 @@ section {
 	padding-left: 0;
 }
 
-#bulletin-board {
-	margin-left: auto;
-	height : 150px;
+.content{
+	margin-top:5px;
 }
 
 

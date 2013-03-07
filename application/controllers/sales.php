@@ -3,7 +3,7 @@
 
 class Sales extends MY_Controller {
 	public function index(){	
-		$this->_render('app/sales');
+		$this->_render('app/sales/sales');
 	}
 	
 }
