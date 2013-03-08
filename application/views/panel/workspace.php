@@ -29,7 +29,7 @@
   </li>  
   <li class="span2">
     <a href="<?php echo site_url("employee");?>" class="thumbnail">
-      <img src=<?php echo base_url("")?> alt="Employee">
+      <img src=<?php echo base_url("resources/images/icons128/employees.png")?> alt="Employee">
 	  <div class="text-center">Employee</div>
     </a>
   </li>    
