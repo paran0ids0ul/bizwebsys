@@ -6,7 +6,7 @@
     </div>
     
     <!-- Content -->
-    <div class="span10 mycontent">
+    <div class="span10 content">
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
 			<li><a href="<?php echo site_url("sales") ?>">Sale Orders</a> <span class="divider">/</span></li>
@@ -18,7 +18,7 @@
 			<button class="btn btn-link">Discard</button>
 		</div>
 		<!-- Form Headbar -->
-		<div class="row mycontent myform-headbar">
+		<div class="row content myform-headbar">
 			<div class="span2">
 				<a class="btn btn-small" href="<?php echo site_url("sales/display_order")?>">Confirm Sale</a>
 			</div>
