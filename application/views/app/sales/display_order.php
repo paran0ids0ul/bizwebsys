@@ -10,7 +10,7 @@
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
 			<li><a href="<?php echo site_url("sales") ?>">Sale Orders</a> <span class="divider">/</span></li>
-			<li class="active"><?php echo $orderID?></li>
+			<li class="active"><?php echo $order_id?></li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
@@ -38,7 +38,7 @@
 		<div class="row myform-container">
 			<div class="span8 offset1 myform box-shadow">
 				<div class="span6">
-					<h4>Sales Order <?php echo $orderID?></h4>
+					<h4>Sales Order <?php echo $order_id?></h4>
 					<form>
 						<div class="row">
 							<div class="span3">

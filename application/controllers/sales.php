@@ -18,11 +18,11 @@ class Sales extends MY_Controller {
 		$this->_render('app/sales/new_order');
 	}
 	
-	public function display_order($orderID="SO0001",$customer="cust1",$date="7/03/2013"){
+	public function display_order($order_id="SO0001",$customer="cust1",$date="7/03/2013"){
 
 		
 		//data
-		$this->data["orderID"] = $orderID;
+		$this->data["order_id"] = $order_id;
 		$this->data["customer"] = $customer;
 		$this->data["date"] = $date;
 		
