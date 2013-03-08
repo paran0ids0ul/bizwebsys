@@ -30,7 +30,7 @@
 		<!-- Form Headbar -->
 		<div class="row content myform-headbar">
 			<div class="span2">
-				<button class="btn btn-small">Create Invoice</button>
+				<a class="btn btn-small" href="<?php echo site_url("sales/display_invoice") ?>">Create Invoice</a>
 			</div>
 			<button class="btn btn-small">Send by email</button>
 		</div>
