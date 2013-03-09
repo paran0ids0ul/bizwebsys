@@ -15,10 +15,9 @@ class Contacts extends MY_Controller {
 	
 	public function new_contact(){
 		$this->_render('app/contacts/new_contact');
-<<<<<<< HEAD
- }
-=======
+
 	}
+}
 	
 	/*
 	public function display_order($order_id="SO0001",$customer="cust1",$date="7/03/2013"){
@@ -49,6 +48,4 @@ class Contacts extends MY_Controller {
 	public function sup_payment(){
 		$this->_render('app/sales/sup_payment');
 	}	*/
->>>>>>> create contact page static view
 	
-}
