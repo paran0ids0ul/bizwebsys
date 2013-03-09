@@ -38,39 +38,39 @@
 			<div class="span4">
 				<div class="row">
 					<div class="span1">
-						<Button class="btn btn-large">Cash</Button>
+						<button class="btn btn-large">Cash</button>
 					</div>
 					<div class="span3">		
 						<div class="row">
 								<div class="span3">
-									<Button class="btn btn-large keypad-button">1</Button>
-									<Button class="btn btn-large keypad-button">2</Button>
-									<Button class="btn btn-large keypad-button">3</Button>
-									<Button class="btn btn-large keypad-button-big">Qty</Button>
+									<button class="btn btn-large keypad-button">1</button>
+									<button class="btn btn-large keypad-button">2</button>
+									<button class="btn btn-large keypad-button">3</button>
+									<button class="btn btn-large keypad-button-big">Qty</button>
 								</div>
 							</div>
 							<div class="row">
 								<div class="span4">
-									<Button class="btn btn-large keypad-button">4</Button>
-									<Button class="btn btn-large keypad-button">5</Button>
-									<Button class="btn btn-large keypad-button">6</Button>
-									<Button class="btn btn-large keypad-button-big">Disc</Button>					
+									<button class="btn btn-large keypad-button">4</button>
+									<button class="btn btn-large keypad-button">5</button>
+									<button class="btn btn-large keypad-button">6</button>
+									<button class="btn btn-large keypad-button-big">Disc</button>					
 								</div>
 							</div>
 							<div class="row">
 								<div class="span4">
-									<Button class="btn btn-large keypad-button">7</Button>
-									<Button class="btn btn-large keypad-button">8</Button>
-									<Button class="btn btn-large keypad-button">9</Button>
-									<Button class="btn btn-large keypad-button-big">Price</Button>									
+									<button class="btn btn-large keypad-button">7</button>
+									<button class="btn btn-large keypad-button">8</button>
+									<button class="btn btn-large keypad-button">9</button>
+									<button class="btn btn-large keypad-button-big">Price</button>									
 								</div>
 							</div>
 							<div class="row">
 								<div class="span4">
-									<Button class="btn btn-large keypad-button">+/-</Button>
-									<Button class="btn btn-large keypad-button">0</Button>
-									<Button class="btn btn-large keypad-button">.</Button>
-									<Button class="btn btn-large keypad-button-big">Del</Button>									
+									<button class="btn btn-large keypad-button">+/-</button>
+									<button class="btn btn-large keypad-button">0</button>
+									<button class="btn btn-large keypad-button">.</button>
+									<button class="btn btn-large keypad-button-big">Del</button>									
 								</div>
 							</div>
 						</div>

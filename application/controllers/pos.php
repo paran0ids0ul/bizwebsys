@@ -9,6 +9,10 @@ class Pos extends MY_Controller {
 		//load left column
 		$this->data["left_column"] = $this->load->view("app/pos/left_column",'',true);
 		
+		//load POS header
+		$to_header["username"] = "Jing";          //TODO: Model method required: getUsername()
+		$this->data["header"] = $this->load->view("app/pos/header",$to_header,true);
+		
 		//load CSS
 		$this->data["custom_css"] ='
 									<style type="text/css">
@@ -25,7 +29,11 @@ class Pos extends MY_Controller {
 									.keypad-button-big
 									{
 										width:70px;
-									}									
+									}	
+									#add-button
+									{
+										margin-left:20px;
+									}
 									</style>';
 
 	}
