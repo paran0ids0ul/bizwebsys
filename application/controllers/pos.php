@@ -13,6 +13,19 @@ class Pos extends MY_Controller {
 		$this->data["custom_css"] ='
 									<style type="text/css">
 									
+									.keypad
+									{
+										margin-top:40px;
+									}
+									
+									.keypad-button
+									{
+										width:50px;
+									}
+									.keypad-button-big
+									{
+										width:70px;
+									}									
 									</style>';
 
 	}
