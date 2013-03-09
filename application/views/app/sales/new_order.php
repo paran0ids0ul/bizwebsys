@@ -26,7 +26,7 @@
 		</div>
 		<!-- Form Container -->
 		<div class="row myform-container">
-			<div class="span8 offset1 myform box-shadow">
+			<div class="span8 offset1 myform">
 				<div class="span6">
 					<h4>Quotation</h4>
 					<form>

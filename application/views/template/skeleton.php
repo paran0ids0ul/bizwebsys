@@ -48,6 +48,7 @@
 </head>
 <body>
 	<?php echo $body ?>
+
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?php echo base_url(JS."libs/jquery-1.9.1.min.js");?>"><\/script>')</script>
@@ -80,7 +81,6 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-</script>
+  </script>
 </body>
 </html>
