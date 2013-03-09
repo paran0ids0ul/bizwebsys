@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-  	<div class="span12 content">
+  	<div class="span12 content contact-main">
 
 	  	<div class="row">
 			<h4 class="span3">Contacts</h4>
@@ -26,7 +26,7 @@
 		
 	
 			<!--generate contacts from database-->
-		<div class="container contact-layout myform-container">
+		<div class="container contact-layout">
 			<div class="content span12">
 			<div class="row">
 				<ul class="thumbnails">

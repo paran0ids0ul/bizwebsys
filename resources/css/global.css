@@ -252,5 +252,17 @@ html, body {
 } 
 
 
+.contact-main {
+	overflow-x: hidden;
 
+}
 
+.contact-layout {
+	margin-top: 10px;
+	border-top: 1px solid #c0b5b5;
+	border-bottom: 1px solid #c0b5b5;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background-color:#e6e2e2;
+	
+}
