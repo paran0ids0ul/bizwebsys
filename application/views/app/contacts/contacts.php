@@ -25,10 +25,11 @@
 		</div>
 		
 	
-			<!--generate contacts from database-->
+			
 		<div class="container contact-layout">
 			<div class="content span12">
 			<div class="row">
+				<!--generate contacts from database-->
 				<ul class="thumbnails">
 					<li class="span3">					
 						<a href="<?php echo site_url("inventory");?>" class="thumbnail">

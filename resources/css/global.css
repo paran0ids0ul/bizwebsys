@@ -243,5 +243,23 @@ section {
 	padding-top: 20px;
 	padding-bottom: 10px;
 	background-color:#e6e2e2;
+	height: 500px;
 	
+}
+
+.contact-container {
+	margin-top:10px;
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:#CCCECE;
+	height: 500px;
+}
+
+.lower-contact {
+	margin-top: 25px;
+}
+
+.label-field {
+	border-left: 1px solid #c0b5b5;
+	padding-left: 5px;
 }
