@@ -30,6 +30,7 @@ class MY_Controller extends CI_Controller{
 		
 		$this->pageName = strToLower(get_class($this));
 		$this->data["custom_css"]='';
+		$this->data["custom_js"]='';
 	}
 	
 	private function preRender($view) {
