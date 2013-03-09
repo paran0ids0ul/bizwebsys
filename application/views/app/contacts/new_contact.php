@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
       <!-- Content -->
-    <div class="span12 content row">
+    <div class="span12 content">
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
 			<li><a href="<?php echo site_url("contacts") ?>">Contact</a> <span class="divider">/</span></li>
@@ -14,7 +14,7 @@
 		</div>
 
 		<!-- Form Container -->
-		<div class="contact-container">
+		<div class="contact-container container">
 			<div class="span9 offset1 myform">
 			<form>
 				<div class="row">
