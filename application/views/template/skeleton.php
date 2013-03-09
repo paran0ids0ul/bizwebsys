@@ -62,6 +62,7 @@
 	<?php foreach($javascript as $js):?>
 	<script defer src="<?php echo base_url().JS.$js?>"></script>
 	<?php endforeach;?>
+	<?php echo $custom_js;?>
 		<!-- DATEPICKER TODO:MOVE OUT-->
 								  <script>
 									  $(function() {

@@ -1,4 +1,4 @@
-<div class="row myform-container">
+<div class="row myform-container" id="left_column">
 	<div class="span4">
 		<!-- Shopping List -->
 		<div class="row">	
@@ -38,7 +38,7 @@
 			<div class="span4">
 				<div class="row">
 					<div class="span1">
-						<button class="btn btn-large">Cash</button>
+						<a class="btn btn-large" href="<?php echo site_url("pos/payment")?>">Cash</a>
 					</div>
 					<div class="span3">		
 							<div class="row">
