@@ -10,6 +10,7 @@ class Pos extends MY_Controller {
 		$this->data["left_column"] = $this->load->view("app/pos/left_column",'',true);
 		
 		//load POS header
+		$this->template="main_no_header";
 		$to_header["username"] = "Jing";          //TODO: Model method required: getUsername()
 		$this->data["header"] = $this->load->view("app/pos/header",$to_header,true);
 		
@@ -34,6 +35,30 @@ class Pos extends MY_Controller {
 									{
 										margin-left:20px;
 									}
+									.product-container
+									{
+										background-color:#F9F9F9;
+									}
+									.thumbnails
+									{
+										margin-left:1px;
+										mouse:pointer;
+									}
+									.thumbnail
+									{
+										width:100px;
+										height:100px;
+									}
+									.thumbnail img
+									{
+										width:60px;
+										height:60px;
+									}
+									.label
+									{
+										position:relative;
+									}
+									
 									</style>';
 
 	}

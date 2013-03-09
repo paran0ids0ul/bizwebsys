@@ -41,7 +41,7 @@
 						<button class="btn btn-large">Cash</button>
 					</div>
 					<div class="span3">		
-						<div class="row">
+							<div class="row">
 								<div class="span3">
 									<button class="btn btn-large keypad-button">1</button>
 									<button class="btn btn-large keypad-button">2</button>
@@ -50,7 +50,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="span4">
+								<div class="span3">
 									<button class="btn btn-large keypad-button">4</button>
 									<button class="btn btn-large keypad-button">5</button>
 									<button class="btn btn-large keypad-button">6</button>
@@ -58,7 +58,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="span4">
+								<div class="span3">
 									<button class="btn btn-large keypad-button">7</button>
 									<button class="btn btn-large keypad-button">8</button>
 									<button class="btn btn-large keypad-button">9</button>
@@ -66,15 +66,15 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="span4">
+								<div class="span3">
 									<button class="btn btn-large keypad-button">+/-</button>
 									<button class="btn btn-large keypad-button">0</button>
 									<button class="btn btn-large keypad-button">.</button>
 									<button class="btn btn-large keypad-button-big">Del</button>									
 								</div>
 							</div>
-						</div>
-					</div>	
+					</div>
+						
 				</div>	
 			</div>
 		</div>

@@ -1,13 +1,15 @@
 <div class="container">
   <div class="row">
+	<!-- Side Menu -->
     <div class="span2">
 		<?php echo $sidemenu ?>
     </div>
     
-    
+    <!-- Content -->
     <div class="span10 content">
 		<div class="row">
 			<h4 class="span3">sales orders</h4>
+			<!-- Search Bar -->
 			<form class="form-search span4 pull-right">
 				<div class="input-prepend">
 					<span class="add-on"><i class="icon-search"></i></span>
@@ -16,9 +18,11 @@
 				<button type="submit input-medium search-query" class="btn btn-primary">Search</button>
 			</form>
 		</div>	
+		<!-- Create New Button -->
       	<div class="row">
 			<a href="<?php echo site_url("sales/new_order")?>" class="btn btn-primary span1">Create</a>
 		</div>
+		<!-- Sales Order Table -->
 		<div class="row content">
 			<table class="table table-striped span10">
 				<tr>

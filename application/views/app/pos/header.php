@@ -16,7 +16,7 @@
 				<li><button class="btn btn-primary">10:05</button></li>
 			</ul>
 			<ul class="nav pull-right">
-				<li><a>Close</a></li>
+				<li><a href="<?php echo site_url("workspace")?>">Close</a></li>
 			</ul>
 		</div>   
     </div>
