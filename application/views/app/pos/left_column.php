@@ -1,5 +1,4 @@
-<div class="container">
-	<div class="row myform-container">
+<div class="row myform-container">
 		<!-- Shopping List -->
 		<div class="span4 myform">
 			<table class="table table-hover">
@@ -56,4 +55,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+
