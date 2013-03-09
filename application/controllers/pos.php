@@ -12,7 +12,19 @@ class Pos extends MY_Controller {
 		//load CSS
 		$this->data["custom_css"] ='
 									<style type="text/css">
-
+									.myform-container
+									{
+										overflow:auto;
+										padding-bottom:200px;
+									}
+									.keypad
+									{
+									      position: relative;
+										  margin-top: -200px; /* negative value of footer height */
+										  height: 200px;
+										  clear:both;
+										  padding-top:20px;
+									}
 									</style>';
 
 	}

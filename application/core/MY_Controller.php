@@ -29,6 +29,7 @@ class MY_Controller extends CI_Controller{
 		$this->author = $this->config->item('site_author');
 		
 		$this->pageName = strToLower(get_class($this));
+		$this->data["custom_css"]='';
 	}
 	
 	private function preRender($view) {

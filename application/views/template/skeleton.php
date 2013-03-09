@@ -44,7 +44,7 @@
 <link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url(IMAGES.'ico/apple-touch-icon-114x114-precompressed.png');?>">
 
 <?php echo $customHead; ?>
-
+<?php echo $custom_css; ?>
 </head>
 <body>
 	<?php echo $body ?>
