@@ -17,6 +17,11 @@ class Contacts extends MY_Controller {
 		$this->_render('app/contacts/new_contact');
 
 	}
+	
+	public function display_contact(){
+		$this->_render('app/contacts/display_contact');
+
+	}
 }
 	
 	/*

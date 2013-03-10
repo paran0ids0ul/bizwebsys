@@ -32,7 +32,7 @@
 				<!--generate contacts from database-->
 				<ul class="thumbnails">
 					<li class="span3">					
-						<a href="<?php echo site_url("inventory");?>" class="thumbnail">
+						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
 							<div class="row">
 								<div class="span1">
 									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
@@ -46,7 +46,7 @@
 						</a>
 					</li>
 					<li class="span3">					
-						<a href="<?php echo site_url("inventory");?>" class="thumbnail">
+						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
 							<div class="row">
 								<div class="span1">
 									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
@@ -60,7 +60,7 @@
 						</a>
 					</li>
 					<li class="span3">					
-						<a href="<?php echo site_url("inventory");?>" class="thumbnail">
+						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
 							<div class="row">
 								<div class="span1">
 									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
@@ -74,7 +74,7 @@
 						</a>
 					</li>
 					<li class="span3">					
-						<a href="<?php echo site_url("inventory");?>" class="thumbnail">
+						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
 							<div class="row">
 								<div class="span1">
 									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">

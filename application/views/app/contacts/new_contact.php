@@ -9,7 +9,7 @@
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<button class="btn btn-primary span1">Save</button>
+			<a href="<?php echo site_url("contacts/display_contact")?>" class="btn btn-primary span1">Save</a>
 			<button class="btn btn-link">Discard</button>
 		</div>
 
@@ -35,7 +35,7 @@
 							<div class="span3 offset1" id="cate_select">
 								<label>Business Category	
 								</label> 
-								<select name="business_list">
+								<select name="business_list" id="contact_business">
 									<option>Please Choose :</option>
 									<option>2</option>
 									<option>3</option>
