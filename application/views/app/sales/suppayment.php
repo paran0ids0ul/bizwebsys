@@ -7,7 +7,7 @@
     
     <div class="span10 content">
 		<div class="row">
-			<h4 class="span3">Sales Orders</h4>
+			<h4 class="span3">Supplier Payments</h4>
 			<form class="form-search span4 pull-right">
 				<div class="input-prepend">
 					<span class="add-on"><i class="icon-search"></i></span>
@@ -17,18 +17,15 @@
 			</form>
 		</div>	
       	<div class="row">
-			<a href="<?php echo site_url("sales/neworder")?>" class="btn btn-primary span1">Create</a>
+			<a href="<?php echo site_url("sales/supnewpayment")?>" class="btn btn-primary span1">Create</a>
 		</div>
 		<div class="row content">
 			<table class="table table-striped span10">
 				<tr>
 					<td><input type="checkbox"><td/>
-					<td>Customer<td/>
-					<td>Invoice Date<td/>
+					<td>Payment Date<td/>
 					<td>Internal Reference<td/>
-					<td>Salesperson<td/>
-					<td>Due Date<td/>
-					<td>Outstanding<td/>
+					<td>Supplier<td/>
 					<td>Total<td/>
 				</tr>
 			</table>
