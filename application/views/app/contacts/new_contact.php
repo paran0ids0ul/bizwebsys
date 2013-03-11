@@ -25,7 +25,7 @@
 								</a>
 							</div>
 							<div class="span2">
-								<label class"checkbox">Name : ( 
+								<label>Name : ( 
 								<input type="checkbox" id"is_company"> Is a Company? )
 								</label> 
 								<input id="contact_name" type="text" placeholder="e.g John Wesley" >
