@@ -8,13 +8,13 @@
     <!-- Content -->
     <div class="span10 content">
 		<!-- Breadcrumb -->
-		<ul class="breadcrumb">
+		<ul class="breadcrumb row">
 			<li><a href="<?php echo site_url("sales") ?>">Sale Orders</a> <span class="divider">/</span></li>
 			<li class="active">New</li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<button class="btn btn-primary span1">Save</button>
+			<button class="btn btn-primary">Save</button>
 			<button class="btn btn-link">Discard</button>
 		</div>
 		<!-- Form Headbar -->

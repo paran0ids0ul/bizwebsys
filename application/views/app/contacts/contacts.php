@@ -10,6 +10,7 @@
 					<input class="span3" id="searchbox" type="text">
 				</div>
 				<button type="submit input-medium search-query" class="btn btn-primary">Search</button>
+
 			</form>
 		</div>	
 		<div class="row">
