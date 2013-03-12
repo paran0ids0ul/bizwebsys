@@ -10,7 +10,9 @@
 		<!-- Control Buttons -->
 		<div class="row">
 			<a href="<?php echo site_url("contacts/display_contact")?>" class="btn btn-primary span1">Save</a>
+			<a href="<?php echo site_url("contacts")?>">
 			<button class="btn btn-link">Discard</button>
+			</a>
 		</div>
 
 		<!-- Form Container -->

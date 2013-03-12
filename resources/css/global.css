@@ -267,3 +267,15 @@ section {
 	width : 80px;
 	margin-right: 5px;
 }
+
+.underlined {
+	border-bottom: 1px solid #bcb7b7;
+}
+
+.settings-header {
+	padding-top: 30px;
+}
+
+.settings-details {
+	padding-top: 20px;
+}
