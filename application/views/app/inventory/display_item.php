@@ -14,7 +14,9 @@
 					</a>
 				</div>
 				<div class="span1">	
-					<button class="btn btn-primary same-btn-width">Stock up</button>
+					<a href="#stockupmodal" data-toggle="modal">
+						<button class="btn btn-primary same-btn-width">Stock up</button>
+					</a>
 				</div>
 				<div class="span1">
 					<button class="btn btn-primary same-btn-width">Edit</button>
@@ -110,3 +112,71 @@
 	</div> <!-- close content -->
   </div> <!-- close row -->
 </div> <!-- close container -->
+
+
+
+<!-- Modal Stock up-->
+<div id="#stockupmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="stockuplabel" aria-hidden="true">
+  <div class="modal-header">
+    <h3 id="stockuplabel">Stock Up</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" id="stockupform">
+		<div class="span2">
+		Customer
+		<div class="input-prepend">
+			<div class="btn-group">
+				<button class="btn dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+				<li><a tabindex="-1" href="#">cust1</a></li>
+				<li><a tabindex="-1" href="#">cust2</a></li>
+				</ul>
+			</div>
+			<input class="span2" id="cust" type="text" list="customers">
+			<datalist id="customers">
+		    <option value="acust">
+			<option value="bcust">
+			<option value="ccust">
+			<option value="dcust">
+			<option value="ecust">
+			</datalist>
+		</div>
+		Paid Amount 
+		<input type="text" />
+		Payment Method
+		<div class="input-prepend">
+			<div class="btn-group">
+				<button class="btn dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+				<li><a tabindex="-1" href="#">Visa</a></li>
+				<li><a tabindex="-1" href="#">MasterCard</a></li>
+				</ul>
+			</div>
+			<input class="span2" id="cust" type="text" list="paymethod">
+				<datalist id="paymethod">
+				<option value="apay">
+				<option value="bpay">
+				<option value="cpay">
+				<option value="dpay">
+				<option value="epay">
+				</datalist>
+	    </div>
+		</div>
+		<div class="span3 offset1">
+		Date
+		<input type="text" id="datepicker" />
+		Payment Reference
+		<input type="text"  />
+	 
+		</div>
+	</form>
+  </div>
+  <div class="modal-footer ">
+    <a button class="btn btn-primary" form="payinvoiceform" href="<?php echo site_url("sales/payedsuperinvoice") ?>">Pay</a>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

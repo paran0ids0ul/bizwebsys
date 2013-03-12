@@ -32,32 +32,40 @@
 					<form>
 						<div class="row">
 							<div class="span3">
-								Customer
-								<div class="input-prepend">
-									<div class="btn-group">
-										<button class="btn dropdown-toggle" data-toggle="dropdown">
-										  <span class="caret"></span>
-										</button>
-									<ul class="dropdown-menu">
-										<li><a tabindex="-1" href="#">cust1</a></li>
-										<li><a tabindex="-1" href="#">cust2</a></li>
-									</ul>
+									<div class="span1">
+										<label>Customer</label>
 									</div>
-								    <input class="span2" id="cust" type="text" list="customers">
-								    <datalist id="customers">
-										<option value="acust">
-										<option value="bcust">
-										<option value="ccust">
-										<option value="dcust">
-										<option value="ecust">
-									</datalist>
-								</div>
+									<div class="input-prepend span2">
+										<div class="btn-group">
+											<button class="btn dropdown-toggle" data-toggle="dropdown">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a tabindex="-1" href="#">cust1</a></li>
+												<li><a tabindex="-1" href="#">cust2</a></li>
+											</ul>
+										</div>
+										<input id="cust" type="text" list="customers">
+										<datalist id="customers">
+											<option value="acust">
+											<option value="bcust">
+											<option value="ccust">
+											<option value="dcust">
+											<option value="ecust">
+										</datalist>
+									</div>
+									
 							</div>
 							<div class="span3">
-								Invoice Date
-								<input type="text" id="datepicker" />
+									<div class="span3">
+										<label>Invoice Date</label>
+									</div>
+									<div class="span3">
+									<input type="text" id="datepicker"/>
+									</div>
 							</div>
-						</div>
+							</div>
+							
 					</form>
 				</div>
 				<!-- Order Lines Table -->
