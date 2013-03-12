@@ -40,8 +40,6 @@
 
 $route['home'] = 'panel/view/home';
 $route['workspace'] = 'workspace';
-$route['settings'] = 'panel/view/settings';
-$route['group'] = 'panel/view/group';
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 
