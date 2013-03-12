@@ -89,5 +89,16 @@ class MY_Controller extends CI_Controller{
 	
 	}
 	
+		protected function _data_render($view, $data) {
+	
+		$toTpl = $this->preRender($view);
+		
+		array_merge($data,$toTpl);
+		
+		//render view
+		$this->load->view("template/skeleton",$toTpl);
+	
+	}
+	
 
 }
