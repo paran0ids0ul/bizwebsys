@@ -14,7 +14,6 @@
 			<button class="btn btn-link">Discard</button>
 			</a>
 		</div>
-
 		<!-- Form Container -->
 		<div class="contact-container container">
 			<div class="span9 offset1 myform">
@@ -28,21 +27,17 @@
 							</div>
 							<div class="span2">
 								<label>Name : ( 
-								<input type="checkbox" id"is_company"> Is a Company? )
+								<input type="checkbox" id="is_company"> Is a Company? )
 								</label> 
 								<input id="contact_name" type="text" placeholder="e.g John Wesley" >
 								
 							</div>
 							<!-- this div is only unhidden if company tickbox is ticked-->
-							<div class="span3 offset1 is_business" id="cate_select">
+							<div class="span3 offset1 is-business" id="cate_select">
 								<label>Business Category	
 								</label> 
-								<select name="business_list" id="contact_business">
+								<select name="contact_business" id="contact_business">
 									<option>Please Choose :</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
 								</select>
 														
 							</div>		
@@ -97,9 +92,9 @@
 										<option>Mrs.</option>
 									</select>						
 								</div>
-								<label class="span1 is_business">Organization	
+								<label class="span1 is-business">Organization	
 								</label>
-								<div class="span3 label-field is_business">				
+								<div class="span3 label-field is-business">				
 									<input id="contact_organization" type="text" placeholder="Organization" >
 								</div>
 							</div> <!-- close right lower form -->

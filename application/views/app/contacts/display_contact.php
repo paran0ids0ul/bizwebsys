@@ -41,7 +41,7 @@
 									<span class="input-xlarge uneditable-input" id="contact_name">php to retrive data</span>
 								</div>
 								<!-- this div is only unhidden if contact is a company-->
-								<div class="span3 offset1 is_business">
+								<div class="span3 offset1 is-business">
 									<label>Business Category	
 									</label> 
 									<span class="input-xlarge uneditable-input" id="contact_business">php to retrive data</span>						
@@ -114,9 +114,9 @@
 											<span class="input-xlarge uneditable-input" id="contact_title">php to retrive data</span>						
 										</div>
 										
-										<label class="span1 is_business">Organization
+										<label class="span1 is-business">Organization
 										</label>
-										<div class="span3 label-field is_business">
+										<div class="span3 label-field is-business">
 											
 											<span class="input-xlarge uneditable-input" id="contact_organization">php to retrive data</span>						
 										</div>
