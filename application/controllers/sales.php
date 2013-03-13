@@ -4,41 +4,40 @@
 class Sales extends MY_Controller {
 	function __construct()
 	{	
+
 		parent::__construct();
-	///	$this->load->model('sales_model');
 		//side menu
 		$this->data["sidemenu"] = $this->load->view("app/sales/sidemenu",'',true);
 	}
 
 	//sales order
 	public function index(){	
-		$data['orders'] = $this->sales_model->get_orders();
-		$this->_data_render('app/sales/sales',$data);
+		$this->_render('app/sales/sales');
 	}
 	
-	public function neworder(){
-		$this->_render('app/sales/neworder');
+	public function new_order(){
+		$this->_render('app/sales/new_order');
 	}
 	
-	public function displayorder($orderid="SO0001",$customer="cust1",$date="7/03/2013"){
+	public function display_order($orderid="SO0001",$customer="cust1",$date="7/03/2013"){
 		//data
 		$this->data["orderid"] = $orderid;
 		$this->data["customer"] = $customer;
 		$this->data["date"] = $date;
 		
-		$this->_render('app/sales/displayorder');
+		$this->_render('app/sales/display_order');
 	}
 	
 	//customer invoice
-		public function custinvoice(){
-		$this->_render('app/sales/custinvoice');
+		public function cust_invoice(){
+		$this->_render('app/sales/cust_invoice');
 	}
 	
-		public function displayinvoice(){
-		$this->_render('app/sales/displayinvoice');
+		public function display_invoice(){
+		$this->_render('app/sales/display_invoice');
 	}
 	
-	public function superinvoice($orderid="SAJ/2013/002",$customer="cust1",$date="7/03/2013",$paymentterm="12 days",$additioninfo="none"){
+	public function super_invoice($orderid="SAJ/2013/002",$customer="cust1",$date="7/03/2013",$paymentterm="12 days",$additioninfo="none"){
 		//data
 		$this->data["orderid"] = $orderid;
 		$this->data["customer"] = $customer;
@@ -46,10 +45,10 @@ class Sales extends MY_Controller {
 		$this->data["paymentterm"] = $paymentterm;
 		$this->data["additioninfo"] = $additioninfo;
 	
-		$this->_render('app/sales/superinvoice');
+		$this->_render('app/sales/super_invoice');
 	}
 	
-	public function payedsuperinvoice($orderid="SAJ/2013/002",$customer="cust1",$date="7/03/2013",$paymentterm="12 days",$additioninfo="none"){
+	public function payed_super_invoice($orderid="SAJ/2013/002",$customer="cust1",$date="7/03/2013",$paymentterm="12 days",$additioninfo="none"){
 		//data
 		$this->data["orderid"] = $orderid;
 		$this->data["customer"] = $customer;
@@ -57,19 +56,19 @@ class Sales extends MY_Controller {
 		$this->data["paymentterm"] = $paymentterm;
 		$this->data["additioninfo"] = $additioninfo;
 	
-		$this->_render('app/sales/payedsuperinvoice');
+		$this->_render('app/sales/payed_super_invoice');
 	}
 
 	//customer payment
-	public function custpayment(){
-		$this->_render('app/sales/custpayment');
+	public function cust_payment(){
+		$this->_render('app/sales/cust_payment');
 	}
 
-	public function newpayment(){
-		$this->_render('app/sales/newpayment');
+	public function new_payment(){
+		$this->_render('app/sales/new_payment');
 	}
 	
-	public function displaypayment($orderid="BNK2/2013/0001",$customer="cust1",$date="7/03/2013",$paidamount="00.00",$paidmethod="EUR",$paymentref="none"){
+	public function display_payment($orderid="BNK2/2013/0001",$customer="cust1",$date="7/03/2013",$paidamount="00.00",$paidmethod="EUR",$paymentref="none"){
 		//data
 		$this->data["orderid"] = $orderid;
 		$this->data["customer"] = $customer;
@@ -78,11 +77,11 @@ class Sales extends MY_Controller {
 		$this->data["paidmethod"] = $paidmethod;
 		$this->data["paymentref"] = $paymentref;
 		
-		$this->_render('app/sales/displaypayment');
+		$this->_render('app/sales/display_payment');
 	}
 	
 	//supplier invoice
-	public function supinvoice($invoiceid="EXJ/2013/0001",$supplier="cust1",$invdate="7/03/2013",$supplierno="012345",$duedate="09/03/2013"){
+	public function sup_invoice($invoiceid="EXJ/2013/0001",$supplier="cust1",$invdate="7/03/2013",$supplierno="012345",$duedate="09/03/2013"){
 		//data
 		$this->data["invoiceid"] = $invoiceid;
 		$this->data["supplier"] = $supplier;
@@ -91,19 +90,19 @@ class Sales extends MY_Controller {
 		$this->data["supplierno"] = $supplierno;
 
 		
-		$this->_render('app/sales/supinvoice');
+		$this->_render('app/sales/sup_invoice');
 	}
 
 	//supplier payment
-	public function suppayment(){
-		$this->_render('app/sales/suppayment');
+	public function sup_payment(){
+		$this->_render('app/sales/sup_payment');
 	}	
 	
-	public function supnewpayment(){
-		$this->_render('app/sales/supnewpayment');
+	public function sup_new_payment(){
+		$this->_render('app/sales/sup_new_payment');
 	}
 	
-	public function supdisplaypayment($orderid="BNK2/2013/0001",$supplier="cust1",$date="7/03/2013",$paidamount="00.00",$paidmethod="EUR",$paymentref="none"){
+	public function sup_display_payment($orderid="BNK2/2013/0001",$supplier="cust1",$date="7/03/2013",$paidamount="00.00",$paidmethod="EUR",$paymentref="none"){
 		//data
 		$this->data["orderid"] = $orderid;
 		$this->data["supplier"] = $supplier;
@@ -112,6 +111,6 @@ class Sales extends MY_Controller {
 		$this->data["paidmethod"] = $paidmethod;
 		$this->data["paymentref"] = $paymentref;
 		
-		$this->_render('app/sales/supdisplaypayment');
+		$this->_render('app/sales/sup_display_payment');
 	}
 }

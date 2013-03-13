@@ -8,29 +8,29 @@
     <!-- Content -->
     <div class="span10 content">
 		<!-- Breadcrumb -->
-		<ul class="breadcrumb">
-			<li><a href="<?php echo site_url("sales/suppayment") ?>">Supplier Payment</a> <span class="divider">/</span></li>
+		<ul class="breadcrumb row">
+			<li><a href="<?php echo site_url("sales/cust_payment") ?>">Customer Payment</a> <span class="divider">/</span></li>
 			<li class="active"><?php echo $orderid?></li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<button class="btn btn-primary span1">Save</button>
+			<button class="btn btn-primary same-btn-width">Save</button>
 			<button class="btn btn-link">Discard</button>
 		</div>
 		<!-- Form Container -->
 		<div class="row myform-container">
 			<div class="span8 offset1 myform box-shadow">
 				<div class="span7">
-					<h4><?php echo $orderid?></h4>
+				<h4><?php echo $orderid?></h4>
 					<form>
 						<div class="row">
 							<div class="span3 ">
 								<div class="row">
 									<div class="span2">
-										Supplier :
+										Customer :
 									</div>
 									<div class="span1">
-										<?php echo $supplier?>
+										<?php echo $customer?>
 									</div>							
 								</div>
 								<div class="row">
@@ -112,6 +112,6 @@
 						
 					
 	</div>
-  </div>
+   </div>
 </div>
 

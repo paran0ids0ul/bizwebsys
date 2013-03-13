@@ -14,14 +14,12 @@
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<button class="btn btn-primary">Save</button>
+			<button class="btn btn-primary same-btn-width">Save</button>
 			<button class="btn btn-link">Discard</button>
 		</div>
 		<!-- Form Headbar -->
 		<div class="row content myform-headbar">
-			<div class="span2">
-				<a class="btn btn-small" href="<?php echo site_url("sales/displayorder")?>">Confirm Sale</a>
-			</div>
+			<a class="btn btn-small" href="<?php echo site_url("sales/display_order")?>">Confirm Sale</a>
 			<button class="btn btn-small">Cancel</button>
 		</div>
 		<!-- Form Container -->

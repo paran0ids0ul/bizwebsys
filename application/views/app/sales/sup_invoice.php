@@ -8,20 +8,18 @@
     <!-- Content -->
     <div class="span10 content">
 		<!-- Breadcrumb -->
-		<ul class="breadcrumb">
-			<li><a href="<?php echo site_url("supinvoice") ?>">Supplier Invoice</a> <span class="divider">/</span></li>
+		<ul class="breadcrumb row">
+			<li><a href="<?php echo site_url("sales/sup_invoice") ?>">Supplier Invoice</a> <span class="divider">/</span></li>
 			<li class="active">Internal Reference</li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<button class="btn btn-primary span1">Save</button>
+			<button class="btn btn-primary same-btn-width">Save</button>
 			<button class="btn btn-link">Discard</button>
 		</div>
 		<!-- Form Headbar -->
 		<div class="row content myform-headbar">
-			<div class="span2">
-				<a href="#payinvoicemodal" data-toggle="modal" class="btn btn-small">Pay</a>
-			</div>
+			<a href="#payinvoicemodal" data-toggle="modal" class="btn btn-small">Pay</a>
 		</div>
 		<!-- Form Container -->
 		<div class="row myform-container">
@@ -147,61 +145,77 @@
   </div>
   <div class="modal-body">
     <form class="form-horizontal" id="payinvoiceform">
-		<div class="span2">
-		Customer
-		<div class="input-prepend">
-			<div class="btn-group">
-				<button class="btn dropdown-toggle" data-toggle="dropdown">
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-				<li><a tabindex="-1" href="#">cust1</a></li>
-				<li><a tabindex="-1" href="#">cust2</a></li>
-				</ul>
+	  <div class="control-group">
+		<label class="control-label" for="customer">Customer</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<div class="btn-group">
+						<button class="btn dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="#">cust1</a></li>
+						<li><a tabindex="-1" href="#">cust2</a></li>
+						</ul>
+					</div>
+					<input class="span2" id="cust" type="text" list="customers">
+					<datalist id="customers">
+					<option value="acust">
+					<option value="bcust">
+					<option value="ccust">
+					<option value="dcust">
+					<option value="ecust">
+					</datalist>
+				</div>
 			</div>
-			<input class="span2" id="cust" type="text" list="customers">
-			<datalist id="customers">
-		    <option value="acust">
-			<option value="bcust">
-			<option value="ccust">
-			<option value="dcust">
-			<option value="ecust">
-			</datalist>
+	  </div>
+	  <div class="control-group">
+		<label class="control-label" for="payamount">Paid Amount</label>
+		<div class="controls">
+		  <input type="text" id="payamount" placeholder="00.00">
 		</div>
-		Paid Amount 
-		<input type="text" />
-		Payment Method
-		<div class="input-prepend">
-			<div class="btn-group">
-				<button class="btn dropdown-toggle" data-toggle="dropdown">
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-				<li><a tabindex="-1" href="#">Visa</a></li>
-				<li><a tabindex="-1" href="#">MasterCard</a></li>
-				</ul>
+	  </div>
+	  <div class="control-group">
+		<label class="control-label" for="paymethod">Payment Method</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<div class="btn-group">
+						<button class="btn dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="#">Visa</a></li>
+						<li><a tabindex="-1" href="#">MasterCard</a></li>
+						</ul>
+					</div>
+					<input class="span2" id="cust" type="text" list="paymethod">
+						<datalist id="paymethod">
+						<option value="apay">
+						<option value="bpay">
+						<option value="cpay">
+						<option value="dpay">
+						<option value="epay">
+						</datalist>
+				</div>
 			</div>
-			<input class="span2" id="cust" type="text" list="paymethod">
-				<datalist id="paymethod">
-				<option value="apay">
-				<option value="bpay">
-				<option value="cpay">
-				<option value="dpay">
-				<option value="epay">
-				</datalist>
-	    </div>
+	  </div>
+	  <div class="control-group">
+		<label class="control-label" for="date">Date</label>
+		<div class="controls">
+		 <input type="text" id="datepicker"/>
 		</div>
-		<div class="span3 offset1">
-		Date
-		<input type="text" id="datepicker" />
-		Payment Reference
-		<input type="text"  />
-	 
+	  </div>
+	  <div class="control-group">
+		<label class="control-label" for="payreference">Payment Reference</label>
+		<div class="controls">
+		  <input type="text" id="payreference" placeholder="Payment Reference">
 		</div>
+	  </div>
+
 	</form>
   </div>
   <div class="modal-footer ">
-    <button class="btn btn-primary" form="payinvoiceform">Pay</button>
+    <a button class="btn btn-primary" form="payinvoiceform" >Pay</a>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
 </div>

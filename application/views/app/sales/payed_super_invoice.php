@@ -8,24 +8,16 @@
 		<!-- Content -->
 		<div class="span10 content">
 			<!-- Breadcrumb -->
-			<ul class="breadcrumb">
-				<li><a href="<?php echo site_url("sales") ?>">Sale Orders</a> <span class="divider">/</span></li>
+			<ul class="breadcrumb row">
+				<li><a href="<?php echo site_url("sales") ?>">Customer Invoice</a> <span class="divider">/</span></li>
 				<li class="active"><?php echo $orderid?></li>
 			</ul>
 			<!-- Control Buttons -->
 			<div class="row">
-				<div class="span1">
-					<button class="btn btn-primary">Edit</button>
-				</div>	
-				<div class="span1">
-					<button class="btn btn-primary">Create</button>
-				</div>	
-				<div class="span1">
-					<button class="btn btn-primary">Print</button>
-				</div>
-				<div class="span1">	
-					<button class="btn btn-primary">Delete</button>
-				</div>	
+				<button class="btn btn-primary same-btn-width">Create</button>
+				<button class="btn btn-primary same-btn-width">Edit</button>
+				<button class="btn btn-primary same-btn-width">Print</button>
+				<button class="btn btn-primary same-btn-width">Delete</button>
 			</div>
 			<!-- Form Headbar -->
 			<div class="row content myform-headbar">
@@ -35,7 +27,7 @@
 			<div class="row myform-container">
 				<div class="span8 offset1 myform box-shadow">
 					<div class="span6">
-						<h4>Sales Order <?php echo $orderid?></h4>
+						<h4>Invoice <?php echo $orderid?></h4>
 						<form>
 							<div class="row">
 								<div class="span3">

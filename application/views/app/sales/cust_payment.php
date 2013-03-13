@@ -17,7 +17,7 @@
 			</form>
 		</div>	
       	<div class="row">
-			<a href="<?php echo site_url("sales/newpayment")?>" class="btn btn-primary span1">Create</a>
+			<a href="<?php echo site_url("sales/new_payment")?>" class="btn btn-primary span1">Create</a>
 		</div>
 		<div class="row content">
 			<table class="table table-striped span10">

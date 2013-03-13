@@ -8,51 +8,50 @@
     <!-- Content -->
     <div class="span10 content">
 		<!-- Breadcrumb -->
-		<ul class="breadcrumb">
-		<li><a href="<?php echo site_url("sales/suppayment") ?>">Supplier Payment</a> <span class="divider">/</span></li>
+		<ul class="breadcrumb row">
+		<li><a href="<?php echo site_url("sales/cust_payment") ?>">Customer Payment</a> <span class="divider">/</span></li>
 			<li class="active">New</li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<button class="btn btn-primary span1">Save</button>
+			<button class="btn btn-primary same-btn-width">Save</button>
 			<button class="btn btn-link">Discard</button>
 		</div>
 		<!-- Form Headbar -->
 		<div class="row content myform-headbar">
-			<div class="span2">
-				<a class="btn btn-small" href="<?php echo site_url("sales/supdisplaypayment")?>">Validate</a>
-			</div>
+			<a class="btn btn-small" href="<?php echo site_url("sales/display_payment")?>">Validate</a>
+			<button class="btn btn-small">Cancel</button>
 		</div>
 		<!-- Form Container -->
 		<div class="row myform-container">
 			<div class="span8 offset1 myform box-shadow">
-				<div class="span6">
+				<div class="span8">
 					<form>
 						<div class="row">
 							<div class="span3">
-								Suppiler
+								<label>Customer</label>
 								<div class="input-prepend">
 								  <div class="btn-group">
 									<button class="btn dropdown-toggle" data-toggle="dropdown">
 									  <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a tabindex="-1" href="#">suppiler1</a></li>
-										<li><a tabindex="-1" href="#">suppiler2</a></li>
+										<li><a tabindex="-1" href="#">cust1</a></li>
+										<li><a tabindex="-1" href="#">cust2</a></li>
 									</ul>
 								  </div>
-								  <input class="span2" id="suppiler" type="text" list="suppiler">
-								  <datalist id="suppiler">
-									  <option value="asuppiler">
-									  <option value="bsuppiler">
-									  <option value="csuppiler">
-									  <option value="dsuppiler">
-									  <option value="esuppiler">
+								  <input class="span2" id="cust" type="text" list="customers">
+								  <datalist id="customers">
+									  <option value="acust">
+									  <option value="bcust">
+									  <option value="ccust">
+									  <option value="dcust">
+									  <option value="ecust">
 								  </datalist>
 								</div>
-								Payment Reference
-								<input type="text"/>
-								Payment Method
+								<label>Payment Amount</label>
+								<input type="text" placeholder="00.00"/>
+								<label>Payment Method</label>
 								<div class="input-prepend">
 								  <div class="btn-group">
 									<button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -74,10 +73,10 @@
 								</div>
 							</div>
 							<div class="span3">
-								Date
+								<label>Date</label>
 								<input type="text" id="datepicker" />
-								Payment Reference
-								<input type="text"/>
+								<label>Payment Reference</label>
+								<input type="text" placeholder="003/10"/>
 							</div>
 						</div>
 					</form>
@@ -126,5 +125,5 @@
 						
 					
 	</div>
-   </div>
+    </div>
 </div>
