@@ -34,7 +34,7 @@
 								
 							</div>
 							<!-- this div is only unhidden if company tickbox is ticked-->
-							<div class="span3 offset1" id="cate_select">
+							<div class="span3 offset1 is_business" id="cate_select">
 								<label>Business Category	
 								</label> 
 								<select name="business_list" id="contact_business">
@@ -43,7 +43,8 @@
 									<option>3</option>
 									<option>4</option>
 									<option>5</option>
-								</select>						
+								</select>
+														
 							</div>		
 						
 					</div>  <!-- close upper contact-->
@@ -57,11 +58,11 @@
 								<div class="span2 label-field">
 									<input id="contact_street1" type="text" placeholder="Street name 1" >
 									<input id="contact_street2" type="text" placeholder="Street name 2" >
-									<input class="span1" id="contact_city" type="text" placeholder="City" >
-									<input class="span1" id="contact_state" type="text" placeholder="State" >
-									<input class="span1" id="contact_zip" type="text" placeholder="Zip" >
+									<input class="span2" id="contact_city" type="text" placeholder="City/State" >
+									<input class="span1" id="contact_zip" type="text" placeholder="Postal Code" >
 									<input id="contact_country" type="text" placeholder="Country" >
 								</div>
+								
 								<label class="span1">Website	
 								</label>
 								<div class="span2 label-field">				
@@ -95,7 +96,12 @@
 										<option>Ms.</option>
 										<option>Mrs.</option>
 									</select>						
-								</div>		
+								</div>
+								<label class="span1 is_business">Organization	
+								</label>
+								<div class="span3 label-field is_business">				
+									<input id="contact_organization" type="text" placeholder="Organization" >
+								</div>
 							</div> <!-- close right lower form -->
 							
 							
