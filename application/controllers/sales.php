@@ -6,12 +6,15 @@ class Sales extends MY_Controller {
 	{	
 
 		parent::__construct();
+		///	$this->load->model('sales_model');
 		//side menu
 		$this->data["sidemenu"] = $this->load->view("app/sales/sidemenu",'',true);
 	}
 
 	//sales order
 	public function index(){	
+		$data['orders'] = $this->sales_model->get_orders();
+		$this->_data_render('app/sales/sales',$data);
 		$this->_render('app/sales/sales');
 	}
 	
