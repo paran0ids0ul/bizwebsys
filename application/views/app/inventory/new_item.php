@@ -30,6 +30,9 @@
 								<label>Item Name : 
 								</label> 
 								<input id="item_name" type="text" placeholder="e.g Milo 3 in 1" >
+								
+							</div>
+							<div class="span3 offset2">
 								<label>Category	
 								</label> 
 								<select name="item_cate" id="item_category">
@@ -38,18 +41,7 @@
 									<option>3</option>
 									<option>4</option>
 									<option>5</option>
-								</select>
-							</div>
-							<div class="span3 offset2">
-								<div class="row">	
-									</br>	
-									<label class="checkbox" id"sold_instore">
-										<input type="checkbox"> Can be sold in-store
-									</label>
-									<label class="checkbox" id"sold_online">
-										<input type="checkbox"> Can be sold online
-									</label>							
-								</div>			
+								</select>		
 							</div>		
 						
 					</div>  <!-- close upper contact-->
@@ -57,41 +49,69 @@
 							
 					<div class="lower-contact span9">
 						<div class="row">
-							<div class="span4">	
-								<label class="span1">Sale Price</label>
+							<div class="span4">
+								<label class="span1">Supplier	
+								</label> 	
 								<div class="span2 label-field">
-									<input id="item_saleprice" type="text" placeholder="20.00" >
+									<select name="supplier_list" id="supplier_list">
+										<option>Please Choose :</option>
+									</select>	
 								</div>
-								<label class="span1">Quantity</label>
+								<label class="span1">Cost Price</label>
+								<div class="span2 label-field">
+									<input id="item_costprice" type="text" placeholder="20.00" >
+								</div>
+								<label class="span1">Net Price</label>
+								<div class="span2 label-field">
+									<input id="item_netprice" type="text" placeholder="20.00" >
+								</div>
+								<label class="span1">VAT Rate</label>
 								<div class="span2 label-field">				
-									<input id="item_quantity" type="number" placeholder="50" >
+									<input id="item_vatrate" type="text" placeholder="50" >
 								</div>
+								
 								
 							</div> <!-- close left lower form-->
 						
 						
 						
 							<div class="span4">
-									<label class="span1">EAN13</label>	
+									<label class="span1">Stock</label>
+									<div class="span2 label-field">				
+										<input id="item_stock" type="number" placeholder="50" >
+									</div>
+									<label class="span1">Stock ROP</label>
+									<div class="span2 label-field">				
+										<input id="item_rop" type="number" placeholder="50" >
+									</div>
+									<label class="span1">GTIN</label>	
 									
 									<div class="span2 label-field">
-										<input id="item_barcode" type="text" placeholder="0000000000000" >
+										<input id="item_gtin" type="text" placeholder="0000000000000" >
 									</div>
-									<label class="span1">Internal Reference</label>
+									<label class="span1">SKU</label>
 									<div class="span2 label-field">
-										<input id="item_intref span3" type="text" placeholder="S97789789789" >
+										<input id="item_sku span3" type="text" placeholder="S97789789789" >
 									</div>
 									
 						
 							</div> <!-- close right lower form -->
 							
-							
-							
+							<div class="span9">
+								<label class="span1">Description</label>
+								<div class="span7 label-field">				
+									<textarea class="span6" id="item_description" rows="3"></textarea>
+								</div>
+							</div>
 							
 						</div> <!-- close lower form row-->
 						
 						
+						
 					</div> <!-- close lower form -->
+					
+					
+					
 				</div> <!--close row-->
 			</form> <!-- close form-->
 							
