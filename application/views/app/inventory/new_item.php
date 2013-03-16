@@ -37,10 +37,6 @@
 								</label> 
 								<select name="item_cate" id="item_category">
 									<option>Please Choose :</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
 								</select>		
 							</div>		
 						
