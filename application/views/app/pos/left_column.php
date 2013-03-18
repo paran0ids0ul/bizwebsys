@@ -3,30 +3,20 @@
 		<!-- Shopping List -->
 		<div class="row">	
 			<div class="span4 myform">
-				<table class="table table-hover">
-					<tbody>
-						<tr>
-							<td>apple<td>
-							<td>£0.5<td>
-						</tr>
-						<tr>
-							<td>banana<td>
-							<td>£0.3<td>
-						</tr>				
-					</tbody>
-				</table>
+				<ul class="item-list">
+				</ul>
 				<!-- Total Display -->
 				<div class="row">
 					<div class="span2 offset2">
 						<hr/>
 						<div class="row">
 							<div class="span2 text-center">
-								<b>Total: £0.8</b>
+								<b>Total: £</b><b id="total">0.0</b>
 							</div>						
 						</div>
 						<div class="row">
 							<div class="span2 text-center">
-								Taxes: £0.0
+								<b>Taxes: £</b><b id="tax">0.0</b>
 							</div>						
 						</div>						
 					</div>

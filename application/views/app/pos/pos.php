@@ -26,7 +26,7 @@
 						<!-- Product Display Thumbnails -->
 						<ul class="thumbnails">
 						  <li>
-							<a class="thumbnail" href="#">
+							<a class="thumbnail" value="0.2">
 							  <span class="label label-info pull-right">£23</span>
 							  <img src=<?php echo base_url("resources/images/icons128/sales_purchases.png")?> alt="">
 							  <label class="text-center">Basket</label>
