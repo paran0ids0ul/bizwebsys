@@ -98,6 +98,7 @@ class Pos extends MY_Controller {
 		//load local js
 		$this->data["custom_js"] =$this->data["custom_js"].'	
 								    <script>
+										//Add item to list
 										$(\'.thumbnail\').click(function(){
 											var item_name=$(this).children(\'label\').text();
 											var item_price=$(this).children(\'span\').text();
@@ -114,17 +115,29 @@ class Pos extends MY_Controller {
 											$(\'#tax\').text(tax);
 										
 										});
-										
+										//Click on list item effect
 										$(\'.item-list\').on(\'click\', \'li\', function () { 
 											$(\'li\').removeClass(\'selected\');
 											$(this).addClass(\'selected\');											
 										});
 										
+										//Round float number to fixed decimal places
 										function toFixed(num, fixed) {
 											fixed = fixed || 0;
 											fixed = Math.pow(10, fixed);
 											return Math.floor(num * fixed) / fixed;
 										}
+										
+										//Toggle control buttons in keypad
+										$(\'.control\').click(function(){
+											$(\'.control\').removeClass(\'btn-primary\');
+											$(this).addClass(\'btn-primary\');	
+										});
+										
+										//Delete an item in list
+										$(\'#btn_del\').click(function(){
+											$(\'.selected\').remove();
+										});
 								    </script>';		
 		$this->_render('app/pos/pos');
 	}
