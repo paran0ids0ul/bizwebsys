@@ -13,7 +13,7 @@
 				</form>
 			</div>	
 			<div class="row">
-				<a href="<?php echo site_url("inventory/new_item")?>" class="btn btn-primary span1 same-btn-width">Create</a>
+				<a href="<?php echo site_url("inventory/new_item")?>"><button class="btn btn-primary span1 same-btn-width">Create</button></a>
 				<button class="btn btn-primary span1 same-btn-width" id="print_button">Print</button>
 				<button class="btn btn-primary span1 same-btn-width" id="delete_button">Delete</button>
 				
@@ -29,17 +29,17 @@
 						<th>Cost Price</th>
 						<th>Net Price</th>
 					</tr>
-					<?php foreach ($items as $item): ?>
+				<!--	<?php foreach ($items as $item): ?>
 					<tr>
 						<td><input class="checked_item" id=<?php echo $item['ItemID'] ?> type="checkbox"></td>
 						<td><?php echo $item['SKU'] ?></td>
 						<td><?php echo $item['Name'] ?></td>
-						<td><?php echo $item['Description'] ?></td> <!-- to be changed to category, after field in database is added -->
+						<td><?php echo $item['Description'] ?></td> 
 						<td><?php echo $item['Stock'] ?></td>
 						<td><?php echo $item['Cost'] ?></td>
 						<td><?php echo $item['NetPrice'] ?></td>
 					</tr>
-					<?php endforeach ?>
+					<?php endforeach ?> -->
 				</table>
 			</div>
 		</div>

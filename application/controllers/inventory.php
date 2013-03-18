@@ -6,14 +6,14 @@ class Inventory extends MY_Controller {
 	{	
 
 		parent::__construct();
-		$this->load->model('inventory');
+		//$this->load->model('inventory');
 	}
 
 	//sales order
 	public function index(){	
 	
 		
-		$data['items'] = $this->inventory->get_item_list();
+		//$data['items'] = $this->inventory->get_item_list();
 		
 		$this->_render('app/inventory/inventory');
 		
@@ -48,6 +48,22 @@ class Inventory extends MY_Controller {
 									    }); 						     
 									    
 									    $("#item_category").append(seloption);
+									    
+									    
+									    $("#save_item").click(function () {
+									    	if (! $("#new_item_form input").val() ) {
+									    		alert("Please complete the form");
+									    		return false;
+									    	}
+									    	
+									    	if ( $("#item_category").val()=="null" ) {  
+									    		alert("Please complete the form");
+									    		return false;
+									    	}
+									    });
+									    
+									   
+									    
 									   
 									   
 									   });

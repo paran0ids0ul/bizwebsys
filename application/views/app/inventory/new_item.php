@@ -9,7 +9,7 @@
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<a href="<?php echo site_url("inventory/display_item")?>" class="btn btn-primary span1">Save</a>
+			<a href="<?php echo site_url("inventory/display_item")?>" id="save_item" class="btn btn-primary span1">Save</a>
 			<a href="<?php echo site_url("inventory")?>">
 			<button class="btn btn-link">Discard</button>
 			</a>
@@ -18,7 +18,7 @@
 		<!-- Form Container -->
 		<div class="contact-container container">
 			<div class="span9 offset1 myform">
-			<form>
+			<form id="new_item_form">
 				<div class="row">
 					<div class="upper-contact">
 							<div class="span1">
@@ -36,7 +36,7 @@
 								<label>Category	
 								</label> 
 								<select name="item_cate" id="item_category">
-									<option>Please Choose :</option>
+									<option value="null">Please Choose :</option>
 								</select>		
 							</div>		
 						

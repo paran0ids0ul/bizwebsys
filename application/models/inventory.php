@@ -12,8 +12,6 @@ class News_model extends MY_Model {
 		
 			$query = $this->db->get('inventory');
 			return $query->result_array();
-
-	
 		
 	}
 	
