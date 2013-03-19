@@ -100,6 +100,7 @@ class Pos extends MY_Controller {
 								    <script>
 										//Add item to list
 										$(\'.thumbnail\').click(function(){
+											var pd_id=$(this).attr(\'id\');
 											var item_name=$(this).children(\'label\').text();
 											var item_price=$(this).children(\'span\').text();
 											var item_tax=$(this).attr(\'value\');
@@ -110,7 +111,15 @@ class Pos extends MY_Controller {
 											total=toFixed(total,2);
 											tax=toFixed(tax,2);
 											
-											$(\'.item-list\').append("<li value="+item_tax+"><div class=\'span2\'>"+item_name+"</div><div class=\'span1\'>"+item_price+"</div></li>");
+											var size = $(".item-list li").filter("[id=\'li_"+pd_id+"\']").size();
+											if(size==0)
+											$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\'><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\'>"+item_price+"</div></li>");
+											else
+											{
+												var price=parseFloat($(".item-list li").filter("[id=\'li_"+pd_id+"\']").children(\'.price\').text().substr(1));
+												price=price+parseFloat(item_price.substr(1));
+												$(".item-list li").filter("[id=\'li_"+pd_id+"\']").children(\'.price\').text(\'£\'+price);
+											}
 											$(\'#total\').text(total);
 											$(\'#tax\').text(tax);
 										
