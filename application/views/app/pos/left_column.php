@@ -58,8 +58,8 @@
 							<div class="row">
 								<div class="span3">
 									<button class="btn btn-large keypad-button">+/-</button>
-									<button class="btn btn-large keypad-button">0</button>
-									<button class="btn btn-large keypad-button">.</button>
+									<button class="btn btn-large keypad-button key">0</button>
+									<button class="btn btn-large keypad-button key">.</button>
 									<button class="btn btn-large keypad-button-big" id="btn_del">Del</button>									
 								</div>
 							</div>

@@ -165,16 +165,17 @@ class Pos extends MY_Controller {
 											if($(\'.selected\').size()>0)
 											{
 												input+=$(this).text();
-												num=parseInt(input);
+												
 												switch(button)
 												{
 													//Quantity button selected
 													case 1:{    
+																num=parseInt(input);
 																var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\');
 																var price= parseFloat(item_price.substr(1))*num;		
 																if($(\'.selected\').children(\'div .quantity\').size()==0)
 																{
-																	$(\'.selected\').append(\'<div class="quantity">quantity: x<b>\'+input+\'</b></div>\');
+																	$(\'.selected\').append(\'<div class="quantity span2">quantity: x<b>\'+input+\'</b></div>\');
 												
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
 																}
@@ -186,7 +187,23 @@ class Pos extends MY_Controller {
 																break;
 															}
 													//Discount button selected		
-													case 2: $(\'.selected\').append(\'discount:\'+input);break;
+													case 2: {    
+																num=parseFloat(input);
+																var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\');
+																var price= parseFloat(item_price.substr(1))*num;		
+																if($(\'.selected\').children(\'div .discount\').size()==0)
+																{
+																	$(\'.selected\').append(\'<div class="discount span2">discount: x<b>\'+input+\'</b></div>\');
+												
+																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
+																}
+																else
+																{
+																	$(\'.selected\').children(\'div .discount\').children(\'b\').text(input);
+																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
+																}
+																break;
+															}
 													//Price button selected
 													case 3: $(\'.selected\').append(\'price:\'+input);break;
 													default:break;
@@ -201,28 +218,29 @@ class Pos extends MY_Controller {
 										//Delete button effect
 										$(\'#btn_del\').click(function(){
 											
-											if(input!="")
-											{
-												if(input.length>1)
-												{
-													input = input.substr(input.length-1);
-													num=parseInt(input);
-												}
-												else if(input!="1")
-												{
-													input="1";
-													num=parseInt(input);
-												}
-												else
-												{
-													input="";
-												}
-											}
+
 											
 												switch(button)
 												{
 													//Quantity button selected
 													case 1:{    	
+																if(input!="")
+																{
+																	if(input.length>1)
+																	{
+																		input = input.substr(0,input.length-1);
+																		num=parseInt(input);
+																	}
+																	else if(input!="1")
+																	{
+																		input="1";
+																		num=parseInt(input);
+																	}
+																	else
+																	{
+																		input="";
+																	}
+																}													
 																var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\');
 																var price= parseFloat(item_price.substr(1))*num;		
 																if($(\'.selected\').children(\'div .quantity\').size()==0)
@@ -239,7 +257,34 @@ class Pos extends MY_Controller {
 																break;
 															}
 													//Discount button selected		
-													case 2: $(\'.selected\').append(\'discount:\'+input);break;
+													case 2: {    	
+																if(input!="")
+																{
+																	if(input.length>3)
+																	{
+																		input = input.substr(0,input.length-1);
+																		num=parseFloat(input);
+																	}
+																	else
+																	{
+																		input="";
+																	}
+																}													
+																var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\');
+																var price= parseFloat(item_price.substr(1))*num;		
+																if($(\'.selected\').children(\'div .discount\').size()==0)
+																{
+																	$(\'.selected\').remove();
+																}
+																else
+																{
+																	if(input=="")
+																		$(\'.selected\').remove();
+																	$(\'.selected\').children(\'div .discount\').children(\'b\').text(input);
+																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
+																}													
+																break;
+															}
 													//Price button selected
 													case 3: $(\'.selected\').append(\'price:\'+input);break;
 													default:break;
