@@ -13,8 +13,8 @@
 			<div>
 				
 				<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
-				<a href="<?php echo site_url("inventory")?>">
-					<button class="btn btn-link">Discard</button>
+				<a href="<?php echo site_url("inventory")?>" class="btn btn-link">
+					Discard
 				</a>
 			</div>
 
