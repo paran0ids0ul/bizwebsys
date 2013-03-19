@@ -25,7 +25,7 @@
 		<div class="row content">
 			<table class="table table-striped span10">
 				<tr>
-					<td><input type="checkbox"><td/>
+					<td><input type="checkbox" id="sales_all"><td/>
 					<td>Customer<td/>
 					<td>Invoice Date<td/>
 					<td>Internal Reference<td/>
@@ -36,7 +36,7 @@
 				</tr>
 				<?php foreach ($orders as $order): ?>
 			<tr>
-					<td><input type="checkbox"><td/>
+					<td><input type="checkbox" class="checkboxs" ><td/>
 					<td><?php echo $order['cust_name'] ?></td>
 					<td><?php echo $order['invoice_date'] ?></td>
 					<td><?php echo $order['internal_ref'] ?></td>

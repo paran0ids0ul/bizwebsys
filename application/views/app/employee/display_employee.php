@@ -37,8 +37,10 @@
 							</div>
 
 							<div class="span2">
-								<label>Name :</label> 
-								<span class="input-xlarge uneditable-input" id="employee_name"></span>
+								<label>First name :</label> 
+								<span class="input-xlarge uneditable-input" id="employee_fname"></span>
+								<label>Surname :</label> 
+								<span class="input-xlarge uneditable-input" id="employee_surname"></span>
 								<label>Tag :</label> 
 								<span class="input-xlarge uneditable-input" id="employee_tag"  type="text" placeholder="Part Time" ></span>
 								

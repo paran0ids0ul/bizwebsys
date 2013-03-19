@@ -22,12 +22,17 @@
 		<div class="row content">
 			<table class="table table-striped span10">
 				<tr>
-					<td><input type="checkbox"><td/>
+					<td><input type="checkbox" id="sup_payment_all"><td/>
 					<td>Payment Date<td/>
 					<td>Internal Reference<td/>
 					<td>Supplier<td/>
 					<td>Total<td/>
 				</tr>
+					<td><input type="checkbox" class="checkboxs"><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
 			</table>
 		</div>
     </div>

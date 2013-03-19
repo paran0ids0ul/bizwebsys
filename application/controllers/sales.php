@@ -14,6 +14,27 @@ class Sales extends MY_Controller {
 	//sales order
 	public function index(){	
 		$data['orders'] = $this->sales_model->get_orders();
+		$this->data["custom_js"] ='			
+		  <script>
+		 $(document).ready(function(){
+		  
+			$("#sales_all").click(function(){
+				if ($(this).prop("checked") == true) { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", true);
+					});
+				}
+				else { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", false);
+					});
+				}
+			});
+			
+			
+			});
+			</script>';	
+		
 		$this->_data_render('app/sales/sales',$data);
 		$this->_render('app/sales/sales');
 	}
@@ -33,6 +54,28 @@ class Sales extends MY_Controller {
 	
 	//customer invoice
 		public function cust_invoice(){
+		
+		$this->data["custom_js"] ='			
+		  <script>
+		 $(document).ready(function(){
+		  
+			$("#cust_invoice_all").click(function(){
+				if ($(this).prop("checked") == true) { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", true);
+					});
+				}
+				else { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", false);
+					});
+				}
+			});
+			
+			
+			});
+			</script>';	
+		  
 		$this->_render('app/sales/cust_invoice');
 	}
 	
@@ -64,6 +107,27 @@ class Sales extends MY_Controller {
 
 	//customer payment
 	public function cust_payment(){
+		$this->data["custom_js"] ='			
+		  <script>
+		 $(document).ready(function(){
+		  
+			$("#cust_payment_all").click(function(){
+				if ($(this).prop("checked") == true) { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", true);
+					});
+				}
+				else { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", false);
+					});
+				}
+			});
+			
+			
+			});
+			</script>';	
+	
 		$this->_render('app/sales/cust_payment');
 	}
 
@@ -98,6 +162,27 @@ class Sales extends MY_Controller {
 
 	//supplier payment
 	public function sup_payment(){
+		$this->data["custom_js"] ='			
+		  <script>
+		 $(document).ready(function(){
+		  
+			$("#cust_payment_all").click(function(){
+				if ($(this).prop("checked") == true) { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", true);
+					});
+				}
+				else { 
+					$(".checkboxs").each(function() {
+						$(this).prop("checked", false);
+					});
+				}
+			});
+			
+			
+			});
+			</script>';	
+	
 		$this->_render('app/sales/sup_payment');
 	}	
 	

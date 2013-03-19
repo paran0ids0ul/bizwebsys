@@ -22,9 +22,10 @@
 			<a href="<?php echo site_url("sales/display_invoice")?>" class="btn btn-primary span1">Create</a>
 		</div>
 		<div class="row content">
+			<form name="form1"  action="" id="cust_invoice_form">
 			<table class="table table-striped span10">
 				<tr>
-					<td><input type="checkbox"><td/>
+					<td><input type="checkbox" name="checkboxall" id="cust_invoice_all"><td/>
 					<td>Customer<td/>
 					<td>Invoice Date<td/>
 					<td>Internal Reference<td/>
@@ -35,7 +36,29 @@
 					<td>Total<td/>
 					<td>Status<td/>
 				</tr>
+					<td><input type="checkbox" class="checkboxs" ><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+				</tr>
+					<td><input type="checkbox" class="checkboxs"><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
+					<td><td/>
 			</table>
+			</form>
 		</div>
 		
 		

@@ -28,8 +28,10 @@
 							</div>
 
 							<div class="span2">
-								<label>Name :</label> 
-								<input id="employee_name" type="text" placeholder="e.g John Wesley" >
+								<label>First name :</label> 
+								<input id="employee_fname" type="text" placeholder="e.g John" >
+								<label>Surname :</label> 
+								<input id="employee_surname" type="text" placeholder="e.g White" >
 								<label>Tag :</label> 
 								<input id="employee_tag" type="text" placeholder="e.g Part Time" >
 								
