@@ -137,16 +137,68 @@ class Pos extends MY_Controller {
 											return Math.floor(num * fixed) / fixed;
 										}
 										
+										var button=1;
+										var input="";
 										//Toggle control buttons in keypad
 										$(\'.control\').click(function(){
 											$(\'.control\').removeClass(\'btn-primary\');
 											$(this).addClass(\'btn-primary\');	
+											var id=$(this).attr(\'id\')
+											if(id==\'btn_qty\')
+												button=1;
+											else if(id==\'btn_disc\')	
+												button=2;
+											else
+												button=3;
+											input="";	
+										});
+										
+										//Press key buttons effect
+										$(\'.key\').click(function(){
+											
+											if($(\'.selected\').size()>0)
+											{
+												input+=$(this).text();
+												num=parseInt(input);
+												switch(button)
+												{
+													//Quantity button selected
+													case 1:{    
+																var item_price = $(\'.selected\').children(\'div .price\').text();
+																var price= parseFloat(item_price.substr(1))*num;		
+																if($(\'.selected\').children(\'div .quantity\').size()==0)
+																{
+																	$(\'.selected\').append(\'<div class="quantity">quantity: x<b>\'+input+\'</b></div>\');
+												
+																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
+																}
+																else
+																{
+																	$(\'.selected\').children(\'div .quantity\').children(\'b\').text(input);
+																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
+																}
+																break;
+															}
+													//Discount button selected		
+													case 2: $(\'.selected\').append(\'discount:\'+input);break;
+													//Price button selected
+													case 3: $(\'.selected\').append(\'price:\'+input);break;
+													default:break;
+													
+												}
+												
+											}
+										
+										
 										});
 										
 										//Delete an item in list
 										$(\'#btn_del\').click(function(){
 											$(\'.selected\').remove();
 										});
+										
+										
+										
 								    </script>';		
 		$this->_render('app/pos/pos');
 	}
