@@ -113,7 +113,12 @@ class Pos extends MY_Controller {
 											
 											var size = $(".item-list li").filter("[id=\'li_"+pd_id+"\']").size();
 											if(size==0)
-											$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\'><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
+											{
+												if($(".item-list li").size()==0)
+													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' class=\'selected\'><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
+												else
+													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' ><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
+											}
 											else
 											{
 												var price=parseFloat($(".item-list li").filter("[id=\'li_"+pd_id+"\']").children(\'.price\').text().substr(1));
@@ -127,7 +132,8 @@ class Pos extends MY_Controller {
 										//Click on list item effect
 										$(\'.item-list\').on(\'click\', \'li\', function () { 
 											$(\'li\').removeClass(\'selected\');
-											$(this).addClass(\'selected\');											
+											$(this).addClass(\'selected\');	
+											input="";
 										});
 										
 										//Round float number to fixed decimal places
@@ -205,6 +211,7 @@ class Pos extends MY_Controller {
 												else if(input!="1")
 												{
 													input="1";
+													num=parseInt(input);
 												}
 												else
 												{
