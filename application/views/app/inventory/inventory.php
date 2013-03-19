@@ -29,12 +29,16 @@
 						<th>Cost Price</th>
 						<th>Net Price</th>
 					</tr>
+					
+					<?php print_r(items) ?>
+					
+					
 				<!--	<?php foreach ($items as $item): ?>
 					<tr>
 						<td><input class="checked_item" id=<?php echo $item['ItemID'] ?> type="checkbox"></td>
 						<td><?php echo $item['SKU'] ?></td>
 						<td><?php echo $item['Name'] ?></td>
-						<td><?php echo $item['Description'] ?></td> 
+						<td><?php echo $item['ItemType'] ?></td> 
 						<td><?php echo $item['Stock'] ?></td>
 						<td><?php echo $item['Cost'] ?></td>
 						<td><?php echo $item['NetPrice'] ?></td>

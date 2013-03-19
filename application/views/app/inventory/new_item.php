@@ -4,12 +4,12 @@
     <div class="span12 content">
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
-			<li><a href="<?php echo site_url("contacts") ?>">Item</a> <span class="divider">/</span></li>
+			<li><a href="<?php echo site_url("inventory") ?>">Item</a> <span class="divider">/</span></li>
 			<li class="active">New</li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<a href="<?php echo site_url("inventory/display_item")?>" id="save_item" class="btn btn-primary span1">Save</a>
+			<a href="<?php echo create();?>" id="save_item" class="btn btn-primary span1">Save</a>
 			<a href="<?php echo site_url("inventory")?>">
 			<button class="btn btn-link">Discard</button>
 			</a>

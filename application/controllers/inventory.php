@@ -4,16 +4,16 @@
 class Inventory extends MY_Controller {
 	function __construct()
 	{	
-
+		
 		parent::__construct();
-		//$this->load->model('inventory');
+		$this->load->model('inventory');
 	}
 
 	//sales order
 	public function index(){	
 	
 		
-		//$data['items'] = $this->inventory->get_item_list();
+		$data['items'] = $this->inventory->get_item_list();
 		
 		$this->_render('app/inventory/inventory');
 		
@@ -75,6 +75,17 @@ class Inventory extends MY_Controller {
 		
 		
 	}
+	
+	
+	public function create() {
+		
+		
+		$this->inventory->set_item();
+		
+		
+		
+	}
+	
 	
 	public function display_item(){
 		$this->_render('app/inventory/display_item');
