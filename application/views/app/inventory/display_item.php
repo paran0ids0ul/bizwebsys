@@ -44,13 +44,13 @@
 							<div class="span2">
 								<label>Item Name : 
 								</label> 
-								<span class="input-xlarge uneditable-input" id="item_name">php to retrive data</span>
+								<span class="input-xlarge uneditable-input" id="item_name"><?php echo $name ?></span>
 								
 							</div>
 							<div class="span3 offset2">
 								<label>Category	
 								</label> 
-								<span class="input-xlarge uneditable-input" id="item_category">php to retrive data</span>		
+								<span class="input-xlarge uneditable-input" id="item_category"><?php echo $category ?></span>		
 							</div>		
 						
 					</div>  <!-- close upper contact-->
@@ -67,19 +67,19 @@
 								<label class="span1">Supplier	
 								</label> 	
 								<div class="span2 label-field">
-									<span class="input-xlarge uneditable-input" id="item_supplier">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" id="item_supplier"><?php echo $supplier ?></span>
 								</div>
 								<label class="span1">Cost Price</label>
 								<div class="span2 label-field">
-									<span class="input-xlarge uneditable-input" id="item_costprice">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" id="item_costprice"><?php echo $cost ?></span>
 								</div>
 								<label class="span1">Net Price</label>
 								<div class="span2 label-field">
-									<span class="input-xlarge uneditable-input" id="item_netprice">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" id="item_netprice"><?php echo $net ?></span>
 								</div>
 								<label class="span1">VAT Rate</label>
 								<div class="span2 label-field">
-									<span class="input-xlarge uneditable-input" id="item_vatrate">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" id="item_vatrate"><?php echo $vat ?></span>
 								</div>
 								
 								
@@ -93,19 +93,19 @@
 									
 									<label class="span1">Stock</label>
 									<div class="span2 label-field">				
-										<span class="input-xlarge uneditable-input" id="item_stock">php to retrive data</span>
+										<span class="input-xlarge uneditable-input" id="item_stock"><?php echo $stock ?></span>
 									</div>
 									<label class="span1">Stock ROP</label>
 									<div class="span2 label-field">				
-										<span class="input-xlarge uneditable-input" id="item_rop">php to retrive data</span>
+										<span class="input-xlarge uneditable-input" id="item_rop"><?php echo $stockROP ?></span>
 									</div>
 									<label class="span1">GTIN</label>	
 									<div class="span2 label-field">
-										<span class="input-xlarge uneditable-input" id="item_gtin">php to retrive data</span>
+										<span class="input-xlarge uneditable-input" id="item_gtin"><?php echo $GTIN ?></span>
 									</div>
 									<label class="span1">SKU</label>
 									<div class="span2 label-field">
-										<span class="input-xlarge uneditable-input" id="item_sku">php to retrive data</span>
+										<span class="input-xlarge uneditable-input" id="item_sku"><?php echo $SKU ?></span>
 									</div>
 									
 									
@@ -116,7 +116,7 @@
 							<div class="span9">
 								<label class="span1">Description</label>
 								<div class="span7 label-field">				
-									<textarea disabled class="span6" id="item_description" rows="3"></textarea>
+									<textarea disabled class="span6" id="item_description" rows="3"><?php echo $description ?></textarea>
 								</div>
 							</div>
 							

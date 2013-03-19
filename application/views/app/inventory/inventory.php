@@ -20,8 +20,9 @@
 			</div>
 			<div class="row content">
 				<table class="table table-striped span12">
+				<thead>
 					<tr>
-						<th><input type="checkbox"></th>
+						<th><input type="checkbox" id="check_all"></th>
 						<th>SKU</th>
 						<th>Name</th>
 						<th>Category</th>
@@ -30,19 +31,22 @@
 						<th>Net Price</th>
 					</tr>
 					
-					
+				</thead>
 					
 					
 				   <?php foreach ($items as $item): ?>
-					<tr>
-						<td><input class="checked_item" id=<?php echo $item['ItemID'] ?> type="checkbox"></td>
+				   
+					<tr id="<?php echo $item['ItemID']?>" href="<?php echo site_url("inventory/display_item_byID/")?>/">
+						<td><input class="check_boxes" id=<?php echo $item['ItemID'] ?> type="checkbox"></td>
 						<td><?php echo $item['SKU'] ?></td>
 						<td><?php echo $item['Name'] ?></td>
 						<td><?php echo $item['ItemType'] ?></td> 
 						<td><?php echo $item['Stock'] ?></td>
 						<td><?php echo $item['Cost'] ?></td>
 						<td><?php echo $item['NetPrice'] ?></td>
+					
 					</tr>
+				  
 					<?php endforeach ?>
 				</table>
 			</div>

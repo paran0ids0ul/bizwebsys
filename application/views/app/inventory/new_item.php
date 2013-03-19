@@ -9,7 +9,7 @@
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
-			<a href="<?php echo create();?>" id="save_item" class="btn btn-primary span1">Save</a>
+			<a href="<?php echo site_url("inventory/display_item")?>" id="save_item" class="btn btn-primary span1">Save</a>
 			<a href="<?php echo site_url("inventory")?>">
 			<button class="btn btn-link">Discard</button>
 			</a>

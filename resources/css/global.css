@@ -279,3 +279,17 @@ section {
 .settings-details {
 	padding-top: 20px;
 }
+
+
+
+th {
+border-right: 2px solid #FFF; color:#FFF;
+ background-color: #121111;
+ border-color: #ffffff;
+ border-top-color: blue;
+}
+
+tr.hover {
+   cursor: pointer;
+   background-color: #8797B7;
+}

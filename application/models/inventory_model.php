@@ -27,10 +27,17 @@ class Inventory_model extends MY_Model {
 //		);
 	
 //		return $this->db->insert('news', $data);
+
+	
+	}
 	
 	
-	
-	
+	public function get_item_byID($itemID) {
+		
+		$query = $this->db->get_where('Inventory', array('ItemID' => $itemID));
+		return $query->row_array();
+		
+		
 	}
 	
 	
