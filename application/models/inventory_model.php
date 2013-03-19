@@ -15,19 +15,40 @@ class Inventory_model extends MY_Model {
 		
 	}
 	
+	public function get_contact_list()
+	{
+		
+		$query = $this->db->get('Contact');
+		return $query->result_array();
+		
+	}
+	
 	public function set_item() 
 	{
-//		$this->load->helper('url');
+		$this->load->helper('url');
 	
 	
-	//	$data = array(
-		//	'ItemTypeID' => $this->input->post('title'),
-//			'slug' => $slug,
-//			'text' => $this->input->post('text')
-//		);
+		$data = array(
+			'Name' => $this->input->post('item_name'),
+			'ItemType' => $this->input->post('item_category'),
+			'ContactID' => $this->input->post('supplier'),
+			'SKU' => $this->input->post('item_sku'),
+			'Description' => $this->input->post('item_description'),
+			'Stock' => $this->input->post('item_stock'),
+			'StockROP' => $this->input->post('item_rop'),
+			'Cost' => $this->input->post('item_costprice'),
+			'VATRate' => $this->input->post('item_vatrate'),
+			'GTIN' => $this->input->post('item_gtin'),
+			'NetPrice' => $this->input->post('item_netprice')
+			
+		);
 	
-//		return $this->db->insert('news', $data);
+		
+		$this->db->insert('inventory', $data);
 
+		$id = $this->db->insert_id();
+		
+		return $id;
 	
 	}
 	

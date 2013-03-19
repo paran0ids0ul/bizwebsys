@@ -43,10 +43,12 @@ class Inventory extends MY_Controller {
 		
 	}
 	
-	public function new_item(){
 	
 	
 	
+	public function new_item() {
+		
+		
 		$this->data["custom_js"] ='			
 		
 							  
@@ -78,18 +80,31 @@ class Inventory extends MY_Controller {
 									   
 								    </script>';	
 	
-		$this->_render('app/inventory/new_item');
 		
 		
-		
-	}
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 	
 	
-	public function create() {
+		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
+	
+		if ($this->form_validation->run() === FALSE)
+		{
+			$data['suppliers'] = $this->inventory_model->get_contact_list();
+
 		
+			$this->_data_render('app/inventory/new_item',$data);
 		
-		$this->inventory->set_item();
-		
+		}
+		else
+		{
+			$newID = $this->inventory_model->set_item();
+			
+			
+			
+			$this->display_item_byID($newID);
+			
+		}
 		
 		
 	}
@@ -108,7 +123,7 @@ class Inventory extends MY_Controller {
 		
 		$data['name'] = $data['item']['Name'];
 		$data['category'] = $data['item']['ItemType'];
-		$data['supplier'] = $data['item']['contact_id'];
+		$data['supplier'] = $data['item']['ContactID'];
 		$data['cost'] = $data['item']['Cost'];
 		$data['net'] = $data['item']['NetPrice'];
 		$data['vat'] = $data['item']['VATRate'];
@@ -125,6 +140,11 @@ class Inventory extends MY_Controller {
 	
 		
 		
+	}
+	
+	public function get_contact_list()
+	{
+				
 	}
 	
 }
