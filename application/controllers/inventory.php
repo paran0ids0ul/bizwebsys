@@ -6,19 +6,20 @@ class Inventory extends MY_Controller {
 	{	
 		
 		parent::__construct();
-		$this->load->model('inventory');
+		$this->load->model('inventory_model');
+		
 	}
 
 	//sales order
 	public function index(){	
 	
 		
-		$data['items'] = $this->inventory->get_item_list();
-		
-		$this->_render('app/inventory/inventory');
 		
 		
+		$data['items'] = $this->inventory_model->get_item_list();
 		
+		
+		$this->_data_render('app/inventory/inventory',$data);
 		
 		
 	}

@@ -1,5 +1,5 @@
 <?php
-class News_model extends MY_Model {
+class Inventory_model extends MY_Model {
 
 	public function __construct()
 	{
@@ -10,8 +10,8 @@ class News_model extends MY_Model {
 	public function get_item_list()
 	{
 		
-			$query = $this->db->get('Inventory');
-			return $query->result_array();
+		$query = $this->db->get('Inventory');
+		return $query->result_array();
 		
 	}
 	
