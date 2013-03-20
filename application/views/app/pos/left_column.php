@@ -52,15 +52,15 @@
 									<button class="btn btn-large keypad-button key">7</button>
 									<button class="btn btn-large keypad-button key">8</button>
 									<button class="btn btn-large keypad-button key">9</button>
-									<button class="btn btn-large keypad-button-big control" id="btn_price">Price</button>									
+									<button class="btn btn-large keypad-button-big" id="btn_del">Del</button>										
 								</div>
 							</div>
 							<div class="row">
 								<div class="span3">
-									<button class="btn btn-large keypad-button">+/-</button>
+									<button class="btn btn-large keypad-button"></button>
 									<button class="btn btn-large keypad-button key">0</button>
 									<button class="btn btn-large keypad-button key">.</button>
-									<button class="btn btn-large keypad-button-big" id="btn_del">Del</button>									
+									<button class="btn btn-large keypad-button-big"></button>								
 								</div>
 							</div>
 					</div>

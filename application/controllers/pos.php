@@ -152,10 +152,8 @@ class Pos extends MY_Controller {
 											var id=$(this).attr(\'id\')
 											if(id==\'btn_qty\')
 												button=1;
-											else if(id==\'btn_disc\')	
+											else 
 												button=2;
-											else
-												button=3;
 											input="";	
 										});
 										
@@ -204,8 +202,6 @@ class Pos extends MY_Controller {
 																}
 																break;
 															}
-													//Price button selected
-													case 3: $(\'.selected\').append(\'price:\'+input);break;
 													default:break;
 													
 												}
@@ -285,14 +281,32 @@ class Pos extends MY_Controller {
 																}													
 																break;
 															}
-													//Price button selected
-													case 3: $(\'.selected\').append(\'price:\'+input);break;
 													default:break;
 													
 												}											
 										});
 										
-										
+										function showPayment(t) {
+											var returnint = t;
+											var del = "del";
+											 var token = $("#ContentPlaceHolder1_TabContainer1_tab_product_token_product").text();
+											 $.post("bgdata/Product.aspx", { action: del, id: returnint, token: token }, function (data) {
+												 var hidediv = "#product" + returnint;
+												 var str = data;
+												 var returnvalue = str.substring(0, str.lastIndexOf(","));
+												 var count = str.substring(str.lastIndexOf(",") + 1);
+											  
+												 if (returnvalue == "true") {
+													 $(hidediv).remove();
+													 if(count=="0")
+														 $("#ContentPlaceHolder1_TabContainer1_tab_product_product_msg").html("暂无数据");
+												 }
+												 else {
+													 alert("删除失败");
+												 }
+
+											 });
+}
 										
 								    </script>';		
 		$this->_render('app/pos/pos');
