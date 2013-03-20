@@ -112,18 +112,28 @@ class Pos extends MY_Controller {
 											tax=toFixed(tax,2);
 											
 											var size = $(".item-list li").filter("[id=\'li_"+pd_id+"\']").size();
-											if(size==0)
+											if(size==0)       //No same item on list
 											{
-												if($(".item-list li").size()==0)
+												if($(".item-list li").size()==0)            //Item list is empty
 													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' class=\'selected\'><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
-												else
+												else                   //Item list is not empty
 													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' ><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
 											}
-											else
+											else    //Got same item on list
 											{
+												var li = $(".item-list li").filter("[id=\'li_"+pd_id+"\']");
 												var price=parseFloat($(".item-list li").filter("[id=\'li_"+pd_id+"\']").children(\'.price\').text().substr(1));
-												price=price+parseFloat(item_price.substr(1));
-												$(".item-list li").filter("[id=\'li_"+pd_id+"\']").children(\'.price\').text(\'£\'+price);
+												price=price+parseFloat(item_price.substr(1));												
+												if(li.children(\'div .quantity\').size()==0)  //No quantity label display
+												{
+													li.append(\'<div class="quantity span2">quantity: x<b>2</b></div>\');
+												}
+												else   //Have quantity label display
+												{
+													var quantity = parseInt(li.children(\'div .quantity\').children(\'b\').text())+1;
+													$(\'.selected\').children(\'div .quantity\').children(\'b\').text(quantity);
+												}	
+												li.children(\'div .price\').text(\'£\'+price);
 											}
 											$(\'#total\').text(total);
 											$(\'#tax\').text(tax);
@@ -152,8 +162,10 @@ class Pos extends MY_Controller {
 											var id=$(this).attr(\'id\')
 											if(id==\'btn_qty\')
 												button=1;
-											else 
+											else if(id==\'btn_disc\')	
 												button=2;
+											else
+												button=3;
 											input="";	
 										});
 										
@@ -170,11 +182,13 @@ class Pos extends MY_Controller {
 													case 1:{    
 																num=parseInt(input);
 																var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\');
-																var price= parseFloat(item_price.substr(1))*num;		
+																var price= parseFloat(item_price.substr(1))*num;
+																var display_price =  $(\'.selected\').children(\'div .price\').text().substr(1);
+																var total= $(\'#total\').text();
+																var tax=$(\'#tax\').text();
 																if($(\'.selected\').children(\'div .quantity\').size()==0)
 																{
 																	$(\'.selected\').append(\'<div class="quantity span2">quantity: x<b>\'+input+\'</b></div>\');
-												
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
 																}
 																else
@@ -182,6 +196,11 @@ class Pos extends MY_Controller {
 																	$(\'.selected\').children(\'div .quantity\').children(\'b\').text(input);
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
 																}
+																//Calculate total and taxes
+																var total_without = parseFloat(total)-parseFloat(display_price);
+																var display_price_new = parseFloat($(\'.selected\').children(\'div .price\').text().substr(1));
+																var total_new = total_without + display_price_new;
+																//var tax_without = 
 																break;
 															}
 													//Discount button selected		
@@ -203,19 +222,18 @@ class Pos extends MY_Controller {
 																break;
 															}
 													default:break;
-													
 												}
 												
+												//Update total and taxes
+												total_new=toFixed(total_new,2);
+												//tax=toFixed(tax,2);												
+												$(\'#total\').text(total_new);
+												
 											}
-										
-										
 										});
 										
 										//Delete button effect
 										$(\'#btn_del\').click(function(){
-											
-
-											
 												switch(button)
 												{
 													//Quantity button selected
@@ -286,27 +304,7 @@ class Pos extends MY_Controller {
 												}											
 										});
 										
-										function showPayment(t) {
-											var returnint = t;
-											var del = "del";
-											 var token = $("#ContentPlaceHolder1_TabContainer1_tab_product_token_product").text();
-											 $.post("bgdata/Product.aspx", { action: del, id: returnint, token: token }, function (data) {
-												 var hidediv = "#product" + returnint;
-												 var str = data;
-												 var returnvalue = str.substring(0, str.lastIndexOf(","));
-												 var count = str.substring(str.lastIndexOf(",") + 1);
-											  
-												 if (returnvalue == "true") {
-													 $(hidediv).remove();
-													 if(count=="0")
-														 $("#ContentPlaceHolder1_TabContainer1_tab_product_product_msg").html("暂无数据");
-												 }
-												 else {
-													 alert("删除失败");
-												 }
-
-											 });
-}
+									
 										
 								    </script>';		
 		$this->_render('app/pos/pos');

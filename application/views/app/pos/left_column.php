@@ -28,7 +28,7 @@
 			<div class="span4">
 				<div class="row">
 					<div class="span1">
-						<a class="btn btn-large" href="<?php echo site_url("pos/payment")?>">Cash</a>
+						<button class="btn btn-large" id="btn_cash">Cash</button>
 					</div>
 					<div class="span3">		
 							<div class="row">
