@@ -48,7 +48,7 @@ class Inventory extends MY_Controller {
 	
 	public function new_item() {
 		
-		
+	
 		$this->data["custom_js"] ='			
 		
 							  

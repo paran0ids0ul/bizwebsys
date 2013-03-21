@@ -89,9 +89,13 @@ class MY_Controller extends CI_Controller{
 	
 	}
 	
-		protected function _data_render($view, $data) {
+		protected function _data_render($view, $toPage) {
+		
+		
 	
-		$toTpl = $this->preRender2($view,$data);
+		$toTpl = $this->preRender2($view,$toPage);
+		
+		
 		
 		//render view
 		$this->load->view("template/skeleton",$toTpl);
@@ -100,7 +104,7 @@ class MY_Controller extends CI_Controller{
 	
 	
 	
-	private function preRender2($view,$data) {
+	private function preRender2($view,$toPage) {
 	
 		//static
 		$toTpl["javascript"] = $this->javascript;
@@ -116,7 +120,7 @@ class MY_Controller extends CI_Controller{
 		$toTpl['customHead'] = '';
 		
 		//data
-		$toBody["content_body"] = $this->load->view($view,$data);
+		$toBody["content_body"] = $this->load->view($view,($toTpl+$toPage),true);
 		
 		//nav menu
 		if($this->hasNav){
