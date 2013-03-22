@@ -44,12 +44,50 @@ class Inventory_model extends MY_Model {
 		);
 	
 		
-		$this->db->insert('inventory', $data);
+		$this->db->insert('Inventory', $data);
 
 		$id = $this->db->insert_id();
 		
 		return $id;
 	
+	}
+	
+	
+	public function update_item($id) {
+		
+		$this->load->helper('url');
+		
+		$data = array(
+			'Name' => $this->input->post('item_name'),
+			'ItemType' => $this->input->post('item_category'),
+			'ContactID' => $this->input->post('supplier'),
+			'SKU' => $this->input->post('item_sku'),
+			'Description' => $this->input->post('item_description'),
+			'Stock' => $this->input->post('item_stock'),
+			'StockROP' => $this->input->post('item_rop'),
+			'Cost' => $this->input->post('item_costprice'),
+			'VATRate' => $this->input->post('item_vatrate'),
+			'GTIN' => $this->input->post('item_gtin'),
+			'NetPrice' => $this->input->post('item_netprice')
+			
+		);
+		
+		
+		$this->db->where('ItemID', $id);
+		$this->db->update('Inventory', $data);
+		
+		
+	}
+	
+	
+	public function update_stock($id, $toAdd) {
+		
+		
+		$this->db->set('Stock', "Stock + $toAdd");
+		$this->db->where('ItemID', $id);
+		$this->db->update('Inventory');
+		
+		
 	}
 	
 	

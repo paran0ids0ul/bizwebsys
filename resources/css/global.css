@@ -293,3 +293,15 @@ tr.hover {
    cursor: pointer;
    background-color: #8797B7;
 }
+
+
+
+
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #dadada;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #dadada;
+}
+

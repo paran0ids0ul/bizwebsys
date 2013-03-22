@@ -4,7 +4,7 @@
 			<!--breadcrumb -->
 			<ul class="breadcrumb">
 				<li><a href="<?php echo site_url("inventory") ?>">Item</a> <span class="divider">/</span></li>
-				<li class="active"><!--php code? --></li>
+				<li class="active" id="reference" value="<?php echo $itemID ?>"><?php echo $itemID ?></li>
 			</ul>
 			
 			<div class="row">
@@ -19,7 +19,9 @@
 					</a>
 				</div>
 				<div class="span1">
-					<button class="btn btn-primary same-btn-width">Edit</button>
+					<a href="<?php echo site_url("inventory/edit_item/$itemID") ?>" class="">
+						<button class="btn btn-primary same-btn-width">Edit</button>
+					</a>
 				</div>	
 				<div class="span1">
 					<button class="btn btn-primary same-btn-width">Print</button>
@@ -36,7 +38,7 @@
 					<div class="upper-contact">
 							<div class="span1">
 								<a href="<?php echo site_url("add_item_picture");?>" class="thumbnail">
-									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
+									<img src=<?php echo base_url("resources/images/no_image.gif")?> alt="Inventory">
 								</a>
 							</div>
 								
@@ -116,7 +118,7 @@
 							<div class="span9">
 								<label class="span1">Description</label>
 								<div class="span7 label-field">				
-									<textarea disabled class="span6" id="item_description" rows="3"><?php echo $description ?></textarea>
+									<textarea disabled class="span6" id="item_description" rows="3" ><?php echo $desc ?></textarea>
 								</div>
 							</div>
 							
@@ -150,12 +152,12 @@
     <form class="form-horizontal" id="stockupform">
 		
 			<label class="span2">Stock to add : </label>
-			<input class="span2" id="oldpass" type="number">     
+			<input class="span2" id="addstock" type="number">     
 		
 	</form>
   </div>
   <div class="modal-footer ">
-    <a button class="btn btn-primary" form="stockupform" data-dismiss="modal" aria-hidden="true">Stock Up</a> <!--update stock count -->
+    <a button class="btn btn-primary" id="stockup" form="stockupform" data-dismiss="modal" aria-hidden="true">Stock Up</a> <!--update stock count -->
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
   </div>
 </div>

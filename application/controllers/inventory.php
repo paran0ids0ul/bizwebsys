@@ -110,9 +110,6 @@ class Inventory extends MY_Controller {
 	}
 	
 	
-	public function display_item(){
-		$this->_render('app/inventory/display_item');
-	}
 	
 	
 	public function display_item_byID($itemID)
@@ -120,10 +117,10 @@ class Inventory extends MY_Controller {
 		$data['item'] = $this->inventory_model->get_item_byID($itemID);
 		
 		
-		
+		$data['itemID'] = $data['item']['ItemID'];
 		$data['name'] = $data['item']['Name'];
 		$data['category'] = $data['item']['ItemType'];
-		$data['supplier'] = $data['item']['ContactID'];
+		$data['contactID'] = $data['item']['ContactID'];
 		$data['cost'] = $data['item']['Cost'];
 		$data['net'] = $data['item']['NetPrice'];
 		$data['vat'] = $data['item']['VATRate'];
@@ -131,9 +128,59 @@ class Inventory extends MY_Controller {
 		$data['stockROP'] = $data['item']['StockROP'];
 		$data['GTIN'] = $data['item']['GTIN'];
 		$data['SKU'] = $data['item']['SKU'];
-		$data['description'] = $data['item']['Description'];
+		$data['desc'] = $data['item']['Description'];
 		
-
+		$data['suppliers'] = $this->inventory_model->get_contact_list();
+		
+		foreach ($data['suppliers'] as $supplier) {
+			if ($supplier['ContactID'] == $data['contactID']) {
+				$data['supplier'] = $supplier['lname'];
+			}
+			
+		}
+		
+		$this->data["custom_js"] ='			
+		
+							  
+								    <script>
+									    $(document).ready(function(){
+									    
+									    $("#stockup").click(function() {
+									    	
+									    	
+									    	var addamount = $("#addstock").val();
+									    	var id = $("#reference").val();
+									    	
+									    	$.ajax({
+									    	type: "POST",
+									    	url: "http://localhost/inventory/stockup",
+									    	data: { amount : addamount , itemID : id },
+									    	success: function(){ alert("success"); },
+									    	error: function(xhr, textStatus, error){
+									    		alert(xhr.statusText);
+									    		alert(textStatus);
+									    		alert(error);
+									    	}
+								    	});
+									    
+									    
+									 
+									    
+									    
+									    
+									    });
+									    
+									   
+									   
+									    
+									   
+									   
+									   });
+									   
+								    </script>';	
+		
+		
+		
 		
 		
 		$this->_data_render('app/inventory/display_item',$data);
@@ -142,9 +189,82 @@ class Inventory extends MY_Controller {
 		
 	}
 	
-	public function get_contact_list()
+	
+	public function stockup() {
+		
+		$this->_render('app/inventory/inventory');
+		
+		
+	/*	$toAdd = $_POST['amount'];
+		$id = $_POST['itemID'];
+		
+		$this->inventory_model->update_stock($id,$amount);
+		
+		$this->display_item_byID($id); */
+		
+		
+	}
+	
+	public function edit_item($itemID)
 	{
+	
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+	
+	
+		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
+	
+		if ($this->form_validation->run() === FALSE)
+		{
+		
+		
+			$data['item'] = $this->inventory_model->get_item_byID($itemID);
+		
+			
+			$data['itemID'] = $data['item']['ItemID'];
+			$data['name'] = $data['item']['Name'];
+			$data['category'] = $data['item']['ItemType'];
+			$data['contactID'] = $data['item']['ContactID'];
+			$data['cost'] = $data['item']['Cost'];
+			$data['net'] = $data['item']['NetPrice'];
+			$data['vat'] = $data['item']['VATRate'];
+			$data['stock'] = $data['item']['Stock'];
+			$data['stockROP'] = $data['item']['StockROP'];
+			$data['GTIN'] = $data['item']['GTIN'];
+			$data['SKU'] = $data['item']['SKU'];
+			$data['desc'] = $data['item']['Description'];
+			
+			$data['itemType'] = array("Animals","Arts & Entertainment","Baby & Toddler",
+									    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
+									    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
+									    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
+			
+		
+		
+		
+			
+		
+			$data['suppliers'] = $this->inventory_model->get_contact_list();
+		
+		
+			$this->_data_render('app/inventory/edit_item',$data);		
+		}
+		else
+		{
+			$this->inventory_model->update_item($itemID);
+			
+			
+			
+			$this->display_item_byID($itemID);
+			
+		}
+		
+		
+		
 				
 	}
+	
+	
+	
 	
 }
