@@ -70,6 +70,13 @@
 	  <div class="text-center">Website Analytics</div>
     </a>
   </li>   
+  <li class="span2">
+    <a href="<?php echo site_url("socialnetwork");?>" class="thumbnail">
+      <img src=<?php echo base_url("resources/images/Internet_Connection.png")?> alt="Connecting to the Public">
+	  <div class="text-center">Connecting to the Public</div>
+    </a>
+  </li> 
+  
 </ul> 
 
 <hr/>
