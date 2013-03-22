@@ -77,16 +77,26 @@ class Inventory_model extends MY_Model {
 		$this->db->update('Inventory', $data);
 		
 		
+		
+		
 	}
 	
 	
 	public function update_stock($id, $toAdd) {
 		
 		
-		$this->db->set('Stock', "Stock + $toAdd");
+		
 		$this->db->where('ItemID', $id);
+		$this->db->set('Stock', "Stock + $toAdd",FALSE);	
 		$this->db->update('Inventory');
 		
+		
+		$query = $this->db->query("SELECT Stock FROM Inventory WHERE ItemID = $id");
+		
+		
+		$row = $query->row(); 
+
+	    return $row->Stock;
 		
 	}
 	

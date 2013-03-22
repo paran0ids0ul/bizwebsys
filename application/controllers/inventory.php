@@ -155,7 +155,12 @@ class Inventory extends MY_Controller {
 									    	type: "POST",
 									    	url: "http://localhost/inventory/stockup",
 									    	data: { amount : addamount , itemID : id },
-									    	success: function(){ alert("success"); },
+									    	success: function(results){ 
+									    		
+									    		
+									    		$("#item_stock").html(results);
+									    		
+									    	},
 									    	error: function(xhr, textStatus, error){
 									    		alert(xhr.statusText);
 									    		alert(textStatus);
@@ -192,15 +197,15 @@ class Inventory extends MY_Controller {
 	
 	public function stockup() {
 		
-		$this->_render('app/inventory/inventory');
 		
 		
-	/*	$toAdd = $_POST['amount'];
+		
+		$toAdd = $_POST['amount'];
 		$id = $_POST['itemID'];
 		
-		$this->inventory_model->update_stock($id,$amount);
+		$newStock = $this->inventory_model->update_stock($id,$toAdd);
 		
-		$this->display_item_byID($id); */
+		echo $newStock;
 		
 		
 	}
