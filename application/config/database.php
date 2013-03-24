@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root'; //bizwebsys
-$db['default']['password'] = 'q1w2e3'; //Abcd1234*
+$db['default']['username'] = 'bizwebsys'; //root
+$db['default']['password'] = 'Abcd1234*'; //q1w2e3
 $db['default']['database'] = 'bizwebsys';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
