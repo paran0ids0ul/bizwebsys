@@ -82,8 +82,13 @@ class Inventory extends MY_Controller {
 	
 		
 		
-		$this->load->helper('form');
+		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
+		
+		
+
+       
+		
 	
 	
 		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
@@ -96,19 +101,51 @@ class Inventory extends MY_Controller {
 			$this->_data_render('app/inventory/new_item',$data);
 		
 		}
-		else
+		else 
 		{
-			$newID = $this->inventory_model->set_item();
+		
+			$config['upload_path'] = 'resources/images/inventory/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+		
+			
+		
+		
+			if ( ! $this->upload->do_upload('file'))
+			{
+				
+            	$error = array('error' => $this->upload->display_errors());
+            
+            	print_r($error);
+                      
+                exit();
+                 
+            }
+            else 
+            {
+		
+				$newID = $this->inventory_model->set_item();
 			
 			
+				$file_data  =   $this->upload->data();
 			
-			$this->display_item_byID($newID);
+			
+				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$newID.$file_data['file_ext']); 
+	
+			
+				$this->display_item_byID($newID);
+			}
+			
 			
 		}
 		
 		
 	}
 	
+	
+		
 	
 	
 	

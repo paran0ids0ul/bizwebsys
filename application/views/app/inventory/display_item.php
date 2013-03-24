@@ -37,9 +37,7 @@
 				<div class="row">
 					<div class="upper-contact">
 							<div class="span1">
-								<a href="<?php echo site_url("add_item_picture");?>" class="thumbnail">
-									<img src=<?php echo base_url("resources/images/no_image.gif")?> alt="Inventory">
-								</a>
+								<img src=<?php echo base_url("resources/images/no_image.gif")?> alt="Inventory">
 							</div>
 								
 							

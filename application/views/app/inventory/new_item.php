@@ -9,7 +9,7 @@
 		</ul>
 		<!-- Control Buttons -->
 		<?php echo validation_errors(); ?>
-		<?php echo form_open('inventory/new_item') ?>
+		<?php echo form_open_multipart('inventory/new_item') ?>
 			<div>
 				
 				<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
@@ -24,7 +24,7 @@
 				<div class="row">
 					<div class="upper-contact">
 							<div class="span1">
-								<a href="<?php echo site_url("add_item_picture");?>" class="thumbnail">
+								<a href="#uploadImageModal" data-toggle="modal" class="thumbnail">
 									<img src=<?php echo base_url("resources/images/no_image.gif")?> alt="Inventory">
 								</a>
 							</div>
@@ -105,6 +105,30 @@
 								</div>
 							</div>
 							
+							
+							<!-- Modal upload picture-->
+							<div id="uploadImageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadImagelabel" aria-hidden="true">
+								<div class="modal-header">
+									<h3 id="stockuplabel">Upload Image</h3>
+								</div>
+								<div class="modal-body">
+		
+									<label class="span2">Please select : </label>
+									<input id="file" name="file" type="file">     
+		
+								</div>
+								<div class="modal-footer ">
+  
+									<button class="btn same-btn-width" data-dismiss="modal" aria-hidden="true">Ok</button>
+									<a data-dismiss="modal" aria-hidden="true" id="cancelUpload" >Cancel</button>
+   
+								</div>
+							</div>
+							
+							
+							
+							
+							
 						</div> <!-- close lower form row-->
 						
 						
@@ -126,3 +150,15 @@
 	</div> <!-- close content -->
   </div> <!-- close row -->
 </div> <!-- close container -->
+
+
+
+
+
+
+
+
+
+
+
+

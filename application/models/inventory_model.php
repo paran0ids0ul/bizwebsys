@@ -27,6 +27,7 @@ class Inventory_model extends MY_Model {
 	{
 		$this->load->helper('url');
 	
+		
 	
 		$data = array(
 			'Name' => $this->input->post('item_name'),
