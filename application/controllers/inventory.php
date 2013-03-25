@@ -106,6 +106,7 @@ class Inventory extends MY_Controller {
 		
 			$config['upload_path'] = 'resources/images/inventory/';
 			$config['allowed_types'] = 'gif|jpg|png';
+			$config['overwrite'] = false;
 			
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -118,10 +119,13 @@ class Inventory extends MY_Controller {
 				
             	$error = array('error' => $this->upload->display_errors());
             
-            	print_r($error);
-                      
-                exit();
-                 
+            
+            	$newID = $this->inventory_model->set_item();
+            	
+            	
+            	$this->display_item_byID($newID);
+            	
+            	
             }
             else 
             {
@@ -133,6 +137,9 @@ class Inventory extends MY_Controller {
 			
 			
 				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$newID.$file_data['file_ext']); 
+	
+	
+				$this->inventory_model->set_imagepath($newID, $newID.$file_data['file_ext']);
 	
 			
 				$this->display_item_byID($newID);
@@ -166,6 +173,7 @@ class Inventory extends MY_Controller {
 		$data['GTIN'] = $data['item']['GTIN'];
 		$data['SKU'] = $data['item']['SKU'];
 		$data['desc'] = $data['item']['Description'];
+		$data['imgpath'] = $data['item']['Imagepath'];
 		
 		$data['suppliers'] = $this->inventory_model->get_contact_list();
 		
@@ -223,6 +231,7 @@ class Inventory extends MY_Controller {
 		
 		
 		
+	
 		
 		
 		$this->_data_render('app/inventory/display_item',$data);
@@ -250,12 +259,35 @@ class Inventory extends MY_Controller {
 	public function edit_item($itemID)
 	{
 	
+		$this->data["custom_js"] ='			
+		
+							  
+								    <script>
+									    $(document).ready(function(){
+									    
+									    $("#changeImg").click(function() {
+									    	if ($("#file").val() != "") {
+									    		$("#imgThumbnail").attr("src","/resources/images/no_image.gif");
+									    	}
+									    	
+								    	});
+									    
+									   
+									    
+									   
+									   
+									   });
+									   
+								    </script>';	
+	
+	
+	
 		$this->load->helper('form');
-		$this->load->library('form_validation');
-	
-	
+		$this->load->library('form_validation');		
+		
+		
 		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
-	
+		
 		if ($this->form_validation->run() === FALSE)
 		{
 		
@@ -275,6 +307,7 @@ class Inventory extends MY_Controller {
 			$data['GTIN'] = $data['item']['GTIN'];
 			$data['SKU'] = $data['item']['SKU'];
 			$data['desc'] = $data['item']['Description'];
+			$data['imgpath'] = $data['item']['Imagepath'];
 			
 			$data['itemType'] = array("Animals","Arts & Entertainment","Baby & Toddler",
 									    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
@@ -284,20 +317,66 @@ class Inventory extends MY_Controller {
 		
 		
 		
-			
-		
 			$data['suppliers'] = $this->inventory_model->get_contact_list();
+
 		
+			$this->_data_render('app/inventory/edit_item',$data);
 		
-			$this->_data_render('app/inventory/edit_item',$data);		
 		}
-		else
+		else 
 		{
-			$this->inventory_model->update_item($itemID);
+		
+			$config['upload_path'] = 'resources/images/inventory/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['overwrite'] = false;
+			
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+		
+			
+		
+		
+			if ( ! $this->upload->do_upload('file'))
+			{
+				
+            	$error = array('error' => $this->upload->display_errors());
+            	
+            	print_r($error);
+            	exit();            	
+            	
+            	$this->inventory_model->update_item($itemID);
+            	
+            	
+            	$this->display_item_byID($itemID);
+            	
+            	
+            }
+            else 
+            {
+            	$data['item'] = $this->inventory_model->get_item_byID($itemID);
+            	$path = $data['item']['Imagepath'];
+            	
+            	if ($path != "") {
+	            	
+	            	unlink("resources/images/inventory/$path");
+            	}
+			
+            	$this->inventory_model->update_item($itemID);
+			
+				$file_data  =   $this->upload->data();
 			
 			
+				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$itemID.$file_data['file_ext']); 
+	
+	
+
+	
+				$this->inventory_model->set_imagepath($itemID, $itemID.$file_data['file_ext']);
+	
+				$this->display_item_byID($itemID);
+	
+			}
 			
-			$this->display_item_byID($itemID);
 			
 		}
 		

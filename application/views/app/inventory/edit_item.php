@@ -9,11 +9,11 @@
 		</ul>
 		<!-- Control Buttons -->
 		<?php echo validation_errors(); ?>
-		<?php echo form_open("inventory/edit_item/$itemID") ?>
+		<?php echo form_open_multipart("inventory/edit_item/$itemID") ?>
 			<div>
 				
 				<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
-				<a onclick="history.back();" class="btn btn-link">
+				<a href="<?php echo base_url("inventory/display_item_byID/$itemID")?>"class="btn btn-link">
 					Cancel
 				</a>
 			</div>
@@ -24,8 +24,14 @@
 				<div class="row">
 					<div class="upper-contact">
 							<div class="span1">
-								<a href="<?php echo site_url("add_item_picture");?>" class="thumbnail">
-									<img src=<?php echo base_url("resources/images/no_image.gif")?> alt="Inventory">
+								<a href="#uploadImageModal" data-toggle="modal" class="thumbnail">
+									<img id="imgThumbnail" src=<?php 
+									if ($imgpath == null){
+										echo base_url("resources/images/no_image.gif");
+									} else {
+										echo base_url("resources/images/inventory/$imgpath");
+									}
+									?> alt="Inventory">
 								</a>
 							</div>
 							<div class="span2">
@@ -117,6 +123,26 @@
 					
 					
 				</div> <!--close row-->
+				
+				<div id="uploadImageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadImagelabel" aria-hidden="true">
+					<div class="modal-header">
+						<h3 id="stockuplabel">Upload Image</h3>
+					</div>
+					<div class="modal-body">
+						<label class="span2">Please select : </label>
+						<input id="file" name="file" type="file">     
+	
+					</div>
+					<div class="modal-footer ">
+						<button class="btn same-btn-width" data-dismiss="modal" aria-hidden="true" id="changeImg">Ok</button>
+						<a data-dismiss="modal" aria-hidden="true" id="cancelUpload" >Cancel</button>
+					</div>
+				</div>
+				
+				
+				
+				
+				
 			</form> <!-- close form-->
 							
 		 </div> <!-- close myform-->

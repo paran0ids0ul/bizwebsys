@@ -77,6 +77,16 @@ class Inventory_model extends MY_Model {
 		$this->db->where('ItemID', $id);
 		$this->db->update('Inventory', $data);
 		
+	}
+	
+	
+	public function set_imagepath($id, $path) {
+		
+		$data = array('Imagepath' => $path);
+		
+		
+		$this->db->where('ItemID', $id);
+		$this->db->update('Inventory', $data);
 		
 		
 		

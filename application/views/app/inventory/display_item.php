@@ -37,7 +37,13 @@
 				<div class="row">
 					<div class="upper-contact">
 							<div class="span1">
-								<img src=<?php echo base_url("resources/images/no_image.gif")?> alt="Inventory">
+								<img src=<?php 
+									if ($imgpath == null){
+										echo base_url("resources/images/no_image.gif");
+									} else {
+										echo base_url("resources/images/inventory/$imgpath");
+									}
+								?> alt="Inventory">
 							</div>
 								
 							
