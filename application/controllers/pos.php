@@ -240,16 +240,17 @@ class Pos extends MY_Controller {
 										
 										//Delete button effect
 										$(\'#btn_del\').click(function(){
+												var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\').substr(1);
+												var total = parseFloat($(\'#total\').text());
+												var item_tax = parseFloat($(\'.selected\').attr(\'value\'));
+												var tax = parseFloat($(\'#tax\').text());
+												var total_new,tax_new,total_without,tax_without;										
 												switch(button)
 												{
 													//Quantity button selected
 													case 1:{    	
 																var pre_quantity = parseInt($(\'.selected\').children(\'div .quantity\').children(\'b\').text());
-																var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\').substr(1);
-																var total = parseFloat($(\'#total\').text());
-																var item_tax = parseFloat($(\'.selected\').attr(\'value\'));
-																var tax = parseFloat($(\'#tax\').text());
-																var total_new,tax_new,total_without,tax_without;															
+															
 																if(input!="")
 																{
 																	if(input.length>1)
@@ -309,6 +310,7 @@ class Pos extends MY_Controller {
 																	{
 																		input = input.substr(0,input.length-1);
 																		num=parseFloat(input);
+																		
 																	}
 																	else
 																	{
