@@ -14,7 +14,7 @@ class Inventory extends MY_Controller {
 	public function index(){	
 	
 		
-		$this->data["custom_js"] ='			
+		/*$this->data["custom_js"] ='			
 		
 							  
 								    <script>
@@ -38,8 +38,9 @@ class Inventory extends MY_Controller {
 		$data['items'] = $this->inventory_model->get_item_list();
 		
 		
-		$this->_data_render('app/inventory/inventory',$data);
+		$this->_data_render('app/inventory/inventory',$data);*/
 		
+		$this->load->spark('ri_ldap/0.0.2');
 		
 	}
 	
