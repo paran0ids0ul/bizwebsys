@@ -198,7 +198,7 @@ class Inventory extends MY_Controller {
 									    	
 									    	$.ajax({
 									    	type: "POST",
-									    	url: "http://localhost/inventory/stockup",
+									    	url: "http://bizwebsys.cloudapp.net/inventory/stockup",
 									    	data: { amount : addamount , itemID : id },
 									    	success: function(results){ 
 									    		
