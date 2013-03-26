@@ -154,7 +154,7 @@ class Pos extends MY_Controller {
 										}
 										
 										var button=1;
-										var input="";
+										
 										//Toggle control buttons in keypad
 										$(\'.control\').click(function(){
 											$(\'.control\').removeClass(\'btn-primary\');
@@ -171,10 +171,9 @@ class Pos extends MY_Controller {
 										
 										//Press key buttons effect
 										$(\'.key\').click(function(){
-											
+											var input="";
 											if($(\'.selected\').size()>0)
 											{
-												input+=$(this).text();
 												var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\');
 												var item_tax = parseFloat($(\'.selected\').attr(\'value\'));
 												var display_price =  $(\'.selected\').children(\'div .price\').text().substr(1);
@@ -204,11 +203,13 @@ class Pos extends MY_Controller {
 												{
 													//Quantity button selected
 													case 1:{    
-																num=parseInt(input);
-																var price= parseFloat(item_price.substr(1))*num*discount_num;
+																
 																
 																if($(\'.selected\').children(\'div .quantity\').size()==0)       //No quantity label display
 																{
+																	input = $(this).text();
+																	num=parseInt(input);
+																	var price= parseFloat(item_price.substr(1))*num*discount_num;
 																	$(\'.selected\').append(\'<div class="quantity span2">quantity: x<b>\'+input+\'</b></div>\');
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
 																	tax_without = tax - item_tax;
@@ -216,6 +217,9 @@ class Pos extends MY_Controller {
 																}
 																else
 																{
+																	input = $(\'.selected\').children(\'div .quantity\').children(\'b\').text()+$(this).text();
+																	num=parseInt(input);
+																	var price= parseFloat(item_price.substr(1))*num*discount_num;
 																	$(\'.selected\').children(\'div .quantity\').children(\'b\').text(input);
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
 																	tax_without = tax - item_tax*quantity_num;
@@ -235,39 +239,27 @@ class Pos extends MY_Controller {
 															}
 													//Discount button selected		
 													case 2: {    
-																if(input.substr(0,2)!=\'0.\')
-																{	
-																	input=\'0.\'+input;
-																}
-																discount=parseFloat(input);
-																
-																if(discount==0)
-																{
-																	return;
-																}
-																var price= parseFloat(item_price.substr(1))*discount*quantity_num;	
-																price = toFixed(price,2);	
-																var quantity;
-																if($(\'.selected\').children(\'div .quantity\').size()==0)       //No quantity label display
-																{
-																	quantity = 1;
-																}
-																else
-																{
-																	quantity = parseInt($(\'.selected\').children(\'div .quantity\').children(\'b\').text());		
-																}
+															
 																
 																if($(\'.selected\').children(\'div .discount\').size()==0)          //No discount label display
 																{
+																	input=\'0.\'+$(this).text();
+																	var discount=parseFloat(input);
+																	var price= parseFloat(item_price.substr(1))*discount*quantity_num;	
+																	price = toFixed(price,2);	
+																
 																	$(\'.selected\').append(\'<div class="discount span2">discount: x<b>\'+input+\'</b></div>\');
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																	total_without = parseFloat(total)-parseFloat(item_price.substr(1)) * quantity;
+																	total_without = parseFloat(total)-parseFloat(item_price.substr(1)) * quantity_num;
 																}
 																else
 																{
+																	input=$(\'.selected\').children(\'div .discount\').children(\'b\').text()+$(this).text();
+																	var discount=parseFloat(input);
+																	var price= parseFloat(item_price.substr(1))*discount*quantity_num;	
 																	$(\'.selected\').children(\'div .discount\').children(\'b\').text(input);
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																	total_without = parseFloat(total)-parseFloat(item_price.substr(1)) * quantity * discount_num;
+																	total_without = parseFloat(total)-parseFloat(item_price.substr(1)) * quantity_num * discount_num;
 																}
 																//Calculate total and taxes
 																
@@ -291,13 +283,30 @@ class Pos extends MY_Controller {
 												var total = parseFloat($(\'#total\').text());
 												var item_tax = parseFloat($(\'.selected\').attr(\'value\'));
 												var tax = parseFloat($(\'#tax\').text());
-												var total_new,tax_new,total_without,tax_without;										
+												var total_new,tax_new,total_without,tax_without;	
+												if($(\'.selected\').children(\'div .quantity\').size()==0)   //No quantity label display
+												{
+													quantity_num = 1;
+												}
+												else
+												{
+													quantity_num = parseInt($(\'.selected\').children(\'div .quantity\').children(\'b\').text());
+												}
+												
+												if($(\'.selected\').children(\'div .discount\').size()==0)        //No discount label displayed
+												{
+													discount_num = 1;
+												}
+												else
+												{
+													discount_num =parseFloat($(\'.selected\').children(\'div .discount\').children(\'b\').text());
+												}												
 												switch(button)
 												{
 													//Quantity button selected
 													case 1:{    	
 																var pre_quantity = parseInt($(\'.selected\').children(\'div .quantity\').children(\'b\').text());
-															    input = pre_quantity;
+															    input = $(\'.selected\').children(\'div .quantity\').children(\'b\').text();
 																if(input!="")
 																{
 																	if(input.length>1)
@@ -315,11 +324,12 @@ class Pos extends MY_Controller {
 																		input="";
 																	}
 																}	
-																var price= parseFloat(item_price)*num;
+																
+																var price= parseFloat(item_price)*num*discount_num;
 	
 																if($(\'.selected\').children(\'div .quantity\').size()==0)       //No quantity label display
 																{
-																	total_without = total - parseFloat(item_price);
+																	total_without = total - parseFloat(item_price)*discount_num;
 																	tax_without = tax - item_tax;
 																	$(\'.selected\').remove();
 																	total_new = total_without;
@@ -330,18 +340,18 @@ class Pos extends MY_Controller {
 																	if(input=="")
 																	{
 																		$(\'.selected\').remove();
-																		total_without = total - parseFloat(item_price);
+																		total_without = total - parseFloat(item_price)*discount_num;
 																		tax_without = tax - item_tax;
 																		total_new = total_without;
 																		tax_new = tax_without;
 																	}
 																	else
 																	{
-																		total_without = total - parseFloat(item_price) * pre_quantity;
+																		total_without = total - parseFloat(item_price) * pre_quantity*discount_num;
 																		tax_without = tax - item_tax * pre_quantity;
 																		$(\'.selected\').children(\'div .quantity\').children(\'b\').text(input);
 																		$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																		total_new = total_without+item_price*parseInt(input);
+																		total_new = total_without+item_price*parseInt(input)*discount_num;
 																		tax_new = tax_without+item_tax*parseInt(input);
 																	}
 																}	
@@ -352,35 +362,35 @@ class Pos extends MY_Controller {
 																break;
 															}
 													//Discount button selected		
-													case 2: {   
-																var pre_discount = $(\'.selected\').children(\'div .discount\').children(\'b\').text();
-															    input = pre_discount;	
-																total_without = total - parseFloat(item_price)*pre_discount;
-																if(input!="")
-																{
-																	if(input.length>3)
-																	{
-																		input = input.substr(0,input.length-1);
-																	}
-																	else
-																	{
-																		input="";
-																	}
-																}		
+													case 2: {   	
 																var discount = parseFloat(input);
-																var price= parseFloat(item_price)*discount;
+																var price= parseFloat(item_price)*discount*quantity_num;
 																if($(\'.selected\').children(\'div .discount\').size()==0)        //No discount label displayed
 																{
+																	total_without = total - parseFloat(item_price)*quantity_num;
 																	$(\'.selected\').remove();
 																	total_new = total_without;
 																}
 																else
 																{
+																	input = $(\'.selected\').children(\'div .discount\').children(\'b\').text();	
+																	input = input.substr(0,input.length-1);
+																	total_without = total - parseFloat(item_price)*discount_num*quantity_num;
 																	if(input=="")
 																	{
 																		$(\'.selected\').remove();
 																		total_new = total_without;
 																	}
+																	var discount = parseFloat(input);
+																	if(discount==0)
+																	{
+																		discount = 1;
+																		var price= parseFloat(item_price)*discount*quantity_num;
+																		$(\'.selected\').children(\'div .discount\').remove();
+																		$(\'.selected\').children(\'div .price\').text(\'£\'+price);
+																		total_new = total_without + price;
+																	}
+																	var price= parseFloat(item_price)*discount*quantity_num;
 																	$(\'.selected\').children(\'div .discount\').children(\'b\').text(input);
 																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
 																	total_new = total_without + price;
