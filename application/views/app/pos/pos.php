@@ -33,7 +33,7 @@
 									if ($item['Imagepath'] == null){
 										echo base_url("resources/images/no_image.gif");
 									} else {
-										echo base_url("resources/images/".$item['Imagepath']);               //TODO: fix img path
+										echo base_url("resources/images/inventory/".$item['Imagepath']);             
 									}
 								?> alt="">
 							  <label class="text-center"><?php echo $item['Name']?></label>
