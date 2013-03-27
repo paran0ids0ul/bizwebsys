@@ -96,7 +96,7 @@ class Pos extends MY_Controller {
 
 	}
 	
-	public function index(){	
+	public function index(){
 		//load local js
 		$this->data["custom_js"] =$this->data["custom_js"].'	
 								    <script>
@@ -413,8 +413,24 @@ class Pos extends MY_Controller {
 												
 										});
 										
-									
-										
+										$(\'#btn_cash\').click(function(){
+											$("#content").empty();
+											showPayment();
+										});
+											
+										function showPayment()
+										{
+											var	total = $(\'#total\').text();
+											
+											$.ajax({
+												url: \''. site_url('pos/payment') .'\',
+												type: \'POST\',
+												data: total,
+												success: function(response) {
+													$(\'#content\').html(response);
+												}
+											});
+										}
 								    </script>';	
 									
 		$data['items'] = $this->pos_model->get_items();
@@ -422,7 +438,10 @@ class Pos extends MY_Controller {
 		$this->_data_render('app/pos/pos',$data);
 	}
 	public function payment(){	
-		$this->_render('app/pos/payment');
+		//$this->_render('app/pos/payment');
+		$total = $this->input->post('total');
+		$this->load->view('app/pos/payment');
+	
 	}
 	public function receipt(){	
 		$this->_render('app/pos/receipt');

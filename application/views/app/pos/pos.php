@@ -7,7 +7,7 @@
 		</div>
 		
 		<!-- Content -->
-		<div class="span7">
+		<div class="span7" id="content">
 			<div class="row product-container" id="product_container">
 				<div class="row">
 					<div class="span7">
@@ -47,3 +47,4 @@
 		</div>
 	</div>	
 </div>
+

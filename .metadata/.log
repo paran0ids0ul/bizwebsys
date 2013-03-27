@@ -1,0 +1,23 @@
+!SESSION 2013-03-27 16:24:25.180 -----------------------------------------------
+eclipse.buildId=3.3.2.201302081546
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2013-03-27 16:28:52.073
+!MESSAGE NLS missing message: HttpServerSettingsTab_Title in: com.aptana.js.debug.ui.internal.launchConfigurations.messages
+
+!ENTRY com.aptana.js.debug.core 4 0 2013-03-27 16:29:33.873
+!MESSAGE Malformed server URL
+!STACK 0
+java.net.MalformedURLException: no protocol: localhost
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at com.aptana.js.debug.core.JSLaunchConfigurationDelegate.launch(JSLaunchConfigurationDelegate.java:245)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:854)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:937)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1141)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
