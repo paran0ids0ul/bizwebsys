@@ -43,7 +43,7 @@
 									<label>Common Name</label>									
 								</div>
 								<div class="span6 content">
-									<span class="input-xlarge uneditable-input" style="width:90%"id="contact_surname">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" style="width:90%"id="contact_common_name">php to retrive data</span>
 								</div>
 								
 									
