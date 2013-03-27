@@ -96,6 +96,7 @@ class Pos extends MY_Controller {
 	}
 	
 	public function index(){
+		
 		//load local js
 		$this->data["custom_js"] =$this->data["custom_js"].'	
 								    <script>
@@ -138,7 +139,6 @@ class Pos extends MY_Controller {
 											}
 											$(\'#total\').text(total);
 											$(\'#tax\').text(tax);
-										
 										});
 										//Click on list item effect
 										$(\'.item-list\').on(\'click\', \'li\', function () { 
@@ -424,28 +424,106 @@ class Pos extends MY_Controller {
 												type: \'POST\',
 												data: { total: $(\'#total\').text()},
 												success: function(response) {
+													//load payment to content
 													$(\'#content\').html(response);
 													$("#form_container").height(viewportHeight-200);
+													
+													//js for payment
 													$(\'#btn_validate\').addClass("disabled");
+													
 													$(\'#input_cash\').keyup(function(){
-														var cash_input = $(\'#input_cash\').val();
-														var total =  $(\'#total\').text();
-														if(parseFloat(cash_input)>=parseFloat(total))
+														var cash = parseFloat($(\'#input_cash\').val());
+														var total =  parseFloat($(\'#total\').text());
+														var paid = cash;
+														var remain,change;
+														if(cash>=total)
+														{
 															$(\'#btn_validate\').removeClass("disabled");
+															remain = 0.0;
+															change = cash - total;
+														}
+														else
+														{
+															remain = total - cash;
+															change = 0.0;
+														}
+														$(\'#paid\').text(paid);
+														$(\'#remain\').text(remain);
+														$(\'#change\').text(change);
+													});
+													
+													$(\'#btn_back\').click(function(){
+														showProducts();
 													});
 												}
 											});
 										}
+										
+										function showProducts()
+										{
+											$.ajax({
+												url: \''. site_url('pos/products') .'\',
+												type: \'POST\',
+												success: function(response) {
+													//load payment to content
+													$(\'#content\').html(response);
+													$("#product_container").height(viewportHeight);
+													//Add item to list
+										$(\'.thumbnail\').click(function(){
+											var pd_id=$(this).attr(\'id\');
+											var item_name=$(this).children(\'label\').text();
+											var item_price=$(this).children(\'span\').text();
+											var item_tax=$(this).attr(\'value\');
+											
+											var total=parseFloat($(\'#total\').text())+ parseFloat(item_price.substr(1));
+											var tax=parseFloat($(\'#tax\').text())+parseFloat(item_tax);
+											
+											total=toFixed(total,2);
+											tax=toFixed(tax,2);
+											
+											var size = $(".item-list li").filter("[id=\'li_"+pd_id+"\']").size();
+											if(size==0)       //No same item on list
+											{
+												if($(".item-list li").size()==0)            //Item list is empty
+													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' class=\'selected\'><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
+												else                   //Item list is not empty
+													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' ><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
+											}
+											else    //Got same item on list
+											{
+												var li = $(".item-list li").filter("[id=\'li_"+pd_id+"\']");
+												var price=parseFloat(li.children(\'.price\').text().substr(1));
+												price=price+parseFloat(item_price.substr(1));												
+												if(li.children(\'div .quantity\').size()==0)  //No quantity label display
+												{
+													li.append(\'<div class="quantity span2">quantity: x<b>2</b></div>\');
+												}
+												else   //Have quantity label display
+												{
+													var quantity = parseInt(li.children(\'div .quantity\').children(\'b\').text())+1;
+													li.children(\'div .quantity\').children(\'b\').text(quantity);
+												}	
+												li.children(\'div .price\').text(\'£\'+price);
+											}
+											$(\'#total\').text(total);
+											$(\'#tax\').text(tax);
+										});
+												}
+											});
+										}
 								    </script>';	
-									
 		$data['items'] = $this->pos_model->get_items();
+		$param['toProducts'] =  $this->load->view('app/pos/products',$data,true);							
 		
-		$this->_data_render('app/pos/pos',$data);
+		$this->_data_render('app/pos/pos',$param);
+	}
+	public function products(){	
+		$data['items'] = $this->pos_model->get_items();
+		$this->load->view('app/pos/products',$data);
 	}
 	public function payment(){	
 		$data["total"] = $_POST["total"];
 		$this->load->view('app/pos/payment',$data);
-	
 	}
 	public function receipt(){	
 		$this->_render('app/pos/receipt');
