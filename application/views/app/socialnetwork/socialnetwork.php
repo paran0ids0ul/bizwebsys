@@ -13,7 +13,7 @@
 			</div>
 			<div class="span7 input-append">
 				<input id="statusContext" type="text" style="width:90%"; placeholder="How is your day?" >
-				<a id="button" href="<?php echo site_url("socialnetwork/submit")?>"button class="btn btn-primary" type="submit" value="Submit">Post</button></a>
+				<a id="button"  class="btn btn-primary">Post</button></a>
 			</div>
 			<div class="span8">
 				<label class="checkbox" style="HEIGHT:30px"  value="Yes" >
@@ -30,6 +30,10 @@
 					<input id="googlePlus" type="checkbox"> Post onto Google+
 				</label>
 			</div>
+			<div class="span8">
+				<span class="input-xlarge uneditable-input" style="width:60%"; id="process"></span>				
+			</div>
+			
 		</div>
 	</form>
 </div>

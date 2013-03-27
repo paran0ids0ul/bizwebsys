@@ -35,17 +35,20 @@
 										<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
 									</a>
 								</div>
-								<div class="span2">
-									<label>Name :
-									</label> 
-									<span class="input-xlarge uneditable-input" id="contact_name">php to retrive data</span>
+								<div class="span1 content">
+									<label>First Name</label>									
 								</div>
-								<!-- this div is only unhidden if contact is a company-->
-								<div class="span3 offset1 is-business">
-									<label>Business Category	
-									</label> 
-									<span class="input-xlarge uneditable-input" id="contact_business">php to retrive data</span>						
-								</div>		
+								<div class="span7 content">
+									<span class="input-xlarge uneditable-input" style="width:60%" id="contact_firstname">php to retrive data</span>
+								</div>
+								
+								<div class="span1 content">
+									<label>Surname</label>									
+								</div>
+								<div class="span7 content">
+									<span class="input-xlarge uneditable-input" style="width:30%"id="contact_surname">php to retrive data</span>
+								</div>
+									
 						
 							</div>  <!-- close upper contact-->
 							
@@ -116,9 +119,14 @@
 										
 										<label class="span1 is-business">Organization
 										</label>
-										<div class="span3 label-field is-business">
-											
+										<div class="span3 label-field is-business">											
 											<span class="input-xlarge uneditable-input" id="contact_organization">php to retrive data</span>						
+										</div>
+										
+										<label class="span1 is-business">Category
+										</label>
+										<div class="span3 label-field is-business">											
+											<span class="input-xlarge uneditable-input" id="contact_business">php to retrive data</span>						
 										</div>
 										
 												

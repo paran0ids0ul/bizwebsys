@@ -25,22 +25,20 @@
 									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
 								</a>
 							</div>
-							<div class="span2">
-								<label>Name : ( 
-								<input type="checkbox" id="is_company"> Is a Company? )
-								</label> 
-								<input id="contact_name" type="text" placeholder="e.g John Wesley" >
+							<div class="span1 content">
+									<label>First Name</label>									
+								</div>
+								<div class="span7 content">
+									<span class="input-xlarge uneditable-input" style="width:60%" id="contact_firstname">php to retrive data</span>
+								</div>
 								
+								<div class="span1 content">
+									<label>Surname</label>									
+								</div>
+								<div class="span7 content">
+									<span class="input-xlarge uneditable-input" style="width:30%"id="contact_surname">php to retrive data</span>
 							</div>
-							<!-- this div is only unhidden if company tickbox is ticked-->
-							<div class="span3 offset1 is-business" id="cate_select">
-								<label>Business Category	
-								</label> 
-								<select name="contact_business" id="contact_business">
-									<option>Please Choose :</option>
-								</select>
-														
-							</div>		
+									
 						
 					</div>  <!-- close upper contact-->
 							
@@ -97,6 +95,15 @@
 								<div class="span3 label-field is-business">				
 									<input id="contact_organization" type="text" placeholder="Organization" >
 								</div>
+								
+								<label class="span1 is-business">Category	
+								</label>
+								<div class="span3 label-field is-business">				
+									<select name="contact_business" id="contact_business">
+									<option>Please Choose :</option>
+								</select>
+								</div>
+								
 							</div> <!-- close right lower form -->
 							
 							
