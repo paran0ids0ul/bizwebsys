@@ -40,20 +40,20 @@
 									<label>First Name</label>									
 								</div>
 								<div class="span3 content">
-									<span class="input-xlarge uneditable-input" style="width:90%" id="contact_firstname">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" style="width:90%" name ="contact_fname" id="contact_fname">php to retrive data</span>
 								</div>
 								
 								<div class="span1 content">
 									<label>Surname</label>									
 								</div>
 								<div class="span3 content">
-									<span class="input-xlarge uneditable-input" style="width:60%"id="contact_surname">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" style="width:60%" name ="contact_sname" id="contact_sname">php to retrive data</span>
 								</div>
 								<div class="span1 content">
 									<label>Common Name</label>									
 								</div>
 								<div class="span6 content">
-									<span class="input-xlarge uneditable-input" style="width:90%"id="contact_common_name">php to retrive data</span>
+									<span class="input-xlarge uneditable-input" style="width:90%" name ="contact_cname" id="contact_cname">php to retrive data</span>
 								</div>
 									
 						
@@ -67,29 +67,29 @@
 											<label class="span1">Street :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" id="contact_street1">php to retrive data</span>
-												<span class="input-xlarge uneditable-input" id="contact_street2">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_street1" id="contact_street1">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_street2" id="contact_street2">php to retrive data</span>
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">City/State :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" id="contact_city">php to retrive data</span>	
+												<span class="input-xlarge uneditable-input" name ="contact_state" id="contact_city">php to retrive data</span>	
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">Zip Code :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" id="contact_zip">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_postcode" id="contact_postcode">php to retrive data</span>
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">Country :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" id="contact_country">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_country" id="contact_country">php to retrive data</span>
 											</div>
 										</div>
 										
@@ -98,29 +98,30 @@
 						
 						
 									<div class="span5">
+									
+										<label class="span1">Landline	
+										</label>
+										<div class="span3 label-field">
+											<span class="input-xlarge uneditable-input" name ="contact_landline" id="contact_landline">php to retrive data</span>
+										</div>
 							
 										<label class="span1">Mobile	
 										</label>
 										<div class="span3 label-field">
-											<span class="input-xlarge uneditable-input" id="contact_moblie">php to retrive data</span>
-										</div>
+											<span class="input-xlarge uneditable-input" name ="contact_mobile" id="contact_moblie">php to retrive data</span>
+										</div>									
 										
-										<label class="span1">Telephone	
-										</label>
-										<div class="span3 label-field">
-											<span class="input-xlarge uneditable-input" id="contact_phone">php to retrive data</span>
-										</div>
 										
 										<label class="span1">Fax	
 										</label>
 										<div class="span3 label-field">
-											<span class="input-xlarge uneditable-input" id="contact_fax">php to retrive data</span>
+											<span class="input-xlarge uneditable-input" name ="contact_fax" id="contact_fax">php to retrive data</span>
 										</div>
 										
 										<label class="span1">E-mail	
 										</label>
 										<div class="span3 label-field">
-											<span class="input-xlarge uneditable-input" id="contact_email">php to retrive data</span>
+											<span class="input-xlarge uneditable-input" name ="contact_email" id="contact_email">php to retrive data</span>
 										</div>
 								
 										
@@ -128,7 +129,7 @@
 										<label class="span1 is-business">Organization
 										</label>
 										<div class="span3 label-field is-business">											
-											<span class="input-xlarge uneditable-input" id="contact_organization">php to retrive data</span>						
+											<span class="input-xlarge uneditable-input" name ="contact_org" id="contact_org">php to retrive data</span>						
 										</div>
 										
 										
