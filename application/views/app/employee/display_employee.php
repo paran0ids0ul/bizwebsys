@@ -41,8 +41,8 @@
 								<span class="input-xlarge uneditable-input" id="employee_fname"></span>
 								<label>Surname :</label> 
 								<span class="input-xlarge uneditable-input" id="employee_surname"></span>
-								<label>Tag :</label> 
-								<span class="input-xlarge uneditable-input" id="employee_tag"  type="text" placeholder="Part Time" ></span>
+								<label>User name :</label> 
+								<span class="input-xlarge uneditable-input" id="employee_username"  type="text" placeholder="e.g John2" ></span>
 								
 							</div>
 	
@@ -51,97 +51,52 @@
 							
 					<div class="lower-employee span9 ">
 						<div class="row">
-						<div class="tabbable span9 "> 
-						  <ul class="nav nav-tabs">
-							<li class="active"><a href="#tab_publicinfo" data-toggle="tab">Public Information</a></li>
-							<li><a href="#tab_personalinfo" data-toggle="tab">Personal Information</a></li>
-						  </ul>
+						<div class="tabbable span9 ">
 						  <div class="tab-content">
-						  <!--public info-->
-							<div class="tab-pane active" id="tab_publicinfo">
 							
 							<!--contact information-->
 								<div class="span5">
-									<h4>Contact Information</h4>
-									<label class="span2">Working address</label>
+									<h4>Contact Information</h4>		
+									<label class="span2">Home phone</label>
 									<div class="span2 label-field">
-										<span class="input uneditable-input" id="employee_workadd"></span>						
+										<span class="input uneditable-input" id="employee_phone"></span>
 									</div>
 									
-									<label class="span2">Work email</label>
-									<div class="span2 label-field">				
-										<span class="input uneditable-input" id="employee_workemail"></span>
+									<label class="span2">Mobile</label>
+									<div class="span2 label-field">
+										<span class="input uneditable-input" id="employee_mobile"></span>
 									</div>
 									
-									<label class="span2">Work phone</label>
+									<label class="span2">Address</label>
 									<div class="span2 label-field">
-										<span class="input uneditable-input" id="employee_workphone"></span>
+										<span class="input uneditable-input" id="employee_homestr1"></span>
+										<span class="input uneditable-input" id="employee_homestr2"></span>
 									</div>
 									
-									<label class="span2">Work mobile</label>
+									<label class="span2">Country</label>
 									<div class="span2 label-field">
-										<span class="input uneditable-input" id="employee_workmobile"></span>
+										<span class="input uneditable-input" id="employee_homecountry"></span>
+									</div>
+									
+									<label class="span2">Postal code</label>
+									<div class="span2 label-field">
+										<span class="input uneditable-input" id="employee_homepostal"></span>
 									</div>
 								</div>
 								
 								<!--Position-->
 								<div class="span5">
 									<h4>Position</h4>
-									<label class="span2">Department</label>
-									<div class="span2 label-field" id="department_select">
-										<span class="input uneditable-input" id="employee_department"></span>					
-									</div>
 										
-									<label class="span2">Job</label>
+									<label class="span2">Job title</label>
 									<div class="span2 label-field" id="job_select">
 										<span class="input uneditable-input" id="employee_job"></span>					
-									</div>
-																
-									<label class="span2">Manager</label>
-									<div class="span2 label-field" id="manage_select">
-										<span class="input uneditable-input" id="employee_manager"></span>					
-									</div>		
-								</div>
-							</div>
-							<!--personal info-->
-							<div class="tab-pane" id="tab_personalinfo">
-							<div class="span5">
-								<label class="span2">Gender</label>
-									<div class="span2 label-field" id="gender_select">
-										<span class="input uneditable-input" id="employee_gender"></span>			
-									</div>
-							
-								<label class="span2">Date of Birth</label>
-									<div class="span2 label-field">
-										<span class="input uneditable-input" id="employee_dob"></span>
-									</div>
-							
-								<label class="span2">Nationality</label>
-									<div class="span2 label-field" id="nationality_select">
-										<span class="input uneditable-input" id="employee_nationality"></span>		
-									</div>
-							
-								<label class="span2">Passport Number</label>
-									<div class="span2 label-field">
-										<span class="input uneditable-input" id="employee_passportno"></span>
-									</div>
-								
-								<label class="span2">Bank account</label>
-									<div class="span2 label-field">
-										<span class="input uneditable-input" id="employee_bankacc"></span>
-									</div>
+									</div>	
 									
-								<label class="span2">Home Address</label>
-								<div class="span2 label-field">
-									<span class="input uneditable-input" id="employee_homestr1"></span>
-									<span class="input uneditable-input" id="employee_homestr2"></span>
-									<span class="input uneditable-input" id="employee_homecity"></span>
-									<span class="input uneditable-input" id="employee_homepostal"></span>
-									<span class="input uneditable-input" id="employee_homecountry"></span>
 								</div>
+									
+								
 							</div>
-						  </div>
-						</div>
 			
 							
 							

@@ -20,7 +20,7 @@
 		<!-- Form Headbar -->
 		<div class="row content myform-headbar">
 			<a class="btn btn-small" href="<?php echo site_url("sales/display_order")?>">Confirm Sale</a>
-			<button class="btn btn-small">Cancel</button>
+			<a class="btn btn-small" href="<?php echo site_url("sales")?>">Cancel</a>
 		</div>
 		<!-- Form Container -->
 		<div class="row myform-container">
@@ -31,14 +31,16 @@
 						<div class="row">
 							<div class="span3">
 								Customer
+
 								<div class="input-prepend">
 								  <div class="btn-group">
 									<button class="btn dropdown-toggle" data-toggle="dropdown">
 									  <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a tabindex="-1" href="#">cust1</a></li>
-										<li><a tabindex="-1" href="#">cust2</a></li>
+									<?php foreach ($customers as $customer): ?>
+										<option value="<?php echo $customer['ContactID'] ?>"><?php echo $customer['lname'] ?></option>
+									<?php endforeach ?>
 									</ul>
 								  </div>
 								  <input class="span2" id="cust" type="text" list="customers">
@@ -50,6 +52,7 @@
 									  <option value="ecust">
 								  </datalist>
 								</div>
+
 							</div>
 							<div class="span3">
 								Date

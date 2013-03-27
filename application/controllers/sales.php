@@ -6,14 +6,14 @@ class Sales extends MY_Controller {
 	{	
 
 		parent::__construct();
-		///	$this->load->model('sales_model');
-		//side menu
+		$this->load->model('sales_model');
+//		side menu
 		$this->data["sidemenu"] = $this->load->view("app/sales/sidemenu",'',true);
 	}
 
 	//sales order
 	public function index(){	
-		$data['orders'] = $this->sales_model->get_orders();
+//		$data['orders'] = $this->sales_model->get_orders();
 		$this->data["custom_js"] ='			
 		  <script>
 		 $(document).ready(function(){
@@ -35,11 +35,13 @@ class Sales extends MY_Controller {
 			});
 			</script>';	
 		
-		$this->_data_render('app/sales/sales',$data);
+//		$this->_data_render('app/sales/sales',$data);
 		$this->_render('app/sales/sales');
 	}
 	
 	public function new_order(){
+		$data['customers'] = $this->sales_model->get_contact_list();
+	
 		$this->_render('app/sales/new_order');
 	}
 	
