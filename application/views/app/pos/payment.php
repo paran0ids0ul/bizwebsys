@@ -8,7 +8,7 @@
 									<b>Total:</b>
 								</div>
 								<div class="span2">
-									<b>£2801.00</b>
+									<b>£<?php echo $total ?></b>
 								</div>
 							</div>
 							<div class="row">
@@ -16,7 +16,7 @@
 									<b>Cash (Pound):</b>
 								</div>
 								<div class="span2">
-									<input type="text" placeholder="0.00" class="span1"/>
+									<input id="input_cash" type="text" placeholder="0.0" class="span1"/>
 								</div>
 							</div>
 							<div class="row">
@@ -24,7 +24,7 @@
 									<label>Paid:</label>
 								</div>
 								<div class="span2">
-									<label>£0.00</label>
+									<label>£0.0</label>
 								</div>
 							</div>
 							<div class="row">
@@ -32,7 +32,7 @@
 									<label>Remaining:</label>
 								</div>
 								<div class="span2">
-									<label>£2801.00</label>
+									<label>£<?php echo $total ?></label>
 								</div>
 							</div>
 							<div class="row">
@@ -40,7 +40,7 @@
 									<label>Change:</label>
 								</div>
 								<div class="span2">
-									<label>£0.00</label>
+									<label>£0.0</label>
 								</div>
 							</div>	
 						</form>
@@ -52,7 +52,7 @@
 					<a class="btn btn-block" href="<?php echo site_url("pos")?>">Back</a>
 				</div>
 				<div class="span2">
-					<a class="btn btn-block" href="<?php echo site_url("pos/receipt")?>">Validate</a>
+					<a id="btn_validate" class="btn btn-block" href="<?php echo site_url("pos/receipt")?>">Validate</a>
 				</div>
 			</div>
 	

@@ -91,7 +91,6 @@ class Pos extends MY_Controller {
 									    var viewportHeight = $(window).height();
 										$("#left_column").height(viewportHeight);
 										$("#product_container").height(viewportHeight);
-										$("#form_container").height(viewportHeight-200);
 								    </script>';							
 
 	}
@@ -420,14 +419,20 @@ class Pos extends MY_Controller {
 											
 										function showPayment()
 										{
-											var	total = $(\'#total\').text();
-											
 											$.ajax({
 												url: \''. site_url('pos/payment') .'\',
 												type: \'POST\',
-												data: total,
+												data: { total: $(\'#total\').text()},
 												success: function(response) {
 													$(\'#content\').html(response);
+													$("#form_container").height(viewportHeight-200);
+													$(\'#btn_validate\').addClass("disabled");
+													$(\'#input_cash\').keyup(function(){
+														var cash_input = $(\'#input_cash\').val();
+														var total =  $(\'#total\').text();
+														if(parseFloat(cash_input)>=parseFloat(total))
+															$(\'#btn_validate\').removeClass("disabled");
+													});
 												}
 											});
 										}
@@ -438,9 +443,8 @@ class Pos extends MY_Controller {
 		$this->_data_render('app/pos/pos',$data);
 	}
 	public function payment(){	
-		//$this->_render('app/pos/payment');
-		$total = $this->input->post('total');
-		$this->load->view('app/pos/payment');
+		$data["total"] = $_POST["total"];
+		$this->load->view('app/pos/payment',$data);
 	
 	}
 	public function receipt(){	
