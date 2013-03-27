@@ -120,6 +120,7 @@ class MY_Controller extends CI_Controller{
 		$toTpl['customHead'] = '';
 		
 		//data
+		$toTpl = array_merge($this->data,$toTpl);
 		$toBody["content_body"] = $this->load->view($view,($toTpl+$toPage),true);
 		
 		//nav menu

@@ -5,6 +5,8 @@ class Pos extends MY_Controller {
 	function __construct()
 	{	
 		parent::__construct();
+		//load database model
+		$this->load->model('pos_model');
 		
 		//load left column
 		$this->data["left_column"] = $this->load->view("app/pos/left_column",'',true);
@@ -413,8 +415,11 @@ class Pos extends MY_Controller {
 										
 									
 										
-								    </script>';		
-		$this->_render('app/pos/pos');
+								    </script>';	
+									
+		$data['items'] = $this->pos_model->get_items();
+		
+		$this->_data_render('app/pos/pos',$data);
 	}
 	public function payment(){	
 		$this->_render('app/pos/payment');

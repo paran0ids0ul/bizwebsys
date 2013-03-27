@@ -25,27 +25,21 @@
 					<div class="span7 ">				
 						<!-- Product Display Thumbnails -->
 						<ul class="thumbnails">
+						  <?php foreach ($items as $item): ?>
 						  <li>
-							<a class="thumbnail" value="0.2" id="pdt1">
-							  <span class="label label-info pull-right">£23</span>
-							  <img src=<?php echo base_url("resources/images/icons128/sales_purchases.png")?> alt="">
-							  <label class="text-center">Basket</label>
+							<a class="thumbnail" value="<?php echo $item['NetPrice']*$item['VATRate']?>" id="<?php echo $item['ItemID']?>">
+							  <span class="label label-info pull-right">£<?php echo $item['NetPrice']?></span>
+							  <img src=<?php 
+									if ($item['Imagepath'] == null){
+										echo base_url("resources/images/no_image.gif");
+									} else {
+										echo base_url("resources/images/no_image.gif");               //TODO: fix img path
+									}
+								?> alt="">
+							  <label class="text-center"><?php echo $item['Name']?></label>
 							</a>
 						  </li>
-						  <li>
-							<a class="thumbnail" value="0.4" id="pdt2">
-							  <span class="label label-info pull-right">£10</span>
-							  <img src=<?php echo base_url("resources/images/icons128/sales_purchases.png")?> alt="">
-							  <label class="text-center">Apple</label>
-							</a>
-						  </li>
-						  <li>
-							<a class="thumbnail" href="#">
-							  <span class="label label-info pull-right">£23</span>
-							  <img src=<?php echo base_url("resources/images/icons128/sales_purchases.png")?> alt="">
-							  <label class="text-center">Basket</label>
-							</a>
-						  </li>						  
+						  <?php endforeach ?>
 						</ul>
 					</div>
 				</div>
