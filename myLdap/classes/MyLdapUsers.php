@@ -58,9 +58,11 @@ class MyLdapUsers {
     public function getAll_people() 
     {
 	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=people,dc=bizwebsys,dc=tk", "(cn=*)") or die ("Error in search query"); 
+	    
 	    $info = ldap_get_entries($this->myldap->getLdapConnection(), $result);
 	    
-	    print_r($info);
+	    
+	    return $info;
 	    
     }
     

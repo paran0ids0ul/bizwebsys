@@ -1,13 +1,13 @@
 <?php
-include ("myLdap/MyLdap.php");
+
 
 class Contacts extends MY_Controller {
 	function __construct()
 	{	
 
 		parent::__construct();
+		$this->load->model('contacts_model');
 		
-		require_once('myLdap/MyLdap.php');
 	
 	}
 
@@ -46,23 +46,16 @@ class Contacts extends MY_Controller {
 
 		
 		
-		try {
-			$myldap = new MyLdap();
-		}
-		catch (adLDAPException $e) {
-			echo $e;
-			exit();   
-		}
 		
-		$data['contacts'] = $myldap->user()->getAll_contacts();		
-		$data['ldap'] = $myldap;
+		$data['contacts'] = $this->contacts_model->get_all_contact();		
+		$data['ldap'] = $this->contacts_model->get_ldap();
 		$data['x'] = 0;
 		
 		
 	
 		$this->_data_render('app/contacts/contacts',$data);
 		
-		ldap_close($myldap->getLdapConnection());
+		ldap_close($data['ldap']->getLdapConnection());
 	
 	}
 	

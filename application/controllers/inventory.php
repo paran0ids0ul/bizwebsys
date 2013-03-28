@@ -9,7 +9,7 @@ class Inventory extends MY_Controller {
 	{	
 		
 		parent::__construct();
-		$this->load->model('inventory_model');
+		$this->load->model(array('inventory_model','contacts_model'));
 		
 		
 		
@@ -104,8 +104,8 @@ class Inventory extends MY_Controller {
 	
 		if ($this->form_validation->run() === FALSE)
 		{
-			$data['suppliers'] = $this->inventory_model->get_contact_list();
-
+			//$data['suppliers'] = $this->inventory_model->get_contact_list(); --deprecated
+			$data['contacts'] = $this->contacts_model->get_all_contact();
 		
 			$this->_data_render('app/inventory/new_item',$data);
 		
