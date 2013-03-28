@@ -99,10 +99,10 @@
 						
 									<div class="span5">
 									
-										<label class="span1">Landline	
+										<label class="span1">Work	
 										</label>
 										<div class="span3 label-field">
-											<span class="input-xlarge uneditable-input" name ="contact_landline" id="contact_landline">php to retrive data</span>
+											<span class="input-xlarge uneditable-input" name ="contact_work" id="contact_Work">php to retrive data</span>
 										</div>
 							
 										<label class="span1">Mobile	

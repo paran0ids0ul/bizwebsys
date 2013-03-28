@@ -71,10 +71,10 @@
 						
 							<div class="span5">
 							
-								<label class="span1">Landline	
+								<label class="span1">Work	
 								</label>
 								<div class="span3 label-field">
-									<input name="contact_landline" id="contact_landline" type="text" placeholder="S97789789789" >
+									<input name="contact_landline" id="contact_work" type="text" placeholder="S97789789789" >
 								</div>
 							
 								<label class="span1">Mobile	
