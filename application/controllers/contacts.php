@@ -11,11 +11,7 @@ class Contacts extends MY_Controller {
 	
 	}
 
-	public function index(){	
-	
-	
-		
-		
+	public function index(){		
 		
 		try {
 			$myldap = new MyLdap();
