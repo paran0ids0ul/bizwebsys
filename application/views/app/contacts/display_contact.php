@@ -64,7 +64,7 @@
 								<div class="row">
 									<div class="span4">	
 										<div class="row">
-											<label class="span1">Street :	
+											<label class="span1">Postal Address :	
 											</label>
 											<div class="span2 label-field">
 												<span class="input-xlarge uneditable-input" name ="contact_street1" id="contact_street1">php to retrive data</span>

@@ -54,7 +54,7 @@
 					<div class="lower-contact span9">
 						<div class="row">
 							<div class="span4">	
-								<label class="span1">Address	
+								<label class="span1">Postal Address	
 								</label>
 								<div class="span2 label-field">
 									<input name="contact_street1" id="contact_street1" type="text" placeholder="Street name 1" >
