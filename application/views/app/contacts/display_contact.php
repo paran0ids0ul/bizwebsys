@@ -60,84 +60,120 @@
 							</div>  <!-- close upper contact-->
 							
 							
-							<div class="lower-contact span9">
-								<div class="row">
-									<div class="span4">	
-										<div class="row">
-											<label class="span1">Postal Address :	
+							<div class="lower-employee span9 ">
+						<div class="row">
+						<div class="tabbable span9 "> 
+						  <ul class="nav nav-tabs">
+							<li class="active"><a href="#tab_personalinfo" data-toggle="tab">Personal Information</a></li>
+							<li><a href="#tab_postalinfo" data-toggle="tab">Postal Details</a></li>
+						  </ul>
+						  <div class="tab-content">
+							<div class="tab-pane active" id="tab_personalinfo">
+								<div class="span4">
+									<div class="row">
+											<label class="span1">Home Address :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_street1" id="contact_street1">php to retrive data</span>
-												<span class="input-xlarge uneditable-input" name ="contact_street2" id="contact_street2">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_hstreet1" id="contact_street1">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_hstreet2" id="contact_street2">php to retrive data</span>
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">City/State :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_state" id="contact_city">php to retrive data</span>	
+												<span class="input-xlarge uneditable-input" name ="contact_hstate" id="contact_city">php to retrive data</span>	
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">Zip Code :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_postcode" id="contact_postcode">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_hpostcode" id="contact_postcode">php to retrive data</span>
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">Country :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_country" id="contact_country">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_hcountry" id="contact_country">php to retrive data</span>
 											</div>
 										</div>
-										
-									</div> <!-- close left lower form-->
-						
-						
-						
-									<div class="span5">
-									
-										<label class="span1">Work	
+								</div>
+								
+								<div class="span4">
+									<label class="span1">Work	
 										</label>
-										<div class="span3 label-field">
+										<div class="span2 label-field">
 											<span class="input-xlarge uneditable-input" name ="contact_work" id="contact_Work">php to retrive data</span>
 										</div>
 							
 										<label class="span1">Mobile	
 										</label>
-										<div class="span3 label-field">
+										<div class="span2 label-field">
 											<span class="input-xlarge uneditable-input" name ="contact_mobile" id="contact_moblie">php to retrive data</span>
 										</div>									
 										
 										
 										<label class="span1">Fax	
 										</label>
-										<div class="span3 label-field">
+										<div class="span2 label-field">
 											<span class="input-xlarge uneditable-input" name ="contact_fax" id="contact_fax">php to retrive data</span>
 										</div>
 										
 										<label class="span1">E-mail	
 										</label>
-										<div class="span3 label-field">
+										<div class="span2 label-field">
 											<span class="input-xlarge uneditable-input" name ="contact_email" id="contact_email">php to retrive data</span>
-										</div>
-								
-										
+										</div>							
 										
 										<label class="span1 is-business">Organization
 										</label>
-										<div class="span3 label-field is-business">											
+										<div class="span2 label-field is-business">											
 											<span class="input-xlarge uneditable-input" name ="contact_org" id="contact_org">php to retrive data</span>						
 										</div>
-										
-										
-										
-												
-									</div> <!-- close right lower form -->
-								</div> <!-- close lower form row-->
-							</div> <!-- close lower form -->
+								</div>		
+							</div>
+							<div class="tab-pane" id="tab_postalinfo">
+							<div class="span5">
+								<div class="row">
+											<label class="span1">Postal Address :	
+											</label>
+											<div class="span2 label-field">
+												<span class="input-xlarge uneditable-input" name ="contact_pstreet1" id="contact_pstreet1">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_pstreet2" id="contact_pstreet2">php to retrive data</span>
+											</div>
+										</div>
+										<div class="row">
+											<label class="span1">City/State :	
+											</label>
+											<div class="span2 label-field">
+												<span class="input-xlarge uneditable-input" name ="contact_pstate" id="contact_pcity">php to retrive data</span>	
+											</div>
+										</div>
+										<div class="row">
+											<label class="span1">Zip Code :	
+											</label>
+											<div class="span2 label-field">
+												<span class="input-xlarge uneditable-input" name ="contact_ppostcode" id="contact_ppostcode">php to retrive data</span>
+											</div>
+										</div>
+										<div class="row">
+											<label class="span1">Country :	
+											</label>
+											<div class="span2 label-field">
+												<span class="input-xlarge uneditable-input" name ="contact_pcountry" id="contact_pcountry">php to retrive data</span>
+											</div>
+										</div>
+							</div>
+						  </div>
+						</div>
+			
+							
+							
+							
+						</div>	
+						</div> <!-- close lower form row-->
 						</div> <!--close row-->
 					</form> <!-- close form-->
 				</div> <!-- close myform-->

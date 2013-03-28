@@ -4,29 +4,36 @@
     <div class="span12 content">
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
-			<li><a href="<?php echo site_url("contacts") ?>">Contact</a> <span class="divider">/</span></li>
-			<li class="active">New</li>
+			<li>Edit<span class="divider">/</span></li>
+			<li class="active"><!--<?php echo $itemID ?>--></li>
 		</ul>
 		<!-- Control Buttons -->
-		<div class="row">
-			<a href="<?php echo site_url("contacts/display_contact")?>" class="btn btn-primary span1">Save</a>
-			<a href="<?php echo site_url("contacts")?>">
-			<button class="btn btn-link">Discard</button>
-			</a>
-		</div>
+		<?php echo validation_errors(); ?>
+		<?php echo form_open_multipart("inventory/edit_item/$itemID") ?>
+			<div>
+				
+				<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
+				<a href="<?php echo base_url("inventory/display_item_byID/$itemID")?>"class="btn btn-link">
+					Cancel
+				</a>
+			</div>
+
 		<!-- Form Container -->
-		<div class="contact-container container">
-			<div class="span9 offset1 myform">
-			<form>
+			<div class="contact-container container">
+			  <div class="span9 offset1 myform">
 				<div class="row">
 					<div class="upper-contact">
 							<div class="span1">
-								<a href="<?php echo site_url("add_contact_picture");?>" class="thumbnail">
-									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
+								<a href="#uploadImageModal" data-toggle="modal" class="thumbnail">
+									<img id="imgThumbnail" src=<?php 
+									if ($imgpath == null){
+										echo base_url("resources/images/no_image.gif");
+									} else {
+										echo base_url("resources/images/inventory/$imgpath");
+									}
+									?> alt="Inventory">
 								</a>
 							</div>
-							<div class="span1 content">
-									
 								<label>First Name</label>									
 								</div>
 								<div class="span3 content">
@@ -44,14 +51,12 @@
 								</div>
 								<div class="span6 content">
 									<input name="contact_cname" id="contact_cname" type="text" placeholder="John Smith" >
-								</div>
-								
-									
+								</div>		
 						
 					</div>  <!-- close upper contact-->
 							
 							
-					<div class="lower-employee span9 ">
+					<div class="lower-contact span9 ">
 						<div class="row">
 						<div class="tabbable span9 "> 
 						  <ul class="nav nav-tabs">
@@ -118,10 +123,30 @@
 							
 						</div>	
 						</div> <!-- close lower form row-->
-						
-						
-					</div> <!-- close lower form -->
+					
+					
+					
 				</div> <!--close row-->
+				
+				<div id="uploadImageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadImagelabel" aria-hidden="true">
+					<div class="modal-header">
+						<h3 id="stockuplabel">Upload Image</h3>
+					</div>
+					<div class="modal-body">
+						<label class="span2">Please select : </label>
+						<input id="file" name="file" type="file">     
+	
+					</div>
+					<div class="modal-footer ">
+						<button class="btn same-btn-width" data-dismiss="modal" aria-hidden="true" id="changeImg">Ok</button>
+						<a data-dismiss="modal" aria-hidden="true" id="cancelUpload" >Cancel</button>
+					</div>
+				</div>
+				
+				
+				
+				
+				
 			</form> <!-- close form-->
 							
 		 </div> <!-- close myform-->
