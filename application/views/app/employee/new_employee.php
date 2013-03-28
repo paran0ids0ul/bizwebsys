@@ -32,8 +32,8 @@
 								<input id="employee_fname" type="text" placeholder="e.g John" >
 								<label>Surname :</label> 
 								<input id="employee_surname" type="text" placeholder="e.g White" >
-								<label>User name :</label> 
-								<input id="employee_tag" type="text" placeholder="e.g John2" >
+								<label>Common name :</label> 
+								<input id="employee_cn" type="text" placeholder="e.g John2" >
 								
 							</div>
 	
@@ -49,6 +49,11 @@
 							<!--contact information-->
 								<div class="span5">
 									<h4>Contact Information</h4>									
+									<label class="span2">Email</label>
+									<div class="span2 label-field">
+										<input id="work_email" type="text" placeholder="John@gmail.com" >
+									</div>
+									
 									<label class="span2">Home phone</label>
 									<div class="span2 label-field">
 										<input id="work_phone" type="text" placeholder="+97789789789" >

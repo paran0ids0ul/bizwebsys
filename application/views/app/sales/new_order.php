@@ -30,33 +30,18 @@
 					<form>
 						<div class="row">
 							<div class="span3">
-								Customer
-
-								<div class="input-prepend">
-								  <div class="btn-group">
-									<button class="btn dropdown-toggle" data-toggle="dropdown">
-									  <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-									<?php foreach ($customers as $customer): ?>
-										<option value="<?php echo $customer['ContactID'] ?>"><?php echo $customer['lname'] ?></option>
-									<?php endforeach ?>
-									</ul>
-								  </div>
-								  <input class="span2" id="cust" type="text" list="customers">
-								  <datalist id="customers">
-									  <option value="acust">
-									  <option value="bcust">
-									  <option value="ccust">
-									  <option value="dcust">
-									  <option value="ecust">
-								  </datalist>
-								</div>
+								<label>Customer</label>
+									<select name="customer" id="customer_list">
+										<option>Please Choose :</option>
+										<?php foreach ($customers as $customer): ?>
+												<option value="<?php echo $customer['ContactID'] ?>"><?php echo $customer['lname'] ?></option>
+										<?php endforeach ?>
+									</select>	
 
 							</div>
 							<div class="span3">
-								Date
-								<input type="text" id="datepicker" />
+								<label>Date</label>
+								<input type="text" id="datepicker" name="item_date" />
 							</div>
 						</div>
 					</form>

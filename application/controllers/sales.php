@@ -40,7 +40,28 @@ class Sales extends MY_Controller {
 	}
 	
 	public function new_order(){
+	
+		$this->load->helper(array('form', 'url'));
+//		$this->load->library('form_validation');
+		
+		
 		$data['customers'] = $this->sales_model->get_contact_list();
+		$this->_data_render('app/sales/new_order',$data);
+		
+		if ( ! $this->upload->do_upload('file'))
+			{
+            	$error = array('error' => $this->upload->display_errors());
+            	$newID = $this->sales_model->set_item();
+            	$this->display_item_byID($newID);
+            }
+            else 
+            {
+				$newID = $this->inventory_model->set_item();
+				$file_data  =   $this->upload->data();
+				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$newID.$file_data['file_ext']); 
+				$this->inventory_model->set_imagepath($newID, $newID.$file_data['file_ext']);
+				$this->display_item_byID($newID);
+			}
 	
 		$this->_render('app/sales/new_order');
 	}
