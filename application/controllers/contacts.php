@@ -6,11 +6,28 @@ class Contacts extends MY_Controller {
 	{	
 
 		parent::__construct();
+		
+		require_once('myLdap/MyLdap.php');
 	
 	}
 
 	public function index(){	
+	
+	
 		$this->_render('app/contacts/contacts');
+		
+		
+		try {
+			$myldap = new MyLdap();
+		}
+		catch (adLDAPException $e) {
+			echo $e;
+			exit();   
+		}
+		
+		$myldap->user()->getAll_contacts();
+		
+	
 	}
 	
 	public function new_contact(){
