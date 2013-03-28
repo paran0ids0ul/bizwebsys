@@ -30,7 +30,6 @@ class Contacts extends MY_Controller {
 		$data['x'] = 0;
 		
 		
-		
 	
 		$this->_data_render('app/contacts/contacts',$data);
 		
