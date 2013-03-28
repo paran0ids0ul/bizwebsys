@@ -42,7 +42,7 @@
 													if ($sr) {
 														$ei=ldap_first_entry($ldap->getLdapConnection(), $sr);
 														if ($ei) {
-															$pic = ldap_get_values_len($ldap->getLdapConnection(), $ei, "jpegPhoto");
+															$pic = @ldap_get_values_len($ldap->getLdapConnection(), $ei, "jpegPhoto");
 															if ($pic) {
 																$mime = 'image/jpeg';
 																$base64   = base64_encode($pic[0]); 
