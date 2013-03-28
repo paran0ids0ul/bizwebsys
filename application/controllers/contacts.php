@@ -13,6 +13,39 @@ class Contacts extends MY_Controller {
 
 	public function index(){		
 		
+		
+		
+		$this->data["custom_js"] ='			
+		
+							  
+								    <script>
+									   
+									     
+									   (function($) {
+									   		$.fn.uniformHeight = function() {
+									   			var maxHeight   = 0,
+									   			max = Math.max;
+
+									   			return this.each(function() {
+									   				maxHeight = max(maxHeight, $(this).height());
+									   			}).height(maxHeight);
+									   		}
+									   	})(jQuery);
+
+									    
+									   
+									    $(document).ready(function() {   
+									    	$(".thumbnails").find(".thumbnail").uniformHeight();
+									    });
+									   
+									
+									   
+									   
+									  									   
+								    </script>';	
+
+		
+		
 		try {
 			$myldap = new MyLdap();
 		}
@@ -38,36 +71,7 @@ class Contacts extends MY_Controller {
 		
 		
 		
-		$this->data["custom_js"] ='			
 		
-							  
-								    <script>
-									    $(document).ready(function(){
-									    
-									    
-									    var seloption ="";
-									    
-									    var business_category = ["Airport","Arts/Entertainment/Nightlife","Attractions/Things to do",
-									    "Automotive","Bank/Financial Services","Bar","Book Store","Business Services","Church","Religious Organization",
-									    "Club","Community/Government","Concert Venue","Doctor","Education","Event Planning/Event Services",
-									    "Food/Grocery","Health/Medical/Pharmacy","Home Improvement","Hospital/Clinic","Hotel","Landmark","Lawyer",
-									    "Library","Local Business","Movie Theater","Museum/Art Gallery","Outdoor Gear/Sporting Goods",
-									    "Pet Services","Professional Services","Public Places","Real Estate","Restaurant/Cafe","School",
-									    "Shopping/Retail","Spas/Beauty/Personal Care","Sports Venue","Sports/Recreation/Activities",
-									    "Tours/Sightseeing","Transportation","University","Other"];
-									    
-									    $.each(business_category, function(i) {
-								
-									    	seloption += \'<option value="\'+business_category[i]+\'">\'+business_category[i]+\'</option>\';
-									    	
-									    }); 						     
-									    
-									    $("#contact_business").append(seloption);
-									   
-									   
-									   });
-									   
-								    </script>';	
 								    
 		
 								    
