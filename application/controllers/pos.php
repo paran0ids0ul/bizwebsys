@@ -100,46 +100,114 @@ class Pos extends MY_Controller {
 		//load local js
 		$this->data["custom_js"] =$this->data["custom_js"].'	
 								    <script>
+										var items=new Array(); 
+										function item(ProductID,name,NetPrice,VATRate,quantity,discount)
+										{
+											this.ProductID = ProductID;
+											this.name = name;
+											this.NetPrice = NetPrice;
+											this.VATRate = VATRate;
+											this.quantity = quantity;
+											this.discount = discount;
+											
+											this.getDisplayPrice = getDisplayPrice;
+											this.getTax = getTax;
+											this.getTotal = getTotal;
+											
+											function getDisplayPrice()
+											{
+												return (this.NetPrice * this.quantity * this.discount);
+											}
+											
+											function getTax()
+											{
+												return (this.NetPrice * this.quantity * this.discount * this.VATRate);
+											}
+											
+											function getTotal()
+											{
+												return (this.getDisplayPrice()+this.getTax());
+											}
+										}
+										
+										function getTotal()
+										{
+											var total=0;
+											for(i=0;i<items.length;i++)
+											{
+												total += items[i].getTotal(); 
+											}
+											return total;
+										}
+										
+										function getTax()
+										{
+											var tax = 0;
+											for(i=0;i<items.length;i++)
+											{
+												tax += items[i].getTax(); 
+											}
+											return tax;
+										}
+										
+										function renderItemList()
+										{
+											$(\'#ItemList\').empty();
+											for(i=0;i<items.length;i++)
+											{
+												if(i==0)
+												{
+													var html = "<li value="+items[i].VATRate+" id=\'li_"+items[i].ProductID+"\' class=\'selected\'><div class=\'span2\'>"+items[i].name+"</div><div class=\'span1 price\'>£"+items[i].getDisplayPrice()+"</div>";
+													if(items[i].quantity>1)
+														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].quantity+"</b></div>";
+													if(items[i].discount<1)
+														html += "<div class=\"discount span2\">discount: x<b>\'+items[i].discount+\'</b></div>";
+													html += "</li>"	
+													$(\'.item-list\').append(html);
+												}
+												else
+												{
+													var html = "<li value="+items[i].VATRate+" id=\'li_"+items[i].ProductID+"\'><div class=\'span2\'>"+items[i].name+"</div><div class=\'span1 price\'>£"+items[i].getDisplayPrice()+"</div>";
+													if(items[i].quantity>1)
+														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].quantity+"</b></div>";
+													if(items[i].discount<1)
+														html += "<div class=\"discount span2\">discount: x<b>\'+items[i].discount+\'</b></div>";
+													html += "</li>"	
+													$(\'.item-list\').append(html);												
+												}
+											}
+											$(\'#total\').text(getTotal());
+											$(\'#tax\').text(getTax());
+										}
+										
 										//Add item to list
 										$(\'.thumbnail\').click(function(){
-											var pd_id=$(this).attr(\'id\');
-											var item_name=$(this).children(\'label\').text();
-											var item_price=$(this).children(\'span\').text();
-											var item_tax=$(this).attr(\'value\');
+											var ProductID=$(this).attr(\'id\');
+											var name=$(this).children(\'label\').text();
+											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
+											var VATRate=parseFloat($(this).attr(\'value\'));
 											
-											var total=parseFloat($(\'#total\').text())+ parseFloat(item_price.substr(1));
-											var tax=parseFloat($(\'#tax\').text())+parseFloat(item_tax);
-											
-											total=toFixed(total,2);
-											tax=toFixed(tax,2);
-											
-											var size = $(".item-list li").filter("[id=\'li_"+pd_id+"\']").size();
-											if(size==0)       //No same item on list
+											var isOnList = false;
+											for(i=0;i<items.length;i++)
 											{
-												if($(".item-list li").size()==0)            //Item list is empty
-													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' class=\'selected\'><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
-												else                   //Item list is not empty
-													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' ><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
-											}
-											else    //Got same item on list
-											{
-												var li = $(".item-list li").filter("[id=\'li_"+pd_id+"\']");
-												var price=parseFloat(li.children(\'.price\').text().substr(1));
-												price=price+parseFloat(item_price.substr(1));												
-												if(li.children(\'div .quantity\').size()==0)  //No quantity label display
+												if(items[i].ProductID == ProductID)
 												{
-													li.append(\'<div class="quantity span2">quantity: x<b>2</b></div>\');
+													isOnList = true;
+													items[i].quantity+=1;
+													break;
 												}
-												else   //Have quantity label display
-												{
-													var quantity = parseInt(li.children(\'div .quantity\').children(\'b\').text())+1;
-													li.children(\'div .quantity\').children(\'b\').text(quantity);
-												}	
-												li.children(\'div .price\').text(\'£\'+price);
 											}
-											$(\'#total\').text(total);
-											$(\'#tax\').text(tax);
+											
+											if(isOnList == false)
+											{
+												NewItem = new item(ProductID,name,NetPrice,VATRate,1,1);
+												items.push(NewItem);
+											}
+											renderItemList();
+								
 										});
+										
+										
 										//Click on list item effect
 										$(\'.item-list\').on(\'click\', \'li\', function () { 
 											$(\'li\').removeClass(\'selected\');
@@ -163,11 +231,8 @@ class Pos extends MY_Controller {
 											var id=$(this).attr(\'id\')
 											if(id==\'btn_qty\')
 												button=1;
-											else if(id==\'btn_disc\')	
+											else 	
 												button=2;
-											else
-												button=3;
-											input="";	
 										});
 										
 										//Press key buttons effect

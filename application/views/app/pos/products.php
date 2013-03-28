@@ -17,7 +17,7 @@
 						<ul class="thumbnails">
 						  <?php foreach ($items as $item): ?>
 						  <li>
-							<a class="thumbnail" value="<?php echo $item['NetPrice']*$item['VATRate']?>" id="<?php echo $item['ItemID']?>">
+							<a class="thumbnail" value="<?php echo $item['VATRate']?>" id="<?php echo $item['ItemID']?>">
 							  <span class="label label-info pull-right">£<?php echo $item['NetPrice']?></span>
 							  <img src=<?php 
 									if ($item['Imagepath'] == null){

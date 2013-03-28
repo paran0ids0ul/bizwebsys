@@ -3,7 +3,7 @@
 		<!-- Shopping List -->
 		<div class="row">	
 			<div class="span4 myform">
-				<ul class="item-list">
+				<ul class="item-list" id="ItemList">
 				</ul>
 				<!-- Total Display -->
 				<div class="row">
