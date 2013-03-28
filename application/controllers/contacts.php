@@ -1,5 +1,5 @@
 <?php
-
+include ("myLdap/MyLdap.php");
 
 class Contacts extends MY_Controller {
 	function __construct()
