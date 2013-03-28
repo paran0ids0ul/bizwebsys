@@ -52,7 +52,7 @@
 					<button id="btn_back" class="btn btn-block">Back</button>
 				</div>
 				<div class="span2">
-					<a id="btn_validate" class="btn btn-block" href="<?php echo site_url("pos/receipt")?>">Validate</a>
+					<button id="btn_validate" class="btn btn-block">Validate</button>
 				</div>
 			</div>
 	

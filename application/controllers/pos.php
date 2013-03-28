@@ -413,7 +413,6 @@ class Pos extends MY_Controller {
 										});
 										
 										$(\'#btn_cash\').click(function(){
-											$("#content").empty();
 											showPayment();
 										});
 											
@@ -508,6 +507,31 @@ class Pos extends MY_Controller {
 											$(\'#total\').text(total);
 											$(\'#tax\').text(tax);
 										});
+												}
+											});
+										}
+										
+										$(\'#btn_validate\').click(function(){
+											showReceipt();
+										});
+										
+										function showReceipt()
+										{
+											var order_data = { 
+																total: $(\'#total\').text(),
+																
+											
+											
+											
+															}
+											$.ajax({
+												url: \''. site_url('pos/receipt') .'\',
+												type: \'POST\',
+												data: order_data,
+												success: function(response) {
+													//load payment to content
+													$(\'#content\').html(response);
+													$("#product_container").height(viewportHeight);
 												}
 											});
 										}

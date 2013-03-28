@@ -1,17 +1,13 @@
 <div class="container">
 	<?php echo $header ?>
 	<div class="row">
-		<!-- Left Column -->
-		<div class="span5">
-			<?php echo $left_column ?>
-		</div>
 		
 		<!-- Content -->
-		<div class="span7">
+		<div class="span12">
 			<div class="row product-container" id="form_container">
 				<h3 class="text-center">Receipt</h3>
 					<!-- Form -->
-					<div class="span5 offset1 myform box-shadow">
+					<div class="span5 offset3 myform box-shadow">
 						<form>
 							<div class="row text-center">
 								<label>{date} {time} Order 102888000<label>
@@ -53,10 +49,10 @@
 			</div>
 			<!-- Control Buttons -->
 			<div class="row">
-				<div class="span2">
+				<div class="span2 pull-right">
 					<a class="btn btn-block" href="">Print</a>
 				</div>
-				<div class="span2">
+				<div class="span2 pull-right">
 					<a class="btn btn-block">Next</a>
 				</div>
 			</div>
