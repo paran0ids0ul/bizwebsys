@@ -1,7 +1,7 @@
 <?php
 
 
-require_once(dirname(__FILE__) . '/classes/myLDAPUsers.php');
+require_once('myLdap/classes/MyLdapUsers.php');
 
 
 
