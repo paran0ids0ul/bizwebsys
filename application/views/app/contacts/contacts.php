@@ -30,7 +30,96 @@
 		<div class="container contact-layout">
 			<div class="content span12">
 			<div class="row">
-				<!--generate contacts from database-->
+			
+			<?php foreach ($contacts as $k => $contact): ?>
+				<?php if (!is_array($contact)) continue; ?>
+				
+				<?php if ($x % 4 == 1): ?>
+					<ul class="thumbnails">
+					
+				<?php endif; ?>
+				
+				
+				
+					<li class="span3">					
+					
+						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
+							<div class="row">
+								<div class="span1">
+									<img src=<?php 
+													$cname = $contact['cn'][0];
+													$sr = ldap_search($ldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "cn=$cname");
+													if ($sr) {
+														$ei=ldap_first_entry($ldap->getLdapConnection(), $sr);
+														if ($ei) {
+															$pic = ldap_get_values_len($ldap->getLdapConnection(), $ei, "jpegPhoto");
+															if ($pic) {
+																$mime = 'image/jpeg';
+																$base64   = base64_encode($pic[0]); 
+																print('"data:' . $mime . ';base64,' . $base64.'"');
+															}
+															else {
+																echo base_url("resources/images/no_image.gif");
+															}
+														
+														}
+													}
+													
+									?> alt="Inventory">
+
+								</div>
+								<div class="span1">
+									<div class="text contact-name"><?php echo $contact['cn'][0]?></div>
+									<div class="text contact-desc"><?php echo $contact["mobile"][0]?></div>
+									<div class="text contact-email"><?php echo $contact["mail"][0]?></div>
+								</div>
+							</div>
+						</a>
+					</li>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<?php if ($x % 4 == 1  || $x == ($contacts["count"]-1)): ?>
+					</ul>
+				<?php endif; ?>
+				
+				<?php $x = $x+1; ?>
+			
+			
+			
+			<?php endforeach ?>
+			
+			
+	<!--			
+	
+	<img src=<?php 
+													$sr = ldap_search($ldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(cn=*)",array("jpegPhoto"));
+													if ($sr) {
+														$ei=ldap_first_entry($ldap->getLdapConnection(), $sr);
+														if ($ei) {
+															$pic = ldap_get_values_len($ldap->getLdapConnection(), $ei, "jpegPhoto");
+															if ($pic) {
+																header("Content-type: image/jpeg");
+																echo $pic[0];
+															}
+															else {
+																echo base_url("resources/images/no_image.gif");
+															}
+														
+														}
+													}
+													
+												?> alt="Inventory">
+	
+	
+	
 				<ul class="thumbnails">
 					<li class="span3">					
 						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
@@ -40,7 +129,7 @@
 								</div>
 								<div class="span1">
 									<div class="text contact-name">Name</div>
-									<div class="text contact-desc">Description</div>
+									<div class="text contact-desc">Phone</div>
 									<div class="text contact-email">Email</div>
 								</div>
 							</div>
@@ -54,7 +143,7 @@
 								</div>
 								<div class="span1">
 									<div class="text contact-name">Name</div>
-									<div class="text contact-desc">Description</div>
+									<div class="text contact-desc">Phone</div>
 									<div class="text contact-email">Email</div>
 								</div>
 							</div>
@@ -68,7 +157,7 @@
 								</div>
 								<div class="span1">
 									<div class="text contact-name">Name</div>
-									<div class="text contact-desc">Description</div>
+									<div class="text contact-desc">Phone</div>
 									<div class="text contact-email">Email</div>
 								</div>
 							</div>
@@ -82,13 +171,43 @@
 								</div>
 								<div class="span1">
 									<div class="text contact-name">Name</div>
-									<div class="text contact-desc">Description</div>
+									<div class="text contact-desc">Phone</div>
 									<div class="text contact-email">Email</div>
 								</div>
 							</div>
 						</a>
 					</li>     
 				</ul>
+				<ul class="thumbnails">
+					<li class="span3">					
+						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
+							<div class="row">
+								<div class="span1">
+									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
+								</div>
+								<div class="span1">
+									<div class="text contact-name">Name</div>
+									<div class="text contact-desc">Phone</div>
+									<div class="text contact-email">Email</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="span3">					
+						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail">
+							<div class="row">
+								<div class="span1">
+									<img src=<?php echo base_url("resources/images/icons128/inventory.png")?> alt="Inventory">
+								</div>
+								<div class="span1">
+									<div class="text contact-name">Name</div>
+									<div class="text contact-desc">Phone</div>
+									<div class="text contact-email">Email</div>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul> -->
 			</div>
 			</div>
 		</div>

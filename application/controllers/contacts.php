@@ -14,7 +14,7 @@ class Contacts extends MY_Controller {
 	public function index(){	
 	
 	
-		$this->_render('app/contacts/contacts');
+		
 		
 		
 		try {
@@ -25,8 +25,16 @@ class Contacts extends MY_Controller {
 			exit();   
 		}
 		
-		$myldap->user()->getAll_contacts();
+		$data['contacts'] = $myldap->user()->getAll_contacts();		
+		$data['ldap'] = $myldap;
+		$data['x'] = 0;
 		
+		
+		
+	
+		$this->_data_render('app/contacts/contacts',$data);
+		
+		ldap_close($myldap->getLdapConnection());
 	
 	}
 	

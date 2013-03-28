@@ -231,11 +231,7 @@ class adLDAP {
     */
     protected $userClass;
     
-    /**
-    * Get the userclass interface
-    * 
-    * @return adLDAPUsers
-    */
+    
     public function user() {
         if (!$this->userClass) {
             $this->userClass = new adLDAPUsers($this);
@@ -639,7 +635,7 @@ class adLDAP {
     
     
     
-  /*  public function connect() 
+    public function connect() 
     {
         // Connect to the AD/LDAP server as the username/password
         $domainController = $this->randomController();
@@ -687,7 +683,7 @@ class adLDAP {
         }
         
         return true;
-    }*/
+    }
     
     /**
     * Closes the LDAP connection
