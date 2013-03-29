@@ -378,6 +378,12 @@ class Pos extends MY_Controller {
 													$(\'#btn_back\').click(function(){
 														showProducts();
 													});
+													
+													$(\'#btn_validate\').click(function(){
+														if($(this).hasClass(\'disabled\'))
+															return;
+														saveOrderShowReceipt();
+													});
 												}
 											});
 										}
@@ -421,24 +427,27 @@ class Pos extends MY_Controller {
 											});
 										}
 										
-										$(\'#btn_validate\').click(function(){
-											saveOrderShowReceipt();
-										});
+										
 										
 										function saveOrderShowReceipt()
 										{
-											var order_data = { 
-																items:items,
-																total:getTotal(),
-											                    tax:getTax()
-															};
+											//var order_data = { 
+												//				items:items,
+												//				total:getTotal(),
+											     //               tax:getTax()
+												//			};
+												
+											var	jsonObj = items[0];
+											var postData = JSON.stringify(jsonObj);
+											var postArray = {json:postData};
 											$.ajax({
 												url: \''. site_url('pos/receipt') .'\',
 												type: \'POST\',
-												data: order_data,
+												data: postArray,
 												success: function(response) {
 													//load receipt to content
-													$(\'#content\').html(response);
+													//$(\'#content\').html(response);
+													alert(response);
 												}
 											});
 										}
@@ -457,12 +466,18 @@ class Pos extends MY_Controller {
 		$this->load->view('app/pos/payment',$data);
 	}
 	public function receipt(){	
-		$data["items"] = $_POST["items"];
-		$data["total"] = $_POST["total"];
-		$data["tax"] = $_POST["tax"];
+	//	$data["items"] = $_POST["items"];
+	//	$data["total"] = $_POST["total"];
+	//	$data["tax"] = $_POST["tax"];
+	if(isset($_POST["json"]))
+	{
+		$json = stripslashes($_POST["json"]);
+		$output = json_decode($json);
+		$response = $output->name;
+		echo $response;
+	}
 	
-	
-	
-		$this->_render('app/pos/receipt');
+	echo "page";
+	//	$this->_render('app/pos/receipt');
 	}
 }
