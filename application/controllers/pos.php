@@ -437,13 +437,15 @@ class Pos extends MY_Controller {
 											     //               tax:getTax()
 												//			};
 												
-											var	jsonObj = items[0];
-											var postData = JSON.stringify(jsonObj);
-											var postArray = {json:postData};
+										//	var	jsonObj = items[0];
+										//	var postData = JSON.stringify(jsonObj);
+										//	var postArray = {json:postData};
+										
+											var jsonItems = $.toJSON(items); 
 											$.ajax({
 												url: \''. site_url('pos/receipt') .'\',
 												type: \'POST\',
-												data: postArray,
+												data: {items:jsonItems},
 												success: function(response) {
 													//load receipt to content
 													//$(\'#content\').html(response);
@@ -469,12 +471,18 @@ class Pos extends MY_Controller {
 	//	$data["items"] = $_POST["items"];
 	//	$data["total"] = $_POST["total"];
 	//	$data["tax"] = $_POST["tax"];
-	if(isset($_POST["json"]))
-	{
-		$json = stripslashes($_POST["json"]);
-		$output = json_decode($json);
-		$response = $output->name;
-		echo $response;
+//	if(isset($_POST["json"]))
+//	{
+//		$json = stripslashes($_POST["json"]);
+//		$output = json_decode($json);
+//		$response = $output->name;
+//		echo $response;
+//	}
+
+	$products = json_decode($_POST["items"]);
+
+	foreach ($products as $product){
+		echo $product->name;
 	}
 	
 	echo "page";
