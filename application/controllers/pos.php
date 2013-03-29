@@ -161,7 +161,7 @@ class Pos extends MY_Controller {
 													if(items[i].quantity>1)
 														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].quantity+"</b></div>";
 													if(items[i].discount<1)
-														html += "<div class=\"discount span2\">discount: x<b>\'+items[i].discount+\'</b></div>";
+														html += "<div class=\"discount span2\">discount: x<b>"+items[i].discount+"</b></div>";
 													html += "</li>"	
 													$(\'.item-list\').append(html);
 												}
@@ -171,7 +171,7 @@ class Pos extends MY_Controller {
 													if(items[i].quantity>1)
 														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].quantity+"</b></div>";
 													if(items[i].discount<1)
-														html += "<div class=\"discount span2\">discount: x<b>\'+items[i].discount+\'</b></div>";
+														html += "<div class=\"discount span2\">discount: x<b>"+items[i].discount+"</b></div>";
 													html += "</li>"	
 													$(\'.item-list\').append(html);												
 												}
@@ -237,243 +237,102 @@ class Pos extends MY_Controller {
 										
 										//Press key buttons effect
 										$(\'.key\').click(function(){
-											var input="";
-											if($(\'.selected\').size()>0)
+										
+											if($(\'.selected\').size()==0)
+												return;
+												
+											var ProductID = $(\'.selected\').attr(\'id\').substr(3);
+											for(i=0;i<items.length;i++)
 											{
-												var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\');
-												var item_tax = parseFloat($(\'.selected\').attr(\'value\'));
-												var display_price =  $(\'.selected\').children(\'div .price\').text().substr(1);
-												var total= $(\'#total\').text();
-												var tax=parseFloat($(\'#tax\').text());
-												var tax_without,tax_new,total_without, total_new;
-												var quantity_num,discount_num;
-												if($(\'.selected\').children(\'div .quantity\').size()==0)   //No quantity label display
-												{
-													quantity_num = 1;
-												}
-												else
-												{
-													quantity_num = parseInt($(\'.selected\').children(\'div .quantity\').children(\'b\').text());
-												}
-												
-												if($(\'.selected\').children(\'div .discount\').size()==0)        //No discount label displayed
-												{
-													discount_num = 1;
-												}
-												else
-												{
-													discount_num =parseFloat($(\'.selected\').children(\'div .discount\').children(\'b\').text());
-												}
-												
-												switch(button)
-												{
-													//Quantity button selected
-													case 1:{    
-																
-																
-																if($(\'.selected\').children(\'div .quantity\').size()==0)       //No quantity label display
-																{
-																	input = $(this).text();
-																	num=parseInt(input);
-																	var price= parseFloat(item_price.substr(1))*num*discount_num;
-																	$(\'.selected\').append(\'<div class="quantity span2">quantity: x<b>\'+input+\'</b></div>\');
-																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																	tax_without = tax - item_tax;
-																	tax_new = tax_without + item_tax * parseInt(input);
-																}
-																else
-																{
-																	input = $(\'.selected\').children(\'div .quantity\').children(\'b\').text()+$(this).text();
-																	num=parseInt(input);
-																	var price= parseFloat(item_price.substr(1))*num*discount_num;
-																	$(\'.selected\').children(\'div .quantity\').children(\'b\').text(input);
-																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																	tax_without = tax - item_tax*quantity_num;
-																	tax_new = tax_without + item_tax * parseInt(input);
-																}
-																//Calculate total and taxes
-																total_without = parseFloat(total)-parseFloat(display_price);
-																var display_price_new = parseFloat($(\'.selected\').children(\'div .price\').text().substr(1));
-																total_new = total_without + display_price_new;
-																
-																//Update total and taxes
-																total_new=toFixed(total_new,2);
-																tax_new=toFixed(tax_new,2);												
-																$(\'#total\').text(total_new);
-																$(\'#tax\').text(tax_new);
-																break;
-															}
-													//Discount button selected		
-													case 2: {    
-															
-																
-																if($(\'.selected\').children(\'div .discount\').size()==0)          //No discount label display
-																{
-																	input=\'0.\'+$(this).text();
-																	var discount=parseFloat(input);
-																	var price= parseFloat(item_price.substr(1))*discount*quantity_num;	
-																	price = toFixed(price,2);	
-																
-																	$(\'.selected\').append(\'<div class="discount span2">discount: x<b>\'+input+\'</b></div>\');
-																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																	total_without = parseFloat(total)-parseFloat(item_price.substr(1)) * quantity_num;
-																}
-																else
-																{
-																	input=$(\'.selected\').children(\'div .discount\').children(\'b\').text()+$(this).text();
-																	var discount=parseFloat(input);
-																	var price= parseFloat(item_price.substr(1))*discount*quantity_num;	
-																	$(\'.selected\').children(\'div .discount\').children(\'b\').text(input);
-																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																	total_without = parseFloat(total)-parseFloat(item_price.substr(1)) * quantity_num * discount_num;
-																}
-																//Calculate total and taxes
-																
-																total_new = total_without + price;
-																//Update total and taxes
-																total_new=toFixed(total_new,2);									
-																$(\'#total\').text(total_new);															
-																break;
-															}
-													default:break;
-												}
-												
-
+												if(ProductID == items[i].ProductID)
+													break;
 											}
+											
+											if(button == 1)      //quantity button selected
+											{
+												if(items[i].quantity == 1)
+												{
+													var quantity = $(this).text();
+												}
+												else
+												{
+													var quantity = items[i].quantity.toString();
+													quantity += $(this).text();
+												}
+												items[i].quantity = parseInt(quantity);
+												
+											}
+											else             //discount button selected
+											{
+												if(items[i].discount == 1)
+												{
+													var discount = "0."+ $(this).text();
+												}
+												else
+												{
+													var discount = items[i].discount.toString();
+													discount += $(this).text();
+												}
+												items[i].discount = parseFloat(discount);
+											}
+											
+											renderItemList();
 										});
 										
 										//Delete button effect
 										$(\'#btn_del\').click(function(){
+											if($(\'.selected\').size()==0)
+												return;
 												
-												var item_price = $(\'.selected\').children(\'div .price\').attr(\'value\').substr(1);
-												var total = parseFloat($(\'#total\').text());
-												var item_tax = parseFloat($(\'.selected\').attr(\'value\'));
-												var tax = parseFloat($(\'#tax\').text());
-												var total_new,tax_new,total_without,tax_without;	
-												if($(\'.selected\').children(\'div .quantity\').size()==0)   //No quantity label display
+											var ProductID = $(\'.selected\').attr(\'id\').substr(3);
+											for(i=0;i<items.length;i++)
+											{
+												if(ProductID == items[i].ProductID)
+													break;
+											}
+											
+											if(button == 1)      //quantity button selected
+											{
+												if(items[i].quantity == 1)
 												{
-													quantity_num = 1;
+													items.splice(i,1);
 												}
 												else
 												{
-													quantity_num = parseInt($(\'.selected\').children(\'div .quantity\').children(\'b\').text());
+													var quantity = items[i].quantity.toString();
+													if(quantity.length==1)
+													{
+														quantity = "1";
+													}
+													else
+													{
+														quantity = quantity.substr(0,quantity.length-1);
+													}
+													items[i].quantity = parseInt(quantity);
 												}
-												
-												if($(\'.selected\').children(\'div .discount\').size()==0)        //No discount label displayed
+											}
+											else             //discount button selected
+											{
+												if(items[i].discount == 1)
 												{
-													discount_num = 1;
+													items.splice(i,1);
 												}
 												else
 												{
-													discount_num =parseFloat($(\'.selected\').children(\'div .discount\').children(\'b\').text());
-												}												
-												switch(button)
-												{
-													//Quantity button selected
-													case 1:{    	
-																var pre_quantity = parseInt($(\'.selected\').children(\'div .quantity\').children(\'b\').text());
-															    input = $(\'.selected\').children(\'div .quantity\').children(\'b\').text();
-																if(input!="")
-																{
-																	if(input.length>1)
-																	{
-																		input = input.substr(0,input.length-1);
-																		num=parseInt(input);
-																	}
-																	else if(input!="1")
-																	{
-																		input="1";
-																		num=parseInt(input);
-																	}
-																	else
-																	{
-																		input="";
-																	}
-																}	
-																
-																var price= parseFloat(item_price)*num*discount_num;
-	
-																if($(\'.selected\').children(\'div .quantity\').size()==0)       //No quantity label display
-																{
-																	total_without = total - parseFloat(item_price)*discount_num;
-																	tax_without = tax - item_tax;
-																	$(\'.selected\').remove();
-																	total_new = total_without;
-																	tax_new = tax_without;
-																}
-																else   //Has quantity label display
-																{
-																	if(input=="")
-																	{
-																		$(\'.selected\').remove();
-																		total_without = total - parseFloat(item_price)*discount_num;
-																		tax_without = tax - item_tax;
-																		total_new = total_without;
-																		tax_new = tax_without;
-																	}
-																	else
-																	{
-																		total_without = total - parseFloat(item_price) * pre_quantity*discount_num;
-																		tax_without = tax - item_tax * pre_quantity;
-																		$(\'.selected\').children(\'div .quantity\').children(\'b\').text(input);
-																		$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																		total_new = total_without+item_price*parseInt(input)*discount_num;
-																		tax_new = tax_without+item_tax*parseInt(input);
-																	}
-																}	
-																total_new=toFixed(total_new,2);
-																tax_new=toFixed(tax_new,2);	
-																$(\'#total\').text(total_new);
-																$(\'#tax\').text(tax_new);																
-																break;
-															}
-													//Discount button selected		
-													case 2: {   	
-																var discount = parseFloat(input);
-																var price= parseFloat(item_price)*discount*quantity_num;
-																if($(\'.selected\').children(\'div .discount\').size()==0)        //No discount label displayed
-																{
-																	total_without = total - parseFloat(item_price)*quantity_num;
-																	$(\'.selected\').remove();
-																	total_new = total_without;
-																}
-																else
-																{
-																	input = $(\'.selected\').children(\'div .discount\').children(\'b\').text();	
-																	input = input.substr(0,input.length-1);
-																	total_without = total - parseFloat(item_price)*discount_num*quantity_num;
-																	if(input=="")
-																	{
-																		$(\'.selected\').remove();
-																		total_new = total_without;
-																	}
-																	var discount = parseFloat(input);
-																	if(discount==0)
-																	{
-																		discount = 1;
-																		var price= parseFloat(item_price)*discount*quantity_num;
-																		$(\'.selected\').children(\'div .discount\').remove();
-																		$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																		total_new = total_without + price;
-																	}
-																	var price= parseFloat(item_price)*discount*quantity_num;
-																	$(\'.selected\').children(\'div .discount\').children(\'b\').text(input);
-																	$(\'.selected\').children(\'div .price\').text(\'£\'+price);
-																	total_new = total_without + price;
-																}			
-																total_new=toFixed(total_new,2);
-																$(\'#total\').text(total_new);
-																break;
-															}
-													default:break;
-												}				
-												
-													
-												if($(".item-list li").size()==0)            //Item list is empty
-												{
-													$(\'#total\').text(\'0.0\');
-													$(\'#tax\').text(\'0.0\');	
+													var discount = items[i].discount.toString();
+													if(discount.length <= 3)
+													{
+														discount = 1;
+													}
+													else
+													{
+														discount = discount.substr(0,discount.length-1);
+													}
+													items[i].discount = parseFloat(discount);
 												}
+											}
+											
+											renderItemList();	
 												
 										});
 										
