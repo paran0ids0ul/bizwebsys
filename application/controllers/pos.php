@@ -393,69 +393,52 @@ class Pos extends MY_Controller {
 													$("#product_container").height(viewportHeight);
 													//Add item to list
 										$(\'.thumbnail\').click(function(){
-											var pd_id=$(this).attr(\'id\');
-											var item_name=$(this).children(\'label\').text();
-											var item_price=$(this).children(\'span\').text();
-											var item_tax=$(this).attr(\'value\');
+											var ProductID=$(this).attr(\'id\');
+											var name=$(this).children(\'label\').text();
+											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
+											var VATRate=parseFloat($(this).attr(\'value\'));
 											
-											var total=parseFloat($(\'#total\').text())+ parseFloat(item_price.substr(1));
-											var tax=parseFloat($(\'#tax\').text())+parseFloat(item_tax);
-											
-											total=toFixed(total,2);
-											tax=toFixed(tax,2);
-											
-											var size = $(".item-list li").filter("[id=\'li_"+pd_id+"\']").size();
-											if(size==0)       //No same item on list
+											var isOnList = false;
+											for(i=0;i<items.length;i++)
 											{
-												if($(".item-list li").size()==0)            //Item list is empty
-													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' class=\'selected\'><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
-												else                   //Item list is not empty
-													$(\'.item-list\').append("<li value="+item_tax+" id=\'li_"+pd_id+"\' ><div class=\'span2\'>"+item_name+"</div><div class=\'span1 price\' value="+item_price+">"+item_price+"</div></li>");
-											}
-											else    //Got same item on list
-											{
-												var li = $(".item-list li").filter("[id=\'li_"+pd_id+"\']");
-												var price=parseFloat(li.children(\'.price\').text().substr(1));
-												price=price+parseFloat(item_price.substr(1));												
-												if(li.children(\'div .quantity\').size()==0)  //No quantity label display
+												if(items[i].ProductID == ProductID)
 												{
-													li.append(\'<div class="quantity span2">quantity: x<b>2</b></div>\');
+													isOnList = true;
+													items[i].quantity+=1;
+													break;
 												}
-												else   //Have quantity label display
-												{
-													var quantity = parseInt(li.children(\'div .quantity\').children(\'b\').text())+1;
-													li.children(\'div .quantity\').children(\'b\').text(quantity);
-												}	
-												li.children(\'div .price\').text(\'£\'+price);
 											}
-											$(\'#total\').text(total);
-											$(\'#tax\').text(tax);
+											
+											if(isOnList == false)
+											{
+												NewItem = new item(ProductID,name,NetPrice,VATRate,1,1);
+												items.push(NewItem);
+											}
+											renderItemList();
+								
 										});
 												}
 											});
 										}
 										
 										$(\'#btn_validate\').click(function(){
-											showReceipt();
+											saveOrderShowReceipt();
 										});
 										
-										function showReceipt()
+										function saveOrderShowReceipt()
 										{
 											var order_data = { 
-																total: $(\'#total\').text(),
-																
-											
-											
-											
-															}
+																items:items,
+																total:getTotal(),
+											                    tax:getTax()
+															};
 											$.ajax({
 												url: \''. site_url('pos/receipt') .'\',
 												type: \'POST\',
 												data: order_data,
 												success: function(response) {
-													//load payment to content
+													//load receipt to content
 													$(\'#content\').html(response);
-													$("#product_container").height(viewportHeight);
 												}
 											});
 										}
@@ -474,6 +457,12 @@ class Pos extends MY_Controller {
 		$this->load->view('app/pos/payment',$data);
 	}
 	public function receipt(){	
+		$data["items"] = $_POST["items"];
+		$data["total"] = $_POST["total"];
+		$data["tax"] = $_POST["tax"];
+	
+	
+	
 		$this->_render('app/pos/receipt');
 	}
 }

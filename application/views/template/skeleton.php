@@ -57,7 +57,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 	<script>window.jQuery.ui || document.write('<script src="<?php echo base_url(JS."libs/jquery-ui-1.10.1.custom.min.js");?>"><\/script>')</script>
 	<script src="<?php echo base_url(JS."script.js");?>"></script>
-
+	<script src="<?php echo base_url(JS."json2.js");?>"></script>
+	
 	<!-- extra js-->
 	<?php foreach($javascript as $js):?>
 	<script defer src="<?php echo base_url().JS.$js?>"></script>
