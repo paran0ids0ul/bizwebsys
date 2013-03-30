@@ -60,16 +60,7 @@
 										</div>
 										<div class="span1">
 											<div class="text"><?php echo $contact['cn'][0]?></div>
-											<div class="text"><?php if ($contact["mobile"][0]) {
-																		echo $contact["mobile"][0]
-																	}
-																?>
-											</div>
-											<div class="text"><?php if ($contact["mail"][0]) {
-																		echo $contact["mail"][0]
-																	}
-																?>
-											</div>
+											
 										</div>
 								</div>
 							</a>
