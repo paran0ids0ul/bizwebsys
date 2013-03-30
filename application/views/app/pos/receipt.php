@@ -59,7 +59,7 @@
 					<a class="btn btn-block" href="">Print</a>
 				</div>
 				<div class="span2">
-					<a class="btn btn-block">Next</a>
+					<a class="btn btn-block" id="btn_nextorder">Next Order</a>
 				</div>
 			</div>
 	

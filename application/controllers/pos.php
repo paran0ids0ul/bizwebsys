@@ -153,6 +153,12 @@ class Pos extends MY_Controller {
 											}
 											return tax;
 										}
+										function clearItemList()
+										{
+											items.splice(0, items.length);
+											renderItemList();
+										}
+										
 										
 										function renderItemList()
 										{
@@ -458,8 +464,18 @@ class Pos extends MY_Controller {
 													//load receipt to content
 													$(\'#content\').html(response);
 													renderReceiptItemList();
+													receiptButtonFunc();
 												}
 											});
+										}
+										
+										function receiptButtonFunc()
+										{
+											$(\'#btn_nextorder\').click(function(){
+												clearItemList();
+												showProducts();
+											});
+										
 										}
 								    </script>';	
 		$data['items'] = $this->pos_model->get_items();
