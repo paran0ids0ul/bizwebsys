@@ -180,11 +180,11 @@ class Inventory extends MY_Controller {
 		$data['desc'] = $data['item']['Description'];
 		$data['imgpath'] = $data['item']['Imagepath'];
 		
-		$data['suppliers'] = $this->inventory_model->get_contact_list();
+		$data['contacts'] = $this->contacts_model->get_all_contact();
 		
-		foreach ($data['suppliers'] as $supplier) {
-			if ($supplier['ContactID'] == $data['contactID']) {
-				$data['supplier'] = $supplier['lname'];
+		foreach ($data['contacts'] as $contact) {
+			if ($contact['uid'][0] == $data['contactID']) {
+				$data['supplier'] = $contact['cn'][0];
 			}
 			
 		}

@@ -33,9 +33,10 @@
 
 
 						<li class="span3">			
-							<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail contact-thumbnail">
-								<div class="row">
-										<div class="span1">
+							<a href="<?php echo site_url("contacts/display_contact")?>" class="contact-thumbnail thumbnail">
+								
+								<div class="row" style="min-height:80px;">
+										<div class="span1" >
 											<img src=<?php 
 														$cname = $contact['cn'][0];
 														$sr = ldap_search($ldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "cn=$cname");
@@ -60,9 +61,19 @@
 										</div>
 										<div class="span1">
 											<div class="text"><?php echo $contact['cn'][0]?></div>
-											
+											<div class="text"><?php if (array_key_exists("mobile",$contact)) {
+																		echo $contact["mobile"][0];
+																	}
+																?>
+											</div>
+											<div class="text"><?php if (array_key_exists("mail",$contact)) {
+																		echo $contact["mail"][0];
+																	}
+																?>
+											</div>
 										</div>
 								</div>
+							
 							</a>
 							
 						</li>

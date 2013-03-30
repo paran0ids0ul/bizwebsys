@@ -62,8 +62,8 @@
 								<div class="span2 label-field">
 									<select name="supplier" id="supplier_list">
 										<option>Please Choose :</option>
-										<?php foreach ($suppliers as $supplier): ?>
-											<option value="<?php echo $supplier['ContactID'] ?>" <?php if ($contactID == $supplier['ContactID']) {echo 'selected';} ?>><?php echo $supplier['lname'] ?></option>
+										<?php foreach ($contacts as $contact): ?>
+											<option value="<?php echo $contact['uid'][0] ?>" <?php if ($contactID == $contact['uid'][0]) {echo 'selected';} ?>><?php echo $supplier['lname'] ?></option>
 										<?php endforeach ?>
 									</select>	
 								</div>

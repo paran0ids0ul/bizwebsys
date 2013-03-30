@@ -28,19 +28,26 @@
 									<img src=<?php echo base_url("resources/images/no_image.gif")?> alt="Inventory">
 								</a>
 							</div>
-							<div class="span2">
-								<label>Item Name : 
-								</label> 
-								<input name="item_name" type="text" placeholder="e.g Milo 3 in 1" >
-								
+							<div class="span8">
+								<div class="row">
+									<div class="span1 content">
+										<label>Item Name</label>									
+									</div>
+									<div class="span7 content">
+										<input name="item_name" type="text" placeholder="e.g Milo 3 in 1" >
+									</div>
+
+									<div class="span1 content">
+										<label>Category</label>									
+									</div>
+									<div class="span7 content">
+										<select name="item_category" id="item_category">
+											<option value="null">Please Choose :</option>
+										</select>
+									</div>
+								</div>
 							</div>
-							<div class="span3 offset2">
-								<label>Category	
-								</label> 
-								<select name="item_category" id="item_category">
-									<option value="null">Please Choose :</option>
-								</select>		
-							</div>		
+								
 						
 					</div>  <!-- close upper contact-->
 							
@@ -70,6 +77,10 @@
 								<label class="span1">VAT Rate</label>
 								<div class="span2 label-field">				
 									<input name="item_vatrate" type="text" placeholder="0.16" >
+								</div>
+								<label class="span1">Discount Rate</label>
+								<div class="span2 label-field">				
+									<input name="item_disrate" type="text" placeholder="0.16" >
 								</div>
 								
 								

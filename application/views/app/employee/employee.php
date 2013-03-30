@@ -34,7 +34,7 @@
 
 					<li class="span3">			
 						<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail contact-thumbnail">
-							<div class="row">
+							<div class="row" style="min-height:80px;">
 								<div class="span1">
 									<img src=<?php 
 												$cname = $employee['cn'][0];
@@ -59,8 +59,16 @@
 								</div>
 								<div class="span1">
 									<div class="text contact-name"><?php echo $employee['cn'][0]?></div>
-									<div class="text contact-desc"><?php echo $employee["mobile"][0]?></div>
-									<div class="text contact-email"><?php echo $employee["mail"][0]?></div>
+									<div class="text"><?php if (array_key_exists("mobile",$employee)) {
+																	echo $employee["mobile"][0];
+																}
+														?>
+									</div>
+									<div class="text"><?php if (array_key_exists("mail",$employee)) {
+																	echo $employee["mail"][0];
+																}
+														?>
+									</div>
 								</div>
 							</div>
 						</a>

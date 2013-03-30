@@ -13,9 +13,8 @@ class Contacts extends MY_Controller {
 
 	public function index(){		
 		
-		
-		
-		$this->data["custom_js"] ='			
+
+		/*$this->data["custom_js"] ='			
 		
 							  
 								    <script>
@@ -42,7 +41,7 @@ class Contacts extends MY_Controller {
 									   
 									   
 									  									   
-								    </script>';	
+								    </script>';	*/
 
 		
 		
@@ -50,20 +49,6 @@ class Contacts extends MY_Controller {
 		$data['contacts'] = $this->contacts_model->get_all_contact();		
 		$data['ldap'] = $this->contacts_model->get_ldap();
 		$data['x'] = 0;
-		$data['customHead'] = '
-		<style type="text/css">
-		.thumbnail div {
-			font-weight: bold;
-			font-size: 120%;
-			margin-top: 5%;
-		}
-		a.thumbnail:hover {
-			text-decoration: none;
-		}
-		.thumbnail {
-			
-		}
-		</style>';
 		
 	
 		$this->_data_render('app/contacts/contacts',$data);

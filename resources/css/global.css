@@ -204,8 +204,8 @@ section {
 
 
 
-.content-header {
-	padding-left: 0;
+.content-label {
+	
 }
 
 .content{
@@ -232,9 +232,14 @@ section {
 
 
 
-.contact-container {
+.contact-main {
 	overflow-x: hidden;
 
+}
+
+.contact-thumbnail {
+	
+	overflow-x: hidden;
 }
 
 .contact-layout {
