@@ -32,7 +32,7 @@ class Inventory_model extends MY_Model {
 		$costprice = ($this->input->post('item_costprice') == NULL ? NULL : $this->input->post('item_costprice')) ;
 		$netprice = ($this->input->post('item_netprice') == NULL ? NULL : $this->input->post('item_netprice')); 
 		$vatrate = ($this->input->post('item_vatrate') == NULL ? NULL : $this->input->post('item_vatrate')); 
-		$disrate = ($this->input->post('item_disrate') == NULL ? NULL : $this->input->post('item_disrate')); 
+		$disrate = ($this->input->post('item_disrate') == NULL ? 1 : $this->input->post('item_disrate')); 
 		$stock = ($this->input->post('item_stock') == NULL ? NULL : $this->input->post('item_stock'));
 		$stockrop = ($this->input->post('item_rop') == NULL ? NULL : $this->input->post('item_rop'));
 		$SKU = ($this->input->post('item_sku') == NULL ? NULL : $this->input->post('item_sku'));
@@ -47,7 +47,7 @@ class Inventory_model extends MY_Model {
 			'Cost' => $costprice,
 			'NetPrice' => $netprice,
 			'VATRate' => $vatrate,
-			'DiscountRate' => "",
+			'DiscountRate' => $disrate,
 			'Stock' => $stock,
 			'StockROP' => $stockrop,
 			'GTIN' => $GTIN,
