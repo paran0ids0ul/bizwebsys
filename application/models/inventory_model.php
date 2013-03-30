@@ -47,7 +47,7 @@ class Inventory_model extends MY_Model {
 			'Cost' => $costprice,
 			'NetPrice' => $netprice,
 			'VATRate' => $vatrate,
-			'DiscountRate' => $disrate,
+			'DiscountRate' => "",
 			'Stock' => $stock,
 			'StockROP' => $stockrop,
 			'GTIN' => $GTIN,
