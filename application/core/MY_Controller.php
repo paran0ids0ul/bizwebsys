@@ -77,18 +77,7 @@ class MY_Controller extends CI_Controller{
 		$this->load->view("template/skeleton",$toTpl);
 		
 	}
-	
-	protected function paramRender($view, $param) {
-	
-		$toTpl = $this->preRender($view);
-		
-		$toTpl['customHead'] = $param['customHead'];
-		
-		//render view
-		$this->load->view("template/skeleton",$toTpl);
-	
-	}
-	
+
 		protected function _data_render($view, $toPage) {
 		
 		

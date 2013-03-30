@@ -20,7 +20,7 @@ class Workspace extends MY_Controller {
 			
 		}
 		</style>';
-		$this->paramRender('panel/workspace', $param);
+		$this->_data_render('panel/workspace', $param);
 	}
 	
 }

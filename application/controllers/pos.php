@@ -443,13 +443,17 @@ class Pos extends MY_Controller {
 										
 											var jsonItems = $.toJSON(items); 
 											$.ajax({
-												url: \''. site_url('pos/receipt') .'\',
+												url: \''. site_url('pos/process_order') .'\',
 												type: \'POST\',
 												data: {items:jsonItems},
-												success: function(response) {
+												success: function(orderID) {
+													
+												
+												
+												
+												
 													//load receipt to content
-													//$(\'#content\').html(response);
-													alert(response);
+													$(\'#content\').html(response);
 												}
 											});
 										}
@@ -467,7 +471,8 @@ class Pos extends MY_Controller {
 		$data["total"] = $_POST["total"];
 		$this->load->view('app/pos/payment',$data);
 	}
-	public function receipt(){	
+	
+	public function process_order(){	
 		if(!isset($_POST["items"]))
 			return;
 		$date = date("Y_m_d");
@@ -481,7 +486,8 @@ class Pos extends MY_Controller {
 		//save items in salesorderline table
 		$items = json_decode($_POST["items"]);
 		
-		
+		$subtotal=0;
+		$tax=0;
 		foreach ($items as $item)
 		{
 			$product_id = $item->ProductID;
@@ -489,15 +495,30 @@ class Pos extends MY_Controller {
 			$net_price = $item->NetPrice;
 			$vat_rate = $item->VATRate;
 			$discount = $item->discount;
-			
-			
 			$vat = $net_price * $quantity * $discount * $vat_rate;
+			
+			$subtotal +=  $net_price * $quantity * $discount;
+			$tax += $vat;
 			$this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
-			$this->pos_model->set_lineorder($order_id-1,$product_id,$quantity,$net_price,$discount,$vat);
-			$this->pos_model->set_lineorder($order_id-2,$product_id,$quantity,$net_price,$discount,$vat);
+		//	$this->pos_model->set_lineorder($order_id-1,$product_id,$quantity,$net_price,$discount,$vat);
+		//	$this->pos_model->set_lineorder($order_id-2,$product_id,$quantity,$net_price,$discount,$vat);
 		}
 		
-		echo "page";
-		//	$this->_render('app/pos/receipt');
+		 $total = $subtotal + $tax;
+		
+		$data["items"] = $items;
+		$data["date"] = $date;
+		$data["time"] = date("H_i_s");
+		$data["order_id"] = $order_id;
+		$data["subtotal"] = $subtotal;
+		$data["tax"] = $tax;
+		$data["total"] = $total;
+		$data["cash"] = $cash;
+		$data["change"] = $cash - $total;
+		
+		
+		$this->load->view('app/pos/receipt',$data);
 	}
+	
+	
 }
