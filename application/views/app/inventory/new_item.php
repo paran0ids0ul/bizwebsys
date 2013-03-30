@@ -55,7 +55,7 @@
 										<option>Please Choose :</option>
 										<?php foreach ($contacts as $contact): ?>
 											<?php if (!is_array($contact)) continue; ?>
-											<option value="<?php echo $contact['cn'][0] ?>"><?php echo $contact['cn'][0] ?></option>
+											<option value="<?php echo $contact['uid'][0] ?>"><?php echo $contact['cn'][0] ?></option>
 										<?php endforeach ?>
 									</select>	
 								</div>

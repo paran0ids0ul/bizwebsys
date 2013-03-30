@@ -68,26 +68,90 @@ class Contacts extends MY_Controller {
 	
 		$this->_data_render('app/contacts/contacts',$data);
 		
-		ldap_close($data['ldap']->getLdapConnection());
+		$this->contacts_model->close_ldap();
+
+		
 	
 	}
 	
 	public function new_contact(){
 		
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		
+	
+		$this->form_validation->set_rules('contact_fname', 'First Name', 'required');
+	
+		if ($this->form_validation->run() === FALSE)
+		{
+		
+			$this->_render('app/contacts/new_contact');
+		
+		}
+		else 
+		{
+		
+			$config['upload_path'] = 'resources/images/contacts/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['overwrite'] = false;
+			
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+		
+			
 		
 		
+			if ( ! $this->upload->do_upload('file'))
+			{
+				
+            	$error = array('error' => $this->upload->display_errors());
+                        
+            	$newID = $this->contacts_model->new_contactID_db();
+
+            	$this->contacts_model->new_contact($newID);
+
+            	$this->contacts_model->close_ldap();
+            	
+            	//$this->display_contact_byID($newID);
+            	
+            	
+            }
+            else 
+            {
 		
-		
-								    
-		
-								    
-								    
-		$this->_render('app/contacts/new_contact');
-		
+				$newID = $this->contacts_model->new_contactID_db();
+
+				$this->contacts_model->new_contact($newID);
+			
+				$file_data  =   $this->upload->data();
+
+				$fd = fopen($file_data['full_path'], 'r');
+
+				$fsize=filesize($file_data['full_path']);
+
+				$jpegStr = fread($fd, $fsize);
+				
+								
+				$this->contacts_model->add_image($newID,$jpegStr);
+
+				$this->contacts_model->close_ldap();
+
+				fclose($fd);
+
+				unlink($file_data['full_path']);
+
+			
+				//$this->display_contact_byID($newID);
+			}
+			
+			
+		}
+	
 		
 	}
 	
-	public function display_contact(){
+	public function display_contact_byID($id){
+
 		$this->_render('app/contacts/display_contact');
 
 	}

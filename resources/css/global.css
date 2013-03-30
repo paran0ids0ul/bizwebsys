@@ -232,7 +232,7 @@ section {
 
 
 
-.contact-main {
+.contact-container {
 	overflow-x: hidden;
 
 }
@@ -293,7 +293,6 @@ tr.hover {
    cursor: pointer;
    background-color: #8797B7;
 }
-
 
 
 

@@ -14,7 +14,43 @@ class MyLdapUsers {
         
     }
     
-    
+    	
+    public function create_contact($attributes)
+    {
+
+
+    	$user['objectClass'][0] = 'inetOrgPerson';
+		$user['objectClass'][1] = 'top';						// objectClass defines what fields are allowed for the object (user)
+		if ($attributes['givenName']) {	$user['givenName'][0] = $attributes['givenName'];	}
+		if ($attributes['sn']) { $user['sn'][0] = $attributes['sn']; }
+		if ($attributes['cn']) { $user['cn'][0] = $attributes['cn']; }
+		if ($attributes['uid']) { $user['uid'] = $attributes['uid']; }
+		if ($attributes['facsimileTelephoneNumber']) { $user['facsimileTelephoneNumber'][0] = $attributes['facsimileTelephoneNumber']; }
+		if ($attributes['telephoneNumber']) { $user['telephoneNumber'][0] = $attributes['telephoneNumber']; }
+		if ($attributes['mobile']) { $user['mobile'][0] = $attributes['mobile']; }
+		if ($attributes['street']) { $user['street'][0] = $attributes['street']; }
+		if ($attributes['st']) { $user['st'][0] = $attributes['st']; }
+		if ($attributes['l']) { $user['l'][0] = $attributes['l']; }// $ means new line - in your method, convert line breaks into the dollarsign
+		if ($attributes['postalCode']) { $user['postalCode'][0] = $attributes['postalCode']; }
+		if ($attributes['postalAddress']) { $user['postalAddress'][0] = $attributes['postalAddress']; }
+		if ($attributes['mail']) { $user['mail'][0] = $attributes['mail']; }
+		if ($attributes['o']) { $user['o'][0] = $attributes['o']; }
+
+		print_r($user);
+		
+	
+		$result = ldap_add($this->myldap->getLdapConnection(), 'uid=' . $user['uid'] . ',ou=contacts,dc=bizwebsys,dc=tk', $user);  
+
+	    if ($result != true) { 
+            return false; 
+        }
+        
+        return true;
+    }
+
+
+
+
     public function create_people($attributes)
     {
 	    
@@ -43,8 +79,7 @@ class MyLdapUsers {
 	
 		$user['userPassword'] = '{SHA}' . base64_encode(sha1($password, TRUE));		// encodes the password in a hash
 	
-	
-		$results = ldap_add($this->myldap->getLdapConnection(), 'uid=' . $user['uid'] . ',ou=people,dc=bizwebsys,dc=tk', $user);   
+		$result = ldap_add($this->myldap->getLdapConnection(), 'uid=' . $user['uid'] . ',ou=people,dc=bizwebsys,dc=tk', $user);   
 	    
 	    if ($result != true) { 
             return false; 

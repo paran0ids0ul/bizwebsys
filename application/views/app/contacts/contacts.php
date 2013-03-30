@@ -35,36 +35,45 @@
 						<li class="span3">			
 							<a href="<?php echo site_url("contacts/display_contact")?>" class="thumbnail contact-thumbnail">
 								<div class="row">
-									<div class="span1">
-										<img src=<?php 
-													$cname = $contact['cn'][0];
-													$sr = ldap_search($ldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "cn=$cname");
-													if ($sr) {
-														$ei=ldap_first_entry($ldap->getLdapConnection(), $sr);
-														if ($ei) {
-															$pic = @ldap_get_values_len($ldap->getLdapConnection(), $ei, "jpegPhoto");
-															if ($pic) {
-																$mime = 'image/jpeg';
-																$base64   = base64_encode($pic[0]); 
-																print('"data:' . $mime . ';base64,' . $base64.'"');
+										<div class="span1">
+											<img src=<?php 
+														$cname = $contact['cn'][0];
+														$sr = ldap_search($ldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "cn=$cname");
+														if ($sr) {
+															$ei=ldap_first_entry($ldap->getLdapConnection(), $sr);
+															if ($ei) {
+																$pic = @ldap_get_values_len($ldap->getLdapConnection(), $ei, "jpegPhoto");
+																if ($pic) {
+																	$mime = 'image/jpeg';
+																	$base64   = base64_encode($pic[0]); 
+																	print('"data:' . $mime . ';base64,' . $base64.'"');
+																}
+																else {
+																	echo base_url("resources/images/no_image.gif");
+																}
+															
 															}
-															else {
-																echo base_url("resources/images/no_image.gif");
-															}
-														
 														}
-													}
 													
-									?> alt="Inventory">
+											?> alt="contact">
 
-									</div>
-									<div class="span1">
-										<div class="text contact-name"><?php echo $contact['cn'][0]?></div>
-										<div class="text contact-desc"><?php echo $contact["mobile"][0]?></div>
-										<div class="text contact-email"><?php echo $contact["mail"][0]?></div>
-									</div>
+										</div>
+										<div class="span1">
+											<div class="text"><?php echo $contact['cn'][0]?></div>
+											<div class="text"><?php if ($contact["mobile"][0]) {
+																		echo $contact["mobile"][0]
+																	}
+																?>
+											</div>
+											<div class="text"><?php if ($contact["mail"][0]) {
+																		echo $contact["mail"][0]
+																	}
+																?>
+											</div>
+										</div>
 								</div>
 							</a>
+							
 						</li>
 						
 						<?php $x = $x+1; ?>

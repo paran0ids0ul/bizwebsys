@@ -82,21 +82,21 @@
 											<label class="span1">City/State :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_hstate" id="contact_city">php to retrive data</span>	
+												<span class="input-xlarge uneditable-input" name ="contact_hstate" id="contact_hstate">php to retrive data</span>	
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">Zip Code :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_hpostcode" id="contact_postcode">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_hpostcode" id="contact_hpostcode">php to retrive data</span>
 											</div>
 										</div>
 										<div class="row">
 											<label class="span1">Country :	
 											</label>
 											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_hcountry" id="contact_country">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_hcountry" id="contact_hcountry">php to retrive data</span>
 											</div>
 										</div>
 								</div>
@@ -139,8 +139,28 @@
 								<div class="row">
 											<label class="span1">Postal Address :	
 											</label>
+<<<<<<< HEAD
 											<div class="span4 label-field">
 												<textarea disabled class="span6" id="contact_paddress" style="width:60%" rows="9" ></textarea>
+=======
+											<div class="span2 label-field">
+												<span class="input-xlarge uneditable-input" name ="contact_pstreet1" id="contact_pstreet1">php to retrive data</span>
+												<span class="input-xlarge uneditable-input" name ="contact_pstreet2" id="contact_pstreet2">php to retrive data</span>
+											</div>
+										</div>
+										<div class="row">
+											<label class="span1">City/State :	
+											</label>
+											<div class="span2 label-field">
+												<span class="input-xlarge uneditable-input" name ="contact_pstate" id="contact_pstate">php to retrive data</span>	
+											</div>
+										</div>
+										<div class="row">
+											<label class="span1">Zip Code :	
+											</label>
+											<div class="span2 label-field">
+												<span class="input-xlarge uneditable-input" name ="contact_ppostcode" id="contact_ppostcode">php to retrive data</span>
+>>>>>>> Added contact adding function
 											</div>
 									
 								</div>

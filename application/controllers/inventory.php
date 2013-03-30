@@ -94,10 +94,6 @@ class Inventory extends MY_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		
-		
-
-       
-		
 	
 	
 		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
