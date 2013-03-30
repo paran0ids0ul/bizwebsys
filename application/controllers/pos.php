@@ -443,7 +443,7 @@ class Pos extends MY_Controller {
 										
 											var jsonItems = $.toJSON(items); 
 											$.ajax({
-												url: \''. site_url('pos/process_order') .'\',
+												url: \''. site_url('pos/receipt') .'\',
 												type: \'POST\',
 												data: {items:jsonItems},
 												success: function(orderID) {
@@ -453,7 +453,8 @@ class Pos extends MY_Controller {
 												
 												
 													//load receipt to content
-													$(\'#content\').html(response);
+													//$(\'#content\').html(response);
+													alert(orderID);
 												}
 											});
 										}
@@ -471,8 +472,7 @@ class Pos extends MY_Controller {
 		$data["total"] = $_POST["total"];
 		$this->load->view('app/pos/payment',$data);
 	}
-	
-	public function process_order(){	
+	public function receipt(){	
 		if(!isset($_POST["items"]))
 			return;
 		$date = date("Y_m_d");
@@ -486,8 +486,7 @@ class Pos extends MY_Controller {
 		//save items in salesorderline table
 		$items = json_decode($_POST["items"]);
 		
-		$subtotal=0;
-		$tax=0;
+		
 		foreach ($items as $item)
 		{
 			$product_id = $item->ProductID;
@@ -495,30 +494,17 @@ class Pos extends MY_Controller {
 			$net_price = $item->NetPrice;
 			$vat_rate = $item->VATRate;
 			$discount = $item->discount;
-			$vat = $net_price * $quantity * $discount * $vat_rate;
 			
-			$subtotal +=  $net_price * $quantity * $discount;
-			$tax += $vat;
+			
+			$vat = $net_price * $quantity * $discount * $vat_rate;
 			$this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
-		//	$this->pos_model->set_lineorder($order_id-1,$product_id,$quantity,$net_price,$discount,$vat);
-		//	$this->pos_model->set_lineorder($order_id-2,$product_id,$quantity,$net_price,$discount,$vat);
 		}
 		
-		 $total = $subtotal + $tax;
-		
-		$data["items"] = $items;
-		$data["date"] = $date;
-		$data["time"] = date("H_i_s");
-		$data["order_id"] = $order_id;
-		$data["subtotal"] = $subtotal;
-		$data["tax"] = $tax;
-		$data["total"] = $total;
-		$data["cash"] = $cash;
-		$data["change"] = $cash - $total;
-		
-		
-		$this->load->view('app/pos/receipt',$data);
+		echo "page";
+		//	$this->_render('app/pos/receipt');
 	}
+	
+
 	
 	
 }

@@ -45,7 +45,7 @@ class Pos_model extends MY_Model {
 			'Quantity' => $quantity,
 			'NetPrice' => $net_price,
 			'VAT' => $vat,
-			'Discount' => $discount
+			'DiscountRate' => $discount
 		);
 		
 		return $this->db->insert('salesorderline', $data);
