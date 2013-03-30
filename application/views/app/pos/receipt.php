@@ -1,47 +1,53 @@
-<div class="container">
-	<?php echo $header ?>
-	<div class="row">
-		
-		<!-- Content -->
-		<div class="span12">
 			<div class="row product-container" id="form_container">
 				<h3 class="text-center">Receipt</h3>
 					<!-- Form -->
-					<div class="span5 offset3 myform box-shadow">
+					<div class="span5 offset1 myform box-shadow">
 						<form>
 							<div class="row text-center">
-								<label>{date} {time} Order 102888000<label>
+								<label><?php echo $date?> <?php echo $time?> Order <?php echo $order_id?><label>
 							</div>
+							<div id="receiptItemList"></div>
+							
+							<hr/>	
+							<div class="row">
+								<div class="span2 offset1">
+									<label>Subtotal:</label>
+								</div>
+								<div class="span2">
+									<label>£<?php echo $subtotal?></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="span2 offset1">
+									<label>Tax:</label>
+								</div>
+								<div class="span2">
+									<label>£<?php echo $tax?></label>
+								</div>
+							</div>
+							<hr/>
 							<div class="row">
 								<div class="span2 offset1">
 									<b>Total:</b>
 								</div>
 								<div class="span2">
-									<b>£2801.00</b>
+									<b>£<?php echo $total?></b>
 								</div>
 							</div>
 							<div class="row">
 								<div class="span2 offset1">
-									<label>Paid:</label>
+									<label>Cash:</label>
 								</div>
 								<div class="span2">
-									<label>£0.00</label>
+									<label>£<?php echo $cash?></label>
 								</div>
-							</div>
-							<div class="row">
-								<div class="span2 offset1">
-									<label>Remaining:</label>
-								</div>
-								<div class="span2">
-									<label>£2801.00</label>
-								</div>
-							</div>
+							</div>	
 							<div class="row">
 								<div class="span2 offset1">
 									<label>Change:</label>
 								</div>
 								<div class="span2">
-									<label>£0.00</label>
+									<label>£<?php echo $change?></label>
 								</div>
 							</div>	
 						</form>
@@ -49,13 +55,11 @@
 			</div>
 			<!-- Control Buttons -->
 			<div class="row">
-				<div class="span2 pull-right">
+				<div class="span2">
 					<a class="btn btn-block" href="">Print</a>
 				</div>
-				<div class="span2 pull-right">
+				<div class="span2">
 					<a class="btn btn-block">Next</a>
 				</div>
 			</div>
-		</div>
-	</div>	
-</div>
+	

@@ -84,6 +84,10 @@ class Pos extends MY_Controller {
 									{
 										background-color:inherit;
 									}
+									.small-font
+									{
+										font-size:12px;
+									}
 									</style>';
 		//load local js
 		$this->data["custom_js"] ='								  
@@ -178,6 +182,19 @@ class Pos extends MY_Controller {
 											}
 											$(\'#total\').text(getTotal());
 											$(\'#tax\').text(getTax());
+										}
+										
+										function renderReceiptItemList()
+										{
+											for(i=0;i<items.length;i++)
+											{
+													var html = "<div class=\'row\'><div class=\'span2 offset1\'>"+items[i].name+"</div><div class=\'span2\'>£"+items[i].getDisplayPrice()+"</div></div>";
+													if(items[i].quantity>1)
+														html += "<div class=\'row\'><div class=\"span2 offset1 small-font\">quantity: x"+items[i].quantity+"</div></div>";
+													if(items[i].discount<1)
+														html += "<div class=\'row\'><div class=\"span2 offset1 small-font\">discount: x"+items[i].discount+"</div></div>";
+													$(\'#receiptItemList\').append(html);	
+											}
 										}
 										
 										//Add item to list
@@ -431,30 +448,16 @@ class Pos extends MY_Controller {
 										
 										function saveOrderShowReceipt()
 										{
-											//var order_data = { 
-												//				items:items,
-												//				total:getTotal(),
-											     //               tax:getTax()
-												//			};
-												
-										//	var	jsonObj = items[0];
-										//	var postData = JSON.stringify(jsonObj);
-										//	var postArray = {json:postData};
-										
+											var cash = parseFloat($(\'#input_cash\').val());
 											var jsonItems = $.toJSON(items); 
 											$.ajax({
-												url: \''. site_url('pos/receipt') .'\',
+												url: \''. site_url('pos/process_order') .'\',
 												type: \'POST\',
-												data: {items:jsonItems},
-												success: function(orderID) {
-													
-												
-												
-												
-												
+												data: {items:jsonItems,cash:cash},
+												success: function(response) {
 													//load receipt to content
-													//$(\'#content\').html(response);
-													alert(orderID);
+													$(\'#content\').html(response);
+													renderReceiptItemList();
 												}
 											});
 										}
@@ -472,8 +475,8 @@ class Pos extends MY_Controller {
 		$data["total"] = $_POST["total"];
 		$this->load->view('app/pos/payment',$data);
 	}
-	public function receipt(){	
-		if(!isset($_POST["items"]))
+	public function process_order(){	
+		if(!(isset($_POST["items"]) && isset($_POST["cash"])))
 			return;
 		$date = date("Y_m_d");
 		$payment_method = "Cash";
@@ -486,7 +489,8 @@ class Pos extends MY_Controller {
 		//save items in salesorderline table
 		$items = json_decode($_POST["items"]);
 		
-		
+		$subtotal=0;
+		$tax=0;
 		foreach ($items as $item)
 		{
 			$product_id = $item->ProductID;
@@ -494,14 +498,26 @@ class Pos extends MY_Controller {
 			$net_price = $item->NetPrice;
 			$vat_rate = $item->VATRate;
 			$discount = $item->discount;
-			
-			
 			$vat = $net_price * $quantity * $discount * $vat_rate;
+			
+			$subtotal +=  $net_price * $quantity * $discount;
+			$tax += $vat;
 			$this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
 		}
 		
-		echo "page";
-		//	$this->_render('app/pos/receipt');
+		$total = $subtotal + $tax;
+		
+		$data["items"] = $items;
+		$data["date"] = date("d/m/Y");
+		$data["time"] = date("H:i:s");
+		$data["order_id"] = $order_id;
+		$data["subtotal"] = $subtotal;
+		$data["tax"] = $tax;
+		$data["total"] = $total;
+		$data["cash"] = $_POST["cash"];
+		$data["change"] = $data["cash"] - $total;
+		
+		$this->load->view('app/pos/receipt',$data);
 	}
 	
 
