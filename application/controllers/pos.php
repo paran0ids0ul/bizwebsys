@@ -468,24 +468,36 @@ class Pos extends MY_Controller {
 		$this->load->view('app/pos/payment',$data);
 	}
 	public function receipt(){	
-	//	$data["items"] = $_POST["items"];
-	//	$data["total"] = $_POST["total"];
-	//	$data["tax"] = $_POST["tax"];
-//	if(isset($_POST["json"]))
-//	{
-//		$json = stripslashes($_POST["json"]);
-//		$output = json_decode($json);
-//		$response = $output->name;
-//		echo $response;
-//	}
-
-	$products = json_decode($_POST["items"]);
-
-	foreach ($products as $product){
-		echo $product->name;
-	}
-	
-	echo "page";
-	//	$this->_render('app/pos/receipt');
+		if(!isset($_POST["items"]))
+			return;
+		$date = date("Y_m_d");
+		$payment_method = "Cash";
+		$ref = "POS".date("d_m_Y_H_i_s");
+		
+		//create new order in salesorder table
+		$this->pos_model->set_order($ref,$date,$payment_method);
+		$order_id = $this->pos_model->get_orderid($ref);
+		
+		//save items in salesorderline table
+		$items = json_decode($_POST["items"]);
+		
+		
+		foreach ($items as $item)
+		{
+			$product_id = $item->ProductID;
+			$quantity = $item->quantity;
+			$net_price = $item->NetPrice;
+			$vat_rate = $item->VATRate;
+			$discount = $item->discount;
+			
+			
+			$vat = $net_price * $quantity * $discount * $vat_rate;
+			$this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
+			$this->pos_model->set_lineorder($order_id-1,$product_id,$quantity,$net_price,$discount,$vat);
+			$this->pos_model->set_lineorder($order_id-2,$product_id,$quantity,$net_price,$discount,$vat);
+		}
+		
+		echo "page";
+		//	$this->_render('app/pos/receipt');
 	}
 }

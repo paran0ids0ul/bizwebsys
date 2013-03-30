@@ -18,3 +18,5 @@ Based on forks of:
 [addyosmani / jquery-ui-bootstrap](https://github.com/addyosmani/jquery-ui-bootstrap) v0.5
 
 [FortAwesome / Font-Awesome](https://github.com/FortAwesome/Font-Awesome) v3.0.2
+
+[jquery-json / jquery-json] (https://code.google.com/p/jquery-json/) v2.4
