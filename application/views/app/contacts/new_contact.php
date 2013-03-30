@@ -102,13 +102,7 @@
 							<div class="tab-pane" id="tab_postalinfo">
 							<div class="span5">
 								<label class="span1">Postal Address</label>
-									<div class="span2 label-field">
-										<input name="contact_street1" id="contact_pstreet1" type="text" placeholder="Street name 1" >
-										<input name="contact_street2" id="contact_pstreet2" type="text" placeholder="Street name 2" >
-										<input class="span2" name="contact_state" id="contact_pcity" type="text" placeholder="City/State" >
-										<input class="span1" name="contact_postcode" id="contact_pzip" type="text" placeholder="Postal Code" >
-										<input name="contact_country" id="contact_pcountry" type="text" placeholder="Country" >
-									</div>
+									<textarea class="span" name="contact_paddress" style="width:60" rows="9"></textarea>
 							</div>
 						  </div>
 						</div>

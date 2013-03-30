@@ -33,6 +33,9 @@
 			<div class="span8">
 				<span class="input-xlarge uneditable-input" style="width:60%"; id="process"></span>				
 			</div>
+			<div class="span8">
+				<span class="input-xlarge uneditable-input" style="width:60%"; id="status_output"></span>				
+			</div>
 			
 		</div>
 	</form>

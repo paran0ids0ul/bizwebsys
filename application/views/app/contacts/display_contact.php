@@ -135,36 +135,15 @@
 								</div>		
 							</div>
 							<div class="tab-pane" id="tab_postalinfo">
-							<div class="span5">
+							<div class="span6">
 								<div class="row">
 											<label class="span1">Postal Address :	
 											</label>
-											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_pstreet1" id="contact_pstreet1">php to retrive data</span>
-												<span class="input-xlarge uneditable-input" name ="contact_pstreet2" id="contact_pstreet2">php to retrive data</span>
+											<div class="span4 label-field">
+												<textarea disabled class="span6" id="contact_paddress" style="width:60%" rows="9" ></textarea>
 											</div>
-										</div>
-										<div class="row">
-											<label class="span1">City/State :	
-											</label>
-											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_pstate" id="contact_pcity">php to retrive data</span>	
-											</div>
-										</div>
-										<div class="row">
-											<label class="span1">Zip Code :	
-											</label>
-											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_ppostcode" id="contact_ppostcode">php to retrive data</span>
-											</div>
-										</div>
-										<div class="row">
-											<label class="span1">Country :	
-											</label>
-											<div class="span2 label-field">
-												<span class="input-xlarge uneditable-input" name ="contact_pcountry" id="contact_pcountry">php to retrive data</span>
-											</div>
-										</div>
+									
+								</div>
 							</div>
 						  </div>
 						</div>

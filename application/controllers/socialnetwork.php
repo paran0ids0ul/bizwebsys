@@ -72,21 +72,46 @@ class SocialNetwork extends MY_Controller
 	
 	public function facebook()
 	{	
-		echo 'facebook';
+		require 'application/libraries/facebook.php';
+
+		$facebook = new Facebook(array(
+			'appId'  => '444833315594772',
+			'secret' => '7d68cfcbea4886ce11c0cd1581fb1db2',
+		));
+
+         $user = $facebook->getUser();
+         $me = null;
+
+         if($user)
+         {
+                $uid = $facebook->getUser();
+                echo "uid=".$uid;
+                  
+          }
+		  else
+		  {
+              
+               $url = $facebook ->getLoginUrl( array (
+               'scope' => 'publish_stream',
+               'req_perms' => 1,
+               'fbconnect' => 0
+                ));
+                 echo "";
+          }
 		
 		return 0;
 	}
 	
 	public function twitter()
 	{	
-		echo 'twitter';
+		echo 'twitter ';
 		
 		return 0;
 	}
 	
 	public function googlePlus()
 	{	
-		echo 'google+';
+		echo 'google+ 	';
 		
 		return 0;
 	}
@@ -106,19 +131,19 @@ class SocialNetwork extends MY_Controller
 		if ($f == "true")
 		{
 			$context2 = $context2."Facebook ";
-			facebook();
+			$this->facebook();
 		}
 		
 		if ($t == "true")
 		{
 			$context2 = $context2."Twitter ";
-			twitter();
+			$this->twitter();
 		}
 		
 		if ($g == "true")
 		{
 			$context2 = $context2."Google+ ";
-			googlePlus();
+			$this->googlePlus();
 		}
 		
 		echo $context2;	
