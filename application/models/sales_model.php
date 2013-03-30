@@ -24,7 +24,7 @@ class Sales_model extends MY_Model {
 		//	'Name' => $this->input->post('item_name'),
 		//	'ItemType' => $this->input->post('item_category'),
 			'ContactID' => $this->input->post('customer'),
-			'Date' => $this->input->post('item_date'),
+			'DateOrdered' => $this->input->post('item_date'),
 		//	'Description' => $this->input->post('item_description'),
 			//'Stock' => $this->input->post('item_stock'),
 			//'StockROP' => $this->input->post('item_rop'),
@@ -36,12 +36,20 @@ class Sales_model extends MY_Model {
 		);
 	
 		
-		$this->db->insert('Sales', $data);
+		$this->db->insert('SalesOrder', $data);
 
 		$id = $this->db->insert_id();
 		
 		return $id;
 	
+	}
+	
+	public function get_item_byID($itemID) {
+		
+		$query = $this->db->get_where('Inventory', array('ItemID' => $itemID));
+		return $query->row_array();
+		
+		
 	}
 	
 	public function get_orders()  //return 2D array: cust_name,invoice_date,internal_ref,sales_person,due_date,outstanding,total(plz don't change the names)

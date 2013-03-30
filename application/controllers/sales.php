@@ -16,8 +16,8 @@ class Sales extends MY_Controller {
 //		$data['orders'] = $this->sales_model->get_orders();
 		$this->data["custom_js"] ='			
 		  <script>
-		 $(document).ready(function(){
-		  
+		 $(document).ready(function(){  
+			
 			$("#sales_all").click(function(){
 				if ($(this).prop("checked") == true) { 
 					$(".checkboxs").each(function() {
@@ -41,14 +41,34 @@ class Sales extends MY_Controller {
 	
 	public function new_order(){
 	
-		$this->load->helper(array('form', 'url'));
+//		$this->load->helper(array('form', 'url'));
 //		$this->load->library('form_validation');
 		
-		
+		//customer list
 		$data['customers'] = $this->sales_model->get_contact_list();
 		$this->_data_render('app/sales/new_order',$data);
 		
-		if ( ! $this->upload->do_upload('file'))
+		//display items
+		$this->data["custom_js"] ='			
+		  <script>
+		  
+			$(document).ready(function(){
+				$("#add").click(function() {
+					var value = "<tr><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>"
+					$("#table tr:eq(1)").after(value);
+				});
+			});
+			
+		</script>';	
+		
+		
+	//	$newID = $this->sales_model->set_item();
+	//	$file_data = $this->upload->data();
+
+		
+		//$this->load->library('upload', $config);
+		//$this->upload->initialize($config);
+		/*if ( ! $this->upload->do_upload('file'))
 			{
             	$error = array('error' => $this->upload->display_errors());
             	$newID = $this->sales_model->set_item();
@@ -56,13 +76,13 @@ class Sales extends MY_Controller {
             }
             else 
             {
-				$newID = $this->inventory_model->set_item();
-				$file_data  =   $this->upload->data();
+				$newID = $this->sales_model->set_item();
+				$file_data = $this->upload->data();
 				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$newID.$file_data['file_ext']); 
-				$this->inventory_model->set_imagepath($newID, $newID.$file_data['file_ext']);
+				$this->sales_model->set_imagepath($newID, $newID.$file_data['file_ext']);
 				$this->display_item_byID($newID);
 			}
-	
+	*/
 		$this->_render('app/sales/new_order');
 	}
 	

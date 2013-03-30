@@ -43,16 +43,16 @@
 								<label>Date</label>
 								<input type="text" id="datepicker" name="item_date" />
 							</div>
+							
 						</div>
 					</form>
 				</div>
 				<!-- Order Lines Table -->
-				<table class="table table-striped">
+				<table class="table table-striped" id="table">
 					<caption>Order Lines</caption>
 					  <thead>
 						<tr>
 						  <th>Product</th>
-						  <th>Descriptions</th>
 						  <th>Quantity</th>
 						  <th>Taxes</th>
 						  <th>Unit Price</th>
@@ -60,21 +60,8 @@
 						</tr>
 					  </thead>
 					    <tbody>
-							<tr>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							</tr>
-							<tr>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
+							<tr> 
+							 <td><button type="btn btn-link" onclick="addRow();" id="add"/>Add an item</button></td>
 							</tr>
 						  </tbody>
 				</table>
