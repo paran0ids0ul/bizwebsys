@@ -194,12 +194,12 @@ class Pos extends MY_Controller {
 										{
 											for(i=0;i<items.length;i++)
 											{
-													var html = "<div class=\'row\'><div class=\'span2 offset1\'>"+items[i].name+"</div><div class=\'span2\'>£"+items[i].getDisplayPrice()+"</div></div>";
-													if(items[i].quantity>1)
-														html += "<div class=\'row\'><div class=\"span2 offset1 small-font\">quantity: x"+items[i].quantity+"</div></div>";
-													if(items[i].discount<1)
-														html += "<div class=\'row\'><div class=\"span2 offset1 small-font\">discount: x"+items[i].discount+"</div></div>";
-													$(\'#receiptItemList\').append(html);	
+												var html = "<tr><td class=\'span2\'>"+items[i].name+"</td><td class=\'span2\'>£"+items[i].getDisplayPrice()+"</td></tr>"
+												if(items[i].quantity>1)
+													html += "<tr><td class=\'span2 small-font\'>quantity: x"+items[i].quantity+"</td></tr>";
+												if(items[i].discount<1)
+													html += "<tr><td class=\'span2 small-font\'>discount: x"+items[i].discount+"</td></tr>";
+												$(\'#receiptItemList\').append(html);	
 											}
 										}
 										
@@ -480,19 +480,16 @@ class Pos extends MY_Controller {
 												//var prtContent = document.getElementById(\'receipt\');
 												var html="<html>";
 											    html+="<head>";
-											    html+="<link rel=\'stylesheet\'  href=\''.base_url(CSS."bootstrap-2.3.0-custom-responsive.min.css").'\' media=\'print\'  />";
-											//	html+="<style type=\'text/css\'>.small-font {font-size:12px;} .label{position:relative;}.span5{width:380px}.span4{width:300px}.span2{width:140px}.span1{width:60px}.offset1{margin-left:100px}.row{margin-left:-20px;*zoom:1;width:380px}</style>";
+												html+="<style type=\'text/css\'>.small-font {font-size:12px;} .text-center{text-align:center} .label{position:relative;}.span5{width:380px}.span4{width:300px}.span2{width:140px}.span1{width:60px}.offset1{margin-left:100px}.row{margin-left:-20px;*zoom:1;width:380px}</style>";
 											    html+="</head>";
 											    html+= document.getElementById(\'receipt\').innerHTML;
 											    html+="</html>";
-												//alert(html);
-												//$(\'#content\').html(html);
 												var WinPrint = window.open(\'\', \'\', \'letf=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0\');
 												WinPrint.document.write(html);
 												WinPrint.document.close();
 												WinPrint.focus();
-												//WinPrint.print();
-												//WinPrint.close();
+												WinPrint.print();
+												WinPrint.close();
 											});
 										}
 								    </script>';	
