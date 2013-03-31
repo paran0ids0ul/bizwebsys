@@ -1,8 +1,8 @@
 			<div class="row product-container" id="form_container">
-				<h3 class="text-center">Receipt</h3>
+				<h3 class="text-center" >Receipt</h3>
 					<!-- Form -->
 					<div class="span5 offset1 myform box-shadow">
-						<form>
+						<form id="receipt">
 							<div class="row text-center">
 								<label><?php echo $date?> <?php echo $time?> Order <?php echo $order_id?><label>
 							</div>
@@ -56,10 +56,10 @@
 			<!-- Control Buttons -->
 			<div class="row">
 				<div class="span2">
-					<a class="btn btn-block" href="">Print</a>
+					<button class="btn btn-block" id="btn_print">Print</button>
 				</div>
 				<div class="span2">
-					<a class="btn btn-block" id="btn_nextorder">Next Order</a>
+					<button class="btn btn-block" id="btn_nextorder">Next Order</button>
 				</div>
 			</div>
 	

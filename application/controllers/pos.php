@@ -475,7 +475,25 @@ class Pos extends MY_Controller {
 												clearItemList();
 												showProducts();
 											});
-										
+											
+											$(\'#btn_print\').click(function() {
+												//var prtContent = document.getElementById(\'receipt\');
+												var html="<html>";
+											    html+="<head>";
+											    html+="<link rel=\'stylesheet\'  href=\''.base_url(CSS."bootstrap-2.3.0-custom-responsive.min.css").'\' media=\'print\'  />";
+											//	html+="<style type=\'text/css\'>.small-font {font-size:12px;} .label{position:relative;}.span5{width:380px}.span4{width:300px}.span2{width:140px}.span1{width:60px}.offset1{margin-left:100px}.row{margin-left:-20px;*zoom:1;width:380px}</style>";
+											    html+="</head>";
+											    html+= document.getElementById(\'receipt\').innerHTML;
+											    html+="</html>";
+												//alert(html);
+												//$(\'#content\').html(html);
+												var WinPrint = window.open(\'\', \'\', \'letf=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0\');
+												WinPrint.document.write(html);
+												WinPrint.document.close();
+												WinPrint.focus();
+												//WinPrint.print();
+												//WinPrint.close();
+											});
 										}
 								    </script>';	
 		$data['items'] = $this->pos_model->get_items();
