@@ -35,8 +35,6 @@ class MyLdapUsers {
 		if ($attributes['postalAddress']) { $user['postalAddress'][0] = $attributes['postalAddress']; }
 		if ($attributes['mail']) { $user['mail'][0] = $attributes['mail']; }
 		if ($attributes['o']) { $user['o'][0] = $attributes['o']; }
-
-		print_r($user);
 		
 	
 		$result = ldap_add($this->myldap->getLdapConnection(), 'uid=' . $user['uid'] . ',ou=contacts,dc=bizwebsys,dc=tk', $user);  
@@ -111,6 +109,20 @@ class MyLdapUsers {
  	   //print_r($info);
 	    
 	    return $info;
+    }
+
+
+    public function getContact_byID($id) 
+    {
+
+	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(uid=".$id.")") or die ("Error in search query"); 
+
+	    $entry = ldap_first_entry($this->myldap->getLdapConnection(), $result);
+	    
+	    $info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
+	    
+	    return $info;
+	    
     }
     
     

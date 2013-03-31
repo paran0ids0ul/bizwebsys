@@ -87,6 +87,10 @@
 								<div class="span2 label-field">
 									<span class="input-xlarge uneditable-input" id="item_vatrate"><?php echo $vat ?></span>
 								</div>
+								<label class="span1">Discount Rate</label>
+								<div class="span2 label-field">				
+									<span class="input-xlarge uneditable-input" id="item_disrate"><?php echo $dis ?></span>
+								</div>
 								
 								
 							</div> <!-- close left lower form-->

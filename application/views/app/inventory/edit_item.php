@@ -63,7 +63,8 @@
 									<select name="supplier" id="supplier_list">
 										<option>Please Choose :</option>
 										<?php foreach ($contacts as $contact): ?>
-											<option value="<?php echo $contact['uid'][0] ?>" <?php if ($contactID == $contact['uid'][0]) {echo 'selected';} ?>><?php echo $supplier['lname'] ?></option>
+											<?php if (!is_array($contact)) continue; ?>
+											<option value="<?php echo $contact['uid'][0] ?>" <?php if ($contactID == $contact['uid'][0]) {echo 'selected';} ?>><?php echo $contact['cn'][0] ?></option>
 										<?php endforeach ?>
 									</select>	
 								</div>
@@ -78,6 +79,10 @@
 								<label class="span1">VAT Rate</label>
 								<div class="span2 label-field">				
 									<input name="item_vatrate" type="text" placeholder="0.16" value="<?php echo $vat ?>" >
+								</div>
+								<label class="span1">Discount Rate</label>
+								<div class="span2 label-field">				
+									<input name="item_disrate" type="text" placeholder="0.16" value="<?php echo $dis ?>" >
 								</div>
 								
 								

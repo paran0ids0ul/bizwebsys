@@ -104,6 +104,8 @@ class Inventory extends MY_Controller {
 			$data['contacts'] = $this->contacts_model->get_all_contact();
 		
 			$this->_data_render('app/inventory/new_item',$data);
+
+			$this->contacts_model->close_ldap();
 		
 		}
 		else 
@@ -173,6 +175,7 @@ class Inventory extends MY_Controller {
 		$data['cost'] = $data['item']['Cost'];
 		$data['net'] = $data['item']['NetPrice'];
 		$data['vat'] = $data['item']['VATRate'];
+		$data['dis'] = $data['item']['DiscountRate'];
 		$data['stock'] = $data['item']['Stock'];
 		$data['stockROP'] = $data['item']['StockROP'];
 		$data['GTIN'] = $data['item']['GTIN'];
@@ -240,6 +243,8 @@ class Inventory extends MY_Controller {
 		
 		
 		$this->_data_render('app/inventory/display_item',$data);
+
+		$this->contacts_model->close_ldap();
 	
 		
 		
@@ -307,6 +312,7 @@ class Inventory extends MY_Controller {
 			$data['cost'] = $data['item']['Cost'];
 			$data['net'] = $data['item']['NetPrice'];
 			$data['vat'] = $data['item']['VATRate'];
+			$data['dis'] = $data['item']['DiscountRate'];
 			$data['stock'] = $data['item']['Stock'];
 			$data['stockROP'] = $data['item']['StockROP'];
 			$data['GTIN'] = $data['item']['GTIN'];
@@ -320,12 +326,11 @@ class Inventory extends MY_Controller {
 									    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
 			
 		
-		
-		
-			$data['suppliers'] = $this->inventory_model->get_contact_list();
-
+			$data['contacts'] = $this->contacts_model->get_all_contact();
 		
 			$this->_data_render('app/inventory/edit_item',$data);
+
+			$this->contacts_model->close_ldap();
 		
 		}
 		else 
@@ -345,9 +350,7 @@ class Inventory extends MY_Controller {
 			{
 				
             	$error = array('error' => $this->upload->display_errors());
-            	
-            	print_r($error);
-            	exit();            	
+            	        	
             	
             	$this->inventory_model->update_item($itemID);
             	

@@ -33,7 +33,9 @@
 
 
 						<li class="span3">			
-							<a href="<?php echo site_url("contacts/display_contact")?>" class="contact-thumbnail thumbnail">
+							<a href="<?php $id = $contact['uid'][0];
+											echo site_url("contacts/display_contact_byID/$id");
+									?>" class="contact-thumbnail thumbnail">
 								
 								<div class="row" style="min-height:80px;">
 										<div class="span1" >

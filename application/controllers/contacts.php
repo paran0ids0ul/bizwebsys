@@ -90,6 +90,8 @@ class Contacts extends MY_Controller {
 			{
 				
             	$error = array('error' => $this->upload->display_errors());
+
+            	print_r($error);
                         
             	$newID = $this->contacts_model->new_contactID_db();
 
@@ -97,7 +99,7 @@ class Contacts extends MY_Controller {
 
             	$this->contacts_model->close_ldap();
             	
-            	//$this->display_contact_byID($newID);
+            	$this->display_contact_byID($newID);
             	
             	
             }
@@ -125,8 +127,7 @@ class Contacts extends MY_Controller {
 
 				unlink($file_data['full_path']);
 
-			
-				//$this->display_contact_byID($newID);
+				$this->display_contact_byID($newID);
 			}
 			
 			
@@ -135,9 +136,13 @@ class Contacts extends MY_Controller {
 		
 	}
 	
-	public function display_contact_byID($id){
+	public function display_contact_byID($id)
+	{
 
-		$this->_render('app/contacts/display_contact');
+
+		$data = $this->contacts_model->get_contact($id);
+
+		$this->_data_render('app/contacts/display_contact',$data);
 
 	}
 }

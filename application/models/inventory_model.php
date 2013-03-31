@@ -81,6 +81,7 @@ class Inventory_model extends MY_Model {
 			'StockROP' => $this->input->post('item_rop'),
 			'Cost' => $this->input->post('item_costprice'),
 			'VATRate' => $this->input->post('item_vatrate'),
+			'DiscountRate' => $this->input->post('item_disrate'),
 			'GTIN' => $this->input->post('item_gtin'),
 			'NetPrice' => $this->input->post('item_netprice')
 			
