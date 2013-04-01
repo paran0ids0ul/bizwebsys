@@ -105,7 +105,7 @@ class Pos extends MY_Controller {
 		$this->data["custom_js"] =$this->data["custom_js"].'	
 								    <script>
 										var items=new Array(); 
-										function item(ProductID,name,NetPrice,VATRate,quantity,discount)
+										function item(ProductID,name,NetPrice,VATRate,quantity,discount,selected)
 										{
 											this.ProductID = ProductID;
 											this.name = name;
@@ -113,6 +113,7 @@ class Pos extends MY_Controller {
 											this.VATRate = VATRate;
 											this.quantity = quantity;
 											this.discount = discount;
+											this.selected = selected;
 											
 											this.getDisplayPrice = getDisplayPrice;
 											this.getTax = getTax;
@@ -120,17 +121,20 @@ class Pos extends MY_Controller {
 											
 											function getDisplayPrice()
 											{
-												return (this.NetPrice * this.quantity * this.discount);
+												var DisplayPrice = this.NetPrice * this.quantity * this.discount;
+												return toFixed(DisplayPrice, 2);
 											}
 											
 											function getTax()
 											{
-												return (this.NetPrice * this.quantity * this.discount * this.VATRate);
+												var tax = this.NetPrice * this.quantity * this.discount * this.VATRate;
+												return toFixed(tax, 2);
 											}
 											
 											function getTotal()
 											{
-												return (this.getDisplayPrice()+this.getTax());
+												var total = this.getDisplayPrice()+this.getTax();
+												return toFixed(total, 2);
 											}
 										}
 										
@@ -141,7 +145,7 @@ class Pos extends MY_Controller {
 											{
 												total += items[i].getTotal(); 
 											}
-											return total;
+											return toFixed(total, 2);
 										}
 										
 										function getTax()
@@ -151,8 +155,9 @@ class Pos extends MY_Controller {
 											{
 												tax += items[i].getTax(); 
 											}
-											return tax;
+											return toFixed(tax, 2);
 										}
+										
 										function clearItemList()
 										{
 											items.splice(0, items.length);
@@ -165,7 +170,7 @@ class Pos extends MY_Controller {
 											$(\'#ItemList\').empty();
 											for(i=0;i<items.length;i++)
 											{
-												if(i==0)
+												if(items[i].selected==true)
 												{
 													var html = "<li value="+items[i].VATRate+" id=\'li_"+items[i].ProductID+"\' class=\'selected\'><div class=\'span2\'>"+items[i].name+"</div><div class=\'span1 price\'>£"+items[i].getDisplayPrice()+"</div>";
 													if(items[i].quantity>1)
@@ -209,6 +214,7 @@ class Pos extends MY_Controller {
 											var name=$(this).children(\'label\').text();
 											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
 											var VATRate=parseFloat($(this).attr(\'value\'));
+											var DiscountRate=parseFloat($(this).attr(\'rel\'));
 											
 											var isOnList = false;
 											for(i=0;i<items.length;i++)
@@ -223,7 +229,10 @@ class Pos extends MY_Controller {
 											
 											if(isOnList == false)
 											{
-												NewItem = new item(ProductID,name,NetPrice,VATRate,1,1);
+												if(items.length==0)
+													NewItem = new item(ProductID,name,NetPrice,VATRate,1,DiscountRate,true);
+												else
+													NewItem = new item(ProductID,name,NetPrice,VATRate,1,DiscountRate,false);
 												items.push(NewItem);
 											}
 											renderItemList();
@@ -233,10 +242,28 @@ class Pos extends MY_Controller {
 										
 										//Click on list item effect
 										$(\'.item-list\').on(\'click\', \'li\', function () { 
+											var i = getSelectedItemIndex();
+											items[i].selected = false;
+											
 											$(\'li\').removeClass(\'selected\');
 											$(this).addClass(\'selected\');	
 											input="";
+											
+											i = getSelectedItemIndex();
+											items[i].selected = true;
+											
 										});
+										
+										function getSelectedItemIndex()
+										{
+											var ProductID = $(\'.selected\').attr(\'id\').substr(3);
+											for(i=0;i<items.length;i++)
+											{
+												if(ProductID == items[i].ProductID)
+													break;
+											}
+											return i;
+										}
 										
 										//Round float number to fixed decimal places
 										function toFixed(num, fixed) {
