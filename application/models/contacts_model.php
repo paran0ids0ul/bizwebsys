@@ -24,7 +24,6 @@ class Contacts_model extends MY_Model {
 	}
 	
 	public function get_ldap() {
-		
 	
 		return $this->myldap;
 	}
@@ -146,8 +145,6 @@ class Contacts_model extends MY_Model {
 			'mail' => $this->input->post('contact_email'),
 			'o' => $this->input->post('contact_org')
 		);
-
-
 
 		$this->myldap->user()->create_contact($attributes);
 

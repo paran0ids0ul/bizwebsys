@@ -72,7 +72,12 @@
 												<input name="contact_hstreet2" id="contact_hstreet2" type="text" placeholder="Street name 2" >
 												<input class="span2" name="contact_hstate" id="contact_hstate" type="text" placeholder="City/State" >
 												<input class="span1" name="contact_hpostcode" id="contact_hpostcode" type="text" placeholder="Postal Code" >
-												<input name="contact_hcountry" id="contact_hcountry" type="text" placeholder="Country" >
+												<select name="contact_hcountry" id="contact_hcountry">
+													<option value="">Country :</option>
+													<?php foreach ($country_list as $country): ?>
+														<option value="<?php echo $country ?>"><?php echo $country ?></option>
+													<?php endforeach ?>
+												</select>
 											</div>
 										</div>
 								

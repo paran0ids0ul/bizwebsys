@@ -10,13 +10,12 @@
 		<!-- Control Buttons -->
 		<?php echo validation_errors(); ?>
 		<?php echo form_open_multipart("contacts/edit_contact/$uid") ?>
-			<div>
-				
-				<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
-				<a href="<?php echo base_url("contacts/display_contact_byID/$uid")?>"class="btn btn-link">
-					Cancel
-				</a>
-			</div>
+		<div>
+			<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
+			<a href="<?php echo base_url("contacts/display_contact_byID/$uid")?>"class="btn btn-link">
+				Cancel
+			</a>
+		</div>
 
 		<!-- Form Container -->
 			<div class="contact-container container">
@@ -33,7 +32,7 @@
 													else {
 														echo base_url("resources/images/no_image.gif");
 													}
-									?> alt="Inventory">
+									?> alt="<?php echo $cn ?>">
 								</a>
 							</div>
 							<div class="span1 content">
@@ -75,7 +74,12 @@
 												<input name="contact_hstreet2" id="contact_hstreet2" type="text" placeholder="Street name 2" value="<?php echo $street2 ?>">
 												<input class="span2" name="contact_hstate" id="contact_hstate" type="text" placeholder="City/State" value="<?php echo $st ?>">
 												<input class="span1" name="contact_hpostcode" id="contact_hpostcode" type="text" placeholder="Postal Code" value="<?php echo $postalCode ?>">
-												<input name="contact_hcountry" id="contact_hcountry" type="text" placeholder="Country" value="<?php echo $l ?>">
+												<select name="contact_hcountry" id="contact_hcountry">
+													<option value="">Country :</option>
+													<?php foreach ($country_list as $country): ?>
+														<option value="<?php echo $country ?>" <?php if ($l == $country) {echo 'selected';} ?>><?php echo $country ?></option>
+													<?php endforeach ?>
+												</select>
 											</div>
 										</div>
 								
