@@ -386,7 +386,6 @@ class MyLdapUsers {
 	    	if ($attributes['title']) {	$add['title'][0] = $attributes['title']; }
 	    }
 
-	    
 
 		$result1 = ldap_modify($this->myldap->getLdapConnection(),'uid='.$newID.',ou=people,dc=bizwebsys,dc=tk', $update);
 		$result2 = true;

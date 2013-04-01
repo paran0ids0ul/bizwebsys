@@ -89,7 +89,7 @@
 									
 									<label class="span2">Home phone</label>
 									<div class="span2 label-field">
-										<input id="employee_phone" name="employee_phone" type="text" placeholder="+97789789789" value="<?php echo $homephone ?>">
+										<input id="employee_homephone" name="employee_homephone" type="text" placeholder="+97789789789" value="<?php echo $homephone ?>">
 									</div>
 									
 									<label class="span2">Mobile</label>
