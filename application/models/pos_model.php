@@ -21,12 +21,12 @@ class Pos_model extends MY_Model {
 			'PaymentMethod' => $payment_method
 		);
 		
-		return $this->db->insert('salesorder', $data);
+		return $this->db->insert('SalesOrder', $data);
 	}
 	
 	public function get_orderid($ref)
 	{
-		$query = $this->db->get_where('salesorder', array('Ref' => $ref));
+		$query = $this->db->get_where('SalesOrder', array('Ref' => $ref));
 		if ($query->num_rows() > 0)
 		{
 		   foreach ($query->result() as $row)
@@ -48,6 +48,6 @@ class Pos_model extends MY_Model {
 			'DiscountRate' => $discount
 		);
 		
-		return $this->db->insert('salesorderline', $data);
+		return $this->db->insert('SalesOrderLine', $data);
 	}
 }
