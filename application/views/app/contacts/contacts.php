@@ -37,11 +37,11 @@
 											echo site_url("contacts/display_contact_byID/$id");
 									?>" class="contact-thumbnail thumbnail">
 								
-								<div class="row" style="min-height:80px;">
+								<div class="row" style="min-height:95px;">
 										<div class="span1" >
 											<img src=<?php 
-														$cname = $contact['cn'][0];
-														$sr = ldap_search($ldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "cn=$cname");
+														$uid = $contact['uid'][0];
+														$sr = ldap_search($ldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "uid=$uid");
 														if ($sr) {
 															$ei=ldap_first_entry($ldap->getLdapConnection(), $sr);
 															if ($ei) {

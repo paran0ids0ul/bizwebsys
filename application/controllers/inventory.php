@@ -112,7 +112,7 @@ class Inventory extends MY_Controller {
 		{
 		
 			$config['upload_path'] = 'resources/images/inventory/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['overwrite'] = false;
 			
 			$this->load->library('upload', $config);
@@ -337,7 +337,7 @@ class Inventory extends MY_Controller {
 		{
 		
 			$config['upload_path'] = 'resources/images/inventory/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['overwrite'] = false;
 			
 			$this->load->library('upload', $config);

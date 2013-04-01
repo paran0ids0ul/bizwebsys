@@ -77,7 +77,7 @@ class Contacts extends MY_Controller {
 		{
 		
 			$config['upload_path'] = 'resources/images/contacts/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['overwrite'] = false;
 			
 			$this->load->library('upload', $config);
@@ -91,11 +91,11 @@ class Contacts extends MY_Controller {
 				
             	$error = array('error' => $this->upload->display_errors());
 
-            	print_r($error);
+            	$jpegStr = NULL;
                         
             	$newID = $this->contacts_model->new_contactID_db();
 
-            	$this->contacts_model->new_contact($newID);
+            	$this->contacts_model->new_contact($newID,$jpegStr);
 
             	$this->contacts_model->close_ldap();
             	
@@ -107,8 +107,6 @@ class Contacts extends MY_Controller {
             {
 		
 				$newID = $this->contacts_model->new_contactID_db();
-
-				$this->contacts_model->new_contact($newID);
 			
 				$file_data  =   $this->upload->data();
 
@@ -119,7 +117,7 @@ class Contacts extends MY_Controller {
 				$jpegStr = fread($fd, $fsize);
 				
 								
-				$this->contacts_model->add_image($newID,$jpegStr);
+				$this->contacts_model->new_contact($newID,$jpegStr);
 
 				$this->contacts_model->close_ldap();
 
@@ -145,35 +143,82 @@ class Contacts extends MY_Controller {
 		$this->_data_render('app/contacts/display_contact',$data);
 
 	}
-}
-	
-	/*
-	public function display_order($order_id="SO0001",$customer="cust1",$date="7/03/2013"){
-		//data
-		$this->data["order_id"] = $order_id;
-		$this->data["customer"] = $customer;
-		$this->data["date"] = $date;
+
+	public function edit_contact($id)
+	{
+
+
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
 		
-		$this->_render('app/sales/display_order');
-	}
 	
-		public function display_invoice(){
-		$this->_render('app/sales/display_invoice');
-	}
+		$this->form_validation->set_rules('contact_fname', 'First Name', 'required');
 	
-	public function cust_invoice(){
-		$this->_render('app/sales/cust_invoice');
+		if ($this->form_validation->run() === FALSE)
+		{
+
+			$data = $this->contacts_model->get_contact($id);
+
+			$this->_data_render('app/contacts/edit_contact',$data);
+		
+		}
+		else 
+		{
+		
+			$config['upload_path'] = 'resources/images/contacts/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['overwrite'] = false;
+			
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+		
+			
+		
+		
+			if ( ! $this->upload->do_upload('file'))
+			{
+				
+            	$error = array('error' => $this->upload->display_errors());
+                        
+                $jpegStr = NULL;
+
+            	$this->contacts_model->update_contact($id,$jpegStr);
+
+            	$this->contacts_model->close_ldap();
+            	
+            	$this->display_contact_byID($id);
+            	
+            	
+            }
+            else 
+            {
+		
+				$newID = $this->contacts_model->new_contactID_db();
+			
+				$file_data  =   $this->upload->data();
+
+				$fd = fopen($file_data['full_path'], 'r');
+
+				$fsize=filesize($file_data['full_path']);
+
+				$jpegStr = fread($fd, $fsize);
+				
+				$this->contacts_model->update_contact($id,$jpegStr);
+
+				$this->contacts_model->close_ldap();
+
+				fclose($fd);
+
+				unlink($file_data['full_path']);
+
+				$this->display_contact_byID($id);
+			}
+			
+			
+		}
+
+
 	}
 
-	public function cust_payment(){
-		$this->_render('app/sales/cust_payment');
-	}
-
-	public function sup_invoice(){
-		$this->_render('app/sales/sup_invoice');
-	}
-
-	public function sup_payment(){
-		$this->_render('app/sales/sup_payment');
-	}	*/
+}
 	

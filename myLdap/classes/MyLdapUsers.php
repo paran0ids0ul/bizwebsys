@@ -25,6 +25,7 @@ class MyLdapUsers {
 		if ($attributes['sn']) { $user['sn'][0] = $attributes['sn']; }
 		if ($attributes['cn']) { $user['cn'][0] = $attributes['cn']; }
 		if ($attributes['uid']) { $user['uid'] = $attributes['uid']; }
+		if ($attributes['jpegPhoto']) { $user['jpegPhoto'][0] = $attributes['jpegPhoto']; }
 		if ($attributes['facsimileTelephoneNumber']) { $user['facsimileTelephoneNumber'][0] = $attributes['facsimileTelephoneNumber']; }
 		if ($attributes['telephoneNumber']) { $user['telephoneNumber'][0] = $attributes['telephoneNumber']; }
 		if ($attributes['mobile']) { $user['mobile'][0] = $attributes['mobile']; }
@@ -126,6 +127,108 @@ class MyLdapUsers {
     }
     
     
+    public function update_contact($attributes,$id)
+    {
+
+    	$result = ldap_search($this->myldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(uid=".$id.")") or die ("Error in search query"); 
+
+	    $entry = ldap_first_entry($this->myldap->getLdapConnection(), $result);
+	    
+	    $info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
+
+
+	    $update['sn'][0] = $attributes['sn'] == NULL ? "" : $attributes['sn']; 
+	    $update['cn'][0] = $attributes['cn'] == NULL ? "" : $attributes['cn'];
+
+	    if (array_key_exists("givenName",$info)) {
+	    	$update['givenName'][0] = $attributes['givenName'] == NULL ? "" : $attributes['givenName']; 
+	    } else {
+	    	if ($attributes['givenName']) {	$add['givenName'][0] = $attributes['givenName']; }
+	    }
+
+	    if (array_key_exists("jpegPhoto",$info)) {
+	    	if ($attributes['jpegPhoto'])
+	    	{
+	    		$update['jpegPhoto'][0] = $attributes['jpegPhoto']; 
+	    	}
+	    } else {
+	    	if ($attributes['jpegPhoto']) {	$add['jpegPhoto'][0] = $attributes['jpegPhoto']; }
+	    }
+
+	    if (array_key_exists("facsimileTelephoneNumber",$info)) {
+	    	$update['facsimileTelephoneNumber'][0] = $attributes['facsimileTelephoneNumber'] == NULL ? "" : $attributes['facsimileTelephoneNumber']; 
+	    } else {
+	    	if ($attributes['facsimileTelephoneNumber']) { $add['facsimileTelephoneNumber'][0] = $attributes['facsimileTelephoneNumber']; }
+	    }
+
+	    if (array_key_exists("telephoneNumber",$info)) {
+	    	$update['telephoneNumber'][0] = $attributes['telephoneNumber'] == NULL ? "" : $attributes['telephoneNumber']; 
+	    } else {
+	    	if ($attributes['telephoneNumber']) { $add['telephoneNumber'][0] = $attributes['telephoneNumber']; }
+	    }
+
+	    if (array_key_exists("mobile",$info)) {
+	    	$update['mobile'][0] = $attributes['mobile'] == NULL ? "" : $attributes['mobile']; 
+	    } else {
+	    	if ($attributes['mobile']) {	$add['mobile'][0] = $attributes['mobile']; }
+	    }
+
+	    if (array_key_exists("street",$info)) {
+	    	$update['street'][0] = $attributes['street'] == NULL ? "" : $attributes['street']; 
+	    } else {
+	    	if ($attributes['street']) {	$add['street'][0] = $attributes['street']; }
+	    }
+
+	    if (array_key_exists("st",$info)) {
+	    	$update['st'][0] = $attributes['st'] == NULL ? "" : $attributes['st']; 
+	    } else {
+	    	if ($attributes['st']) {	$add['st'][0] = $attributes['st']; }
+	    }
+
+	    if (array_key_exists("l",$info)) {
+	    	$update['l'][0] = $attributes['l'] == NULL ? "" : $attributes['l']; 
+	    } else {
+	    	if ($attributes['l']) {	$add['l'][0] = $attributes['l']; }
+	    }
+
+	    if (array_key_exists("postalCode",$info)) {
+	    	$update['postalCode'][0] = $attributes['postalCode'] == NULL ? "" : $attributes['postalCode']; 
+	    } else {
+	    	if ($attributes['postalCode']) {	$add['postalCode'][0] = $attributes['postalCode']; }
+	    }
+
+	    if (array_key_exists("postalAddress",$info)) {
+	    	$update['postalAddress'][0] = $attributes['postalAddress'] == NULL ? "" : $attributes['postalAddress']; 
+	    } else {
+	    	if ($attributes['postalAddress']) {	$add['postalAddress'][0] = $attributes['postalAddress']; }
+	    }
+	     
+	    if (array_key_exists("mail",$info)) {
+	    	$update['mail'][0] = $attributes['mail'] == NULL ? "" : $attributes['mail']; 
+	    } else {
+	    	if ($attributes['mail']) {	$add['mail'][0] = $attributes['mail']; }
+	    }
+
+	    if (array_key_exists("o",$info)) {
+	    	$update['o'][0] = $attributes['o'] == NULL ? "" : $attributes['o']; 
+	    } else {
+	    	if ($attributes['o']) {	$add['o'][0] = $attributes['o']; }
+	    }
+		
+		
+		$result1 = ldap_modify($this->myldap->getLdapConnection(),'uid='.$id.',ou=contacts,dc=bizwebsys,dc=tk', $update);
+		$result2 = true;
+		if (isset($add)) { $result2 = ldap_mod_add($this->myldap->getLdapConnection(), "uid=".$id.",ou=contacts,dc=bizwebsys,dc=tk", $add); }
+		 
+
+	    if (($result1 != true) || $result2 != true) { 
+            return false; 
+        }
+        
+        return true;
+    	
+
+    }
     
 
 

@@ -14,7 +14,9 @@
 					</a>
 				</div>
 				<div class="span1">
-					<button class="btn btn-primary same-btn-width">Edit</button>
+					<a href="<?php echo site_url("contacts/edit_contact/$uid") ?>">
+						<button class="btn btn-primary same-btn-width">Edit</button>
+					</a>
 				</div>	
 				<div class="span1">
 					<button class="btn btn-primary same-btn-width">Print</button>
@@ -31,37 +33,37 @@
 						<div class="row">
 							<div class="upper-contact">
 								<div class="span1">
-									<a href="<?php echo site_url("add_contact_picture");?>" class="thumbnail">
-										<img src=<?php if ($jpeg != NULL) {
-															$mime = 'image/jpeg';
-															$base64   = base64_encode($jpeg); 
-															print('"data:' . $mime . ';base64,' . $base64.'"');
-														}
-														else {
-															echo base_url("resources/images/no_image.gif");
-														}
-										?> alt="Contact <?php echo $uid ?>">
-									</a>
+									
+									<img src=<?php if ($jpeg != NULL) {
+														$mime = 'image/jpeg';
+														$base64   = base64_encode($jpeg); 
+														print('"data:' . $mime . ';base64,' . $base64.'"');
+													}
+													else {
+														echo base_url("resources/images/no_image.gif");
+													}
+									?> alt="Contact <?php echo $uid ?>">
+									
 								</div>
 								<div class="span1 content">
 									
 									<label>First Name</label>									
 								</div>
 								<div class="span3 content">
-									<span class="input-xlarge uneditable-input" style="width:90%" name ="contact_fname" id="contact_fname"><?php echo $gn ?></span>
+									<span class="uneditable-input" name ="contact_fname" id="contact_fname"><?php echo $gn ?></span>
 								</div>
 								
 								<div class="span1 content">
 									<label>Surname</label>									
 								</div>
 								<div class="span3 content">
-									<span class="input-xlarge uneditable-input" style="width:60%" name ="contact_sname" id="contact_sname"><?php echo $sn ?></span>
+									<span class="uneditable-input" name ="contact_sname" id="contact_sname"><?php echo $sn ?></span>
 								</div>
 								<div class="span1 content">
 									<label>Common Name</label>									
 								</div>
 								<div class="span6 content">
-									<span class="input-xlarge uneditable-input" style="width:90%" name ="contact_cname" id="contact_cname"><?php echo $cn ?></span>
+									<span class="uneditable-input" name ="contact_cname" id="contact_cname"><?php echo $cn ?></span>
 								</div>
 									
 						

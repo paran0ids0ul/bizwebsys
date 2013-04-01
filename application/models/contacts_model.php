@@ -106,7 +106,7 @@ class Contacts_model extends MY_Model {
 	
 	}
 
-	public function new_contact($id)
+	public function new_contact($id,$jpegStr)
 	{
 		
 
@@ -124,7 +124,7 @@ class Contacts_model extends MY_Model {
 		$hStreet2 = $this->input->post('contact_hstreet2');
 
 		$hStreet = $hStreet1."$".$hStreet2;
-		if ($hStreet = "$") {
+		if ($hStreet == "$") {
 			$hStreet = NULL;
 		}
 		
@@ -134,6 +134,7 @@ class Contacts_model extends MY_Model {
 			'sn' => $this->input->post('contact_sname'),
 			'cn' => $this->input->post('contact_cname'),
 			'uid' => $id,
+			'jpegPhoto' => $jpegStr,
 			'facsimileTelephoneNumber' => $this->input->post('contact_fax'),
 			'telephoneNumber' => $this->input->post('contact_work'),
 			'mobile' => $this->input->post('contact_mobile'),
@@ -167,6 +168,55 @@ class Contacts_model extends MY_Model {
 		$entry["jpegPhoto"][0] = "$bstring";
 
 		$result = ldap_mod_add($this->myldap->getLdapConnection(), "uid=".$id.",ou=contacts,dc=bizwebsys,dc=tk", $entry);
+
+	}
+
+
+
+	public function update_contact($id,$jpegStr) 
+	{
+
+		try {
+			$this->myldap = new MyLdap();
+		}
+		catch (adLDAPException $e) {
+			echo $e;
+			exit();   
+		}
+
+		$this->load->helper('url');
+
+		$hStreet1 = $this->input->post('contact_hstreet1');
+		$hStreet2 = $this->input->post('contact_hstreet2');
+
+		$hStreet = $hStreet1."$".$hStreet2;
+		if ($hStreet == "$") {
+			$hStreet = NULL;
+		}
+		
+	
+		$attributes = array(
+			'givenName' => $this->input->post('contact_fname'),
+			'sn' => $this->input->post('contact_sname'),
+			'cn' => $this->input->post('contact_cname'),
+			'uid' => $id,
+			'jpegPhoto' => $jpegStr,
+			'facsimileTelephoneNumber' => $this->input->post('contact_fax'),
+			'telephoneNumber' => $this->input->post('contact_work'),
+			'mobile' => $this->input->post('contact_mobile'),
+			'street' => $hStreet,
+			'st' => $this->input->post('contact_hstate'),
+			'l' => $this->input->post('contact_hcountry'),
+			'postalCode' => $this->input->post('contact_hpostcode'),
+			'postalAddress' => $this->input->post('contact_paddress'), 
+			'mail' => $this->input->post('contact_email'),
+			'o' => $this->input->post('contact_org')
+		);
+
+
+
+		$this->myldap->user()->update_contact($attributes,$id);
+
 
 	}
 	
