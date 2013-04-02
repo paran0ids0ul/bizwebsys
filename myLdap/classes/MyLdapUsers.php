@@ -133,9 +133,12 @@ class MyLdapUsers {
 
 	    $entry = ldap_first_entry($this->myldap->getLdapConnection(), $result);
 	    
-	    $info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
+	    if ($entry != false) {
+	    	$info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
+	    	return $info;
+	    }
+	    return false;
 	    
-	    return $info;
 	    
     }
     

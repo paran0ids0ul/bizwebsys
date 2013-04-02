@@ -55,17 +55,17 @@
 
 							<div class="span2">
 								<label>First name :</label> 
-								<input id="employee_fname" name="employee_fname" type="text" placeholder="e.g John" value="<?php echo $gn ?>" >
+								<input id="employee_fname" name="employee_fname" type="text" placeholder="e.g John" value="<?php echo set_value('employee_fname',$gn);?>">
 								<label>Surname :</label> 
-								<input id="employee_sname" name="employee_sname"  type="text" placeholder="e.g White" value="<?php echo $sn ?>">
+								<input id="employee_sname" name="employee_sname"  type="text" placeholder="e.g White" value="<?php echo set_value('employee_sname',$sn);?>">
 								<label>Common name :</label> 
-								<input id="employee_cname" name="employee_cname"  type="text" placeholder="e.g John2" value="<?php echo $cn ?>">
+								<input id="employee_cname" name="employee_cname"  type="text" placeholder="e.g John2" value="<?php echo set_value('employee_cname',$cn);?>">
 								
 							</div>
 
 							<div class="span2 offset2">
 								<label>Username :</label> 
-								<input id="employee_uname" name="employee_uname" type="text" placeholder="e.g John" value="<?php echo $uid ?>">
+								<input id="employee_uname" name="employee_uname" type="text" placeholder="e.g John" value="<?php echo set_value('employee_uname',$uid);?>">
 								<label>Password : (Leave it blank if you do not wish to reset)</label> 
 								<input type="password" id="employee_password" name="employee_password">
 							</div>
@@ -84,27 +84,27 @@
 									<h4>Contact Information</h4>									
 									<label class="span2">Email</label>
 									<div class="span2 label-field">
-										<input readonly id="employee_email" name="employee_email"  type="text" placeholder="John@gmail.com" value="<?php echo $mail ?>">
+										<input readonly id="employee_email" name="employee_email"  type="text" placeholder="John@gmail.com"  value="<?php echo set_value('employee_email',$mail);?>">
 									</div>
 									
 									<label class="span2">Home phone</label>
 									<div class="span2 label-field">
-										<input id="employee_homephone" name="employee_homephone" type="text" placeholder="+97789789789" value="<?php echo $homephone ?>">
+										<input id="employee_homephone" name="employee_homephone" type="text" placeholder="+97789789789"  value="<?php echo set_value('employee_homephone',$homephone);?>">
 									</div>
 									
 									<label class="span2">Mobile</label>
 									<div class="span2 label-field">
-										<input id="employee_mobile" name="employee_mobile" type="text" placeholder="00447789789789" value="<?php echo $mobile ?>">
+										<input id="employee_mobile" name="employee_mobile" type="text" placeholder="00447789789789"  value="<?php echo set_value('employee_mobile',$mobile);?>">
 									</div>
 									
 									<label class="span2">Postal Address</label>
 									<div class="span2 label-field">
-										<textarea name="employee_paddress" style="width:90" rows="5"><?php echo $paddress ?></textarea>
+										<textarea name="employee_paddress" style="width:90" rows="5"><?php echo set_value('employee_paddress',$paddress);?></textarea>
 									</div>										
 											
 									<label class="span2">Postal Code</label>
 									<div class="span2 label-field">
-										<input id="employee_postcode" name="employee_postcode" type="text" placeholder="Postal code" value="<?php echo $postalCode ?>">
+										<input id="employee_postcode" name="employee_postcode" type="text" placeholder="Postal code" value="<?php echo set_value('employee_postcode',$postalCode);?>">
 									</div>
 									
 									<label class="span2">Country</label>
@@ -112,7 +112,18 @@
 										<select name="employee_country" id="employee_country">
 											<option value="">Country :</option>
 											<?php foreach ($country_list as $country): ?>
-												<option value="<?php echo $country ?>" <?php if ($l == $country) {echo 'selected';} ?>><?php echo $country ?></option>
+												<option value="<?php echo $country ?>" <?php if ($selected_country != NULL)
+																							{
+																								if ($selected_country == $country) {
+																									echo 'selected';
+																								}
+																							} else {
+																								if ($l == $country) {
+																									echo 'selected';
+																								}
+																							}
+
+												 										?>><?php echo $country ?></option>
 											<?php endforeach ?>
 										</select>
 									</div>
@@ -127,7 +138,18 @@
 										<select name="employee_title">
 											<option>Please Choose :</option>
 											<<?php foreach ($job_titles as $job): ?>
-												<option value="<?php echo $job ?>" <?php if ($jobtitle == $job) {echo 'selected';} ?>><?php echo $job ?></option>
+												<option value="<?php echo $job ?>" <?php if ($selected_title != NULL)
+																							{
+																								if ($selected_title == $job) {
+																									echo 'selected';
+																								}
+																							} else {
+																								if ($jobtitle == $job) {
+																									echo 'selected';
+																								}
+																							}
+
+												 										?>><?php echo $job ?></option>
 											<?php endforeach ?>
 										</select>						
 									</div>		

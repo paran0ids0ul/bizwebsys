@@ -91,20 +91,23 @@ class Employee_model extends MY_Model {
 
 		$employee = $this->myldap->user()->getUser_byID($uid);
 
-		$dt['uid'] = $employee['uid'][0];
-		$dt['cn'] = $employee['cn'][0];
-		$dt['sn'] = $employee['sn'][0];
- 		$dt['mail'] = $employee['mail'][0];
- 		$dt['gn'] = array_key_exists("givenName",$employee) ? $employee['givenName'][0] : NULL;
-		$dt['homephone'] = array_key_exists("homePhone",$employee) ? $employee['homePhone'][0] : NULL;
-		$dt['mobile'] = array_key_exists("mobile",$employee) ? $employee['mobile'][0] : NULL;
-		$dt['l'] = array_key_exists("l",$employee) ? $employee['l'][0] : NULL;
-		$dt['jpeg'] =  array_key_exists("jpegPhoto",$employee) ? $employee['jpegPhoto'][0] : NULL;
-		$dt['paddress'] = array_key_exists("postalAddress",$employee) ? $employee['postalAddress'][0] : NULL;
-		$dt['postalCode'] = array_key_exists("postalCode",$employee) ? $employee['postalCode'][0] : NULL;
-		$dt['jobtitle'] = array_key_exists("title",$employee) ? $employee['title'][0] : NULL;
+		if ($employee != false) {
 
-		return $dt;
+			$dt['uid'] = $employee['uid'][0];
+			$dt['cn'] = $employee['cn'][0];
+			$dt['sn'] = $employee['sn'][0];
+	 		$dt['mail'] = $employee['mail'][0];
+	 		$dt['gn'] = array_key_exists("givenName",$employee) ? $employee['givenName'][0] : NULL;
+			$dt['homephone'] = array_key_exists("homePhone",$employee) ? $employee['homePhone'][0] : NULL;
+			$dt['mobile'] = array_key_exists("mobile",$employee) ? $employee['mobile'][0] : NULL;
+			$dt['l'] = array_key_exists("l",$employee) ? $employee['l'][0] : NULL;
+			$dt['jpeg'] =  array_key_exists("jpegPhoto",$employee) ? $employee['jpegPhoto'][0] : NULL;
+			$dt['paddress'] = array_key_exists("postalAddress",$employee) ? $employee['postalAddress'][0] : NULL;
+			$dt['postalCode'] = array_key_exists("postalCode",$employee) ? $employee['postalCode'][0] : NULL;
+			$dt['jobtitle'] = array_key_exists("title",$employee) ? $employee['title'][0] : NULL;
+
+			return $dt;
+		}
 
 	}
 

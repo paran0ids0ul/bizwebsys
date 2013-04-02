@@ -11,7 +11,7 @@
 		<?php echo validation_errors(); ?>
 		<?php echo form_open_multipart('employee/new_employee') ?>
 		<div>
-			<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
+			<input type="submit" class="btn btn-primary span1" name="submit" value="Save" id="new_emp_submit"/>
 			<a href="<?php echo site_url("employee")?>" class="btn btn-link">
 				Discard
 			</a>
@@ -49,16 +49,16 @@
 
 							<div class="span2">
 								<label>First name :</label> 
-								<input id="employee_fname" name="employee_fname" type="text" placeholder="e.g John" >
+								<input id="employee_fname" name="employee_fname" type="text" placeholder="e.g John" value="<?php echo set_value('employee_fname');?>">
 								<label>Surname :</label> 
-								<input id="employee_sname" name="employee_sname" type="text" placeholder="e.g White" >	
+								<input id="employee_sname" name="employee_sname" type="text" placeholder="e.g White" value="<?php echo set_value('employee_sname');?>">	
 							</div>
 
 							<div class="span2 offset1">
 								<label>Common name :</label> 
-								<input id="employee_cname" name="employee_cname" type="text" placeholder="e.g John2" >
+								<input id="employee_cname" name="employee_cname" type="text" placeholder="e.g John2" value="<?php echo set_value('employee_cname');?>">
 								<label>Username :</label> 
-								<input id="employee_uname" name="employee_uname" type="text" placeholder="e.g John" >
+								<input id="employee_uname" name="employee_uname" type="text" placeholder="e.g John" value="<?php echo set_value('employee_uname');?>">
 								
 							</div>
 	
@@ -76,27 +76,27 @@
 									<h4>Contact Information</h4>									
 									<label class="span2">Email</label>
 									<div class="span2 label-field">
-										<input readonly id="employee_email" name="employee_email" type="text" placeholder="John@gmail.com" >
+										<input readonly id="employee_email" name="employee_email" type="text" placeholder="John@gmail.com" value="<?php echo set_value('employee_email');?>">
 									</div>
 									
 									<label class="span2">Home phone</label>
 									<div class="span2 label-field">
-										<input id="employee_homephone" name="employee_homephone" type="text" placeholder="+97789789789" >
+										<input id="employee_homephone" name="employee_homephone" type="text" placeholder="+97789789789" value="<?php echo set_value('employee_homephone');?>">
 									</div>
 									
 									<label class="span2">Mobile</label>
 									<div class="span2 label-field">
-										<input id="employee_mobile" name="employee_mobile" type="text" placeholder="00447789789789" >
+										<input id="employee_mobile" name="employee_mobile" type="text" placeholder="00447789789789" value="<?php echo set_value('employee_mobile');?>">
 									</div>
 									
 									<label class="span2">Postal Address</label>
 										<div class="span2 label-field">
-											<textarea name="employee_paddress" style="width:90" rows="5"></textarea>
+											<textarea name="employee_paddress" style="width:90" rows="5"><?php echo set_value('employee_paddress');?></textarea>
 										</div>
 										
 									<label class="span2">Postal Code</label>
 									<div class="span2 label-field">
-										<input id="employee_postcode" name="employee_postcode" type="text" placeholder="Postal code" >
+										<input id="employee_postcode" name="employee_postcode" type="text" placeholder="Postal code" value="<?php echo set_value('employee_postcode');?>">
 									</div>
 
 									<label class="span2">Country</label>
@@ -104,7 +104,18 @@
 											<select name="employee_country" id="employee_country">
 												<option value="">Please Choose :</option>
 												<?php foreach ($country_list as $country): ?>
-													<option value="<?php echo $country ?>"><?php echo $country ?></option>
+													<option value="<?php echo $country ?>" <?php if ($selected_country != NULL)
+																							{
+																								if ($selected_country == $country) {
+																									echo 'selected';
+																								}
+																							} else {
+																								if ($l == $country) {
+																									echo 'selected';
+																								}
+																							}
+
+												 										?>><?php echo $country ?></option>
 												<?php endforeach ?>
 											</select>
 									</div>
@@ -117,7 +128,18 @@
 									<label class="span2">Job title</label>
 									<div class="span2 label-field" id="job_select">
 										<select name="employee_title" id="employee_titles">
-											<option value="">Please Choose :</option>
+											<option value="<?php echo $job ?>" <?php if ($selected_title != NULL)
+																							{
+																								if ($selected_title == $job) {
+																									echo 'selected';
+																								}
+																							} else {
+																								if ($jobtitle == $job) {
+																									echo 'selected';
+																								}
+																							}
+
+												 										?>><?php echo $job ?></option>
 										</select>						
 									</div>		
 								</div>

@@ -296,7 +296,9 @@ tr.hover {
    background-color: #8797B7;
 }
 
-
+#uname_alert {
+	color: #aa0303;
+}
 
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {

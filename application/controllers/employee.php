@@ -25,8 +25,43 @@ class Employee extends MY_Controller {
 		$this->employee_model->close_ldap();
 		
 	}
-	
-	
+
+
+	public function username_check($toCheck)
+	{
+		
+		$reference = $this->employee_model->get_employee($toCheck);
+
+		if (isset($reference)) {
+			if ($reference['uid'] == $toCheck) {
+				$this->form_validation->set_message('username_check', 'The username already exist in server');
+				return FALSE;
+			}
+		} 
+		else {
+  			return TRUE;
+  		}
+	}
+
+	public function check2($toCheck,$id)
+	{
+		if ($toCheck != $id) {
+			$reference = $this->employee_model->get_employee($toCheck);
+
+			if (isset($reference)) {
+				if ($reference['uid'] == $toCheck) {
+					$this->form_validation->set_message('check2', 'The username already exist in server');
+					return FALSE;
+				}
+			} 
+			else {
+  				return TRUE;
+  			}
+  		}
+  		else {
+  			return TRUE;
+  		}
+	}
 	
 	public function new_employee(){	
 
@@ -35,35 +70,26 @@ class Employee extends MY_Controller {
 								    <script>
 									   
 									    $(document).ready(function() {   
-									    	
-									    	var seloption ="";
-									    
-									    	var job_titles = ["Chief Executive Officer (CEO)","Chief Operating Officer (COO)","Chief Financial Officer (CFO)",
-									    	"Vice President of Marketing","Vice President of Production","Operations manager","Quality control, safety, environmental manager",
-									    	"Accountant, bookkeeper","Office manager","Receptionist","Foreperson, supervisor, lead person","Marketing manager",
-									    	"Purchasing manager","Shipping and receiving manager","Professional staff"];
-									    
-									    	$.each(job_titles, function(i) {
-								
-									    		seloption += \'<option value="\'+job_titles[i]+\'">\'+job_titles[i]+\'</option>\';
-									    	
-									    	}); 						     
-									    
-									    	$("#employee_titles").append(seloption);
-
 
 
 									    	$("#employee_uname").keyup(function() {
+									    		var uname = $("#employee_uname").val();
 									    		var email = $("#employee_uname").val() + "@bizwebsys.tk";
   												$("#employee_email").val(email);
 											});
 
+										
 									    });
 									  									   
 								    </script>';
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
+
+		$data['job_titles'] = array("Chief Executive Officer (CEO)","Chief Operating Officer (COO)","Chief Financial Officer (CFO)",
+							    	"Vice President of Marketing","Vice President of Production","Operations manager","Quality control, safety, environmental manager",
+							    	"Accountant, bookkeeper","Office manager","Receptionist","Foreperson, supervisor, lead person","Marketing manager",
+							    	"Purchasing manager","Shipping and receiving manager","Professional staff");
 
 		$data['country_list'] = array(
 				"Afghanistan",
@@ -264,11 +290,20 @@ class Employee extends MY_Controller {
 		$this->form_validation->set_rules('employee_fname', 'First Name', 'required');
 		$this->form_validation->set_rules('employee_sname', 'Surname', 'required');
 		$this->form_validation->set_rules('employee_cname', 'Common Name', 'required');
-		$this->form_validation->set_rules('employee_uname', 'Username', 'required');
-	
+		$this->form_validation->set_rules('employee_uname', 'Username', 'required|callback_username_check');
+		$this->form_validation->set_rules('employee_email','','');
+		$this->form_validation->set_rules('employee_homephone','','');
+		$this->form_validation->set_rules('employee_mobile','','');
+		$this->form_validation->set_rules('employee_paddress','','');
+		$this->form_validation->set_rules('employee_postcode','','');
+		$this->form_validation->set_rules('contact_mobile','','');
+
+
 		if ($this->form_validation->run() === FALSE)
 		{
 		
+			$data['selected_country'] = $this->input->post('employee_country');
+			$data['selected_title'] = $this->input->post('employee_title');
 			$this->_data_render('app/employee/new_employee',$data);
 		
 		}
@@ -361,15 +396,27 @@ class Employee extends MY_Controller {
 									  									   
 								    </script>';
 
+		
+		
 
+				
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-	
+
+		
+		
 		$this->form_validation->set_rules('employee_fname', 'First Name', 'required');
 		$this->form_validation->set_rules('employee_sname', 'Surname', 'required');
 		$this->form_validation->set_rules('employee_cname', 'Common Name', 'required');
-		$this->form_validation->set_rules('employee_uname', 'Username', 'required');
+		$this->form_validation->set_rules('employee_uname', 'Username', 'required|callback_check2['.$id.']');
+		$this->form_validation->set_rules('employee_email','','');
+		$this->form_validation->set_rules('employee_homephone','','');
+		$this->form_validation->set_rules('employee_mobile','','');
+		$this->form_validation->set_rules('employee_paddress','','');
+		$this->form_validation->set_rules('employee_postcode','','');
+		$this->form_validation->set_rules('contact_mobile','','');
+
 
 		$data = $this->employee_model->get_employee($id);
 
@@ -574,12 +621,14 @@ class Employee extends MY_Controller {
 				"Zimbabwe"
 			);
 
-	
+
+
 		if ($this->form_validation->run() === FALSE)
-		{
-			
+		{	
+
+			$data['selected_country'] = $this->input->post('employee_country');
+			$data['selected_title'] = $this->input->post('employee_title');
 			$this->_data_render('app/employee/edit_employee',$data);
-		
 		}
 		else 
 		{

@@ -65,8 +65,19 @@ class Contacts extends MY_Controller {
 		$this->load->library('form_validation');
 		
 	
+		$this->form_validation->set_rules('contact_fname', 'First Name', 'required');
+		$this->form_validation->set_rules('contact_sname', ' Surname', 'required');
 		$this->form_validation->set_rules('contact_cname', 'Common Name', 'required');
-		$this->form_validation->set_rules('contact_sname', 'Surname', 'required');
+		$this->form_validation->set_rules('contact_hstreet1','','');
+		$this->form_validation->set_rules('contact_hstreet2','','');
+		$this->form_validation->set_rules('contact_hstate','','');
+		$this->form_validation->set_rules('contact_hpostcode','','');
+		$this->form_validation->set_rules('contact_work','','');
+		$this->form_validation->set_rules('contact_mobile','','');
+		$this->form_validation->set_rules('contact_fax','','');
+		$this->form_validation->set_rules('contact_email','','');
+		$this->form_validation->set_rules('contact_org','','');
+		$this->form_validation->set_rules('contact_paddress','','');
 
 		$data['country_list'] = array(
 				"Afghanistan",
@@ -267,6 +278,7 @@ class Contacts extends MY_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 		
+			$data['selected_country'] = $this->input->post('contact_hcountry');
 			$this->_data_render('app/contacts/new_contact',$data);
 		
 		}
@@ -347,6 +359,20 @@ class Contacts extends MY_Controller {
 		$this->load->library('form_validation');
 	
 		$this->form_validation->set_rules('contact_fname', 'First Name', 'required');
+		$this->form_validation->set_rules('contact_sname', ' Surname', 'required');
+		$this->form_validation->set_rules('contact_cname', 'Common Name', 'required');
+		$this->form_validation->set_rules('contact_hstreet1','','');
+		$this->form_validation->set_rules('contact_hstreet2','','');
+		$this->form_validation->set_rules('contact_hstate','','');
+		$this->form_validation->set_rules('contact_hpostcode','','');
+		$this->form_validation->set_rules('contact_work','','');
+		$this->form_validation->set_rules('contact_mobile','','');
+		$this->form_validation->set_rules('contact_fax','','');
+		$this->form_validation->set_rules('contact_email','','');
+		$this->form_validation->set_rules('contact_org','','');
+		$this->form_validation->set_rules('contact_paddress','','');
+
+
 
 		$data = $this->contacts_model->get_contact($id);
 
@@ -546,12 +572,17 @@ class Contacts extends MY_Controller {
 				"Zimbabwe"
 			);
 
-	
+
+
 		if ($this->form_validation->run() === FALSE)
 		{
+			
+			$data['selected_country'] = $this->input->post('contact_hcountry');
 
 			$this->_data_render('app/contacts/edit_contact',$data);
-		
+
+			
+
 		}
 		else 
 		{
