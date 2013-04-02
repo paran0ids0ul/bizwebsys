@@ -75,9 +75,10 @@ class Contacts extends MY_Controller {
 		$this->form_validation->set_rules('contact_work','','');
 		$this->form_validation->set_rules('contact_mobile','','');
 		$this->form_validation->set_rules('contact_fax','','');
-		$this->form_validation->set_rules('contact_email','','');
+		$this->form_validation->set_rules('contact_email','','valid_email');
 		$this->form_validation->set_rules('contact_org','','');
 		$this->form_validation->set_rules('contact_paddress','','');
+		$this->form_validation->set_rules('file','','');
 
 		$data['country_list'] = array(
 				"Afghanistan",
@@ -368,9 +369,10 @@ class Contacts extends MY_Controller {
 		$this->form_validation->set_rules('contact_work','','');
 		$this->form_validation->set_rules('contact_mobile','','');
 		$this->form_validation->set_rules('contact_fax','','');
-		$this->form_validation->set_rules('contact_email','','');
+		$this->form_validation->set_rules('contact_email','','valid_email');
 		$this->form_validation->set_rules('contact_org','','');
 		$this->form_validation->set_rules('contact_paddress','','');
+		$this->form_validation->set_rules('file','','');
 
 
 

@@ -45,7 +45,7 @@
 								</div>
 								<div class="modal-body">
 									<label class="span2">Please select : </label>
-									<input id="file" name="file" type="file">     
+									<input id="file" name="file" type="file" value="<?php echo set_value('file');?>">     
 								</div>
 								<div class="modal-footer ">
 									<button class="btn same-btn-width" data-dismiss="modal" aria-hidden="true" id="changeImg">Ok</button>

@@ -37,7 +37,7 @@
 							<div class="span2">
 								<label>Item Name : 
 								</label> 
-								<input name="item_name" type="text" placeholder="e.g Milo 3 in 1" value="<?php echo $name?>">
+								<input name="item_name" type="text" placeholder="e.g Milo 3 in 1" value="<?php echo set_value('item_name',$name); ?>">
 								
 							</div>
 							<div class="span3 offset2">
@@ -70,19 +70,19 @@
 								</div>
 								<label class="span1">Cost Price</label>
 								<div class="span2 label-field">
-									<input name="item_costprice" type="text" placeholder="20.00" value="<?php echo $cost?>" >
+									<input name="item_costprice" type="text" placeholder="20.00" value="<?php echo set_value('item_costprice',$cost); ?>">
 								</div>
 								<label class="span1">Net Price</label>
 								<div class="span2 label-field">
-									<input name="item_netprice" type="text" placeholder="20.00" value="<?php echo $net ?>" >
+									<input name="item_netprice" type="text" placeholder="20.00" value="<?php echo set_value('item_netprice',$net); ?>">
 								</div>
 								<label class="span1">VAT Rate</label>
 								<div class="span2 label-field">				
-									<input name="item_vatrate" type="text" placeholder="0.16" value="<?php echo $vat ?>" >
+									<input name="item_vatrate" type="text" placeholder="0.16" value="<?php echo set_value('item_vatrate',$vat); ?>">
 								</div>
 								<label class="span1">Discount Rate</label>
 								<div class="span2 label-field">				
-									<input name="item_disrate" type="text" placeholder="0.16" value="<?php echo $dis ?>" >
+									<input name="item_disrate" type="text" placeholder="0.16" value="<?php echo set_value('item_disrate',$dis); ?>">
 								</div>
 								
 								
@@ -93,20 +93,20 @@
 							<div class="span4">
 									<label class="span1">Stock</label>
 									<div class="span2 label-field">				
-										<input name="item_stock" type="text" placeholder="50" value="<?php echo $stock?>" >
+										<input name="item_stock" type="text" placeholder="50" value="<?php echo set_value('item_stock',$stock); ?>">
 									</div>
 									<label class="span1">Stock ROP</label>
 									<div class="span2 label-field">				
-										<input name="item_rop" type="text" placeholder="50" value="<?php echo $stockROP?>">
+										<input name="item_rop" type="text" placeholder="50" value="<?php echo set_value('item_rop',$stockROP); ?>">
 									</div>
 									<label class="span1">GTIN</label>	
 									
 									<div class="span2 label-field">
-										<input name="item_gtin" type="text" placeholder="0000000000000" value="<?php echo $GTIN?>">
+										<input name="item_gtin" type="text" placeholder="0000000000000" value="<?php echo set_value('item_gtin',$GTIN); ?>">
 									</div>
 									<label class="span1">SKU</label>
 									<div class="span2 label-field">
-										<input name="item_sku" type="text" placeholder="S97789789789" value="<?php echo $SKU?>">
+										<input name="item_sku" type="text" placeholder="S97789789789" value="<?php echo set_value('item_sku',$SKU); ?>">
 									</div>
 									
 						
@@ -115,7 +115,7 @@
 							<div class="span9">
 								<label class="span1">Description</label>
 								<div class="span7 label-field">				
-									<textarea class="span6" name="item_description" rows="3"><?php echo $desc ?></textarea>
+									<textarea class="span6" name="item_description" rows="3"><?php echo set_value('item_description',$desc); ?></textarea>
 								</div>
 							</div>
 							
@@ -135,7 +135,7 @@
 					</div>
 					<div class="modal-body">
 						<label class="span2">Please select : </label>
-						<input id="file" name="file" type="file">     
+						<input id="file" name="file" type="file" value="<?php echo set_value('file'); ?>" >     
 	
 					</div>
 					<div class="modal-footer ">

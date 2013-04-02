@@ -52,56 +52,128 @@ class Inventory extends MY_Controller {
 		
 		
 	}
+
+
+	public function gtin_check($gtin) {
+
+
+		$gtin_chk = $this->inventory_model->gtin_exists($gtin);
+		if ($gtin_chk) {
+			$this->form_validation->set_message('gtin_check', 'The GTIN already exist in database');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+
+	}
+
+	public function gtin_check2($gtin) {
+
+
+		$current_gtin = $this->input->post('item_gtin');
+
+		if ($current_gtin != $gtin) {
+			$gtin_chk = $this->inventory_model->gtin_exists($gtin);
+			if ($gtin_chk) {
+				$this->form_validation->set_message('gtin_check2', 'The GTIN already exist in database');
+				return FALSE;
+			} else {
+				return TRUE;
+			}
+		} else {
+
+			return TRUE;
+		}
+
+	}
+
+
+
+	public function sku_check($sku) {
+
+
+
+		$sku_chk = $this->inventory_model->sku_exists($sku);
+
+		if ($sku_chk) {
+			$this->form_validation->set_message('sku_check', 'The SKU already exist in database');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+
+
+
+	}
+
+	public function sku_check2($sku) {
+
+		$current_sku = $this->input->post('item_sku');
+
+		if ($current_sku != $sku)  {
+			$sku_chk = $this->inventory_model->sku_exists($sku);
+
+			if ($sku_chk) {
+				$this->form_validation->set_message('sku_check2', 'The SKU already exist in database');
+				return FALSE;
+			} else {
+				return TRUE;
+			}
+		} else {
+			return TRUE;
+		}
+
+
+
+	}
+
+
+	public function rate_check($rate) {
+
+
+		if ($rate < 0 || $rate > 1) {
+			$this->form_validation->set_message('rate_check', 'The rate value is invalid');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+
+
+	}
 	
 	
 	
-	public function new_item() {
-		
-	
-		$this->data["custom_js"] ='			
-		
-							  
-								    <script>
-									    $(document).ready(function(){
-									    
-									    
-									    var seloption ="";
-									    
-									    var item_category = ["Animals","Arts & Entertainment","Baby & Toddler",
-									    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
-									    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
-									    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other"];
-									    
-									    $.each(item_category, function(i) {
-								
-									    	seloption += \'<option value="\'+item_category[i]+\'">\'+item_category[i]+\'</option>\';
-									    	
-									    }); 						     
-									    
-									    $("#item_category").append(seloption);
-									    
-									   
-									   
-									    
-									   
-									   
-									   });
-									   
-								    </script>';	
-	
-		
+	public function new_item() {	
 		
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		
-	
 	
 		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
+		$this->form_validation->set_rules('item_costprice', 'Cost Price', 'greater_than[0]');
+		$this->form_validation->set_rules('item_netprice', 'Net Price', 'greater_than[0]');
+		$this->form_validation->set_rules('item_vatrate', 'Vat Rate', 'callback_rate_check');
+		$this->form_validation->set_rules('item_disrate', 'Discount Rate', 'callback_rate_check');
+		$this->form_validation->set_rules('item_stock', 'Stock', 'integer|greater_than[0]');
+		$this->form_validation->set_rules('item_rop', 'ROP', 'integer|greater_than[0]');
+		$this->form_validation->set_rules('item_gtin', 'GTIN', 'callback_gtin_check');
+		$this->form_validation->set_rules('item_sku', 'SKU', 'callback_sku_check');
+		$this->form_validation->set_rules('item_description', '', '');
+		$this->form_validation->set_rules('file', '', '');
+
+
+		$data['itemType'] = array("Animals","Arts & Entertainment","Baby & Toddler",
+									    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
+									    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
+									    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
+
+
+
 	
 		if ($this->form_validation->run() === FALSE)
 		{
-			//$data['suppliers'] = $this->inventory_model->get_contact_list(); --deprecated
 			$data['contacts'] = $this->contacts_model->get_all_contact();
+			$data['selected_category'] = $this->input->post('item_category');
+			$data['selected_supplier'] = $this->input->post('supplier');
 		
 			$this->_data_render('app/inventory/new_item',$data);
 
@@ -297,36 +369,49 @@ class Inventory extends MY_Controller {
 		
 		
 		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
+		$this->form_validation->set_rules('item_costprice', 'Cost Price', 'greater_than[0]');
+		$this->form_validation->set_rules('item_netprice', 'Net Price', 'greater_than[0]');
+		$this->form_validation->set_rules('item_vatrate', 'Vat Rate', 'callback_rate_check');
+		$this->form_validation->set_rules('item_disrate', 'Discount Rate', 'callback_rate_check');
+		$this->form_validation->set_rules('item_stock', 'Stock', 'integer|greater_than[0]');
+		$this->form_validation->set_rules('item_rop', 'ROP', 'integer|greater_than[0]');
+		$this->form_validation->set_rules('item_gtin', 'GTIN', 'callback_gtin_check2');
+		$this->form_validation->set_rules('item_sku', 'SKU', 'callback_sku_check2');
+		$this->form_validation->set_rules('item_description', '', '');
+		$this->form_validation->set_rules('file', '', '');
+
+			
+		$data['itemType'] = array("Animals","Arts & Entertainment","Baby & Toddler",
+								    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
+								    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
+								    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
+
+		$data['item'] = $this->inventory_model->get_item_byID($itemID);
 		
+			
+		$data['itemID'] = $data['item']['ItemID'];
+		$data['name'] = $data['item']['Name'];
+		$data['category'] = $data['item']['ItemType'];
+		$data['contactID'] = $data['item']['ContactID'];
+		$data['cost'] = $data['item']['Cost'];
+		$data['net'] = $data['item']['NetPrice'];
+		$data['vat'] = $data['item']['VATRate'];
+		$data['dis'] = $data['item']['DiscountRate'];
+		$data['stock'] = $data['item']['Stock'];
+		$data['stockROP'] = $data['item']['StockROP'];
+		$data['GTIN'] = $data['item']['GTIN'];
+		$data['SKU'] = $data['item']['SKU'];
+		$data['desc'] = $data['item']['Description'];
+		$data['imgpath'] = $data['item']['Imagepath'];
+		
+
 		if ($this->form_validation->run() === FALSE)
 		{
 		
-		
-			$data['item'] = $this->inventory_model->get_item_byID($itemID);
-		
-			
-			$data['itemID'] = $data['item']['ItemID'];
-			$data['name'] = $data['item']['Name'];
-			$data['category'] = $data['item']['ItemType'];
-			$data['contactID'] = $data['item']['ContactID'];
-			$data['cost'] = $data['item']['Cost'];
-			$data['net'] = $data['item']['NetPrice'];
-			$data['vat'] = $data['item']['VATRate'];
-			$data['dis'] = $data['item']['DiscountRate'];
-			$data['stock'] = $data['item']['Stock'];
-			$data['stockROP'] = $data['item']['StockROP'];
-			$data['GTIN'] = $data['item']['GTIN'];
-			$data['SKU'] = $data['item']['SKU'];
-			$data['desc'] = $data['item']['Description'];
-			$data['imgpath'] = $data['item']['Imagepath'];
-			
-			$data['itemType'] = array("Animals","Arts & Entertainment","Baby & Toddler",
-									    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
-									    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
-									    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
-			
-		
 			$data['contacts'] = $this->contacts_model->get_all_contact();
+
+			$data['selected_category'] = $this->input->post('item_category');
+			$data['selected_supplier'] = $this->input->post('supplier');
 		
 			$this->_data_render('app/inventory/edit_item',$data);
 

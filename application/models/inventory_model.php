@@ -71,23 +71,35 @@ class Inventory_model extends MY_Model {
 		
 		$this->load->helper('url');
 		
+		$costprice = ($this->input->post('item_costprice') == NULL ? NULL : $this->input->post('item_costprice')) ;
+		$netprice = ($this->input->post('item_netprice') == NULL ? NULL : $this->input->post('item_netprice')); 
+		$vatrate = ($this->input->post('item_vatrate') == NULL ? NULL : $this->input->post('item_vatrate')); 
+		$disrate = ($this->input->post('item_disrate') == NULL ? 1 : $this->input->post('item_disrate')); 
+		$stock = ($this->input->post('item_stock') == NULL ? NULL : $this->input->post('item_stock'));
+		$stockrop = ($this->input->post('item_rop') == NULL ? NULL : $this->input->post('item_rop'));
+		$SKU = ($this->input->post('item_sku') == NULL ? NULL : $this->input->post('item_sku'));
+		$GTIN = ($this->input->post('item_gtin') == NULL ? NULL : $this->input->post('item_gtin'));
+
+		
+
 		$data = array(
 			'Name' => $this->input->post('item_name'),
 			'ItemType' => $this->input->post('item_category'),
 			'ContactID' => $this->input->post('supplier'),
-			'SKU' => $this->input->post('item_sku'),
-			'Description' => $this->input->post('item_description'),
-			'Stock' => $this->input->post('item_stock'),
-			'StockROP' => $this->input->post('item_rop'),
-			'Cost' => $this->input->post('item_costprice'),
-			'VATRate' => $this->input->post('item_vatrate'),
-			'DiscountRate' => $this->input->post('item_disrate'),
-			'GTIN' => $this->input->post('item_gtin'),
-			'NetPrice' => $this->input->post('item_netprice')
+			'Cost' => $costprice,
+			'NetPrice' => $netprice,
+			'VATRate' => $vatrate,
+			'DiscountRate' => $disrate,
+			'Stock' => $stock,
+			'StockROP' => $stockrop,
+			'GTIN' => $GTIN,
+			'SKU' => $SKU,
+			'Description' => $this->input->post('item_description')
+			
 			
 		);
-		
-		
+
+
 		$this->db->where('ItemID', $id);
 		$this->db->update('Inventory', $data);
 		
@@ -105,6 +117,38 @@ class Inventory_model extends MY_Model {
 		
 		
 	}
+
+
+	public function gtin_exists($gtin) {
+
+		$this->db->where('GTIN',$gtin);
+    	$query = $this->db->get('Inventory');
+    	if ($query->num_rows() > 0){
+        	return true;
+    	}
+    	else{
+        	return false;
+    	}
+
+
+	}
+
+
+	public function sku_exists($sku) {
+
+		$this->db->where('SKU',$sku);
+    	$query = $this->db->get('Inventory');
+    	if ($query->num_rows() > 0){
+        	return true;
+    	}
+    	else{
+        	return false;
+    	}
+
+		
+	}
+
+
 	
 	
 	public function update_stock($id, $toAdd) {

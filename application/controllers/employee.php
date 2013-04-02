@@ -297,6 +297,7 @@ class Employee extends MY_Controller {
 		$this->form_validation->set_rules('employee_paddress','','');
 		$this->form_validation->set_rules('employee_postcode','','');
 		$this->form_validation->set_rules('contact_mobile','','');
+		$this->form_validation->set_rules('file','','');
 
 
 		if ($this->form_validation->run() === FALSE)
@@ -416,6 +417,7 @@ class Employee extends MY_Controller {
 		$this->form_validation->set_rules('employee_paddress','','');
 		$this->form_validation->set_rules('employee_postcode','','');
 		$this->form_validation->set_rules('contact_mobile','','');
+		$this->form_validation->set_rules('file','','');
 
 
 		$data = $this->employee_model->get_employee($id);

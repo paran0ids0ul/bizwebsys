@@ -34,7 +34,7 @@
 										<label>Item Name</label>									
 									</div>
 									<div class="span7 content">
-										<input name="item_name" type="text" placeholder="e.g Milo 3 in 1" >
+										<input name="item_name" type="text" placeholder="e.g Milo 3 in 1" value="<?php echo set_value('item_name'); ?>">
 									</div>
 
 									<div class="span1 content">
@@ -43,6 +43,9 @@
 									<div class="span7 content">
 										<select name="item_category" id="item_category">
 											<option value="null">Please Choose :</option>
+											<?php foreach ($itemType as $type): ?>
+												<option value="<?php echo $type ?>" <?php if ($selected_category == $type) {echo 'selected';} ?>><?php echo $type ?></option>
+											<?php endforeach ?>
 										</select>
 									</div>
 								</div>
@@ -62,25 +65,25 @@
 										<option>Please Choose :</option>
 										<?php foreach ($contacts as $contact): ?>
 											<?php if (!is_array($contact)) continue; ?>
-											<option value="<?php echo $contact['uid'][0] ?>"><?php echo $contact['cn'][0] ?></option>
+											<option value="<?php echo $contact['uid'][0] ?>" <?php if ($selected_supplier == $contact['uid'][0]) {echo 'selected';} ?>><?php echo $contact['cn'][0] ?></option>
 										<?php endforeach ?>
 									</select>	
 								</div>
 								<label class="span1">Cost Price</label>
 								<div class="span2 label-field">
-									<input name="item_costprice" type="text" placeholder="20.00" >
+									<input name="item_costprice" type="text" placeholder="20.00" value="<?php echo set_value('item_costprice'); ?>">
 								</div>
 								<label class="span1">Net Price</label>
 								<div class="span2 label-field">
-									<input name="item_netprice" type="text" placeholder="20.00" >
+									<input name="item_netprice" type="text" placeholder="20.00" value="<?php echo set_value('item_netprice'); ?>">
 								</div>
 								<label class="span1">VAT Rate</label>
 								<div class="span2 label-field">				
-									<input name="item_vatrate" type="text" placeholder="0.16" >
+									<input name="item_vatrate" type="text" placeholder="0.16" value="<?php echo set_value('item_vatrate'); ?>">
 								</div>
 								<label class="span1">Discount Rate</label>
 								<div class="span2 label-field">				
-									<input name="item_disrate" type="text" placeholder="0.16" >
+									<input name="item_disrate" type="text" placeholder="0.16" value="<?php echo set_value('item_disrate'); ?>">
 								</div>
 								
 								
@@ -91,20 +94,20 @@
 							<div class="span4">
 									<label class="span1">Stock</label>
 									<div class="span2 label-field">				
-										<input name="item_stock" type="text" placeholder="50" >
+										<input name="item_stock" type="text" placeholder="50" value="<?php echo set_value('item_stock'); ?>" >
 									</div>
 									<label class="span1">Stock ROP</label>
 									<div class="span2 label-field">				
-										<input name="item_rop" type="text" placeholder="50" >
+										<input name="item_rop" type="text" placeholder="50" value="<?php echo set_value('item_rop'); ?>" >
 									</div>
 									<label class="span1">GTIN</label>	
 									
 									<div class="span2 label-field">
-										<input name="item_gtin" type="text" placeholder="0000000000000" >
+										<input name="item_gtin" type="text" placeholder="0000000000000" value="<?php echo set_value('item_gtin'); ?>">
 									</div>
 									<label class="span1">SKU</label>
 									<div class="span2 label-field">
-										<input name="item_sku" type="text" placeholder="S97789789789" >
+										<input name="item_sku" type="text" placeholder="S97789789789" value="<?php echo set_value('item_sku'); ?>">
 									</div>
 									
 						
@@ -113,7 +116,7 @@
 							<div class="span9">
 								<label class="span1">Description</label>
 								<div class="span7 label-field">				
-									<textarea class="span6" name="item_description" rows="3"></textarea>
+									<textarea class="span6" name="item_description" rows="3"><?php echo set_value('item_description'); ?></textarea>
 								</div>
 							</div>
 							
@@ -126,7 +129,7 @@
 								<div class="modal-body">
 		
 									<label class="span2">Please select : </label>
-									<input id="file" name="file" type="file">     
+									<input id="file" name="file" type="file" value="<?php echo set_value('file'); ?>">     
 		
 								</div>
 								<div class="modal-footer ">
