@@ -54,7 +54,7 @@ class Sales extends MY_Controller {
 		  
 			$(document).ready(function(){
 				$("#add").click(function() {
-					var value = "<tr><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>"
+					var value = "<tr><td></td><td>..</td><td>..</td><td>..</td><td>..</td></tr>"
 					$("#table tr:eq(1)").before(value);
 				});
 			});

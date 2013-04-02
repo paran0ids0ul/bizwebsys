@@ -62,6 +62,10 @@
 					    <tbody>
 							<tr> 
 							 <td><button type="btn btn-link" onclick="addRow();" id="add"/>Add an item</button></td>
+							 <td></td>
+							 <td></td>
+							 <td></td>
+							 <td></td>
 							</tr>
 						  </tbody>
 				</table>
