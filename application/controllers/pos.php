@@ -414,6 +414,7 @@ class Pos extends MY_Controller {
 															$(\'#btn_validate\').removeClass("disabled");
 															remain = 0.0;
 															change = cash - total;
+															change = toFixed(change,2);
 														}
 														else
 														{
@@ -569,11 +570,11 @@ class Pos extends MY_Controller {
 		$data["date"] = date("d/m/Y");
 		$data["time"] = date("H:i:s");
 		$data["order_id"] = $order_id;
-		$data["subtotal"] = $subtotal;
-		$data["tax"] = $tax;
-		$data["total"] = $total;
+		$data["subtotal"] = round($subtotal,2);
+		$data["tax"] = round($tax,2);
+		$data["total"] = round($total,2);
 		$data["cash"] = $_POST["cash"];
-		$data["change"] = $data["cash"] - $total;
+		$data["change"] = round($data["cash"] - $total,2);
 		
 		$this->load->view('app/pos/receipt',$data);
 	}
