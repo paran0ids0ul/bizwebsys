@@ -1,5 +1,4 @@
- <!-- Navbar
-    ================================================== -->
+ <!-- Navbar -->
  <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
      <div class="container">
@@ -31,17 +30,19 @@
     <h3 id="signin_label">Sign In</h3>
   </div>
   <div class="modal-body">
-    <form class="form-horizontal" id="signin_form">
+	<div class="text-center"><?php echo validation_errors(); ?></div>
+	<?php $attributes = array('class' => 'form-horizontal', 'id' => 'signin_form');
+		   echo form_open('home/sign_in', $attributes); ?>
 	  <div class="control-group">
 		<label class="control-label" for="inputEmail">Email</label>
 		<div class="controls">
-		  <input type="text" id="inputEmail" placeholder="Email">
+		  <input type="text" id="inputEmail" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>">
 		</div>
 	  </div>
 	  <div class="control-group">
 		<label class="control-label" for="inputPassword">Password</label>
 		<div class="controls">
-		  <input type="password" id="inputPassword" placeholder="Password">
+		  <input type="password" id="inputPassword" placeholder="Password" name="password" value="<?php echo set_value('password'); ?>">
 		</div>
 	  </div>
 	  <div class="control-group">
