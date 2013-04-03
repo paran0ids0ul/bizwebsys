@@ -15,29 +15,76 @@ class Home extends MY_Controller {
 		$this->title = 'home';
 		$this->keywords = 'UCL, COMP2014, COMP2013, CS';
 		
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');	
-		
+				//load local js
+		$this->data["custom_js"] ='								  
+								    <script>
+										$(\'#btn_signin\').click(function(){
+											var email = $(\'#inputEmail\').val().trim();
+											var password = $(\'#inputPassword\').val().trim();
+											if(email=="")
+											{
+												$(\'#errors\').text("Email can not be empty!");
+												return;
+											}
+											
+											if(password=="")
+											{
+												$(\'#errors\').text("Password can not be empty!");
+												return;
+											}
+											$(\'#errors\').text("");
+											
+											sign_in(email,password);
+										});
+										
+										function sign_in(email,password)
+										{
+											$.ajax({
+												url: \''. site_url('home/sign_in') .'\',
+												type: \'POST\',
+												data: {email:email,password:password},
+												success: function(response) {
+													if(response == "true")
+														window.location.href = \''.site_url('home').'\';
+													else
+													{
+														$(\'#errors\').text("Email or Password is wrong");
+														$(\'#inputEmail\').val("");
+														$(\'#inputPassword\').val("");
+
+													}
+												}
+											});
+										}
+								    </script>';	
 		$this->_render('home');
 	}
 	
 	public function sign_in(){	
-		$this->load->helper(array('form', 'url'));
-
-		$this->load->library('form_validation');
+		if(!(isset($_POST["email"]) && isset($_POST["password"])))
+			return;
+		$email = $_POST["email"];
+		$password = $_POST["password"];	
 		
-		$this->form_validation->set_rules('email', 'Email', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		
-
-		if ($this->form_validation->run() == FALSE)
+		$data = $this->home_model->authenticate($email,$password);
+		if($data["result"])
 		{
-			$this->_render('home');
+			$newdata = array(
+                   'username'  => $data["username"],
+                   'email'     => $data["email"]
+               );
+			$this->session->set_userdata($newdata);
+			echo "true";
+			
 		}
 		else
-		{
-			$this->_render('home');
-		}
+			echo "false";
 	}	
+	
+	public function sign_out()
+	{
+		$this->session->sess_destroy();
+		$this->index();
+	}
 	
 }

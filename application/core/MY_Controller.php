@@ -31,6 +31,8 @@ class MY_Controller extends CI_Controller{
 		$this->pageName = strToLower(get_class($this));
 		$this->data["custom_css"]='';
 		$this->data["custom_js"]='';
+		
+		$this->load->library('session');
 	}
 	
 	private function preRender($view) {

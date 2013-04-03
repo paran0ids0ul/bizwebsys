@@ -22,7 +22,7 @@
    </div>
  </div>
 
- 
+
 <!-- Modal Sign In-->
 <div id="signin_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signin_label" aria-hidden="true">
   <div class="modal-header">
@@ -30,19 +30,18 @@
     <h3 id="signin_label">Sign In</h3>
   </div>
   <div class="modal-body">
-	<div class="text-center"><?php echo validation_errors(); ?></div>
-	<?php $attributes = array('class' => 'form-horizontal', 'id' => 'signin_form');
-		   echo form_open('home/sign_in', $attributes); ?>
+	<form class="form-horizontal" id="signin_form">
+	<div class="text-center"><label class="label label-warning" id="errors"></label></div>
 	  <div class="control-group">
 		<label class="control-label" for="inputEmail">Email</label>
 		<div class="controls">
-		  <input type="text" id="inputEmail" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>">
+		  <input type="text" id="inputEmail" placeholder="Email">
 		</div>
 	  </div>
 	  <div class="control-group">
 		<label class="control-label" for="inputPassword">Password</label>
 		<div class="controls">
-		  <input type="password" id="inputPassword" placeholder="Password" name="password" value="<?php echo set_value('password'); ?>">
+		  <input type="password" id="inputPassword" placeholder="Password">
 		</div>
 	  </div>
 	  <div class="control-group">
@@ -60,7 +59,7 @@
 	</form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="submit" form="signin_form">Sign In</button>
+    <button class="btn btn-primary" id="btn_signin">Sign In</button>
   </div>
 </div>
  
