@@ -5,12 +5,12 @@
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
 			<li><a href="<?php echo site_url("employee") ?>">Employee</a> <span class="divider">/</span></li>
-			<li class="active"><?php echo $uid ?></li>
+			<li class="active" id="reference"><?php echo $uid ?></li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">
 			<div class="span1 ">
-				<a href="<?php echo site_url("employee") ?>" class="">
+				<a href="<?php echo site_url("employee") ?>">
 					<button class="btn btn-primary same-btn-width">Back</button>
 				</a>
 			</div>
@@ -23,7 +23,9 @@
 				<button class="btn btn-primary same-btn-width">Print</button>
 			</div>
 			<div class="span1">	
-				<button class="btn btn-primary same-btn-width">Delete</button>
+				<a href="<?php echo site_url("employee") ?>" id="delete_button">
+					<button class="btn btn-primary same-btn-width">Delete</button>
+				</a>
 			</div>
 		</div>
 

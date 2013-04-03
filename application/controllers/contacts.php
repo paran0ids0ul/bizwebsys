@@ -343,6 +343,25 @@ class Contacts extends MY_Controller {
 	
 		
 	}
+
+	public function delete_contact() {
+
+		$id = $_POST['delete'];
+
+		$result = $this->contacts_model->delete_contact($id);
+
+		$this->contacts_model->close_ldap();
+
+		if ($result == true) {
+			echo "Contact has been successfully deleted !";
+		} else 
+		{
+			echo "Unsuccessful !";
+		}
+
+	}
+
+
 	
 	public function display_contact_byID($id)
 	{
@@ -358,17 +377,18 @@ class Contacts extends MY_Controller {
 											$("#delete_button").on("click", function(e) {
 										    	e.preventDefault();
 	        									var href = this.href;
-										    	var id = $("#reference").val();
+										    	var id = $("#reference").text();
+										    	var ajaxurl = "http://" + (document.location.hostname) + "/contacts/delete_contact"; 
 
-												var confirm_string = "Are you sure you want to delete this item?";
+												var confirm_string = "Are you sure you want to delete this contact?";
 												var checkstr =  confirm(confirm_string);
 												if (checkstr == true) {
 														$.ajax({
 													    	type: "POST",
-													    	url: "http://localhost/inventory/delete_an_item",
+													    	url: ajaxurl,
 													    	data: {delete : id},
 													    	success: function(results){ 
-													    		alert("The operation is successful !");
+													    		alert(results);
 													    		document.location.href = href;
 													    	},
 													    	error: function(xhr, textStatus, error){
@@ -395,6 +415,7 @@ class Contacts extends MY_Controller {
 
 		$this->_data_render('app/contacts/display_contact',$data);
 
+		$this->contacts_model->close_ldap();
 	}
 
 	public function edit_contact($id)

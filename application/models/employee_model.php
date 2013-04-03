@@ -174,6 +174,21 @@ class Employee_model extends MY_Model {
 		return $uid;
 	}
 	
+
+	public function delete_employee($id) {
+		try {
+			$this->myldap = new MyLdap();
+		}
+		catch (adLDAPException $e) {
+			echo $e;
+			exit();   
+		}
+
+		$result = $this->myldap->user()->delete_employee($id);
+
+		return $result;
+
+	}
 	
 	
 		

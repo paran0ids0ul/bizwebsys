@@ -216,6 +216,22 @@ class Contacts_model extends MY_Model {
 
 
 	}
+
+
+	public function delete_contact($id) {
+		try {
+			$this->myldap = new MyLdap();
+		}
+		catch (adLDAPException $e) {
+			echo $e;
+			exit();   
+		}
+
+		$result = $this->myldap->user()->delete_contact($id);
+
+		return $result;
+
+	}
 	
 		
 	

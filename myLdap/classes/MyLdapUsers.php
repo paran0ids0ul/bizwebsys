@@ -407,14 +407,32 @@ class MyLdapUsers {
 
 
 
+    public function delete_contact($id) {
 
 
+    	$result = ldap_delete($this->myldap->getLdapConnection(), 'uid=' .$id. ',ou=contacts,dc=bizwebsys,dc=tk');   
+	    
+	    if ($result != true) { 
+            return false; 
+        }
+        
+        return true;
+
+    }
 
 
+    public function delete_employee($id) {
 
 
+    	$result = ldap_delete($this->myldap->getLdapConnection(), 'uid=' .$id. ',ou=people,dc=bizwebsys,dc=tk');   
+	    
+	    if ($result != true) { 
+            return false; 
+        }
+        
+        return true;
 
-
+    }
     
 
 

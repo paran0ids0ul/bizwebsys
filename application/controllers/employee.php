@@ -35,10 +35,12 @@ class Employee extends MY_Controller {
 		if (isset($reference)) {
 			if ($reference['uid'] == $toCheck) {
 				$this->form_validation->set_message('username_check', 'The username already exist in server');
+				$this->employee_model->close_ldap();
 				return FALSE;
 			}
 		} 
 		else {
+			$this->employee_model->close_ldap();
   			return TRUE;
   		}
 	}
@@ -51,14 +53,17 @@ class Employee extends MY_Controller {
 			if (isset($reference)) {
 				if ($reference['uid'] == $toCheck) {
 					$this->form_validation->set_message('check2', 'The username already exist in server');
+					$this->employee_model->close_ldap();
 					return FALSE;
 				}
 			} 
 			else {
+				$this->employee_model->close_ldap();
   				return TRUE;
   			}
   		}
   		else {
+  			$this->employee_model->close_ldap();
   			return TRUE;
   		}
 	}
@@ -368,11 +373,76 @@ class Employee extends MY_Controller {
 
 	}
 
+
+	public function delete_employee() {
+
+		$id = $_POST['delete'];
+
+		$result = $this->employee_model->delete_employee($id);
+
+		$this->employee_model->close_ldap();
+
+		if ($result == true) {
+			echo "Employee has been successfully deleted !";
+		} else 
+		{
+			echo "Unsuccessful !";
+		}
+
+	}
+
+
+
 	public function display_employee_byID($id){
+
+
+		$this->data["custom_js"] ='			
+		
+							  
+								    <script>
+									    $(document).ready(function(){
+									    
+										    
+		
+											$("#delete_button").on("click", function(e) {
+										    	e.preventDefault();
+	        									var href = this.href;
+										    	var id = $("#reference").text();
+										    	var ajaxurl = "http://" + (document.location.hostname) + "/employee/delete_employee"; 
+										    	alert(id);
+												var confirm_string = "Are you sure you want to delete this employee?";
+												var checkstr =  confirm(confirm_string);
+												if (checkstr == true) {
+														$.ajax({
+													    	type: "POST",
+													    	url: ajaxurl,
+													    	data: {delete : id},
+													    	success: function(results){ 
+													    		alert(results);
+													    		document.location.href = href;
+													    	},
+													    	error: function(xhr, textStatus, error){
+													    		alert(xhr.statusText);
+													    		alert(textStatus);
+													    		alert(error);
+													    	}
+											    		});
+												} else {
+													return false;
+												}
+												
+										    });
+
+									   });
+									   
+								    </script>';	
+
 
 		$data = $this->employee_model->get_employee($id);
 
 		$this->_data_render('app/employee/display_employee',$data);
+
+		$this->employee_model->close_ldap();
 	}
 
 
