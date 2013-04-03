@@ -175,7 +175,12 @@ class Inventory_model extends MY_Model {
 		$query = $this->db->get_where('Inventory', array('ItemID' => $itemID));
 		return $query->row_array();
 		
-		
+	}
+
+	public function delete_item($itemID) {
+
+		$this->db->where('ItemID', $itemID);
+		$this->db->delete('Inventory'); 
 	}
 	
 	

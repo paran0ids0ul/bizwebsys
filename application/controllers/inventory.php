@@ -15,6 +15,31 @@ class Inventory extends MY_Controller {
 		
 	}
 
+
+	public function delete_items() {
+
+
+		$toDelete = json_decode(stripslashes($_POST['items']));
+
+		foreach($toDelete as $id){
+    		$this->inventory_model->delete_item($id);
+		}
+
+	}
+
+	public function delete_an_item() {
+
+
+		$id = $_POST['delete'];
+
+
+    	$this->inventory_model->delete_item($id);
+
+
+	}
+
+
+
 	//sales order
 	public function index(){	
 	
@@ -27,12 +52,64 @@ class Inventory extends MY_Controller {
 									  
 									    
 									    
-									    $("tr").click( function() {
-									    	window.location = $(this).attr("href") + $(this).attr("id");
+									    $(".tr_clickable").click( function(e) {
+									    	if (e.target.type == "checkbox") {
+												e.stopPropagation();
+											} else {
+									    		window.location = $(this).attr("href") + $(this).attr("id");
+									    	}
 									    }).hover( function() {
 									    	$(this).toggleClass("hover");
 									    });
+
+
+										$("#check_all").change(function() {
+										    if ($(this).is(":checked")) {
+										        $(".check_boxes").prop("checked",true);
+										    } else {
+										    	$(".check_boxes").prop("checked",false);	
+										    }
+
+										});
+
 									    
+
+									    $("#delete_button").on("click", function(e) {
+									    	e.preventDefault();
+        									var href = this.href;
+									    	var ids = [];
+
+
+									    	$(".check_boxes").each(function() {
+									    		if ($(this).is(":checked")) {
+									    			ids.push($(this).attr("id"));
+									    		}
+									    	});
+
+											if (ids.length > 0) {
+												var confirm_string = "Are you sure you want to delete " + ids.length + " item(s)?";
+												var checkstr =  confirm(confirm_string);
+												if (checkstr == true) {
+													var ajaxData = { items: JSON.stringify(ids) };
+														$.ajax({
+													    	type: "POST",
+													    	url: "http://localhost/inventory/delete_items",
+													    	data: ajaxData,
+													    	success: function(results){ 
+													    		alert("The operation is successful !");
+													    		document.location.href = href;
+													    	},
+													    	error: function(xhr, textStatus, error){
+													    		alert(xhr.statusText);
+													    		alert(textStatus);
+													    		alert(error);
+													    	}
+											    		});
+												} else {
+													return false;
+												}
+											}
+									    });
 									   
 									   
 									   });
@@ -270,41 +347,59 @@ class Inventory extends MY_Controller {
 								    <script>
 									    $(document).ready(function(){
 									    
-									    $("#stockup").click(function() {
-									    	
-									    	
-									    	var addamount = $("#addstock").val();
-									    	var id = $("#reference").val();
-									    	
-									    	$.ajax({
-									    	type: "POST",
-									    	url: "http://bizwebsys.cloudapp.net/inventory/stockup",
-									    	data: { amount : addamount , itemID : id },
-									    	success: function(results){ 
-									    		
-									    		
-									    		$("#item_stock").html(results);
-									    		
-									    	},
-									    	error: function(xhr, textStatus, error){
-									    		alert(xhr.statusText);
-									    		alert(textStatus);
-									    		alert(error);
-									    	}
-								    	});
-									    
-									    
-									 
-									    
-									    
-									    
-									    });
-									    
-									   
-									   
-									    
-									   
-									   
+										    $("#stockup").click(function() {
+										    	
+										    	
+										    	var addamount = $("#addstock").val();
+										    	var id = $("#reference").val();
+										    	
+										    	$.ajax({
+										    	type: "POST",
+										    	url: "http://bizwebsys.cloudapp.net/inventory/stockup",
+										    	data: { amount : addamount , itemID : id },
+										    	success: function(results){ 
+										    		
+										    		
+										    		$("#item_stock").html(results);
+										    		
+										    	},
+										    	error: function(xhr, textStatus, error){
+										    		alert(xhr.statusText);
+										    		alert(textStatus);
+										    		alert(error);
+										    	}
+									    		});
+										    
+										    });
+		
+											$("#delete_button").on("click", function(e) {
+										    	e.preventDefault();
+	        									var href = this.href;
+										    	var id = $("#reference").val();
+
+												var confirm_string = "Are you sure you want to delete this item?";
+												var checkstr =  confirm(confirm_string);
+												if (checkstr == true) {
+														$.ajax({
+													    	type: "POST",
+													    	url: "http://localhost/inventory/delete_an_item",
+													    	data: {delete : id},
+													    	success: function(results){ 
+													    		alert("The operation is successful !");
+													    		document.location.href = href;
+													    	},
+													    	error: function(xhr, textStatus, error){
+													    		alert(xhr.statusText);
+													    		alert(textStatus);
+													    		alert(error);
+													    	}
+											    		});
+												} else {
+													return false;
+												}
+												
+										    });
+
 									   });
 									   
 								    </script>';	

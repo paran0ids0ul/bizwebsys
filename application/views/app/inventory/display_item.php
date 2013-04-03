@@ -26,8 +26,10 @@
 				<div class="span1">
 					<button class="btn btn-primary same-btn-width">Print</button>
 				</div>
-				<div class="span1">	
-					<button class="btn btn-primary same-btn-width">Delete</button>
+				<div class="span1">
+					<a href="<?php echo site_url("inventory") ?>" id="delete_button">	
+						<button class="btn btn-primary same-btn-width">Delete</button>
+					</a>
 				</div>
 			</div>
 		<!-- Form Container -->
