@@ -180,15 +180,6 @@ section {
 }
 
 
-.carousel-inner { text-align: center; }
-
-.carousel .item > img { display: inline-block; }
-
-.homeCarousel img {
-	width: auto;
-	height: 550px;
-	max-height: 550px;
-}
 
 
 .nav-header {

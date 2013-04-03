@@ -347,6 +347,50 @@ class Contacts extends MY_Controller {
 	public function display_contact_byID($id)
 	{
 
+		$this->data["custom_js"] ='			
+		
+							  
+								    <script>
+									    $(document).ready(function(){
+									    
+										    
+		
+											$("#delete_button").on("click", function(e) {
+										    	e.preventDefault();
+	        									var href = this.href;
+										    	var id = $("#reference").val();
+
+												var confirm_string = "Are you sure you want to delete this item?";
+												var checkstr =  confirm(confirm_string);
+												if (checkstr == true) {
+														$.ajax({
+													    	type: "POST",
+													    	url: "http://localhost/inventory/delete_an_item",
+													    	data: {delete : id},
+													    	success: function(results){ 
+													    		alert("The operation is successful !");
+													    		document.location.href = href;
+													    	},
+													    	error: function(xhr, textStatus, error){
+													    		alert(xhr.statusText);
+													    		alert(textStatus);
+													    		alert(error);
+													    	}
+											    		});
+												} else {
+													return false;
+												}
+												
+										    });
+
+									   });
+									   
+								    </script>';	
+		
+		
+
+
+
 		$data = $this->contacts_model->get_contact($id);
 
 		$this->_data_render('app/contacts/display_contact',$data);

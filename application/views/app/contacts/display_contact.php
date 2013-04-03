@@ -22,7 +22,9 @@
 					<button class="btn btn-primary same-btn-width">Print</button>
 				</div>
 				<div class="span1">	
-					<button class="btn btn-primary same-btn-width">Delete</button>
+					<a href="<?php echo site_url("contacts") ?>" id ="delete_button">
+						<button class="btn btn-primary same-btn-width">Delete</button>
+					</a>
 				</div>
 			</div>
 			
