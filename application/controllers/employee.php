@@ -409,7 +409,6 @@ class Employee extends MY_Controller {
 	        									var href = this.href;
 										    	var id = $("#reference").text();
 										    	var ajaxurl = "http://" + (document.location.hostname) + "/employee/delete_employee"; 
-										    	alert(id);
 												var confirm_string = "Are you sure you want to delete this employee?";
 												var checkstr =  confirm(confirm_string);
 												if (checkstr == true) {
