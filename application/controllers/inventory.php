@@ -367,7 +367,6 @@ class Inventory extends MY_Controller {
 										    	data: { amount : addamount , itemID : id },
 										    	success: function(results){ 
 										    		
-										    		alert(results);
 										    		$("#item_stock").html(results);
 										    		
 										    	},
@@ -384,6 +383,7 @@ class Inventory extends MY_Controller {
 										    	e.preventDefault();
 	        									var href = this.href;
 										    	var id = $("#reference").text();
+										    	alert(id);
 
 												var confirm_string = "Are you sure you want to delete this item?";
 												var checkstr =  confirm(confirm_string);
