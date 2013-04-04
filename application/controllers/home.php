@@ -66,19 +66,28 @@ class Home extends MY_Controller {
 		$email = $_POST["email"];
 		$password = $_POST["password"];	
 		
-		$data = $this->home_model->authenticate($email,$password);
-		if($data["result"])
-		{
+	//	$data = $this->home_model->authenticate($email,$password);
+	//	if($data["result"])
+	//	{
+	//		$newdata = array(
+    //              'username'  => $data["username"],
+    //               'email'     => $data["email"]
+     //          );
+	//		$this->session->set_userdata($newdata);
+	//		echo "true";
+			
+	//	}
+	//	else
+	//		echo "false";
+	
+	//Below is to bypass signIn, only for testing. remove this and uncomment above code for production
+	
 			$newdata = array(
-                   'username'  => $data["username"],
-                   'email'     => $data["email"]
+                  'username'  => "username",
+                   'email'     => "username@bizwebsys.tk"
                );
 			$this->session->set_userdata($newdata);
 			echo "true";
-			
-		}
-		else
-			echo "false";
 	}	
 	
 	public function sign_out()
