@@ -33,9 +33,9 @@
 	<form class="form-horizontal" id="signin_form">
 	<div class="text-center"><label class="label label-warning" id="errors"></label></div>
 	  <div class="control-group">
-		<label class="control-label" for="inputEmail">Email</label>
+		<label class="control-label" for="inputUsername">Username</label>
 		<div class="controls">
-		  <input type="text" id="inputEmail" placeholder="Email">
+		  <input type="text" id="inputUsername" placeholder="Username">
 		</div>
 	  </div>
 	  <div class="control-group">

@@ -25,7 +25,7 @@ class Home_model extends MY_Model {
 		return $this->myldap;
 	}
 	
-	public function authenticate($email,$password)
+	public function authenticate($username,$password)
 	{
 		try {
 			$this->myldap = new MyLdap();
@@ -43,7 +43,7 @@ class Home_model extends MY_Model {
 		foreach ($employees as $k => $employee)
 		{
 			if (!is_array($employee)) continue; 
-			if($email == $employee["mail"][0])
+			if($username == $employee["uid"][0])
 			{
 				if($password == $employee["userpassword"][0])
 					$result = true;

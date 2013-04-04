@@ -19,11 +19,11 @@ class Home extends MY_Controller {
 		$this->data["custom_js"] ='								  
 								    <script>
 										$(\'#btn_signin\').click(function(){
-											var email = $(\'#inputEmail\').val().trim();
+											var username = $(\'#inputUsername\').val().trim();
 											var password = $(\'#inputPassword\').val().trim();
-											if(email=="")
+											if(username=="")
 											{
-												$(\'#errors\').text("Email can not be empty!");
+												$(\'#errors\').text("Username can not be empty!");
 												return;
 											}
 											
@@ -34,22 +34,22 @@ class Home extends MY_Controller {
 											}
 											$(\'#errors\').text("");
 											
-											sign_in(email,password);
+											sign_in(username,password);
 										});
 										
-										function sign_in(email,password)
+										function sign_in(username,password)
 										{
 											$.ajax({
 												url: \''. site_url('home/sign_in') .'\',
 												type: \'POST\',
-												data: {email:email,password:password},
+												data: {username:username,password:password},
 												success: function(response) {
 													if(response == "true")
 														window.location.href = \''.site_url('home').'\';
 													else
 													{
-														$(\'#errors\').text("Email or Password is wrong");
-														$(\'#inputEmail\').val("");
+														$(\'#errors\').text("Username or Password is wrong");
+														$(\'#inputUsername\').val("");
 														$(\'#inputPassword\').val("");
 
 													}
@@ -61,18 +61,18 @@ class Home extends MY_Controller {
 	}
 	
 	public function sign_in(){	
-		if(!(isset($_POST["email"]) && isset($_POST["password"])))
+		if(!(isset($_POST["username"]) && isset($_POST["password"])))
 			return;
-		$email = $_POST["email"];
+		$username = $_POST["username"];
 		$password = $_POST["password"];	
 		
-	//	$data = $this->home_model->authenticate($email,$password);
+	//	$data = $this->home_model->authenticate($username,$password);
 	//	if($data["result"])
 	//	{
 	//		$newdata = array(
-    //              'username'  => $data["username"],
-    //               'email'     => $data["email"]
-     //          );
+     //             'username'  => $data["username"],
+     //              'username'     => $data["username"]
+      //         );
 	//		$this->session->set_userdata($newdata);
 	//		echo "true";
 			
