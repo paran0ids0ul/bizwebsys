@@ -21,36 +21,27 @@ class SocialNetwork extends MY_Controller
 						xfbml      : true  // parse XFBML
 					}
 				);
-				alert("Finsih ini");
-				
-				
-				
 
 			// Additional init code here
 			};
 			
 			function getLogin()
 			{
-				alert("getLogin"); 
 				FB.getLoginStatus
 				(
 					function(response) 
 					{
-						alert("getLogin2");
 						if (response.status === "connected") 
 						{
-							alert("connected");
 							publish();
 							
 						} 
 						else if (response.status === "not_authorized") 
 						{
-							alert("not_aut");
 							fbLogin();
 						}
 						else 
 						{
-							alert("not");
 							fbLogin();
 						}	
 					}
@@ -62,18 +53,17 @@ class SocialNetwork extends MY_Controller
 				var params = {};
 				params["message"] = $("#statusContext").val();
 
-				alert("publish");
 				FB.api
 				(
 					"/me/feed", "post", params, function (response) 
 					{
 						if (!response || response.error) 
 						{
-							alert("Error");	
+							alert("Error - Facebook");	
 						} 
 						else 
 						{
-							alert("Sucess");
+							alert("Sucessfully Posted on Facebook");
 						}
 					}
 				);
@@ -114,21 +104,40 @@ class SocialNetwork extends MY_Controller
 			
 			$("#button_post").click(function()
 			{
-			
-				alert("adfsg");
 				if ($("#facebook").prop("checked") == true) 
 				{ 
 					alert("facebook");
 					getLogin();
 				}
-				else
-				{
-					var facebook = false;
-				}
 				
 				if ($("#twitter").prop("checked") == true) 
 				{ 
-					var twitter = true;
+					alert("twitter");
+					
+					$.ajax
+					(
+						{
+							type : "POST",
+							url: "http://localhost/socialnetwork/twitter",
+							data: 
+							{
+								status : $("#statusContext").val(),
+							},
+							success : function(results)
+							{
+								alert("Successfully Posted on Twitter");
+							},
+							error: function(xhr, textStatus, error)
+							{
+								alert(xhr.statusText);
+								alert(textStatus);
+								alert(error);
+							}
+							
+						}
+					);
+
+					
 				}				
 				else
 				{
@@ -163,6 +172,24 @@ class SocialNetwork extends MY_Controller
 
 		$this->_render('app/socialnetwork/socialnetwork');
 	}
-	}
+	
+	public function twitter()
+	{
+		$status2 = $_POST['status'];
+		
+		$username = 'tins820';
+		$password = 'tins0820';
+		$status= $status2;
+		$curlhandle = curl_init();
+		curl_setopt($curlhandle, CURLOPT_URL, "http://twitter.com/statuses/update.xml");
+		curl_setopt($curlhandle, CURLOPT_USERPWD, $username.':'.$password); 
+		curl_setopt($curlhandle, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curlhandle, CURLOPT_POST, 1);
+		curl_setopt($curlhandle, CURLOPT_POSTFIELDS, "status=$status");
+		$response = curl_exec($curlhandle);
+		curl_close($curlhandle);
+	}	
+	
+}
 	
 	
