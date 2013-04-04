@@ -13,7 +13,7 @@
 			</div>
 			<div class="span7 input-append">
 				<input id="statusContext" type="text" style="width:90%"; placeholder="How is your day?" >
-				<a id="button"  class="btn btn-primary">Post</button></a>
+				<a id="button_post" class="btn btn-primary">Post</a>
 			</div>
 			<div class="span8">
 				<label class="checkbox" style="HEIGHT:30px"  value="Yes" >

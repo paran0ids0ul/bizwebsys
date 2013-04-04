@@ -3,16 +3,123 @@
 class SocialNetwork extends MY_Controller 
 {
 	public function index()
-	{	
+	{			
+	
 		$this->data["custom_js"] ='			
 		<script>
 		$(document).ready(function()
 		{
-			$("#button").click(function()
+			window.fbAsyncInit = function() 
 			{
+				FB.init
+				(
+					{
+						appId      : "444833315594772", // App ID
+						channelUrl : "//localhost/channel.html", // Channel File
+						status     : true, // check login status
+						cookie     : true, // enable cookies to allow the server to access the session
+						xfbml      : true  // parse XFBML
+					}
+				);
+				alert("Finsih ini");
+				
+				
+				
+
+			// Additional init code here
+			};
+			
+			function getLogin()
+			{
+				alert("getLogin"); 
+				FB.getLoginStatus
+				(
+					function(response) 
+					{
+						alert("getLogin2");
+						if (response.status === "connected") 
+						{
+							alert("connected");
+							publish();
+							
+						} 
+						else if (response.status === "not_authorized") 
+						{
+							alert("not_aut");
+							fbLogin();
+						}
+						else 
+						{
+							alert("not");
+							fbLogin();
+						}	
+					}
+				);
+			};
+			
+			function publish()
+			{
+				var params = {};
+				params["message"] = $("#statusContext").val();
+
+				alert("publish");
+				FB.api
+				(
+					"/me/feed", "post", params, function (response) 
+					{
+						if (!response || response.error) 
+						{
+							alert("Error");	
+						} 
+						else 
+						{
+							alert("Sucess");
+						}
+					}
+				);
+			};
+
+			function fbLogin()
+			{
+				alert("fbLogin");
+				FB.login
+				(
+					function (response) 
+					{
+						if (response.authResponse) 
+						{
+							streamPublish();
+						} 
+						else 
+						{
+							// cancelled
+						}
+					}, { perms: "publish_stream" }
+				);
+				
+			};
+	
+			// Load the SDK Asynchronously
+			(
+				function(d)
+					{
+						var js, id = "facebook-jssdk", ref = d.getElementsByTagName("script")[0];
+						if (d.getElementById(id)) {return;}
+						js = d.createElement("script"); js.id = id; js.async = true;
+						js.src = "//connect.facebook.net/en_US/all.js";
+						ref.parentNode.insertBefore(js, ref);
+					}(document)
+			);
+				
+			
+			$("#button_post").click(function()
+			{
+			
+				alert("adfsg");
 				if ($("#facebook").prop("checked") == true) 
 				{ 
-					var facebook = true;
+					alert("facebook");
+					getLogin();
 				}
 				else
 				{
@@ -42,110 +149,20 @@ class SocialNetwork extends MY_Controller
 					alert("Nothing is done due to none of the checkbox is selected");
 				}				
 				
-				$.ajax(
+				var status = $("#statusContext").val();
+				
+				if ($status = "")
 				{
-					type : "POST",
-					url: "http://localhost/socialnetwork/submit",
-					data: 
-					{
-						facebook1 : facebook,
-						twitter1 : twitter,
-						googlePlus1 : googlePlus
-					},
-					success : function(results)
-					{
-						$("#process").html(results);
-					},
-					error: function(xhr, textStatus, error)
-					{
-						alert(xhr.statusText);
-						alert(textStatus);
-						alert(error);
-					}
-					
-				});
+					alert("The content cannot be empty");
+				}
+				
+				
 			});			
 		});
 			</script>';	
+
 		$this->_render('app/socialnetwork/socialnetwork');
 	}
-	
-	public function facebook()
-	{	
-		require 'application/libraries/facebook.php';
-
-		$facebook = new Facebook(array(
-			'appId'  => '444833315594772',
-			'secret' => '7d68cfcbea4886ce11c0cd1581fb1db2',
-		));
-
-         $user = $facebook->getUser();
-         $me = null;
-
-         if($user)
-         {
-                $uid = $facebook->getUser();
-                echo "uid=".$uid;
-                  
-          }
-		  else
-		  {
-              
-               $url = $facebook ->getLoginUrl( array (
-               'scope' => 'publish_stream',
-               'req_perms' => 1,
-               'fbconnect' => 0
-                ));
-                 echo "";
-          }
-		
-		return 0;
 	}
 	
-	public function twitter()
-	{	
-		echo 'twitter ';
-		
-		return 0;
-	}
 	
-	public function googlePlus()
-	{	
-		echo 'google+ 	';
-		
-		return 0;
-	}
-	
-	public function submit()
-	{
-		$facebook = $_POST['facebook1'];
-		$twitter = $_POST['twitter1'];
-		$googlePlus = $_POST['googlePlus1'];
-		
-		$f = $facebook;
-		$t = $twitter;
-		$g = $googlePlus;
-		
-		$context2 = "The status has been posted on ";
-		
-		if ($f == "true")
-		{
-			$context2 = $context2."Facebook ";
-			$this->facebook();
-		}
-		
-		if ($t == "true")
-		{
-			$context2 = $context2."Twitter ";
-			$this->twitter();
-		}
-		
-		if ($g == "true")
-		{
-			$context2 = $context2."Google+ ";
-			$this->googlePlus();
-		}
-		
-		echo $context2;	
-	}
-}
