@@ -1,4 +1,4 @@
-Business Web Solution
+BizWebSys
 =====================
 
 Based on forks of:
@@ -20,3 +20,11 @@ Based on forks of:
 [FortAwesome / Font-Awesome](https://github.com/FortAwesome/Font-Awesome) v3.0.2
 
 [jquery-json / jquery-json] (https://code.google.com/p/jquery-json/) v2.4
+
+
+
+
+
+Getting lazy with documentation:
+
+adLdap
