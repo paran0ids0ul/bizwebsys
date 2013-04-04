@@ -90,6 +90,7 @@ class Inventory extends MY_Controller {
 												var confirm_string = "Are you sure you want to delete " + ids.length + " item(s)?";
 												var checkstr =  confirm(confirm_string);
 												var ajaxurl = "http://" + (document.location.hostname) + "/inventory/delete_items"; 
+												alert(ajaxurl);
 												if (checkstr == true) {
 													var ajaxData = { items: JSON.stringify(ids) };
 														$.ajax({
@@ -365,7 +366,7 @@ class Inventory extends MY_Controller {
 										    	data: { amount : addamount , itemID : id },
 										    	success: function(results){ 
 										    		
-										    		
+										    		alert(results);
 										    		$("#item_stock").html(results);
 										    		
 										    	},
