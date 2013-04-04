@@ -49,6 +49,8 @@ class Contacts extends MY_Controller {
 		$data['contacts'] = $this->contacts_model->get_all_contact();		
 		$data['ldap'] = $this->contacts_model->get_ldap();
 		$data['x'] = 0;
+
+		$this->title = "Contacts";
 		
 	
 		$this->_data_render('app/contacts/contacts',$data);
@@ -63,7 +65,6 @@ class Contacts extends MY_Controller {
 		
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		
 	
 		$this->form_validation->set_rules('contact_fname', 'First Name', 'required');
 		$this->form_validation->set_rules('contact_sname', ' Surname', 'required');
@@ -276,6 +277,8 @@ class Contacts extends MY_Controller {
 				"Zimbabwe"
 			);
 	
+			$this->title = "New Contact";
+
 		if ($this->form_validation->run() === FALSE)
 		{
 		
@@ -377,7 +380,8 @@ class Contacts extends MY_Controller {
 											$("#delete_button").on("click", function(e) {
 										    	e.preventDefault();
 	        									var href = this.href;
-										    	var id = $("#reference").text();
+										    	var id = $("#reference").val();
+										    	alert(id);
 										    	var ajaxurl = "http://" + (document.location.hostname) + "/contacts/delete_contact"; 
 
 												var confirm_string = "Are you sure you want to delete this contact?";
@@ -412,6 +416,8 @@ class Contacts extends MY_Controller {
 
 
 		$data = $this->contacts_model->get_contact($id);
+
+		$this->title = "Contact : ".$data['sn'];
 
 		$this->_data_render('app/contacts/display_contact',$data);
 
@@ -639,8 +645,8 @@ class Contacts extends MY_Controller {
 				"Zimbabwe"
 			);
 
-
-
+		$this->title = "Edit Contact";
+		
 		if ($this->form_validation->run() === FALSE)
 		{
 			

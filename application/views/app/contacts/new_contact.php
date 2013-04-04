@@ -75,16 +75,12 @@
 												<select name="contact_hcountry" id="contact_hcountry">
 													<option value="">Country :</option>
 													<?php foreach ($country_list as $country): ?>
-														<option value="<?php echo $country ?>" <?php if ($selected_country)
+														<option value="<?php echo $country ?>" <?php if ($selected_country != NULL)
 																							{
 																								if ($selected_country == $country) {
 																									echo 'selected';
 																								}
-																							} else {
-																								if ($l == $country) {
-																									echo 'selected';
-																								}
-																							}
+																							} 
 
 												 										?>><?php echo $country ?></option>
 													<?php endforeach ?>

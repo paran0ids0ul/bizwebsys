@@ -5,7 +5,7 @@
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
 			<li>Edit<span class="divider">/</span></li>
-			<li class="active"><?php echo $uid ?></li>
+			<li class="active"><?php echo $cn ?></li>
 		</ul>
 		<!-- Control Buttons -->
 		<?php echo validation_errors(); ?>
@@ -77,16 +77,15 @@
 												<select name="contact_hcountry" id="contact_hcountry">
 													<option value="">Country :</option>
 													<?php foreach ($country_list as $country): ?>
-														<option value="<?php echo $country ?>" <?php if ($selected_country)
-																							{
-																								if ($selected_country == $country) {
-																									echo 'selected';
-																								}
-																							} else {
-																								if ($l == $country) {
-																									echo 'selected';
-																								}
-																							}
+														<option value="<?php echo $country ?>" <?php if ($selected_country != NULL) {
+																										if ($selected_country == $country) {
+																											echo 'selected';
+																										}
+																									} else {
+																										if ($l == $country) {
+																											echo 'selected';
+																										}
+																									}
 
 												 										?>><?php echo $country ?></option>
 													<?php endforeach ?>

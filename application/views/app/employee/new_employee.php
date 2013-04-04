@@ -104,13 +104,9 @@
 											<select name="employee_country" id="employee_country">
 												<option value="">Please Choose :</option>
 												<?php foreach ($country_list as $country): ?>
-													<option value="<?php echo $country ?>" <?php if (isset($selected_country))
+													<option value="<?php echo $country ?>" <?php if ($selected_country != NULL)
 																							{
 																								if ($selected_country == $country) {
-																									echo 'selected';
-																								}
-																							} else {
-																								if ($l == $country) {
 																									echo 'selected';
 																								}
 																							}
@@ -128,15 +124,11 @@
 									<label class="span2">Job title</label>
 									<div class="span2 label-field" id="job_select">
 										<select name="employee_title" id="employee_titles">
-											<option>Please Choose :</option>
+											<option value="">Please Choose :</option>
 											<?php foreach ($job_titles as $job): ?>
-											<option value="<?php echo $job ?>" <?php if (isset($selected_title))
+											<option value="<?php echo $job ?>" <?php if ($selected_title != NULL)
 																							{
 																								if ($selected_title == $job) {
-																									echo 'selected';
-																								}
-																							} else {
-																								if ($jobtitle == $job) {
 																									echo 'selected';
 																								}
 																							}

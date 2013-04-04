@@ -4,7 +4,7 @@
 			<!--breadcrumb -->
 			<ul class="breadcrumb">
 				<li><a href="<?php echo site_url("inventory") ?>">Item</a> <span class="divider">/</span></li>
-				<li class="active" id="reference" value="<?php echo $itemID ?>"><?php echo $itemID ?></li>
+				<li class="active" id="reference" value="<?php echo $itemID ?>"><?php echo $name ?></li>
 			</ul>
 			
 			<div class="row">

@@ -138,8 +138,7 @@
 										<select name="employee_title">
 											<option>Please Choose :</option>
 											<?php foreach ($job_titles as $job): ?>
-												<option value="<?php echo $job ?>" <?php if ($selected_title != NULL)
-																							{
+												<option value="<?php echo $job ?>" <?php if ($selected_title != NULL) {
 																								if ($selected_title == $job) {
 																									echo 'selected';
 																								}

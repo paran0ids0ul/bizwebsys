@@ -5,7 +5,7 @@
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
 			<li>Edit<span class="divider">/</span></li>
-			<li class="active"><?php echo $itemID ?></li>
+			<li class="active"><?php echo $name ?></li>
 		</ul>
 		<!-- Control Buttons -->
 		<?php echo validation_errors(); ?>
@@ -46,7 +46,15 @@
 								<select name="item_category" id="item_category">
 									<option value="null">Please Choose :</option>
 									<?php foreach ($itemType as $type): ?>
-											<option value="<?php echo $type ?>" <?php if ($category == $type) {echo 'selected';} ?>><?php echo $type ?></option>
+											<option value="<?php echo $type ?>" <?php if ($selected_category != NULL) {
+																							if ($selected_category == $type) {
+																								echo 'selected';
+																							}
+																						} else {
+																							if ($category == $type) {echo 'selected';} 
+																						}
+
+																				?>><?php echo $type ?></option>
 										<?php endforeach ?>
 								</select>		
 							</div>		
@@ -64,7 +72,15 @@
 										<option>Please Choose :</option>
 										<?php foreach ($contacts as $contact): ?>
 											<?php if (!is_array($contact)) continue; ?>
-											<option value="<?php echo $contact['uid'][0] ?>" <?php if ($contactID == $contact['uid'][0]) {echo 'selected';} ?>><?php echo $contact['cn'][0] ?></option>
+											<option value="<?php echo $contact['uid'][0] ?>" <?php if ($selected_supplier != NULL) {
+																										if ($selected_supplier == $contact['uid'][0]) {
+																											echo 'selected';
+																										}
+																									} else {
+																										if ($contactID == $contact['uid'][0]) 
+																											{echo 'selected';}
+																									} 
+																							?>><?php echo $contact['cn'][0] ?></option>
 										<?php endforeach ?>
 									</select>	
 								</div>

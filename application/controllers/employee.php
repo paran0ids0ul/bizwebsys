@@ -20,6 +20,8 @@ class Employee extends MY_Controller {
 		$data['ldap'] = $this->employee_model->get_ldap();
 		$data['x'] = 0;
 	
+		$this->title = "Employee";
+
 		$this->_data_render('app/employee/employee',$data);
 		
 		$this->employee_model->close_ldap();
@@ -95,6 +97,8 @@ class Employee extends MY_Controller {
 							    	"Vice President of Marketing","Vice President of Production","Operations manager","Quality control, safety, environmental manager",
 							    	"Accountant, bookkeeper","Office manager","Receptionist","Foreperson, supervisor, lead person","Marketing manager",
 							    	"Purchasing manager","Shipping and receiving manager","Professional staff");
+
+		$this->title = "Create new Employee";
 
 		$data['country_list'] = array(
 				"Afghanistan",
@@ -407,7 +411,8 @@ class Employee extends MY_Controller {
 											$("#delete_button").on("click", function(e) {
 										    	e.preventDefault();
 	        									var href = this.href;
-										    	var id = $("#reference").text();
+										    	var id = $("#reference").val();
+										    	alert(id);
 										    	var ajaxurl = "http://" + (document.location.hostname) + "/employee/delete_employee"; 
 												var confirm_string = "Are you sure you want to delete this employee?";
 												var checkstr =  confirm(confirm_string);
@@ -438,6 +443,8 @@ class Employee extends MY_Controller {
 
 
 		$data = $this->employee_model->get_employee($id);
+
+		$this->title = "Employee : ".$data['uid'] ;
 
 		$this->_data_render('app/employee/display_employee',$data);
 
@@ -490,6 +497,8 @@ class Employee extends MY_Controller {
 
 
 		$data = $this->employee_model->get_employee($id);
+
+		$this->title = "Edit Employee";
 
 		$data['job_titles'] = array("Chief Executive Officer (CEO)","Chief Operating Officer (COO)","Chief Financial Officer (CFO)",
 							    	"Vice President of Marketing","Vice President of Production","Operations manager","Quality control, safety, environmental manager",

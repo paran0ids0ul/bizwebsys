@@ -116,6 +116,8 @@ class Inventory extends MY_Controller {
 									   });
 									   
 								    </script>';
+
+		$this->title = "Inventory";
 		
 		
 		$data['items'] = $this->inventory_model->get_item_list();
@@ -244,7 +246,7 @@ class Inventory extends MY_Controller {
 									    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
 									    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
 
-
+		$this->title = "New Item";
 
 	
 		if ($this->form_validation->run() === FALSE)
@@ -333,6 +335,8 @@ class Inventory extends MY_Controller {
 		$data['desc'] = $data['item']['Description'];
 		$data['imgpath'] = $data['item']['Imagepath'];
 		
+		$this->title = "Item : ".$data['name'];
+
 		$data['contacts'] = $this->contacts_model->get_all_contact();
 		
 		foreach ($data['contacts'] as $contact) {
@@ -501,6 +505,8 @@ class Inventory extends MY_Controller {
 		$data['SKU'] = $data['item']['SKU'];
 		$data['desc'] = $data['item']['Description'];
 		$data['imgpath'] = $data['item']['Imagepath'];
+
+		$this->title = "Edit Item";
 		
 
 		if ($this->form_validation->run() === FALSE)
