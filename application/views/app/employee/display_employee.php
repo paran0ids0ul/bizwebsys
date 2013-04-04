@@ -5,7 +5,7 @@
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
 			<li><a href="<?php echo site_url("employee") ?>">Employee</a> <span class="divider">/</span></li>
-			<li class="active" id="reference" value="<?php echo $uid ?>"><?php echo $uid ?></li>
+			<li class="active" id="reference"><?php echo $uid ?></li>
 		</ul>
 		<!-- Control Buttons -->
 		<div class="row">

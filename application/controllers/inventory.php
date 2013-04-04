@@ -90,7 +90,8 @@ class Inventory extends MY_Controller {
 												var confirm_string = "Are you sure you want to delete " + ids.length + " item(s)?";
 												var checkstr =  confirm(confirm_string);
 												var ajaxurl = "http://" + (document.location.hostname) + "/inventory/delete_items"; 
-												alert(ajaxurl);
+
+
 												if (checkstr == true) {
 													var ajaxData = { items: JSON.stringify(ids) };
 														$.ajax({
@@ -357,7 +358,7 @@ class Inventory extends MY_Controller {
 										    	
 										    	
 										    	var addamount = $("#addstock").val();
-										    	var id = $("#reference").val();
+										    	var id = $("#reference").text();
 										    	var ajaxurl = "http://" + (document.location.hostname) + "/inventory/stockup"; 
 
 										    	$.ajax({
@@ -382,7 +383,7 @@ class Inventory extends MY_Controller {
 											$("#delete_button").on("click", function(e) {
 										    	e.preventDefault();
 	        									var href = this.href;
-										    	var id = $("#reference").val();
+										    	var id = $("#reference").text();
 
 												var confirm_string = "Are you sure you want to delete this item?";
 												var checkstr =  confirm(confirm_string);
