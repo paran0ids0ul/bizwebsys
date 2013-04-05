@@ -73,8 +73,8 @@ class Home extends MY_Controller {
 	//		$is_admin = $this->home_model->is_admin($username);
 	//		$newdata = array(
       //            'username'  => $data["username"],
-     //             'username'     => $data["username"],
-	//			  'is_admin' => $is_admin
+     //             'email'     => $data["email"],
+	//			   'is_admin' => $is_admin
      //          );
 	//		$this->session->set_userdata($newdata);
 	//		echo "true";
@@ -86,7 +86,8 @@ class Home extends MY_Controller {
 	
 			$newdata = array(
                   'username'  => "username",
-                   'email'     => "username@bizwebsys.tk"
+                   'email'     => "username@bizwebsys.tk",
+				   'is_admin' => false
                );
 			$this->session->set_userdata($newdata);
 			echo "true";
