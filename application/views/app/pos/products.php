@@ -18,7 +18,10 @@
 						  <?php foreach ($items as $item): ?>
 						  <li>
 							<a class="thumbnail" value="<?php echo $item['VATRate']?>" rel="<?php echo $item['DiscountRate']?>" id="<?php echo $item['ItemID']?>">
-							  <span class="label label-info pull-right">£<?php echo $item['NetPrice'] * $item['DiscountRate']?></span>
+							  <span class="label label-info pull-right">£<?php echo $item['NetPrice']?></span>
+							  <?php if ($item['DiscountRate'] < 1): ?>
+								<span class="label label-warning pull-right">£<?php echo $item['NetPrice'] * $item['DiscountRate'] ?></span>
+							  <?php endif; ?>	
 							  <img src=<?php 
 									if ($item['Imagepath'] == null){
 										echo base_url("resources/images/no_image.gif");

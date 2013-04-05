@@ -88,6 +88,10 @@ class Pos extends MY_Controller {
 									{
 										font-size:12px;
 									}
+									.label-warning
+									{
+										background-color:#F5F118;
+									}
 									</style>';
 		//load local js
 		$this->data["custom_js"] ='								  
