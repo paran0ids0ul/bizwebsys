@@ -66,32 +66,36 @@ class Contacts_model extends MY_Model {
 
 		$contact = $this->myldap->user()->getContact_byID($id);
 
-		$dt['uid'] = $contact['uid'][0];
-		$dt['cn'] = $contact['cn'][0];
-		$dt['sn'] = $contact['sn'][0];
- 		$dt['gn'] = array_key_exists("givenName",$contact) ? $contact['givenName'][0] : NULL;
-		$dt['facs'] = array_key_exists("facsimileTelephoneNumber",$contact) ? $contact['facsimileTelephoneNumber'][0] : NULL;
-		$dt['tel'] = array_key_exists("telephoneNumber",$contact) ? $contact['telephoneNumber'][0] : NULL;
-		$dt['mob'] = array_key_exists("mobile",$contact) ? $contact['mobile'][0] : NULL;
-		$street = array_key_exists("street",$contact) ? $contact['street'][0] : NULL;
-		if ($street != NULL) {
-			$street1and2 = explode("$", $street);
-			$dt['street1'] = $street1and2[0];
-			$dt['street2'] = is_null($street1and2[1]) ? NULL : $street1and2[1];
-		}
-		else {
-			$dt['street1'] = NULL;
-			$dt['street2'] = NULL;	
-		}
-		$dt['jpeg'] =  array_key_exists("jpegPhoto",$contact) ? $contact['jpegPhoto'][0] : NULL;
-		$dt['st'] = array_key_exists("st",$contact) ? $contact['st'][0] : NULL;
-		$dt['l'] = array_key_exists("l",$contact) ? $contact['l'][0] : NULL;
-		$dt['postalCode'] = array_key_exists("postalCode",$contact) ? $contact['postalCode'][0] : NULL;
-		$dt['postalAddress'] = array_key_exists("postalAddress",$contact) ? $contact['postalAddress'][0] : NULL;
-		$dt['mail'] = array_key_exists("mail",$contact) ? $contact['mail'][0] : NULL;
-		$dt['o'] = array_key_exists("o",$contact) ? $contact['o'][0] : NULL;
+		if ($contact != NULL) {
 
-		return $dt;
+			$dt['uid'] = $contact['uid'][0];
+			$dt['cn'] = $contact['cn'][0];
+			$dt['sn'] = $contact['sn'][0];
+	 		$dt['gn'] = array_key_exists("givenName",$contact) ? $contact['givenName'][0] : NULL;
+			$dt['facs'] = array_key_exists("facsimileTelephoneNumber",$contact) ? $contact['facsimileTelephoneNumber'][0] : NULL;
+			$dt['tel'] = array_key_exists("telephoneNumber",$contact) ? $contact['telephoneNumber'][0] : NULL;
+			$dt['mob'] = array_key_exists("mobile",$contact) ? $contact['mobile'][0] : NULL;
+			$street = array_key_exists("street",$contact) ? $contact['street'][0] : NULL;
+			if ($street != NULL) {
+				$street1and2 = explode("$", $street);
+				$dt['street1'] = $street1and2[0];
+				$dt['street2'] = is_null($street1and2[1]) ? NULL : $street1and2[1];
+			}
+			else {
+				$dt['street1'] = NULL;
+				$dt['street2'] = NULL;	
+			}
+			$dt['jpeg'] =  array_key_exists("jpegPhoto",$contact) ? $contact['jpegPhoto'][0] : NULL;
+			$dt['st'] = array_key_exists("st",$contact) ? $contact['st'][0] : NULL;
+			$dt['l'] = array_key_exists("l",$contact) ? $contact['l'][0] : NULL;
+			$dt['postalCode'] = array_key_exists("postalCode",$contact) ? $contact['postalCode'][0] : NULL;
+			$dt['postalAddress'] = array_key_exists("postalAddress",$contact) ? $contact['postalAddress'][0] : NULL;
+			$dt['mail'] = array_key_exists("mail",$contact) ? $contact['mail'][0] : NULL;
+			$dt['o'] = array_key_exists("o",$contact) ? $contact['o'][0] : NULL;
+
+			return $dt;
+
+		}
 
 	}
 	
@@ -150,23 +154,6 @@ class Contacts_model extends MY_Model {
 
 
 	}	
-
-
-	public function add_image($id,$bstring)
-	{
-		try {
-			$this->myldap = new MyLdap();
-		}
-		catch (adLDAPException $e) {
-			echo $e;
-			exit();   
-		}
-
-		$entry["jpegPhoto"][0] = "$bstring";
-
-		$result = ldap_mod_add($this->myldap->getLdapConnection(), "uid=".$id.",ou=contacts,dc=bizwebsys,dc=tk", $entry);
-
-	}
 
 
 

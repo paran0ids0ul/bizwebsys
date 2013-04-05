@@ -87,6 +87,22 @@ class MyLdapUsers {
 	    
 	    
     }
+
+    public function get_admin() {
+
+    	$result = ldap_search($this->myldap->getLdapConnection(),"ou=groups,dc=bizwebsys,dc=tk", "(cn=admins)") or die ("Error in search query"); 
+
+	    $entry = ldap_first_entry($this->myldap->getLdapConnection(), $result);
+
+
+	    if ($entry != false) {
+	    	$info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
+	    	return $info;
+	    }
+	    return false
+
+
+    }
     
     public function getAll_user() 
     {
@@ -130,10 +146,12 @@ class MyLdapUsers {
 	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(uid=".$id.")") or die ("Error in search query"); 
 
 	    $entry = ldap_first_entry($this->myldap->getLdapConnection(), $result);
-	    
-	    $info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
-	    
-	    return $info;
+
+	    if ($entry != false) {
+	    	$info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
+	    	return $info;
+	    }
+	    return false
 	    
     }
     

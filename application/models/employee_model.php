@@ -112,6 +112,32 @@ class Employee_model extends MY_Model {
 	}
 
 
+	public function get_admin() 
+	{
+
+		try {
+			$this->myldap = new MyLdap();
+		}
+		catch (adLDAPException $e) {
+			echo $e;
+			exit();   
+		}
+
+		$employee = $this->myldap->user()->get_admin();
+
+		if ($employee != false) {
+			if (array_key_exists("uniqueMember", $employee)) {
+				for ($y = 0 ; $y < $employee['uniqueMember'][count] ; $y++) {
+					$admin[$y] = $employee['uniqueMember'][$y];
+				}
+
+				return $admin;
+			}
+		}
+
+	}
+
+
 	public function get_all_employee() {
 		
 		try {
