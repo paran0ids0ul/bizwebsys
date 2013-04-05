@@ -216,6 +216,13 @@ class Pos extends MY_Controller {
 											var VATRate=parseFloat($(this).attr(\'value\'));
 											var DiscountRate=parseFloat($(this).attr(\'rel\'));
 											
+											appendItem(itemID, name, NetPrice, VATRate, DiscountRate);
+											
+										});
+										
+										
+										function appendItem(itemID, name, NetPrice, VATRate, DiscountRate) {
+										
 											var isOnList = false;
 											for(i=0;i<items.length;i++)
 											{
@@ -236,9 +243,8 @@ class Pos extends MY_Controller {
 												items.push(NewItem);
 											}
 											renderItemList();
-								
-										});
 										
+										}
 										
 										//Click on list item effect
 										$(\'.item-list\').on(\'click\', \'li\', function () { 
