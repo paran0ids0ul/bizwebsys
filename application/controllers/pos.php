@@ -162,13 +162,6 @@ class Pos extends MY_Controller {
 											return toFixed(tax, 2);
 										}
 										
-										function clearItemList()
-										{
-											items.splice(0, items.length);
-											renderItemList();
-										}
-										
-										
 										function renderItemList()
 										{
 											$(\'#ItemList\').empty();
@@ -516,8 +509,7 @@ class Pos extends MY_Controller {
 										function receiptButtonFunc()
 										{
 											$(\'#btn_nextorder\').click(function(){
-												clearItemList();
-												showProducts();
+												window.location.href=\''.site_url('pos').'\';
 											});
 											
 											$(\'#btn_print\').click(function() {
