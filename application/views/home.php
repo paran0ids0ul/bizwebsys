@@ -18,6 +18,7 @@
           <li><a href="#register_modal" data-toggle="modal">Register</a></li>
         </ul>
        </div>
+	   <div id="test"></div>
      </div>
    </div>
  </div>

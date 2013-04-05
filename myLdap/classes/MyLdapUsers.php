@@ -110,6 +110,18 @@ class MyLdapUsers {
 	    
 	    return $info;
     }
+	
+	public function getAll_admins()
+    {
+	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=groups,dc=bizwebsys,dc=tk", "(cn=admins)") or die ("Error in search query");
+	    
+		$info = ldap_get_entries($this->myldap->getLdapConnection(), $result);
+		
+		
+		
+	    
+	    return $info;
+    }
 
 
     public function getContact_byID($id) 

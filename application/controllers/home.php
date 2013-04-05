@@ -53,6 +53,7 @@ class Home extends MY_Controller {
 														$(\'#inputPassword\').val("");
 
 													}
+												//$(\'#test\').html(response);
 												}
 											});
 										}
@@ -88,6 +89,9 @@ class Home extends MY_Controller {
                );
 			$this->session->set_userdata($newdata);
 			echo "true";
+	
+//	$data = $this->home_model->is_admin("naomi.li");
+//	echo $data;
 	}	
 	
 	public function sign_out()

@@ -9,7 +9,7 @@
          <span class="icon-bar"></span>
        </a>
 	   <div class="nav-collapse collapse" id="main-menu">
-			<a class="brand"><?php echo $username?></a>
+			<a class="brand"><?php echo $this->session->userdata('username'); ?></a>
 			<ul class="nav pull-right">
 				<li><a href="<?php echo site_url("workspace")?>">Close</a></li>
 			</ul>
