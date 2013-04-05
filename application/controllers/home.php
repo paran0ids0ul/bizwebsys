@@ -70,13 +70,14 @@ class Home extends MY_Controller {
 	//	$data = $this->home_model->authenticate($username,$password);
 	//	if($data["result"])
 	//	{
+	//		$is_admin = $this->home_model->is_admin($username);
 	//		$newdata = array(
-     //             'username'  => $data["username"],
-     //              'username'     => $data["username"]
-      //         );
+      //            'username'  => $data["username"],
+     //             'username'     => $data["username"],
+	//			  'is_admin' => $is_admin
+     //          );
 	//		$this->session->set_userdata($newdata);
 	//		echo "true";
-			
 	//	}
 	//	else
 	//		echo "false";
@@ -89,9 +90,6 @@ class Home extends MY_Controller {
                );
 			$this->session->set_userdata($newdata);
 			echo "true";
-	
-//	$data = $this->home_model->is_admin("naomi.li");
-//	echo $data;
 	}	
 	
 	public function sign_out()

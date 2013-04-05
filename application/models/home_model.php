@@ -48,20 +48,20 @@ class Home_model extends MY_Model {
 			{
 				if($password == $employee["userpassword"][0])
 				{
-					if(is_admin($employee["uid"][0]))
-						$is_admin = true;
-						
 					$result = true;
 				}
 			}
 		}
 		
-		$data = array("result"=>$result,"username"=>$employee["uid"][0],"email"=>$employee["mail"][0],"is_admin"=>$is_admin);
+		$data = array("result"=>$result,"username"=>$employee["uid"][0],"email"=>$employee["mail"][0]);
 		return $data;
 	}
 	
-	public function is_admin($uid)
+
+	
+	public function is_admin($uid) 
 	{
+
 		try {
 			$this->myldap = new MyLdap();
 		}
@@ -69,14 +69,26 @@ class Home_model extends MY_Model {
 			echo $e;
 			exit();   
 		}
-	
-		$admins = $this->myldap->user()->getAll_admins(); 
-		//$output = $admins["uniquemember"][0];
-		return print_r($admins,true);
-	
+
+		$employee = $this->myldap->user()->get_admin();
+        $result = false;
+		if ($employee != false) {
+			if (array_key_exists("uniqueMember", $employee)) {
+				for ($y = 0 ; $y < $employee['uniqueMember']['count'] ; $y++) {
+					$e = $employee['uniqueMember'][$y];
+					$pos = strpos($e, ',');
+					$e_uid = substr($e, 4, $pos-4); 
+					if($e_uid == $uid)
+					{
+						$result = true;
+						break;
+					}
+				}
+			}
+		}
+		
+		return $result;
 	}
-	
-	
-	
+
 	
 }
