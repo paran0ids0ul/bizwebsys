@@ -262,7 +262,6 @@ class Pos extends MY_Controller {
 											
 											i = getSelectedItemIndex();
 											items[i].selected = true;
-											
 										});
 										
 										function getSelectedItemIndex()
@@ -273,6 +272,8 @@ class Pos extends MY_Controller {
 												if(ProductID == items[i].ProductID)
 													break;
 											}
+											
+											
 											return i;
 										}
 										
@@ -357,6 +358,8 @@ class Pos extends MY_Controller {
 												if(items[i].quantity == 1)
 												{
 													items.splice(i,1);
+													if(items.length>=1)
+														items[0].selected = true;
 												}
 												else
 												{
@@ -377,6 +380,8 @@ class Pos extends MY_Controller {
 												if(items[i].discount == 1)
 												{
 													items.splice(i,1);
+													if(items.length>=1)
+														items[i].selected = true;
 												}
 												else
 												{
