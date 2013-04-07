@@ -40,7 +40,7 @@ class Contacts_model extends MY_Model {
 			exit();   
 		}
 
-		$results = $this->myldap->user()->getAll_contacts();	
+		$results = $this->myldap->user()->get_all_contacts();	
 		return $results;
 		
 	}
@@ -64,7 +64,7 @@ class Contacts_model extends MY_Model {
 			exit();   
 		}
 
-		$contact = $this->myldap->user()->getContact_byID($id);
+		$contact = $this->myldap->user()->get_contact_by_id($id);
 
 		if ($contact != NULL) {
 
@@ -99,7 +99,7 @@ class Contacts_model extends MY_Model {
 
 	}
 	
-	public function new_contactID_db() 
+	public function new_contact_id_db() 
 	{
 		$this->db->insert('Contact', array('ContactID' => NULL) );
 

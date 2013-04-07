@@ -170,7 +170,7 @@ class Inventory_model extends MY_Model {
 	}
 	
 	
-	public function get_item_byID($itemID) {
+	public function get_item_by_id($itemID) {
 		
 		$query = $this->db->get_where('Inventory', array('ItemID' => $itemID));
 		return $query->row_array();

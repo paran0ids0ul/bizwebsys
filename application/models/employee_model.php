@@ -26,7 +26,7 @@ class Employee_model extends MY_Model {
 		return $this->myldap;
 	}
 	
-	public function new_employeeID_db() 
+	public function new_employee_id_db() 
 	{
 		$this->db->insert('Employee', array('EmployeeID' => NULL) );
 
@@ -89,7 +89,7 @@ class Employee_model extends MY_Model {
 			exit();   
 		}
 
-		$employee = $this->myldap->user()->getUser_byID($uid);
+		$employee = $this->myldap->user()->get_user_by_id($uid);
 
 		if ($employee != false) {
 
@@ -148,7 +148,7 @@ class Employee_model extends MY_Model {
 			exit();   
 		}
 
-		$results = $this->myldap->user()->getAll_user(); 	
+		$results = $this->myldap->user()->get_all_user(); 	
 		return $results;
 		
 	}

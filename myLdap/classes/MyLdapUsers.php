@@ -104,7 +104,7 @@ class MyLdapUsers {
 
     }
     
-    public function getAll_user() 
+    public function get_all_user() 
     {
 	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=people,dc=bizwebsys,dc=tk", "(cn=*)") or die ("Error in search query"); 
 	    
@@ -116,7 +116,7 @@ class MyLdapUsers {
     }
     
     
-    public function getAll_contacts()
+    public function get_all_contacts()
     {
 	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(cn=*)") or die ("Error in search query");
 	    
@@ -128,7 +128,7 @@ class MyLdapUsers {
     }
 	
 
-    public function getContact_byID($id) 
+    public function get_contact_by_id($id) 
     {
 
 	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(uid=".$id.")") or die ("Error in search query"); 
@@ -144,7 +144,7 @@ class MyLdapUsers {
     }
     
 
-    public function getUser_byID($uid) 
+    public function get_user_by_id($uid) 
     {
 
 	    $result = ldap_search($this->myldap->getLdapConnection(),"ou=people,dc=bizwebsys,dc=tk", "(uid=".$uid.")") or die ("Error in search query"); 

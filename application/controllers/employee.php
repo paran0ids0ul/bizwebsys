@@ -47,14 +47,14 @@ class Employee extends MY_Controller {
   		}
 	}
 
-	public function check2($toCheck,$id)
+	public function check_edit($toCheck,$id)
 	{
 		if ($toCheck != $id) {
 			$reference = $this->employee_model->get_employee($toCheck);
 
 			if (isset($reference)) {
 				if ($reference['uid'] == $toCheck) {
-					$this->form_validation->set_message('check2', 'The username already exist in server');
+					$this->form_validation->set_message('check_edit', 'The username already exist in server');
 					$this->employee_model->close_ldap();
 					return FALSE;
 				}
@@ -337,20 +337,20 @@ class Employee extends MY_Controller {
 
             	$jpegStr = NULL;
                         
-            	$newID = $this->employee_model->new_employeeID_db();
+            	$newID = $this->employee_model->new_employee_id_db();
 
             	$username = $this->employee_model->new_employee($newID,$jpegStr);
 
             	$this->employee_model->close_ldap();
             	
-            	$this->display_employee_byID($username);
+            	$this->display_employee_by_id($username);
             	
             	
             }
             else 
             {
 		
-				$newID = $this->employee_model->new_employeeID_db();
+				$newID = $this->employee_model->new_employee_id_db();
 			
 				$file_data  =   $this->upload->data();
 
@@ -369,7 +369,7 @@ class Employee extends MY_Controller {
 
 				unlink($file_data['full_path']);
 
-				$this->display_employee_byID($username);
+				$this->display_employee_by_id($username);
 			}
 			
 			
@@ -397,7 +397,7 @@ class Employee extends MY_Controller {
 
 
 
-	public function display_employee_byID($id){
+	public function display_employee_by_id($id){
 
 
 		$this->data["custom_js"] ='			
@@ -486,7 +486,7 @@ class Employee extends MY_Controller {
 		$this->form_validation->set_rules('employee_fname', 'First Name', 'required');
 		$this->form_validation->set_rules('employee_sname', 'Surname', 'required');
 		$this->form_validation->set_rules('employee_cname', 'Common Name', 'required');
-		$this->form_validation->set_rules('employee_uname', 'Username', 'required|callback_check2['.$id.']');
+		$this->form_validation->set_rules('employee_uname', 'Username', 'required|callback_check_edit['.$id.']');
 		$this->form_validation->set_rules('employee_email','','');
 		$this->form_validation->set_rules('employee_homephone','','');
 		$this->form_validation->set_rules('employee_mobile','','');
@@ -734,7 +734,7 @@ class Employee extends MY_Controller {
 
             	$this->employee_model->close_ldap();
             	
-            	$this->display_employee_byID($newID);
+            	$this->display_employee_by_id($newID);
             	
             	
             }
@@ -757,7 +757,7 @@ class Employee extends MY_Controller {
 
 				unlink($file_data['full_path']);
 
-				$this->display_employee_byID($newID);
+				$this->display_employee_by_id($newID);
 			}
 			
 			

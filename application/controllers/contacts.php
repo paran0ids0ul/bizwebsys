@@ -306,20 +306,20 @@ class Contacts extends MY_Controller {
 
             	$jpegStr = NULL;
                         
-            	$newID = $this->contacts_model->new_contactID_db();
+            	$newID = $this->contacts_model->new_contact_id_db();
 
             	$this->contacts_model->new_contact($newID,$jpegStr);
 
             	$this->contacts_model->close_ldap();
             	
-            	$this->display_contact_byID($newID);
+            	$this->display_contact_by_id($newID);
             	
             	
             }
             else 
             {
 		
-				$newID = $this->contacts_model->new_contactID_db();
+				$newID = $this->contacts_model->new_contact_id_db();
 			
 				$file_data  =   $this->upload->data();
 
@@ -338,7 +338,7 @@ class Contacts extends MY_Controller {
 
 				unlink($file_data['full_path']);
 
-				$this->display_contact_byID($newID);
+				$this->display_contact_by_id($newID);
 			}
 			
 			
@@ -366,7 +366,7 @@ class Contacts extends MY_Controller {
 
 
 	
-	public function display_contact_byID($id)
+	public function display_contact_by_id($id)
 	{
 
 		$this->data["custom_js"] ='			
@@ -681,7 +681,7 @@ class Contacts extends MY_Controller {
 
             	$this->contacts_model->close_ldap();
             	
-            	$this->display_contact_byID($id);
+            	$this->display_contact_by_id($id);
             	
             	
             }
@@ -704,7 +704,7 @@ class Contacts extends MY_Controller {
 
 				unlink($file_data['full_path']);
 
-				$this->display_contact_byID($id);
+				$this->display_contact_by_id($id);
 			}
 			
 			
