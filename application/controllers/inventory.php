@@ -1,18 +1,18 @@
 <?php
 
 class Inventory extends MY_Controller {
-	
-	
-	
+
+
+
 
 	function __construct()
 	{	
-		
+
 		parent::__construct();
 		$this->load->model(array('inventory_model','contacts_model'));
-		
-		
-		
+
+
+
 	}
 
 
@@ -22,7 +22,7 @@ class Inventory extends MY_Controller {
 		$toDelete = json_decode(stripslashes($_POST['items']));
 
 		foreach($toDelete as $id){
-    		$this->inventory_model->delete_item($id);
+			$this->inventory_model->delete_item($id);
 		}
 
 	}
@@ -33,65 +33,64 @@ class Inventory extends MY_Controller {
 		$id = $_POST['delete'];
 
 
-    	$this->inventory_model->delete_item($id);
+		$this->inventory_model->delete_item($id);
 
 
 	}
 
-    public function product_list(){
+	public function product_list()
+	{
 
+		header('Content-type: application/json');
 
-
-        header('Content-type: application/json');
-
-        echo json_encode($this->inventory_model->get_item_list());
-    }
+		echo json_encode($this->inventory_model->get_item_list());
+	}
 
 	//sales order
 	public function index(){	
-	
-		
+
+
 		$this->data["custom_js"] ='			
-		
-							  
-								    <script>
-									    $(document).ready(function(){
-									  
-									    
-									    
-									    $(".tr_clickable").click( function(e) {
-									    	if (e.target.type == "checkbox") {
+
+
+									<script>
+										$(document).ready(function(){
+
+
+
+										$(".tr_clickable").click( function(e) {
+											if (e.target.type == "checkbox") {
 												e.stopPropagation();
 											} else {
-									    		window.location = $(this).attr("href") + $(this).attr("id");
-									    	}
-									    }).hover( function() {
-									    	$(this).toggleClass("hover");
-									    });
+												window.location = $(this).attr("href") + $(this).attr("id");
+											}
+										}).hover( function() {
+											$(this).toggleClass("hover");
+										});
 
 
 										$("#check_all").change(function() {
-										    if ($(this).is(":checked")) {
-										        $(".check_boxes").prop("checked",true);
-										    } else {
-										    	$(".check_boxes").prop("checked",false);	
-										    }
+											if ($(this).is(":checked")) {
+												$(".check_boxes").prop("checked",true);
+											} else {
+												$(".check_boxes").prop("checked",false);
+											}
 
 										});
 
-									    
-
-									    $("#delete_button").on("click", function(e) {
-									    	e.preventDefault();
-        									var href = this.href;
-									    	var ids = [];
 
 
-									    	$(".check_boxes").each(function() {
-									    		if ($(this).is(":checked")) {
-									    			ids.push($(this).attr("id"));
-									    		}
-									    	});
+										$("#delete_button").on("click", function(e) {
+											e.preventDefault();
+											var href = this.href;
+											var ids = [];
+
+
+											$(".check_boxes").each(function() {
+												if ($(this).is(":checked")) {
+													ids.push($(this).attr("id"));
+												}
+											});
 
 											if (ids.length > 0) {
 												var confirm_string = "Are you sure you want to delete " + ids.length + " item(s)?";
@@ -102,44 +101,44 @@ class Inventory extends MY_Controller {
 												if (checkstr == true) {
 													var ajaxData = { items: JSON.stringify(ids) };
 														$.ajax({
-													    	type: "POST",
-													    	url: ajaxurl,
-													    	data: ajaxData,
-													    	success: function(results){ 
-													    		alert("The operation is successful !");
-													    		document.location.href = href;
-													    	},
-													    	error: function(xhr, textStatus, error){
-													    		alert(xhr.statusText);
-													    		alert(textStatus);
-													    		alert(error);
-													    	}
-											    		});
+															type: "POST",
+															url: ajaxurl,
+															data: ajaxData,
+															success: function(results){
+																alert("The operation is successful !");
+																document.location.href = href;
+															},
+															error: function(xhr, textStatus, error){
+																alert(xhr.statusText);
+																alert(textStatus);
+																alert(error);
+															}
+														});
 												} else {
 													return false;
 												}
 											}
-									    });
-									   
-									   
+										});
+
+
 									   });
-									   
-								    </script>';
+
+									</script>';
 
 		$this->title = "Inventory";
-		
-		
-		$data['items'] = $this->inventory_model->get_item_list();
-		
-		
-		$this->_data_render('app/inventory/inventory',$data);
-		
-		
-		
-	
 
-		
-		
+
+		$data['items'] = $this->inventory_model->get_item_list();
+
+
+		$this->_data_render('app/inventory/inventory',$data);
+
+
+
+
+
+
+
 	}
 
 
@@ -231,14 +230,14 @@ class Inventory extends MY_Controller {
 
 
 	}
-	
-	
-	
+
+
+
 	public function new_item() {	
-		
+
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-	
+
 		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
 		$this->form_validation->set_rules('item_costprice', 'Cost Price', 'greater_than[0]');
 		$this->form_validation->set_rules('item_netprice', 'Net Price', 'greater_than[0]');
@@ -253,84 +252,84 @@ class Inventory extends MY_Controller {
 
 
 		$data['itemType'] = array("Animals","Arts & Entertainment","Baby & Toddler",
-									    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
-									    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
-									    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
+										"Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
+										"Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
+										"Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
 
 		$this->title = "New Item";
 
-	
+
 		if ($this->form_validation->run() === FALSE)
 		{
 			$data['contacts'] = $this->contacts_model->get_all_contact();
 			$data['selected_category'] = $this->input->post('item_category');
 			$data['selected_supplier'] = $this->input->post('supplier');
-		
+
 			$this->_data_render('app/inventory/new_item',$data);
 
 			$this->contacts_model->close_ldap();
-		
+
 		}
 		else 
 		{
-		
+
 			$config['upload_path'] = 'resources/images/inventory/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['overwrite'] = false;
-			
+
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
-		
-			
-		
-		
+
+
+
+
 			if ( ! $this->upload->do_upload('file'))
 			{
-				
-            	$error = array('error' => $this->upload->display_errors());
-            
-            
-            	$newID = $this->inventory_model->set_item();
-            	
-            	
-            	$this->display_item_byID($newID);
-            	
-            	
-            }
-            else 
-            {
-		
+
+				$error = array('error' => $this->upload->display_errors());
+
+
 				$newID = $this->inventory_model->set_item();
-			
-			
+
+
+				$this->display_item_byID($newID);
+
+
+			}
+			else
+			{
+
+				$newID = $this->inventory_model->set_item();
+
+
 				$file_data  =   $this->upload->data();
-			
-			
+
+
 				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$newID.$file_data['file_ext']); 
-	
-	
+
+
 				$this->inventory_model->set_imagepath($newID, $newID.$file_data['file_ext']);
-	
-			
+
+
 				$this->display_item_byID($newID);
 			}
-			
-			
+
+
 		}
-		
-		
+
+
 	}
-	
-	
-		
-	
-	
-	
+
+
+
+
+
+
 	public function display_item_byID($itemID)
 	{
 		$data['item'] = $this->inventory_model->get_item_byID($itemID);
-		
-		
+
+
 		$data['itemID'] = $data['item']['ItemID'];
 		$data['name'] = $data['item']['Name'];
 		$data['category'] = $data['item']['ItemType'];
@@ -345,141 +344,141 @@ class Inventory extends MY_Controller {
 		$data['SKU'] = $data['item']['SKU'];
 		$data['desc'] = $data['item']['Description'];
 		$data['imgpath'] = $data['item']['Imagepath'];
-		
+
 		$this->title = "Item : ".$data['name'];
 
 		$data['contacts'] = $this->contacts_model->get_all_contact();
-		
+
 		foreach ($data['contacts'] as $contact) {
 			if ($contact['uid'][0] == $data['contactID']) {
 				$data['supplier'] = $contact['cn'][0];
 			}
-			
-		}
-		
-		$this->data["custom_js"] ='			
-		
-							  
-								    <script>
-									    $(document).ready(function(){
-									    
-										    $("#stockup").click(function() {
-										    	
-										    	
-										    	var addamount = $("#addstock").val();
-										    	var id = $("#reference").text();
-										    	var ajaxurl = "http://" + (document.location.hostname) + "/inventory/stockup"; 
 
-										    	$.ajax({
-										    	type: "POST",
-										    	url: ajaxurl,
-										    	data: { amount : addamount , itemID : id },
-										    	success: function(results){ 
-										    		
-										    		$("#item_stock").html(results);
-										    		
-										    	},
-										    	error: function(xhr, textStatus, error){
-										    		alert(xhr.statusText);
-										    		alert(textStatus);
-										    		alert(error);
-										    	}
-									    		});
-										    
-										    });
-		
+		}
+
+		$this->data["custom_js"] ='			
+
+
+									<script>
+										$(document).ready(function(){
+
+											$("#stockup").click(function() {
+
+
+												var addamount = $("#addstock").val();
+												var id = $("#reference").text();
+												var ajaxurl = "http://" + (document.location.hostname) + "/inventory/stockup";
+
+												$.ajax({
+												type: "POST",
+												url: ajaxurl,
+												data: { amount : addamount , itemID : id },
+												success: function(results){
+
+													$("#item_stock").html(results);
+
+												},
+												error: function(xhr, textStatus, error){
+													alert(xhr.statusText);
+													alert(textStatus);
+													alert(error);
+												}
+												});
+
+											});
+
 											$("#delete_button").on("click", function(e) {
-										    	e.preventDefault();
-	        									var href = this.href;
-										    	var id = $("#reference").text();
+												e.preventDefault();
+												var href = this.href;
+												var id = $("#reference").text();
 
 												var confirm_string = "Are you sure you want to delete this item?";
 												var checkstr =  confirm(confirm_string);
 												var ajaxurl = "http://" + (document.location.hostname) + "/inventory/delete_an_item";
 												if (checkstr == true) {
 														$.ajax({
-													    	type: "POST",
-													    	url: ajaxurl,
-													    	data: {delete : id},
-													    	success: function(results){ 
-													    		alert("The operation is successful !");
-													    		document.location.href = href;
-													    	},
-													    	error: function(xhr, textStatus, error){
-													    		alert(xhr.statusText);
-													    		alert(textStatus);
-													    		alert(error);
-													    	}
-											    		});
+															type: "POST",
+															url: ajaxurl,
+															data: {delete : id},
+															success: function(results){
+																alert("The operation is successful !");
+																document.location.href = href;
+															},
+															error: function(xhr, textStatus, error){
+																alert(xhr.statusText);
+																alert(textStatus);
+																alert(error);
+															}
+														});
 												} else {
 													return false;
 												}
-												
-										    });
+
+											});
 
 									   });
-									   
-								    </script>';	
-		
-		
-		
-	
-		
-		
+
+									</script>';
+
+
+
+
+
+
 		$this->_data_render('app/inventory/display_item',$data);
 
 		$this->contacts_model->close_ldap();
-	
-		
-		
+
+
+
 	}
-	
-	
+
+
 	public function stockup() {
-		
-		
-		
-		
+
+
+
+
 		$toAdd = $_POST['amount'];
 		$id = $_POST['itemID'];
-		
+
 		$newStock = $this->inventory_model->update_stock($id,$toAdd);
-		
+
 		echo $newStock;
-		
-		
+
+
 	}
-	
+
 	public function edit_item($itemID)
 	{
-	
+
 		$this->data["custom_js"] ='			
-		
-							  
-								    <script>
-									    $(document).ready(function(){
-									    
-									    $("#changeImg").click(function() {
-									    	if ($("#file").val() != "") {
-									    		$("#imgThumbnail").attr("src","/resources/images/no_image.gif");
-									    	}
-									    	
-								    	});
-									    
-									   
-									    
-									   
-									   
+
+
+									<script>
+										$(document).ready(function(){
+
+										$("#changeImg").click(function() {
+											if ($("#file").val() != "") {
+												$("#imgThumbnail").attr("src","/resources/images/no_image.gif");
+											}
+
+										});
+
+
+
+
+
 									   });
-									   
-								    </script>';	
-	
-	
-	
+
+									</script>';
+
+
+
 		$this->load->helper('form');
 		$this->load->library('form_validation');		
-		
-		
+
+
 		$this->form_validation->set_rules('item_name', 'Item Name', 'required');
 		$this->form_validation->set_rules('item_costprice', 'Cost Price', 'greater_than[0]');
 		$this->form_validation->set_rules('item_netprice', 'Net Price', 'greater_than[0]');
@@ -492,15 +491,15 @@ class Inventory extends MY_Controller {
 		$this->form_validation->set_rules('item_description', '', '');
 		$this->form_validation->set_rules('file', '', '');
 
-			
+
 		$data['itemType'] = array("Animals","Arts & Entertainment","Baby & Toddler",
-								    "Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
-								    "Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
-								    "Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
+									"Business & Industrial","Cameras & Optics","Clothing & Accessories","Electronics","Food, Beverages & Tobacco","Furniture",
+									"Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
+									"Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
 
 		$data['item'] = $this->inventory_model->get_item_byID($itemID);
-		
-			
+
+
 		$data['itemID'] = $data['item']['ItemID'];
 		$data['name'] = $data['item']['Name'];
 		$data['category'] = $data['item']['ItemType'];
@@ -517,82 +516,82 @@ class Inventory extends MY_Controller {
 		$data['imgpath'] = $data['item']['Imagepath'];
 
 		$this->title = "Edit Item";
-		
+
 
 		if ($this->form_validation->run() === FALSE)
 		{
-		
+
 			$data['contacts'] = $this->contacts_model->get_all_contact();
 
 			$data['selected_category'] = $this->input->post('item_category');
 			$data['selected_supplier'] = $this->input->post('supplier');
-		
+
 			$this->_data_render('app/inventory/edit_item',$data);
 
 			$this->contacts_model->close_ldap();
-		
+
 		}
 		else 
 		{
-		
+
 			$config['upload_path'] = 'resources/images/inventory/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['overwrite'] = false;
-			
+
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
-		
-			
-		
-		
+
+
+
+
 			if ( ! $this->upload->do_upload('file'))
 			{
-				
-            	$error = array('error' => $this->upload->display_errors());
-            	        	
-            	
-            	$this->inventory_model->update_item($itemID);
-            	
-            	
-            	$this->display_item_byID($itemID);
-            	
-            	
-            }
-            else 
-            {
-            	$data['item'] = $this->inventory_model->get_item_byID($itemID);
-            	$path = $data['item']['Imagepath'];
-            	
-            	if ($path != "") {
-	            	
-	            	unlink("resources/images/inventory/$path");
-            	}
-			
-            	$this->inventory_model->update_item($itemID);
-			
-				$file_data  =   $this->upload->data();
-			
-			
-				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$itemID.$file_data['file_ext']); 
-	
-	
 
-	
-				$this->inventory_model->set_imagepath($itemID, $itemID.$file_data['file_ext']);
-	
+				$error = array('error' => $this->upload->display_errors());
+
+
+				$this->inventory_model->update_item($itemID);
+
+
 				$this->display_item_byID($itemID);
-	
+
+
 			}
-			
-			
+			else
+			{
+				$data['item'] = $this->inventory_model->get_item_byID($itemID);
+				$path = $data['item']['Imagepath'];
+
+				if ($path != "") {
+
+					unlink("resources/images/inventory/$path");
+				}
+
+				$this->inventory_model->update_item($itemID);
+
+				$file_data  =   $this->upload->data();
+
+
+				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$itemID.$file_data['file_ext']); 
+
+
+
+
+				$this->inventory_model->set_imagepath($itemID, $itemID.$file_data['file_ext']);
+
+				$this->display_item_byID($itemID);
+
+			}
+
+
 		}
-		
-		
-		
-				
+
+
+
+
 	}
-	
-	
-	
-	
+
+
+
+
 }

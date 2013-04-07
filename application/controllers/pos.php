@@ -2,29 +2,29 @@
 
 
 class Pos extends MY_Controller {
-    function __construct()
-    {
-        parent::__construct();
-        //load database model
-        $this->load->model('pos_model');
+	function __construct()
+	{
+		parent::__construct();
+		//load database model
+		$this->load->model('pos_model');
 
-        //load left column
-        $this->data["left_column"] = $this->load->view("app/pos/left_column",'',true);
+		//load left column
+		$this->data["left_column"] = $this->load->view("app/pos/left_column",'',true);
 
-        //load POS header
-        $this->template="main_no_header";
-        $to_header["username"] = "Jing";          //TODO: Model method required: getUsername()
-        $this->data["header"] = $this->load->view("app/pos/header",$to_header,true);
+		//load POS header
+		$this->template="main_no_header";
+		$to_header["username"] = "Jing";          //TODO: Model method required: getUsername()
+		$this->data["header"] = $this->load->view("app/pos/header",$to_header,true);
 
-        //load local CSS
-        $this->data["custom_css"] ='
+		//load local CSS
+		$this->data["custom_css"] ='
 									<style type="text/css">
-									
+
 									.keypad
 									{
 										margin-top:40px;
 									}
-									
+
 									.keypad-button
 									{
 										width:50px;
@@ -93,21 +93,21 @@ class Pos extends MY_Controller {
 										background-color:#F5F118;
 									}
 									</style>';
-        //load local js
-        $this->data["custom_js"] ='
-								    <script>
-									    var viewportHeight = $(window).height();
+		//load local js
+		$this->data["custom_js"] ='
+									<script>
+										var viewportHeight = $(window).height();
 										$("#left_column").height(viewportHeight);
 										$("#product_container").height(viewportHeight);
-								    </script>';
+									</script>';
 
-    }
+	}
 
-    public function index(){
+	public function index(){
 
-        //load local js
-        $this->data["custom_js"] =$this->data["custom_js"].'
-								    <script>
+		//load local js
+		$this->data["custom_js"] =$this->data["custom_js"].'
+									<script>
 
 
 										var items=new Array();
@@ -121,30 +121,30 @@ class Pos extends MY_Controller {
 											this.quantity = quantity;
 											this.discount = discount;
 											this.selected = selected;
-											
+
 											this.getDisplayPrice = getDisplayPrice;
 											this.getTax = getTax;
 											this.getTotal = getTotal;
-											
+
 											function getDisplayPrice()
 											{
 												var DisplayPrice = this.NetPrice * this.quantity * this.discount;
 												return toFixed(DisplayPrice, 2);
 											}
-											
+
 											function getTax()
 											{
 												var tax = this.NetPrice * this.quantity * this.discount * this.VATRate;
 												return toFixed(tax, 2);
 											}
-											
+
 											function getTotal()
 											{
 												var total = this.getDisplayPrice()+this.getTax();
 												return toFixed(total, 2);
 											}
 										}
-										
+
 										function getTotal()
 										{
 											var total=0;
@@ -154,7 +154,7 @@ class Pos extends MY_Controller {
 											}
 											return toFixed(total, 2);
 										}
-										
+
 										function getTax()
 										{
 											var tax = 0;
@@ -164,7 +164,7 @@ class Pos extends MY_Controller {
 											}
 											return toFixed(tax, 2);
 										}
-										
+
 										function renderItemList()
 										{
 											$(\'#ItemList\').empty();
@@ -194,7 +194,7 @@ class Pos extends MY_Controller {
 											$(\'#total\').text(getTotal());
 											$(\'#tax\').text(getTax());
 										}
-										
+
 										function renderReceiptItemList()
 										{
 											for(i=0;i<items.length;i++)
@@ -207,7 +207,7 @@ class Pos extends MY_Controller {
 												$(\'#receiptItemList\').append(html);	
 											}
 										}
-										
+
 										//Add item to list
 										$(\'.thumbnail\').click(function(){
 											var ProductID=$(this).attr(\'id\');
@@ -215,14 +215,14 @@ class Pos extends MY_Controller {
 											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
 											var VATRate=parseFloat($(this).attr(\'value\'));
 											var DiscountRate=parseFloat($(this).attr(\'rel\'));
-											
+
 											appendItem(ProductID, name, NetPrice, VATRate, DiscountRate);
-											
+
 										});
-										
-										
+
+
 										function appendItem(ProductID, name, NetPrice, VATRate, DiscountRate) {
-										
+
 											var isOnList = false;
 											for(i=0;i<items.length;i++)
 											{
@@ -233,7 +233,7 @@ class Pos extends MY_Controller {
 													break;
 												}
 											}
-											
+
 											if(isOnList == false) // boolean testing of a boolean value?
 											{
 												if(items.length==0)
@@ -243,23 +243,23 @@ class Pos extends MY_Controller {
 												items.push(NewItem);
 											}
 											renderItemList();
-										
+
 										}
-										
-										
+
+
 										//Click on list item effect
 										$(\'.item-list\').on(\'click\', \'li\', function () { 
 											var i = getSelectedItemIndex();
 											items[i].selected = false;
-											
+
 											$(\'li\').removeClass(\'selected\');
 											$(this).addClass(\'selected\');	
 											input="";
-											
+
 											i = getSelectedItemIndex();
 											items[i].selected = true;
 										});
-										
+
 										function getSelectedItemIndex()
 										{
 											var ProductID = $(\'.selected\').attr(\'id\').substr(3);
@@ -268,20 +268,20 @@ class Pos extends MY_Controller {
 												if(ProductID == items[i].ProductID)
 													break;
 											}
-											
-											
+
+
 											return i;
 										}
-										
+
 										//Round float number to fixed decimal places
 										function toFixed(num, fixed) {
 											fixed = fixed || 0;
 											fixed = Math.pow(10, fixed);
 											return Math.floor(num * fixed) / fixed;
 										}
-										
+
 										var button=1;
-										
+
 										//Toggle control buttons in keypad
 										$(\'.control\').click(function(){
 											$(\'.control\').removeClass(\'btn-primary\');
@@ -292,20 +292,20 @@ class Pos extends MY_Controller {
 											else 	
 												button=2;
 										});
-										
+
 										//Press key buttons effect
 										$(\'.key\').click(function(){
-										
+
 											if($(\'.selected\').size()==0)
 												return;
-												
+
 											var ProductID = $(\'.selected\').attr(\'id\').substr(3);
 											for(i=0;i<items.length;i++)
 											{
 												if(ProductID == items[i].ProductID)
 													break;
 											}
-											
+
 											if(button == 1)      //quantity button selected
 											{
 												if(items[i].quantity == 1)
@@ -318,7 +318,7 @@ class Pos extends MY_Controller {
 													quantity += $(this).text();
 												}
 												items[i].quantity = parseInt(quantity);
-												
+
 											}
 											else             //discount button selected
 											{
@@ -333,22 +333,22 @@ class Pos extends MY_Controller {
 												}
 												items[i].discount = parseFloat(discount);
 											}
-											
+
 											renderItemList();
 										});
-										
+
 										//Delete button effect
 										$(\'#btn_del\').click(function(){
 											if($(\'.selected\').size()==0)
 												return;
-												
+
 											var ProductID = $(\'.selected\').attr(\'id\').substr(3);
 											for(i=0;i<items.length;i++)
 											{
 												if(ProductID == items[i].ProductID)
 													break;
 											}
-											
+
 											if(button == 1)      //quantity button selected
 											{
 												if(items[i].quantity == 1)
@@ -393,15 +393,15 @@ class Pos extends MY_Controller {
 													items[i].discount = parseFloat(discount);
 												}
 											}
-											
+
 											renderItemList();	
-												
+
 										});
-										
+
 										$(\'#btn_cash\').click(function(){
 											showPayment();
 										});
-											
+
 										function showPayment()
 										{
 											$.ajax({
@@ -412,10 +412,10 @@ class Pos extends MY_Controller {
 													//load payment to content
 													$(\'#content\').html(response);
 													$("#form_container").height(viewportHeight-200);
-													
+
 													//js for payment
 													$(\'#btn_validate\').addClass("disabled");
-													
+
 													$(\'#input_cash\').keyup(function(){
 														var cash = parseFloat($(\'#input_cash\').val());
 														var total =  parseFloat($(\'#total\').text());
@@ -437,11 +437,11 @@ class Pos extends MY_Controller {
 														$(\'#remain\').text(remain);
 														$(\'#change\').text(change);
 													});
-													
+
 													$(\'#btn_back\').click(function(){
 														showProducts();
 													});
-													
+
 													$(\'#btn_validate\').click(function(){
 														if($(this).hasClass(\'disabled\'))
 															return;
@@ -450,7 +450,7 @@ class Pos extends MY_Controller {
 												}
 											});
 										}
-										
+
 										function showProducts()
 										{
 											$.ajax({
@@ -466,7 +466,7 @@ class Pos extends MY_Controller {
 											var name=$(this).children(\'label\').text();
 											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
 											var VATRate=parseFloat($(this).attr(\'value\'));
-											
+
 											var isOnList = false;
 											for(i=0;i<items.length;i++)
 											{
@@ -477,21 +477,21 @@ class Pos extends MY_Controller {
 													break;
 												}
 											}
-											
+
 											if(isOnList == false)
 											{
 												NewItem = new item(ProductID,name,NetPrice,VATRate,1,1);
 												items.push(NewItem);
 											}
 											renderItemList();
-								
+
 										});
 												}
 											});
 										}
-										
-										
-										
+
+
+
 										function saveOrderShowReceipt()
 										{
 											var cash = parseFloat($(\'#input_cash\').val());
@@ -508,21 +508,21 @@ class Pos extends MY_Controller {
 												}
 											});
 										}
-										
+
 										function receiptButtonFunc()
 										{
 											$(\'#btn_nextorder\').click(function(){
 												window.location.href=\''.site_url('pos').'\';
 											});
-											
+
 											$(\'#btn_print\').click(function() {
 												//var prtContent = document.getElementById(\'receipt\');
 												var html="<html>";
-											    html+="<head>";
+												html+="<head>";
 												html+="<style type=\'text/css\'>.small-font {font-size:12px;} .text-center{text-align:center} .label{position:relative;}.span5{width:380px}.span4{width:300px}.span2{width:140px}.span1{width:60px}.offset1{margin-left:100px}.row{margin-left:-20px;*zoom:1;width:380px}</style>";
-											    html+="</head>";
-											    html+= document.getElementById(\'receipt\').innerHTML;
-											    html+="</html>";
+												html+="</head>";
+												html+= document.getElementById(\'receipt\').innerHTML;
+												html+="</html>";
 												var WinPrint = window.open(\'\', \'\', \'letf=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0\');
 												WinPrint.document.write(html);
 												WinPrint.document.close();
@@ -543,12 +543,12 @@ class Pos extends MY_Controller {
 										var productListings = $(\'#product-list li\');
 
 										$(\'#searchbox\').keyup(function() {
-                                            var val = $.trim($(this).val()).replace(/ +/g, \' \').toLowerCase();
+											var val = $.trim($(this).val()).replace(/ +/g, \' \').toLowerCase();
 
-                                            productListings.show().filter(function() {
-                                                var text = $(this).find(\'label\').text().replace(/\s+/g, \' \').toLowerCase();
-                                                return !~text.indexOf(val);
-                                            }).hide();
+											productListings.show().filter(function() {
+												var text = $(this).find(\'label\').text().replace(/\s+/g, \' \').toLowerCase();
+												return !~text.indexOf(val);
+											}).hide();
 										});
 
 										/*
@@ -564,37 +564,37 @@ class Pos extends MY_Controller {
 
 										$(function(){
 
-                                            var productList;
+											var productList;
 
-										    $.ajax({
+											$.ajax({
 												url: \''. site_url('inventory/product_list') .'\',
 												dataType: \'json\',
 												success: function(JSONstream) {
 												   productList = JSONstream;
 												   $(\'#search button\').removeAttr("disabled");
-												    $(\'#search-feedback\').text("Ready").show(0).delay(1000).hide(0).text();
+													$(\'#search-feedback\').text("Ready").show(0).delay(1000).hide(0).text();
 												}
 											});
 
-                                           $("form#search").submit(function(event){
+										   $("form#search").submit(function(event){
 
-                                                event.preventDefault();
+												event.preventDefault();
 
-                                                var val = $(\'#searchbox\').val();
-                                                $(\'#searchbox\').val("");
+												var val = $(\'#searchbox\').val();
+												$(\'#searchbox\').val("");
 
-                                                for (var i = 0; i < productList.length; i++){
-                                                    if (productList[i].GTIN == val){
-                                                        appendItem(productList[i].ItemID, productList[i].Name, productList[i].NetPrice, productList[i].VATRate, productList[i].DiscountRate);
-                                                        return;
-                                                    }
-                                                }
+												for (var i = 0; i < productList.length; i++){
+													if (productList[i].GTIN == val){
+														appendItem(productList[i].ItemID, productList[i].Name, productList[i].NetPrice, productList[i].VATRate, productList[i].DiscountRate);
+														return;
+													}
+												}
 
-                                                $(\'#search-feedback\').text("No products found with GTIN " + val).show(0).delay(1000).hide(0).text();
+												$(\'#search-feedback\').text("No products found with GTIN " + val).show(0).delay(1000).hide(0).text();
 
-                                                return;
+												return;
 
-                                            });
+											});
 
 
 										});
@@ -602,64 +602,64 @@ class Pos extends MY_Controller {
 
 										// End HoraceLi
 
-								    </script>';
-        $data['items'] = $this->pos_model->get_items();
-        $param['toProducts'] =  $this->load->view('app/pos/products',$data,true);
+									</script>';
+		$data['items'] = $this->pos_model->get_items();
+		$param['toProducts'] =  $this->load->view('app/pos/products',$data,true);
 
-        $this->_data_render('app/pos/pos',$param);
-    }
-    public function products(){
-        $data['items'] = $this->pos_model->get_items();
-        $this->load->view('app/pos/products',$data);
-    }
-    public function payment(){
-        $data["total"] = $_POST["total"];
-        $this->load->view('app/pos/payment',$data);
-    }
-    public function process_order(){
-        if(!(isset($_POST["items"]) && isset($_POST["cash"])))
-            return;
-        $date = date("Y_m_d");
-        $payment_method = "Cash";
-        $ref = "POS".date("d_m_Y_H_i_s");
+		$this->_data_render('app/pos/pos',$param);
+	}
+	public function products(){
+		$data['items'] = $this->pos_model->get_items();
+		$this->load->view('app/pos/products',$data);
+	}
+	public function payment(){
+		$data["total"] = $_POST["total"];
+		$this->load->view('app/pos/payment',$data);
+	}
+	public function process_order(){
+		if(!(isset($_POST["items"]) && isset($_POST["cash"])))
+			return;
+		$date = date("Y_m_d");
+		$payment_method = "Cash";
+		$ref = "POS".date("d_m_Y_H_i_s");
 
-        //create new order in salesorder table
-        $this->pos_model->set_order($ref,$date,$payment_method);
-        $order_id = $this->pos_model->get_orderid($ref);
+		//create new order in salesorder table
+		$this->pos_model->set_order($ref,$date,$payment_method);
+		$order_id = $this->pos_model->get_orderid($ref);
 
-        //save items in salesorderline table
-        $items = json_decode($_POST["items"]);
+		//save items in salesorderline table
+		$items = json_decode($_POST["items"]);
 
-        $subtotal=0;
-        $tax=0;
-        foreach ($items as $item)
-        {
-            $product_id = $item->ProductID;
-            $quantity = $item->quantity;
-            $net_price = $item->NetPrice;
-            $vat_rate = $item->VATRate;
-            $discount = $item->discount;
-            $vat = $net_price * $quantity * $discount * $vat_rate;
+		$subtotal=0;
+		$tax=0;
+		foreach ($items as $item)
+		{
+			$product_id = $item->ProductID;
+			$quantity = $item->quantity;
+			$net_price = $item->NetPrice;
+			$vat_rate = $item->VATRate;
+			$discount = $item->discount;
+			$vat = $net_price * $quantity * $discount * $vat_rate;
 
-            $subtotal +=  $net_price * $quantity * $discount;
-            $tax += $vat;
-            $this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
-        }
+			$subtotal +=  $net_price * $quantity * $discount;
+			$tax += $vat;
+			$this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
+		}
 
-        $total = $subtotal + $tax;
+		$total = $subtotal + $tax;
 
-        $data["items"] = $items;
-        $data["date"] = date("d/m/Y");
-        $data["time"] = date("H:i:s");
-        $data["order_id"] = $order_id;
-        $data["subtotal"] = round($subtotal,2);
-        $data["tax"] = round($tax,2);
-        $data["total"] = round($total,2);
-        $data["cash"] = $_POST["cash"];
-        $data["change"] = round($data["cash"] - $total,2);
+		$data["items"] = $items;
+		$data["date"] = date("d/m/Y");
+		$data["time"] = date("H:i:s");
+		$data["order_id"] = $order_id;
+		$data["subtotal"] = round($subtotal,2);
+		$data["tax"] = round($tax,2);
+		$data["total"] = round($total,2);
+		$data["cash"] = $_POST["cash"];
+		$data["change"] = round($data["cash"] - $total,2);
 
-        $this->load->view('app/pos/receipt',$data);
-    }
+		$this->load->view('app/pos/receipt',$data);
+	}
 
 
 
