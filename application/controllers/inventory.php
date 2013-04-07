@@ -38,7 +38,14 @@ class Inventory extends MY_Controller {
 
 	}
 
+    public function product_list(){
 
+
+
+        header('Content-type: application/json');
+
+        echo json_encode($this->inventory_model->get_item_list());
+    }
 
 	//sales order
 	public function index(){	

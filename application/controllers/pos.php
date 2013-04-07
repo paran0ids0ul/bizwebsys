@@ -2,22 +2,22 @@
 
 
 class Pos extends MY_Controller {
-	function __construct()
-	{	
-		parent::__construct();
-		//load database model
-		$this->load->model('pos_model');
-		
-		//load left column
-		$this->data["left_column"] = $this->load->view("app/pos/left_column",'',true);
-		
-		//load POS header
-		$this->template="main_no_header";
-		$to_header["username"] = "Jing";          //TODO: Model method required: getUsername()
-		$this->data["header"] = $this->load->view("app/pos/header",$to_header,true);
-		
-		//load local CSS
-		$this->data["custom_css"] ='
+    function __construct()
+    {
+        parent::__construct();
+        //load database model
+        $this->load->model('pos_model');
+
+        //load left column
+        $this->data["left_column"] = $this->load->view("app/pos/left_column",'',true);
+
+        //load POS header
+        $this->template="main_no_header";
+        $to_header["username"] = "Jing";          //TODO: Model method required: getUsername()
+        $this->data["header"] = $this->load->view("app/pos/header",$to_header,true);
+
+        //load local CSS
+        $this->data["custom_css"] ='
 									<style type="text/css">
 									
 									.keypad
@@ -93,22 +93,25 @@ class Pos extends MY_Controller {
 										background-color:#F5F118;
 									}
 									</style>';
-		//load local js
-		$this->data["custom_js"] ='								  
+        //load local js
+        $this->data["custom_js"] ='
 								    <script>
 									    var viewportHeight = $(window).height();
 										$("#left_column").height(viewportHeight);
 										$("#product_container").height(viewportHeight);
-								    </script>';							
+								    </script>';
 
-	}
-	
-	public function index(){
-		
-		//load local js
-		$this->data["custom_js"] =$this->data["custom_js"].'	
+    }
+
+    public function index(){
+
+        //load local js
+        $this->data["custom_js"] =$this->data["custom_js"].'
 								    <script>
-										var items=new Array(); 
+
+
+										var items=new Array();
+
 										function item(ProductID,name,NetPrice,VATRate,quantity,discount,selected)
 										{
 											this.ProductID = ProductID;
@@ -231,7 +234,7 @@ class Pos extends MY_Controller {
 												}
 											}
 											
-											if(isOnList == false)
+											if(isOnList == false) // boolean testing of a boolean value?
 											{
 												if(items.length==0)
 													NewItem = new item(ProductID,name,NetPrice,VATRate,1,DiscountRate,true);
@@ -528,66 +531,137 @@ class Pos extends MY_Controller {
 												WinPrint.close();
 											});
 										}
-								    </script>';	
-		$data['items'] = $this->pos_model->get_items();
-		$param['toProducts'] =  $this->load->view('app/pos/products',$data,true);							
-		
-		$this->_data_render('app/pos/pos',$param);
-	}
-	public function products(){	
-		$data['items'] = $this->pos_model->get_items();
-		$this->load->view('app/pos/products',$data);
-	}
-	public function payment(){	
-		$data["total"] = $_POST["total"];
-		$this->load->view('app/pos/payment',$data);
-	}
-	public function process_order(){	
-		if(!(isset($_POST["items"]) && isset($_POST["cash"])))
-			return;
-		$date = date("Y_m_d");
-		$payment_method = "Cash";
-		$ref = "POS".date("d_m_Y_H_i_s");
-		
-		//create new order in salesorder table
-		$this->pos_model->set_order($ref,$date,$payment_method);
-		$order_id = $this->pos_model->get_orderid($ref);
-		
-		//save items in salesorderline table
-		$items = json_decode($_POST["items"]);
-		
-		$subtotal=0;
-		$tax=0;
-		foreach ($items as $item)
-		{
-			$product_id = $item->ProductID;
-			$quantity = $item->quantity;
-			$net_price = $item->NetPrice;
-			$vat_rate = $item->VATRate;
-			$discount = $item->discount;
-			$vat = $net_price * $quantity * $discount * $vat_rate;
-			
-			$subtotal +=  $net_price * $quantity * $discount;
-			$tax += $vat;
-			$this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
-		}
-		
-		$total = $subtotal + $tax;
-		
-		$data["items"] = $items;
-		$data["date"] = date("d/m/Y");
-		$data["time"] = date("H:i:s");
-		$data["order_id"] = $order_id;
-		$data["subtotal"] = round($subtotal,2);
-		$data["tax"] = round($tax,2);
-		$data["total"] = round($total,2);
-		$data["cash"] = $_POST["cash"];
-		$data["change"] = round($data["cash"] - $total,2);
-		
-		$this->load->view('app/pos/receipt',$data);
-	}
-	
 
-	
-	
+
+
+
+										// Start HoraceLi
+
+
+
+
+										var productListings = $(\'#product-list li\');
+
+										$(\'#searchbox\').keyup(function() {
+                                            var val = $.trim($(this).val()).replace(/ +/g, \' \').toLowerCase();
+
+                                            productListings.show().filter(function() {
+                                                var text = $(this).find(\'label\').text().replace(/\s+/g, \' \').toLowerCase();
+                                                return !~text.indexOf(val);
+                                            }).hide();
+										});
+
+										/*
+
+										I have a feeling the attributes of the DOM elements for each product is being arbitrarily used to store data.
+										value=VATRate, rel=DiscountRate... wtf
+
+										See https://github.com/horaceli/bizwebsys/issues/13
+
+										*/
+
+
+
+										$(function(){
+
+                                            var productList;
+
+										    $.ajax({
+												url: \''. site_url('inventory/product_list') .'\',
+												dataType: \'json\',
+												success: function(JSONstream) {
+												   productList = JSONstream;
+												   $(\'#search button\').removeAttr("disabled");
+												    $(\'#search-feedback\').text("Ready").show(0).delay(1000).hide(0).text();
+												}
+											});
+
+                                           $("form#search").submit(function(event){
+
+                                                event.preventDefault();
+
+                                                var val = $(\'#searchbox\').val();
+                                                $(\'#searchbox\').val("");
+
+                                                for (var i = 0; i < productList.length; i++){
+                                                    if (productList[i].GTIN == val){
+                                                        appendItem(productList[i].ItemID, productList[i].Name, productList[i].NetPrice, productList[i].VATRate, productList[i].DiscountRate);
+                                                        return;
+                                                    }
+                                                }
+
+                                                $(\'#search-feedback\').text("No products found with GTIN " + val).show(0).delay(1000).hide(0).text();
+
+                                                return;
+
+                                            });
+
+
+										});
+
+
+										// End HoraceLi
+
+								    </script>';
+        $data['items'] = $this->pos_model->get_items();
+        $param['toProducts'] =  $this->load->view('app/pos/products',$data,true);
+
+        $this->_data_render('app/pos/pos',$param);
+    }
+    public function products(){
+        $data['items'] = $this->pos_model->get_items();
+        $this->load->view('app/pos/products',$data);
+    }
+    public function payment(){
+        $data["total"] = $_POST["total"];
+        $this->load->view('app/pos/payment',$data);
+    }
+    public function process_order(){
+        if(!(isset($_POST["items"]) && isset($_POST["cash"])))
+            return;
+        $date = date("Y_m_d");
+        $payment_method = "Cash";
+        $ref = "POS".date("d_m_Y_H_i_s");
+
+        //create new order in salesorder table
+        $this->pos_model->set_order($ref,$date,$payment_method);
+        $order_id = $this->pos_model->get_orderid($ref);
+
+        //save items in salesorderline table
+        $items = json_decode($_POST["items"]);
+
+        $subtotal=0;
+        $tax=0;
+        foreach ($items as $item)
+        {
+            $product_id = $item->ProductID;
+            $quantity = $item->quantity;
+            $net_price = $item->NetPrice;
+            $vat_rate = $item->VATRate;
+            $discount = $item->discount;
+            $vat = $net_price * $quantity * $discount * $vat_rate;
+
+            $subtotal +=  $net_price * $quantity * $discount;
+            $tax += $vat;
+            $this->pos_model->set_lineorder($order_id,$product_id,$quantity,$net_price,$discount,$vat);
+        }
+
+        $total = $subtotal + $tax;
+
+        $data["items"] = $items;
+        $data["date"] = date("d/m/Y");
+        $data["time"] = date("H:i:s");
+        $data["order_id"] = $order_id;
+        $data["subtotal"] = round($subtotal,2);
+        $data["tax"] = round($tax,2);
+        $data["total"] = round($total,2);
+        $data["cash"] = $_POST["cash"];
+        $data["change"] = round($data["cash"] - $total,2);
+
+        $this->load->view('app/pos/receipt',$data);
+    }
+
+
+
+
 }

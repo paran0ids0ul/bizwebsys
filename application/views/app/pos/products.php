@@ -1,20 +1,25 @@
-			<div class="row product-container" id="product_container">
+			<div class="product-container" id="product_container">
 				<div class="row">
 					<div class="span7">
 						<!-- Search Bar -->
-						<form class="form-search span4 content">
+						<form class="form-search span4 content" id="search" action="">
 							<div class="input-prepend">
 								<span class="add-on"><i class="icon-search"></i></span>
-								<input class="span3" id="searchbox" type="text" placeholder="Search Product">
+								<input class="span3" id="searchbox" type="text" placeholder="Search Product or Submit GTIN">
 							</div>
-							<button type="submit input-medium search-query" class="btn btn-primary">Search</button>
+							<button type="submit button" class="btn btn-primary" disabled="true">Add</button>
 						</form>
+                        <p><span id="search-feedback">Loading please wait...</span></p>
+
 					</div>
+
 				</div>
 				<div class="row">
 					<div class="span7 ">				
 						<!-- Product Display Thumbnails -->
-						<ul class="thumbnails">
+						<ul class="thumbnails" id="product-list">
+
+
 						  <?php foreach ($items as $item): ?>
 						  <li>
 							<a class="thumbnail" value="<?php echo $item['VATRate']?>" rel="<?php echo $item['DiscountRate']?>" id="<?php echo $item['ItemID']?>">
@@ -33,6 +38,9 @@
 							</a>
 						  </li>
 						  <?php endforeach ?>
+
+
+
 						</ul>
 					</div>
 				</div>
