@@ -127,7 +127,7 @@ class Employee_model extends MY_Model {
 
 		if ($employee != false) {
 			if (array_key_exists("uniqueMember", $employee)) {
-				for ($y = 0 ; $y < $employee['uniqueMember'][count] ; $y++) {
+				for ($y = 0 ; $y < $employee['uniqueMember']['count'] ; $y++) {
 					$admin[$y] = $employee['uniqueMember'][$y];
 				}
 

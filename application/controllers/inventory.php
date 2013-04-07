@@ -149,8 +149,8 @@ class Inventory extends MY_Controller {
 
 	}
 
-	public function gtin_check2($gtin) {
-
+	public function gtin_check2($gtin) {		//for edit purposes because the current item will already have a gtin, if the it is not modified, this gtin will not be checked
+												//if the gtin is modified, the new gtin will be check against the database to prevent duplicate.
 
 		$current_gtin = $this->input->post('item_gtin');
 
@@ -188,8 +188,8 @@ class Inventory extends MY_Controller {
 
 	}
 
-	public function sku_check2($sku) {
-
+	public function sku_check2($sku) {		//for edit purposes because the current item will already have a sku, if the it is not modified, this sku will not be checked
+											//if the sku is modified, the new sku will be check against the database to prevent duplicate.
 		$current_sku = $this->input->post('item_sku');
 
 		if ($current_sku != $sku)  {
