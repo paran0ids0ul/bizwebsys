@@ -138,33 +138,34 @@ class Inventory extends MY_Controller {
 
 	public function gtin_check($gtin) {
 
-
-		$gtin_chk = $this->inventory_model->gtin_exists($gtin);
-		if ($gtin_chk) {
-			$this->form_validation->set_message('gtin_check', 'The GTIN already exist in database');
-			return FALSE;
-		} else {
-			return TRUE;
-		}
-
-	}
-
-	public function gtin_check2($gtin) {		//for edit purposes because the current item will already have a gtin, if the it is not modified, this gtin will not be checked
-												//if the gtin is modified, the new gtin will be check against the database to prevent duplicate.
-
-		$current_gtin = $this->input->post('item_gtin');
-
-		if ($current_gtin != $gtin) {
+		if ($gtin) {
 			$gtin_chk = $this->inventory_model->gtin_exists($gtin);
 			if ($gtin_chk) {
-				$this->form_validation->set_message('gtin_check2', 'The GTIN already exist in database');
+				$this->form_validation->set_message('gtin_check', 'The GTIN already exist in database');
 				return FALSE;
 			} else {
 				return TRUE;
 			}
-		} else {
+		}
+	}
 
-			return TRUE;
+	public function gtin_check_edit($gtin) {		//for edit purposes because the current item will already have a gtin, if the it is not modified, this gtin will not be checked
+												//if the gtin is modified, the new gtin will be check against the database to prevent duplicate.
+		if ($gtin) {
+			$current_gtin = $this->input->post('item_gtin');
+
+			if ($current_gtin != $gtin) {
+				$gtin_chk = $this->inventory_model->gtin_exists($gtin);
+				if ($gtin_chk) {
+					$this->form_validation->set_message('gtin_check_edit', 'The GTIN already exist in database');
+					return FALSE;
+				} else {
+					return TRUE;
+				}
+			} else {
+
+				return TRUE;
+			}
 		}
 
 	}
@@ -174,35 +175,36 @@ class Inventory extends MY_Controller {
 	public function sku_check($sku) {
 
 
-
-		$sku_chk = $this->inventory_model->sku_exists($sku);
-
-		if ($sku_chk) {
-			$this->form_validation->set_message('sku_check', 'The SKU already exist in database');
-			return FALSE;
-		} else {
-			return TRUE;
-		}
-
-
-
-	}
-
-	public function sku_check2($sku) {		//for edit purposes because the current item will already have a sku, if the it is not modified, this sku will not be checked
-											//if the sku is modified, the new sku will be check against the database to prevent duplicate.
-		$current_sku = $this->input->post('item_sku');
-
-		if ($current_sku != $sku)  {
+		if ($sku) {
 			$sku_chk = $this->inventory_model->sku_exists($sku);
 
 			if ($sku_chk) {
-				$this->form_validation->set_message('sku_check2', 'The SKU already exist in database');
+				$this->form_validation->set_message('sku_check', 'The SKU already exist in database');
 				return FALSE;
 			} else {
 				return TRUE;
 			}
-		} else {
-			return TRUE;
+		}
+
+	}
+
+	public function sku_check_edit($sku) {		//for edit purposes because the current item will already have a sku, if the it is not modified, this sku will not be checked
+											//if the sku is modified, the new sku will be check against the database to prevent duplicate.
+		if ($sku) {
+			$current_sku = $this->input->post('item_sku');
+
+			if ($current_sku != $sku)  {
+				$sku_chk = $this->inventory_model->sku_exists($sku);
+
+				if ($sku_chk) {
+					$this->form_validation->set_message('sku_check_edit', 'The SKU already exist in database');
+					return FALSE;
+				} else {
+					return TRUE;
+				}
+			} else {
+				return TRUE;
+			}
 		}
 
 
@@ -478,8 +480,8 @@ class Inventory extends MY_Controller {
 		$this->form_validation->set_rules('item_disrate', 'Discount Rate', 'callback_rate_check');
 		$this->form_validation->set_rules('item_stock', 'Stock', 'integer|greater_than[0]');
 		$this->form_validation->set_rules('item_rop', 'ROP', 'integer|greater_than[0]');
-		$this->form_validation->set_rules('item_gtin', 'GTIN', 'callback_gtin_check2');
-		$this->form_validation->set_rules('item_sku', 'SKU', 'callback_sku_check2');
+		$this->form_validation->set_rules('item_gtin', 'GTIN', 'callback_gtin_check_edit');
+		$this->form_validation->set_rules('item_sku', 'SKU', 'callback_sku_check_edit');
 		$this->form_validation->set_rules('item_description', '', '');
 		$this->form_validation->set_rules('file', '', '');
 
