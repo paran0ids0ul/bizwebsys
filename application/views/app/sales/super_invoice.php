@@ -53,7 +53,7 @@
 					<div class="span5 ">
 						<div class="row">
 							<div class="span3">
-								Payment Terms: 
+								Days until Payment Due: 
 							</div>
 							<div class="span1">
 								<?php echo $paymentterm?>
@@ -80,6 +80,14 @@
 						<div class="row">
 							<div class="span2">
 								Tax:
+							</div>
+							<div class="span1">
+								0.00
+							</div>							
+						</div>
+						<div class="row">
+							<div class="span2">
+								Deduction:
 							</div>
 							<div class="span1">
 								0.00

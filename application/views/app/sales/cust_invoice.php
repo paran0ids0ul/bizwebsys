@@ -30,26 +30,22 @@
 					<td>Invoice Date<td/>
 					<td>Internal Reference<td/>
 					<td>Salesperson<td/>
-					<td>Due Date<td/>
-					<td>Source<td/>
-					<td>Outstanding<td/>
 					<td>Total<td/>
 					<td>Status<td/>
 				</tr>
-					<td><input type="checkbox" class="checkboxs" ><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
+				
+				<?php foreach ($salesorders as $salesorder): ?>
+					<td id="<?php echo $salesorder['SalesOrderID']?>" href="<?php echo site_url("sales/display_order_byID/")?>/"><input type="checkbox" class="checkboxs" id=<?php echo $salesorder['SalesOrderID'] ?>><td/>
+					<td><?php echo $salesorder['CantactID'] ?><td/>
+					<td><?php echo $salesorder['DateInvoiced'] ?><td/>
+					<td><?php echo $salesorder['Ref'] ?><td/>
+					<td><?php echo $salesorder['EmployeeID'] ?><td/>
+					<td><?php echo $salesorder['DatePaymentDue'] ?><td/>
+					<td><?php echo $salesorder['total'] ?><td/>
 					<td><td/>
 				</tr>
+				<?php endforeach ?>
 					<td><input type="checkbox" class="checkboxs"><td/>
-					<td><td/>
-					<td><td/>
 					<td><td/>
 					<td><td/>
 					<td><td/>

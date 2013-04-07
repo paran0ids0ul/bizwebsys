@@ -6,10 +6,11 @@ class Sales_model extends MY_Model {
 		$this->load->database();
 	}
 	
-	public function get_contact_list()
+	
+	public function get_item_list()
 	{
 		
-		$query = $this->db->get('Contact');
+		$query = $this->db->get('Inventory');
 		return $query->result_array();
 		
 	}
@@ -21,7 +22,7 @@ class Sales_model extends MY_Model {
 		
 	
 		$data = array(
-		//	'Name' => $this->input->post('item_name'),
+			'Name' => $this->input->post('item_name'),
 		//	'ItemType' => $this->input->post('item_category'),
 			'ContactID' => $this->input->post('customer'),
 			'DateOrdered' => $this->input->post('item_date'),
@@ -57,5 +58,20 @@ class Sales_model extends MY_Model {
 	
 	}
 	
+	public function get_order_list()
+	{
+		
+		$query = $this->db->get('SalesOrder');
+		return $query->result_array();
+		
+	}
+	
+	public function get_order_byID($SalesOrderID) {
+		
+		$query = $this->db->get_where('SalesOrder', array('SalesOrderID' => $SalesOrderID));
+		return $query->row_array();
+		
+		
+	}
 
 }

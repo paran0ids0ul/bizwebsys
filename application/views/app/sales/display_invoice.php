@@ -25,36 +25,25 @@
 		<!-- Form Container -->
 		<div class="row myform-container">
 			<div class="span8 offset1 myform box-shadow">
-				<div class="span7">
-					<h4>Draft Invoice</h4>
+				<div class="span6">
+					<h4>Quotation</h4>
 					<form>
 						<div class="row">
 							<div class="span3">
-								Customer
-								<div class="input-prepend">
-								  <div class="btn-group">
-									<button class="btn dropdown-toggle" data-toggle="dropdown">
-									  <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-										<li><a tabindex="-1" href="#">cust1</a></li>
-										<li><a tabindex="-1" href="#">cust2</a></li>
-									</ul>
-								  </div>
-								  <input class="span2" id="cust" type="text" list="customers">
-								  <datalist id="customers">
-									  <option value="acust">
-									  <option value="bcust">
-									  <option value="ccust">
-									  <option value="dcust">
-									  <option value="ecust">
-								  </datalist>
-								</div>
+								<label>Customer</label>
+									<select name="customer" id="customer_list">
+										<option>Please Choose :</option>
+										<?php foreach ($customers as $customer): ?>
+												<option value="<?php echo $customer['ContactID'] ?>"><?php echo $customer['lname'] ?></option>
+										<?php endforeach ?>
+									</select>	
+
 							</div>
-							<div class="span4">
-							Invoice Date
-								<input type="text" id="datepicker" />
+							<div class="span3">
+								<label>Date</label>
+								<input type="text" id="datepicker" name="item_date" />
 							</div>
+							
 						</div>
 					</form>
 				</div>
@@ -64,71 +53,44 @@
 					  <thead>
 						<tr>
 						  <th>Product</th>
-						  <th>Descriptions</th>
 						  <th>Quantity</th>
 						  <th>Taxes</th>
 						  <th>Unit Price</th>
-						  <th>Amount</th>
+						  <th>Untaxed Amount</th>
 						</tr>
 					  </thead>
 					    <tbody>
 							<tr>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
+							  <td><button type="btn btn-link" id="add"/>Add an item</button></td>
+							  <td><td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
 							</tr>
-							<tr>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							</tr>
+							
 						  </tbody>
 				</table>
 				<!-- Total Display -->
 				<div class="row">
-					<div class="span3 ">
+					<div class="span4">
 					<div class="row">
 						<div class="span2">
-							Payment Terms:  
+							Days until Payment Due:  
 						</div>
 						<div class="span1">
-							<div class="input-prepend">
-								<div class="btn-group">
-									<button class="btn dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-										<li><a tabindex="-1" href="#">term1</a></li>
-										<li><a tabindex="-1" href="#">term2</a></li>
-									</ul>
-								</div>
-							<input class="span2" id="term" type="text" list="term">
-							<datalist id="term">
-								<option value="aterm">
-								<option value="bterm">
-								<option value="cterm">
-								<option value="dterm">
-								<option value="eterm">
-								</datalist>
-							</div>
-						</div>							
+							<input class="span2" id="term" type="text">
+						</div>
 					</div>
 					<div class="row">
 						<div class="span2">
 							Additional Information:
 						</div>
 						<div class="span1">
-							<textarea rows="3"></textarea>
+							<textarea rows="2"></textarea>
 						</div>
 					</div>
 					</div>
-					<div class="span3 offset2">
+					<div class="span3 offset1">
 						<div class="row">
 							<div class="span2">
 								Untaxed Amount:
@@ -145,6 +107,15 @@
 								0.00
 							</div>							
 						</div>
+						<div class="row">
+							<div class="span2">
+								Deduction:
+							</div>
+							<div class="span1">
+								<input class="span1" id="deduction" type="text">
+							</div>							
+						</div>
+						
 						<hr>
 						<div class="row">
 							<div class="span2">
