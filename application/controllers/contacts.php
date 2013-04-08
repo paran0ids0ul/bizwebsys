@@ -390,7 +390,6 @@ class Contacts extends MY_Controller {
 										    	e.preventDefault();
 	        									var href = this.href;
 										    	var id = $("#reference").text();
-										    	alert(id);
 										    	var ajaxurl = "http://" + (document.location.hostname) + "/contacts/delete_contact"; 
 
 												var confirm_string = "Are you sure you want to delete this contact?";

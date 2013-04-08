@@ -12,7 +12,7 @@
 		<?php echo form_open_multipart("contacts/edit_contact/$uid") ?>
 		<div>
 			<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
-			<a href="<?php echo base_url("contacts/display_contact_byID/$uid")?>"class="btn btn-link">
+			<a href="<?php echo base_url("contacts/display_contact_by_id/$uid")?>"class="btn btn-link">
 				Cancel
 			</a>
 		</div>

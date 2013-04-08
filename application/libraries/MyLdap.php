@@ -1,10 +1,6 @@
 <?php
 
 
-require_once('myLdap/classes/MyLdapUsers.php');
-
-
-
 class MyLdap {
 
 const ADLDAP_LDAP_PORT = '389';
@@ -182,23 +178,6 @@ const ADLDAP_LDAP_PORT = '389';
         $entries = @ldap_get_entries($this->ldapConnection, $sr);
         return $entries;
     }
-    
-    
-    
-    
-    
-    
-    
-    protected $userClass;
-    
-    
-    public function user() {
-        if (!$this->userClass) {
-            $this->userClass = new MyLdapUsers($this);
-        }   
-        return $this->userClass;
-    }
-    
     
     
     

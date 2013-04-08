@@ -285,10 +285,32 @@ class Inventory extends MY_Controller {
 
 			if ( ! $this->upload->do_upload('file'))
 			{
+<<<<<<< HEAD
+=======
+
+>>>>>>> Moved MyLdap to library
 
 				$error = array('error' => $this->upload->display_errors());
 
 
+<<<<<<< HEAD
+=======
+
+				
+            	$error = array('error' => $this->upload->display_errors());
+            
+            
+            	$newID = $this->inventory_model->set_item();
+            	
+            	
+            	$this->display_item_by_id($newID);
+            	
+            	
+            }
+            else 
+            {
+		
+>>>>>>> Moved MyLdap to library
 				$newID = $this->inventory_model->set_item();
 
 
@@ -309,9 +331,21 @@ class Inventory extends MY_Controller {
 
 
 				$this->inventory_model->set_imagepath($newID, $newID.$file_data['file_ext']);
+<<<<<<< HEAD
 
 
 				$this->display_item_byID($newID);
+=======
+
+
+
+				$this->display_item_byID($newID);
+
+	
+			
+				$this->display_item_by_id($newID);
+
+>>>>>>> Moved MyLdap to library
 			}
 
 
@@ -330,6 +364,22 @@ class Inventory extends MY_Controller {
 		$data['item'] = $this->inventory_model->get_item_byID($itemID);
 
 
+<<<<<<< HEAD
+=======
+
+	
+	
+		
+	
+	
+	
+	public function display_item_by_id($itemID)
+	{
+		$data['item'] = $this->inventory_model->get_item_by_id($itemID);
+		
+		
+
+>>>>>>> Moved MyLdap to library
 		$data['itemID'] = $data['item']['ItemID'];
 		$data['name'] = $data['item']['Name'];
 		$data['category'] = $data['item']['ItemType'];
@@ -497,9 +547,21 @@ class Inventory extends MY_Controller {
 									"Hardware","Gifts","Home & Beauty","Come & Garden","Luggage & Bags","Mature","Media","Office Supplies",
 									"Religious & Ceremonial","Software","Sporting Goods","Toys & Games","Vehicles & Parts","Other");
 
+<<<<<<< HEAD
 		$data['item'] = $this->inventory_model->get_item_byID($itemID);
 
 
+=======
+
+		$data['item'] = $this->inventory_model->get_item_byID($itemID);
+
+
+
+		$data['item'] = $this->inventory_model->get_item_by_id($itemID);
+		
+			
+
+>>>>>>> Moved MyLdap to library
 		$data['itemID'] = $data['item']['ItemID'];
 		$data['name'] = $data['item']['Name'];
 		$data['category'] = $data['item']['ItemType'];
@@ -546,6 +608,10 @@ class Inventory extends MY_Controller {
 
 			if ( ! $this->upload->do_upload('file'))
 			{
+<<<<<<< HEAD
+=======
+
+>>>>>>> Moved MyLdap to library
 
 				$error = array('error' => $this->upload->display_errors());
 
@@ -569,6 +635,33 @@ class Inventory extends MY_Controller {
 
 				$this->inventory_model->update_item($itemID);
 
+<<<<<<< HEAD
+=======
+
+				
+            	$error = array('error' => $this->upload->display_errors());
+            	        	
+            	
+            	$this->inventory_model->update_item($itemID);
+            	
+            	
+            	$this->display_item_by_id($itemID);
+            	
+            	
+            }
+            else 
+            {
+            	$data['item'] = $this->inventory_model->get_item_by_id($itemID);
+            	$path = $data['item']['Imagepath'];
+            	
+            	if ($path != "") {
+	            	
+	            	unlink("resources/images/inventory/$path");
+            	}
+			
+            	$this->inventory_model->update_item($itemID);
+			
+>>>>>>> Moved MyLdap to library
 				$file_data  =   $this->upload->data();
 
 
@@ -578,9 +671,19 @@ class Inventory extends MY_Controller {
 
 
 				$this->inventory_model->set_imagepath($itemID, $itemID.$file_data['file_ext']);
+<<<<<<< HEAD
 
 				$this->display_item_byID($itemID);
 
+=======
+
+
+				$this->display_item_byID($itemID);
+
+	
+				$this->display_item_by_id($itemID);
+	
+>>>>>>> Moved MyLdap to library
 			}
 
 

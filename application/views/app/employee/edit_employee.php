@@ -13,7 +13,7 @@
 		<!-- Control Buttons -->
 		<div>
 			<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
-			<a href="<?php echo base_url("employee/display_employee_byID/$uid")?>"class="btn btn-link">
+			<a href="<?php echo base_url("employee/display_employee_by_id/$uid")?>"class="btn btn-link">
 				Cancel
 			</a>
 		</div>
