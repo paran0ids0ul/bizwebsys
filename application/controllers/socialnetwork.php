@@ -123,7 +123,7 @@ class SocialNetwork extends MY_Controller
 								},
 								error: function (error) 
 								{
-									alert("Error");
+									alert("Error123");
 								}
 							});
 						});
