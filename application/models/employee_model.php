@@ -138,6 +138,26 @@ class Employee_model extends MY_Model {
 	}
 
     // HoraceLi 8/4/2013
+    public function employee_list($single_attr = '')
+    {
+
+        $raw_employee_list = $this->employee_model->get_ldap_employee_list();
+
+        if ($single_attr === ''){
+            return $raw_employee_list;
+        } else {
+            // Generates custom assoc array with employeenumber as key and single attribute as value (e.g. /employee/employee_list/cn)
+            $employee_list = array();
+            foreach ($raw_employee_list as $employee){
+                if((isset($employee[$single_attr]) && $employee[$single_attr]['count'] > 0) && (isset($employee['employeenumber']) && $employee['employeenumber']['count'] > 0)){
+                    $employee_list[$employee['employeenumber'][0]] = $employee[$single_attr][0];
+                }
+            }
+            return $employee_list;
+        }
+    }
+
+    // HoraceLi 8/4/2013
     public function get_ldap_employee_list() {
 
         return $this->get_all_employee();

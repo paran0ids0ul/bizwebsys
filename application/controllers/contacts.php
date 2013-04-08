@@ -10,31 +10,12 @@ class Contacts extends MY_Controller {
 	}
 
     // HoraceLi 8/4/2013
-    public function contact_list($output = '', $single_attr = '')
+    public function contact_list($single_attr = '')
     {
 
+        header('Content-type: application/json');
+        echo @json_encode($this->contacts_model->contact_list($single_attr));
 
-        $raw_contact_list = $this->contacts_model->get_ldap_contact_list();
-
-        if ($single_attr === ''){
-            $contact_list = $raw_contact_list;
-        } else {
-            // Generates custom assoc array with uid as key and single attribute as value (e.g. /contacts/contact_list/cn)
-            $contact_list = array();
-            foreach ($raw_contact_list as $contact){
-                if(isset($contact[$single_attr]) && $contact[$single_attr]['count'] > 0){
-                    $contact_list[$contact['uid'][0]] = $contact[$single_attr][0];
-                }
-            }
-
-        }
-
-        if ($output === 'json'){
-            header('Content-type: application/json');
-            echo @json_encode($contact_list);
-        }
-
-        return $contact_list;
         // Known "json_encode(): Invalid UTF-8 sequence in argument" error (currently suppressed) TODO
 
     }

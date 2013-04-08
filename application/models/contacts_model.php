@@ -28,6 +28,25 @@ class Contacts_model extends MY_Model {
 		return $this->myldap;
 	}
 
+    // HoraceLi 8/4/2013
+    public function contact_list($single_attr = ''){
+
+        $raw_contact_list = $this->contacts_model->get_ldap_contact_list();
+
+        if ($single_attr === ''){
+            return $raw_contact_list;
+        } else {
+            // Generates custom assoc array with uid as key and single attribute as value (e.g. /contacts/contact_list/cn)
+            $contact_list = array();
+            foreach ($raw_contact_list as $contact){
+                if(isset($contact[$single_attr]) && $contact[$single_attr]['count'] > 0){
+                    $contact_list[$contact['uid'][0]] = $contact[$single_attr][0];
+                }
+            }
+            return $contact_list;
+        }
+    }
+
     // Added HoraceLi 7/4/2013 alternative to 'get_all_contact'
     public function get_ldap_contact_list() {
 
