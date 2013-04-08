@@ -51,12 +51,18 @@ class Contacts_model extends MY_Model {
 
     }
 
-	public function get_all_contact() {
-<<<<<<< HEAD
 
-=======
+    public function get_contact_list()
+    {
+        // primary data source is DB
+        $query = $this->db->get('Contact');
+        return $query->result_array();
+
+    }
+
+
+	public function get_all_contact() {
 		
->>>>>>> Moved MyLdap to library
 		try {
 			$this->myldap = new MyLdap();
 		}
@@ -65,11 +71,9 @@ class Contacts_model extends MY_Model {
 			exit();
 		}
 
-<<<<<<< HEAD
 		$results = $this->myldap->user()->get_all_contacts();	
 		return $results;
 
-=======
 
 		$result = ldap_search($this->myldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(cn=*)") or die ("Error in search query");
 	    
@@ -77,7 +81,6 @@ class Contacts_model extends MY_Model {
 	    
 	    return $info;
 		
->>>>>>> Moved MyLdap to library
 	}
 	
 
