@@ -27,22 +27,27 @@ class Contacts_model extends MY_Model {
 	
 		return $this->myldap;
 	}
-	
+
+    // Added HoraceLi 7/4/2013 alternative to 'get_all_contact'
+    public function get_ldap_contact_list() {
+
+        return $this->get_all_contact();
+
+    }
+
 	public function get_all_contact() {
-		
-		
 
 		try {
 			$this->myldap = new MyLdap();
 		}
 		catch (adLDAPException $e) {
 			echo $e;
-			exit();   
+			exit();
 		}
 
 		$results = $this->myldap->user()->get_all_contacts();	
 		return $results;
-		
+
 	}
 	
 	public function get_contact_list()

@@ -11,6 +11,16 @@ class Contacts extends MY_Controller {
 	
 	}
 
+    public function contact_list()
+    {
+
+        header('Content-type: application/json');
+
+        echo json_encode($this->contacts_model->get_ldap_contact_list());
+
+        //print_r($this->contacts_model->get_ldap_contact_list());
+    }
+
 	public function index(){		
 		
 
