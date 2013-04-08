@@ -13,7 +13,7 @@
 			<div>
 				
 				<input type="submit" class="btn btn-primary span1" name="submit" value="Save" />
-				<a href="<?php echo base_url("inventory/display_item_byID/$itemID")?>"class="btn btn-link">
+				<a href="<?php echo base_url("inventory/display_item_by_id/$itemID")?>"class="btn btn-link">
 					Cancel
 				</a>
 			</div>
