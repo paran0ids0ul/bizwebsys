@@ -137,6 +137,12 @@ class Employee_model extends MY_Model {
 
 	}
 
+    // HoraceLi 8/4/2013
+    public function get_ldap_employee_list() {
+
+        return $this->get_all_employee();
+
+    }
 
 	public function get_all_employee() {
 		
@@ -152,8 +158,15 @@ class Employee_model extends MY_Model {
 		return $results;
 		
 	}
-	
 
+    // HoraceLi 8/4/2013
+    public function get_employee_list()
+    {
+        // primary data source is DB
+        $query = $this->db->get('Employee');
+        return $query->result_array();
+
+    }
 
 	public function update_employee($id,$jpegStr) 
 	{
