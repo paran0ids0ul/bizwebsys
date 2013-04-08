@@ -100,7 +100,36 @@ class SocialNetwork extends MY_Controller
 						ref.parentNode.insertBefore(js, ref);
 					}(document)
 			);
-				
+			
+			// Twitter
+			src="http://platform.twitter.com/anywhere.js?id=qsyeIajydJgHRfLI9T4A&v=1";
+			src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
+			
+			function postTwitter()
+			{
+				twttr.anywhere
+				(
+					function(T) 
+					{  
+						var tweet = $("#statusContext").val();
+       
+						T.requireConnect(function() 
+						{
+							T.Status.update(tweet, 
+							{
+								success: function (tweet) 
+								{
+									alert("Sucess");
+								},
+								error: function (error) 
+								{
+									alert("Error");
+								}
+							});
+						});
+					}
+				);		
+			};
 			
 			$("#button_post").click(function()
 			{
@@ -113,32 +142,8 @@ class SocialNetwork extends MY_Controller
 				if ($("#twitter").prop("checked") == true) 
 				{ 
 					alert("twitter");
-					
-					$.ajax
-					(
-						{
-							type : "POST",
-							url: "http://localhost/socialnetwork/twitter",
-							data: 
-							{
-								status : $("#statusContext").val(),
-							},
-							success : function(results)
-							{
-								alert("Successfully Posted on Twitter");
-							},
-							error: function(xhr, textStatus, error)
-							{
-								alert(xhr.statusText);
-								alert(textStatus);
-								alert(error);
-							}
-							
-						}
-					);
-
-					
-				}				
+					postTwitter();
+				}
 				else
 				{
 					var twitter = false
