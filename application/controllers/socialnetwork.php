@@ -171,7 +171,7 @@ class SocialNetwork extends MY_Controller
 
 		$content = $connection->get('account/verify_credentials');
 		
-		$status = $_POST["ajaxdata"];
+		$status = "123";
 		
 		$data = array(
 		'status' => $status,
