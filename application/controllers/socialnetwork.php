@@ -119,7 +119,7 @@ class SocialNetwork extends MY_Controller
 							data: ajaxdata,
 							success: function(results)
 							{
-							
+								alert("T S");
 							},
 							error: function(xhr, textStatus, error)
 							{
@@ -165,7 +165,20 @@ class SocialNetwork extends MY_Controller
 	
 	public function twitter()
 	{
-	
+		$this->load->library('twitteroauth');
+
+		$connection = $this->twitteroauth->create('qsyeIajydJgHRfLI9T4A', '9V5rqgTbwUdCvnlBiyF9eMegaaPJJWT1X05URm6cuU', '1327423556-7yRfZmvInpYuSDbbroXl1upBnt1n7zjjtAdoyiF', 'T6Ke1oIKVjOzKzVjVHyjFdwjLCNgTCIDpmHfz8jsNuk');
+
+		$content = $connection->get('account/verify_credentials');
+		
+		$status = $_POST["ajaxdata"];
+		
+		$data = array(
+		'status' => $status,
+		);
+		$result = $connection->post('statuses/update', $data);
+
+
 	}	
 	
 }
