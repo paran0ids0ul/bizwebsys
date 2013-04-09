@@ -170,7 +170,7 @@ class SocialNetwork extends MY_Controller
 
 		$connection = $this->twitteroauth->create('qsyeIajydJgHRfLI9T4A', '9V5rqgTbwUdCvnlBiyF9eMegaaPJJWT1X05URm6cuU', '1327423556-7yRfZmvInpYuSDbbroXl1upBnt1n7zjjtAdoyiF', 'T6Ke1oIKVjOzKzVjVHyjFdwjLCNgTCIDpmHfz8jsNuk');
 
-		f($this->session->userdata('access_token') && $this->session->userdata('access_token_secret'))
+		if($this->session->userdata('access_token') && $this->session->userdata('access_token_secret'))
 		{
 		
 			$content = $connection->get('account/verify_credentials');
@@ -178,7 +178,7 @@ class SocialNetwork extends MY_Controller
 			if(isset($content->error))
 			{
 					return false;
-			}
+			};
 			
 			$status = $_POST["ajaxdata"];
 			
