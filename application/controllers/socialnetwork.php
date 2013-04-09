@@ -2,6 +2,14 @@
 
 class SocialNetwork extends MY_Controller 
 {
+	function __construct()
+	{
+		parent::__construct();
+		// Loading TwitterOauth library. Delete this line if you choose autoload method.
+		$this->load->library('twitteroauth');
+		
+	}
+	
 	public function index()
 	{			
 	
@@ -116,7 +124,7 @@ class SocialNetwork extends MY_Controller
 						{
 							type: "POST",
 							url: ajaxurl,
-							data: ajaxdata,
+							data: {ajaxdata : ajaxdata},
 							success: function(results)
 							{
 								alert(results);
@@ -166,7 +174,7 @@ class SocialNetwork extends MY_Controller
 	
 	public function twitter()
 	{
-		$this->load->library('Twitteroauth');
+		
 
 		$connection = $this->twitteroauth->create('qsyeIajydJgHRfLI9T4A', '9V5rqgTbwUdCvnlBiyF9eMegaaPJJWT1X05URm6cuU', '1327423556-7yRfZmvInpYuSDbbroXl1upBnt1n7zjjtAdoyiF', 'T6Ke1oIKVjOzKzVjVHyjFdwjLCNgTCIDpmHfz8jsNuk');
 
