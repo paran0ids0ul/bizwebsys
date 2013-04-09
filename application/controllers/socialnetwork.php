@@ -166,27 +166,9 @@ class SocialNetwork extends MY_Controller
 	
 	public function twitter()
 	{
-		$this->load->library('twitteroauth');
-
-		$connection = $this->twitteroauth->create('qsyeIajydJgHRfLI9T4A', '9V5rqgTbwUdCvnlBiyF9eMegaaPJJWT1X05URm6cuU', '1327423556-7yRfZmvInpYuSDbbroXl1upBnt1n7zjjtAdoyiF', 'T6Ke1oIKVjOzKzVjVHyjFdwjLCNgTCIDpmHfz8jsNuk');
-
-		if($this->session->userdata('access_token') && $this->session->userdata('access_token_secret'))
-		{
+		echo 7;
 		
-			$content = $connection->get('account/verify_credentials');
-			
-			if(isset($content->error))
-			{
-					return false;
-			};
-			
-			$status = $_POST["ajaxdata"];
-			
-			$data = array(
-			'status' => $status,
-			);
-			$result = $connection->post('statuses/update', $data);
-		}
+		
 		
 	}	
 	
