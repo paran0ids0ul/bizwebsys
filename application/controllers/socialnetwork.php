@@ -103,7 +103,7 @@ class SocialNetwork extends MY_Controller
 			
 			// Twitter
 			src="http://platform.twitter.com/anywhere.js?id=qsyeIajydJgHRfLI9T4A&v=1";
-			src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
 			
 			function postTwitter()
 			{
