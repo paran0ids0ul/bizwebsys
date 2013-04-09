@@ -105,11 +105,6 @@ class SocialNetwork extends MY_Controller
 			
 			$("#button_post").click(function()
 			{
-				if ($("#facebook").prop("checked") == true) 
-				{ 
-					alert("facebook");
-					getLogin();
-				}
 				
 				if ($("#twitter").prop("checked") == true) 
 				{ 
@@ -119,9 +114,11 @@ class SocialNetwork extends MY_Controller
 					alert("twitter");
 					window.open(url,"_blank");
 				}
-				else
-				{
-					var twitter = false;
+				
+				if ($("#facebook").prop("checked") == true) 
+				{ 
+					alert("facebook");
+					getLogin();
 				}
 				
 				if ($("#googlePlus").prop("checked") == true) 
