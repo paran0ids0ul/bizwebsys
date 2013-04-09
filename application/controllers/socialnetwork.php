@@ -126,6 +126,7 @@ class SocialNetwork extends MY_Controller
 								alert(xhr.statusText);
 								alert(textStatus);
 								alert(error);
+								alert("AJAX ERROR");
 							}
 						}
 					);
@@ -171,7 +172,7 @@ class SocialNetwork extends MY_Controller
 
 		$content = $connection->get('account/verify_credentials');
 		
-		$status = "123";
+		$status = $_POST["ajaxdata"];
 		
 		$data = array(
 		'status' => $status,
