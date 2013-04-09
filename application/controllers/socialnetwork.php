@@ -110,7 +110,8 @@ class SocialNetwork extends MY_Controller
 				{ 
 					var ajaxurl = "http://" + (document.location.hostname) + "/socialnetwork/twitter"; 
 					var ajaxdata = $("#statusContext").val();
-					alert("2");
+					alert(ajaxurl);
+					alert(ajaxdata);
 					$.ajax
 					(
 						{
