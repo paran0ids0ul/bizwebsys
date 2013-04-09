@@ -110,8 +110,7 @@ class SocialNetwork extends MY_Controller
 				{ 
 					var ajaxurl = "http://" + (document.location.hostname) + "/socialnetwork/twitter"; 
 					var ajaxdata = $("#statusContext").val();
-					alert(ajaxurl);
-					alert(ajaxdata);
+					alert("2");
 					$.ajax
 					(
 						{
@@ -167,7 +166,26 @@ class SocialNetwork extends MY_Controller
 	
 	public function twitter()
 	{
-		echo 7;
+		$this->load->library('Twitteroauth');
+
+		$connection = $this->twitteroauth->create('qsyeIajydJgHRfLI9T4A', '9V5rqgTbwUdCvnlBiyF9eMegaaPJJWT1X05URm6cuU', '1327423556-7yRfZmvInpYuSDbbroXl1upBnt1n7zjjtAdoyiF', 'T6Ke1oIKVjOzKzVjVHyjFdwjLCNgTCIDpmHfz8jsNuk');
+
+		
+		
+		
+			$content = $connection->get('account/verify_credentials');
+			
+			if(isset($content->error))
+			{
+					return false;
+			};
+			
+			$status = $_POST["ajaxdata"];
+			
+			$data = array(
+			'status' => $status,
+			);
+			$result = $connection->post('statuses/update', $data);
 		
 		
 		
