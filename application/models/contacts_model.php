@@ -71,8 +71,6 @@ class Contacts_model extends MY_Model {
 			exit();
 		}
 
-		return $results;
-
 
 		$result = ldap_search($this->myldap->getLdapConnection(),"ou=contacts,dc=bizwebsys,dc=tk", "(cn=*)") or die ("Error in search query");
 	    
