@@ -105,31 +105,7 @@ class SocialNetwork extends MY_Controller
 			src="http://platform.twitter.com/anywhere.js?id=qsyeIajydJgHRfLI9T4A&v=1";
 			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
 			
-			function postTwitter()
-			{
-				twttr.anywhere
-				(
-					function(T) 
-					{  
-						var tweet = $("#statusContext").val();
-       
-						T.requireConnect(function() 
-						{
-							T.Status.update(tweet, 
-							{
-								success: function (tweet) 
-								{
-									alert("Sucess");
-								},
-								error: function (error) 
-								{
-									alert("Error123");
-								}
-							});
-						});
-					}
-				);		
-			};
+			
 			
 			$("#button_post").click(function()
 			{
@@ -141,12 +117,18 @@ class SocialNetwork extends MY_Controller
 				
 				if ($("#twitter").prop("checked") == true) 
 				{ 
+					var url = "http://twitter.com/home/?status=";
+				
+					url = url + $("#statusContext").val();
+				
+					alert(url);
+				
 					alert("twitter");
-					postTwitter();
+					window.open(url,"_blank");
 				}
 				else
 				{
-					var twitter = false
+					var twitter = false;
 				}
 				
 				if ($("#googlePlus").prop("checked") == true) 
