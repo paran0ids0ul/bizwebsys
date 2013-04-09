@@ -71,7 +71,6 @@ class Contacts_model extends MY_Model {
 			exit();
 		}
 
-		$results = $this->myldap->user()->get_all_contacts();	
 		return $results;
 
 
