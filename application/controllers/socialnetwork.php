@@ -105,14 +105,30 @@ class SocialNetwork extends MY_Controller
 			
 			$("#button_post").click(function()
 			{
-				
+				alert("1");
 				if ($("#twitter").prop("checked") == true) 
 				{ 
-					var url = "http://twitter.com/home/?status=";				
-					url = url + $("#statusContext").val();
-				
-					alert("twitter");
-					window.open(url,"_blank");
+					var ajaxurl = "http://" + (document.location.hostname) + "/socialnetwork/twitter"; 
+					var ajaxdata = $("#statusContext").val();
+					alert("2");
+					$.ajax
+					(
+						{
+							type: "POST",
+							url: ajaxurl,
+							data: ajaxdata,
+							success: function(results)
+							{
+							
+							},
+							error: function(xhr, textStatus, error)
+							{
+								alert(xhr.statusText);
+								alert(textStatus);
+								alert(error);
+							}
+						}
+					);
 				}
 				
 				if ($("#facebook").prop("checked") == true) 
@@ -125,10 +141,7 @@ class SocialNetwork extends MY_Controller
 				{ 
 					var googlePlus = true;
 				}
-				else
-				{
-					var googlePlus = false;
-				}
+				
 				
 				if (($("#facebook").prop("checked") == false) && ($("#twitter").prop("checked") == false) && ($("#googlePlus").prop("checked") == false)) 
 				{
@@ -152,19 +165,18 @@ class SocialNetwork extends MY_Controller
 	
 	public function twitter()
 	{
-		$status2 = $_POST['status'];
+		$this->load->library('twitteroauth');
+
+		$connection = $this->twitteroauth->create('qsyeIajydJgHRfLI9T4A', '9V5rqgTbwUdCvnlBiyF9eMegaaPJJWT1X05URm6cuU', '1327423556-7yRfZmvInpYuSDbbroXl1upBnt1n7zjjtAdoyiF', 'T6Ke1oIKVjOzKzVjVHyjFdwjLCNgTCIDpmHfz8jsNuk');
+
+		$content = $connection->get('account/verify_credentials');
 		
-		$username = 'tins820';
-		$password = 'tins0820';
-		$status= $status2;
-		$curlhandle = curl_init();
-		curl_setopt($curlhandle, CURLOPT_URL, "http://twitter.com/statuses/update.xml");
-		curl_setopt($curlhandle, CURLOPT_USERPWD, $username.':'.$password); 
-		curl_setopt($curlhandle, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curlhandle, CURLOPT_POST, 1);
-		curl_setopt($curlhandle, CURLOPT_POSTFIELDS, "status=$status");
-		$response = curl_exec($curlhandle);
-		curl_close($curlhandle);
+		$data = array(
+		'status' => $_POST["ajaxdata"],
+		);
+		$result = $connection->post('statuses/update', $data);
+
+
 	}	
 	
 }

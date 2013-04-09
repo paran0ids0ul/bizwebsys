@@ -37,6 +37,8 @@
 				<span class="input-xlarge uneditable-input" style="width:60%"; id="status_output"></span>				
 			</div>
 			
+			<div id="tbox"></div>
+			
 		</div>
 	</form>
 </div>
