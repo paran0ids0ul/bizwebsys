@@ -101,10 +101,6 @@ class SocialNetwork extends MY_Controller
 					}(document)
 			);
 			
-			// Twitter
-			src="http://platform.twitter.com/anywhere.js?id=qsyeIajydJgHRfLI9T4A&v=1";
-			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js";
-			
 			
 			
 			$("#button_post").click(function()
@@ -117,11 +113,8 @@ class SocialNetwork extends MY_Controller
 				
 				if ($("#twitter").prop("checked") == true) 
 				{ 
-					var url = "http://twitter.com/home/?status=";
-				
+					var url = "http://twitter.com/home/?status=";				
 					url = url + $("#statusContext").val();
-				
-					alert(url);
 				
 					alert("twitter");
 					window.open(url,"_blank");
