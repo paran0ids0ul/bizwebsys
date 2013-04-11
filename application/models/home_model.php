@@ -1,16 +1,18 @@
 <?php
 
-include ("myLdap/MyLdap.php");
 
 class Home_model extends MY_Model {
 
-	protected $myldap = false;
+	protected $myldap;
 
 	public function __construct()
 	{
 		$this->load->database();
+
+		$this->load->library('MyLdap');
+
+		$this->load->model('employee_model');
 		
-		require_once('myLdap/MyLdap.php');
 		
 	}
 
@@ -38,7 +40,7 @@ class Home_model extends MY_Model {
 		$result = false;
 		$is_admin = false;
 		$password = '{SHA}' . base64_encode(sha1($password, TRUE));
-		$employees = $this->myldap->user()->getAll_user(); 
+		$employees = $this->employee_model->get_all_employee(); 
 		
 		
 		foreach ($employees as $k => $employee)
@@ -70,7 +72,7 @@ class Home_model extends MY_Model {
 			exit();   
 		}
 
-		$employee = $this->myldap->user()->get_admin();
+		$employee = $this->employee_model->get_admin();
         $result = false;
 		if ($employee != false) {
 			if (array_key_exists("uniqueMember", $employee)) {
