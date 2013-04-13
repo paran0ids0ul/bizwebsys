@@ -58,6 +58,7 @@ class Home extends MY_Controller {
 											});
 										}
 								    </script>';	
+		$this->template="main_no_header";							
 		$this->_render('home');
 	}
 	
@@ -67,30 +68,30 @@ class Home extends MY_Controller {
 		$username = $_POST["username"];
 		$password = $_POST["password"];	
 		
-	//	$data = $this->home_model->authenticate($username,$password);
-	//	if($data["result"])
-	//	{
-	//		$is_admin = $this->home_model->is_admin($username);
-	//		$newdata = array(
-      //            'username'  => $data["username"],
-     //             'email'     => $data["email"],
-	//			   'is_admin' => $is_admin
-     //          );
-	//		$this->session->set_userdata($newdata);
-	//		echo "true";
-	//	}
-	//	else
-	//		echo "false";
-	
-	//Below is to bypass signIn, only for testing. remove this and uncomment above code for production
-	
+		$data = $this->home_model->authenticate($username,$password);
+		if($data["result"])
+		{
+			$is_admin = $this->home_model->is_admin($username);
 			$newdata = array(
-                  'username'  => "username",
-                   'email'     => "username@bizwebsys.tk",
-				   'is_admin' => false
+                  'username'  => $data["username"],
+                  'email'     => $data["email"],
+				   'is_admin' => $is_admin
                );
 			$this->session->set_userdata($newdata);
 			echo "true";
+		}
+		else
+			echo "false";
+	
+	//Below is to bypass signIn, only for testing. remove this and uncomment above code for production
+	
+	//		$newdata = array(
+     //             'username'  => "username",
+      //             'email'     => "username@bizwebsys.tk",
+	//			   'is_admin' => false
+     //          );
+	//		$this->session->set_userdata($newdata);
+	//		echo "true";
 	}	
 	
 	public function sign_out()

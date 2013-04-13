@@ -51,11 +51,13 @@ class Home_model extends MY_Model {
 				if($password == $employee["userpassword"][0])
 				{
 					$result = true;
+					$username = $employee["uid"][0];
+					$email = $employee["mail"][0];
 				}
 			}
 		}
 		
-		$data = array("result"=>$result,"username"=>$employee["uid"][0],"email"=>$employee["mail"][0]);
+		$data = array("result"=>$result,"username"=>$username,"email"=>$email);
 		return $data;
 	}
 	

@@ -13,7 +13,7 @@ class Pos extends MY_Controller {
 
 		//load POS header
 		$this->template="main_no_header";
-		$to_header["username"] = "Jing";          //TODO: Model method required: getUsername()
+		$to_header["username"] = $this->session->userdata('username');         
 		$this->data["header"] = $this->load->view("app/pos/header",$to_header,true);
 
 		//load local CSS
