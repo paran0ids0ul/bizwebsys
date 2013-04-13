@@ -94,5 +94,18 @@ class Home_model extends MY_Model {
 		return $result;
 	}
 
-	
+	public function check_email($email)
+	{
+		$result = false;
+		$employees = $this->employee_model->get_all_employee(); 
+		foreach ($employees as $k => $employee)
+		{
+			if (!is_array($employee)) continue; 
+			if($email == $employee["mail"][0])
+			{
+				$result = true;
+			}
+		}
+		return $result;
+	}
 }
