@@ -143,7 +143,7 @@
 						</div>
 						<div class="modal-footer ">
 							<button class="btn same-btn-width" data-dismiss="modal" aria-hidden="true" id="changeImg">Ok</button>
-							<a data-dismiss="modal" aria-hidden="true" id="cancelUpload" >Cancel</button>
+							<a data-dismiss="modal" aria-hidden="true" id="cancelUpload" >Cancel</a>
 						</div>
 		
 					</div>

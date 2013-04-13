@@ -28,11 +28,15 @@
 					<td>Customer<td/>
 					<td>Total<td/>
 				</tr>
-					<td><input type="checkbox" class="checkboxs"><td/>
+                <?php foreach ($purchaseinvoices as $purchaseinvoice): ?>
+                <tr>
+					<td id="<?php echo $purchaseinvoice['PurchaseInvoiceID']?>" href="<?php echo site_url("sales/display_cust_order_by_id/") . $purchaseinvoice['PurchaseInvoiceID'] ?>/"><input type="checkbox" class="checkboxs" id=<?php echo $purchaseinvoice['PurchaseInvoiceID'] ?>><td/>
+					<td><?php echo[$purchaseinvoice['DatePaymentDue']] ?><td/>
+					<td><?php echo $purchaseinvoice['IntRef'] ?><td/>
+					<td><?php echo $contact_list[$purchaseinvoice['ContactID']]; ?><td/>
 					<td><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
+                </tr>
+                <?php endforeach ?>
 			</table>
 		</div>
     </div>

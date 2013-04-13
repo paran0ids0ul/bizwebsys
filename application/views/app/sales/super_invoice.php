@@ -10,12 +10,11 @@
 			<!-- Breadcrumb -->
 			<ul class="breadcrumb row">
 				<li><a href="<?php echo site_url("sales") ?>">Customer Invoice</a> <span class="divider">/</span></li>
-				<li class="active"><?php echo $orderid?></li>
+                <li class="active" id="reference" ><?php echo $orderid?></li><span class="divider"> </span></li>
 			</ul>
 			<!-- Control Buttons -->
 			<div class="row">
-				<button class="btn btn-primary same-btn-width">Create</button>
-				<button class="btn btn-primary same-btn-width">Edit</button>
+				<a class="btn btn-primary same-btn-width" href="<?php echo site_url("sales/edit_invoice") ?>">Edit</a>
 				<button class="btn btn-primary same-btn-width">Print</button>
 				<button class="btn btn-primary same-btn-width">Delete</button>
 			</div>
@@ -28,7 +27,7 @@
 			<div class="row myform-container">
 				<div class="span8 offset1 myform box-shadow">
 					<div class="span6">
-						<h4>Invoice <?php echo $orderid?></h4>
+						<h4>Invoice <?php echo $salesorder['salesorderID']?></h4>
 						<form>
 							<div class="row">
 								<div class="span3">
@@ -43,10 +42,27 @@
 					<!-- Order Lines Table -->
 					<table class="table table-striped">
 					<caption>Invoice Lines</caption>
+					<thead>
+						<tr>
+						  <th>Product</th>
+						  <th>Quantity</th>
+						  <th>Taxes</th>
+						  <th>Unit Price</th>
+						  <th>Amount</th>
+						</tr>
+					  </thead>
 					    <tbody>
-							<tr>
-							  <td>...</td>
-							</tr>
+							<?php foreach ($salesorders as $salesorder): ?>
+								<td id="<?php echo $salesorder['SalesOrderID']?>" href="<?php echo site_url("sales/display_order_by_id/") . $salesorder['SalesOrderID'] ?>/"><td/>
+								<td><?php echo $contactCN ?><td/>
+								<td><?php echo $salesorder['DateInvoiced'] ?><td/>
+								<td><?php echo $salesorder['Ref'] ?><td/>
+								<td><?php echo $employeeCN ?><td/>
+								<td><?php echo $salesorder['DatePaymentDue'] ?><td/>
+								<td><?php echo $salesorder['Total'] ?><td/>
+								<td><td/>
+						</tr>
+				<?php endforeach ?>
 						  </tbody>
 					</table>
 					<div class="row">

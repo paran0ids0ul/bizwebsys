@@ -7,13 +7,6 @@ class Sales_model extends MY_Model {
 	}
 	
 	
-	public function get_item_list()
-	{
-		
-		$query = $this->db->get('Inventory');
-		return $query->result_array();
-		
-	}
 	
 	public function set_item() 
 	{
@@ -55,7 +48,8 @@ class Sales_model extends MY_Model {
 	
 	public function get_orders()  //return 2D array: cust_name,invoice_date,internal_ref,sales_person,due_date,outstanding,total(plz don't change the names)
 	{
-	
+		$query = $this->db->get('SalesOrder');
+		return $query->result_array();
 	}
 	
 	public function get_order_list()
@@ -66,12 +60,37 @@ class Sales_model extends MY_Model {
 		
 	}
 	
-	public function get_order_byID($SalesOrderID) {
+	public function get_by_orderID($SalesOrderID) {
 		
 		$query = $this->db->get_where('SalesOrder', array('SalesOrderID' => $SalesOrderID));
 		return $query->row_array();
 		
 		
 	}
+	
+	public function close_ldap(){
+		//TODO
+	}
 
+   /* public function get_order($orderid) {
+
+        $query = $this->db->get_where('Inventory', array('ItemID' => $itemID));
+        return $query->row_array();
+
+
+    }
+*/
+    public function get_cust_orders()  //return 2D array: cust_name,invoice_date,internal_ref,sales_person,due_date,outstanding,total(plz don't change the names)
+    {
+        $query = $this->db->get('PurchaseInvoice');
+        return $query->result_array();
+    }
+
+    public function get_by_cust_orderID($PurchaseInvoiceID) {
+
+        $query = $this->db->get_where('PurchaseInvoice', array('PurchaseInvoiceID' => $PurchaseInvoiceID));
+        return $query->row_array();
+
+
+    }
 }
