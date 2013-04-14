@@ -12,7 +12,6 @@ class Panel extends MY_Controller {
 	    $this->pageName = $page;
 		$username = $this->session->userdata('username');
 		if($username == "")
-			//header(site_url('panel/workspace'));
 			header('Location:'.site_url(''));
 		else	
 			$this->_render('panel/'.$page);
