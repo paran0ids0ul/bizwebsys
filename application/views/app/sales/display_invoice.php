@@ -14,34 +14,36 @@
 			</ul>
 			<!-- Control Buttons -->
 			<div class="row">
-				<button class="btn btn-primary same-btn-width" >Save</button>
+				<button class="btn btn-primary same-btn-width">Save</button>
 				<button class="btn btn-link">Discard</button>
 			</div>
 
 			<!-- Form Headbar -->
 			<div class="row content myform-headbar">
-				<a class="btn btn-small" href="<?php echo site_url("sales/super_invoice")?>">Validate</a>
+				<a class="btn btn-small" href="<?php echo site_url("sales/super_invoice") ?>">Validate</a>
 			</div>
 			<!-- Form Container -->
 			<div class="row myform-container">
 				<div class="span8 offset1 myform box-shadow">
 					<div class="span6">
 						<h4>Quotation</h4>
+
 						<form>
 							<div class="row">
 								<div class="span3">
 									<label>Customer</label>
 									<select name="customer" id="customer_list">
 										<option>Please Choose :</option>
-										<?php foreach ($customers as $customer_id=>$customer_name){ ?>
-											<option value="<?php echo $customer_id ?>"><?php echo $customer_name ?></option>
+										<?php foreach ($customers as $customer_id => $customer_name) { ?>
+											<option
+												value="<?php echo $customer_id ?>"><?php echo $customer_name ?></option>
 										<?php } ?>
 									</select>
 
 								</div>
 								<div class="span3">
 									<label>Date</label>
-									<input type="text" id="datepicker" name="item_date" />
+									<input type="text" id="datepicker" name="item_date"/>
 								</div>
 
 							</div>
@@ -54,15 +56,18 @@
 						<tr>
 							<th>Product</th>
 							<th>Quantity</th>
-							<th>Taxes</th>
+							<th>Unit Tax</th>
 							<th>Unit Price</th>
 							<th>Untaxed Amount</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
-							<td><button type="btn btn-link" id="add"/>Add an item</button></td>
-							<td><td>
+							<td>
+								<button type="btn btn-link" id="add"/>
+								Add an item</button></td>
+							<td>
+							<td>
 							<td></td>
 							<td></td>
 							<td></td>
