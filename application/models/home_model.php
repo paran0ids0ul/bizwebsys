@@ -96,16 +96,42 @@ class Home_model extends MY_Model {
 
 	public function check_email($email)
 	{
-		$result = false;
+		$uid = null;
 		$employees = $this->employee_model->get_all_employee(); 
 		foreach ($employees as $k => $employee)
 		{
 			if (!is_array($employee)) continue; 
 			if($email == $employee["mail"][0])
 			{
-				$result = true;
+				$uid = $employee["uid"][0];
 			}
 		}
+		return $uid;
+	}
+	
+	public function reset_password($id,$new_pwd)
+	{
+		try {
+			$this->myldap = new MyLdap();
+		}
+		catch (adLDAPException $e) {
+			echo $e;
+			exit();   
+		}
+		
+		$result = ldap_search($this->myldap->getLdapConnection(),"ou=people,dc=bizwebsys,dc=tk", "(uid=".$id.")") or die ("Error in search query"); 
+
+	    $entry = ldap_first_entry($this->myldap->getLdapConnection(), $result);
+	    
+	    $info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
+		
+		$update['userPassword'][0] = $new_pwd;
+		
+		$result = ldap_modify($this->myldap->getLdapConnection(),'uid='.$id.',ou=people,dc=bizwebsys,dc=tk', $update);
+		
 		return $result;
+		
+	
+	
 	}
 }

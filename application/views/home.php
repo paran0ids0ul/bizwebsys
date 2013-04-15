@@ -7,7 +7,7 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
        </a>
-       <a class="brand" href="../">BizWebSys</a>
+       <a class="brand" href="<?php echo site_url('');?>">BizWebSys</a>
        <div class="nav-collapse collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
           <li><a href="">About</a></li>

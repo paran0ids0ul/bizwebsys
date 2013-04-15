@@ -40,10 +40,19 @@ class MY_Controller extends CI_Controller
 	{
 
 		$toTpl = $this->preRender($view);
-
+		
+		//render view
+		if($this->_check_login())
+			$this->load->view("template/skeleton", $toTpl);
+	}
+	
+	//home render doesn't require login
+	protected function _home_render($view)
+	{
+		$toTpl = $this->preRender($view);
+		
 		//render view
 		$this->load->view("template/skeleton", $toTpl);
-
 	}
 
 	private function preRender($view)
@@ -77,7 +86,7 @@ class MY_Controller extends CI_Controller
 
 		$toBody["header"] = $this->load->view("template/header", $toHeader, true);
 		$toBody["footer"] = $this->load->view("template/footer", '', true);
-
+		
 		$toTpl["body"] = $this->load->view("template/" . $this->template, $toBody, true);
 
 		return $toTpl;
@@ -91,7 +100,8 @@ class MY_Controller extends CI_Controller
 
 
 		//render view
-		$this->load->view("template/skeleton", $toTpl);
+		if($this->_check_login())
+			$this->load->view("template/skeleton", $toTpl);
 
 	}
 
@@ -131,6 +141,20 @@ class MY_Controller extends CI_Controller
 		$toTpl["body"] = $this->load->view("template/" . $this->template, $toBody, true);
 
 		return $toTpl;
+	}
+	
+	private function _check_login()
+	{
+		//Check if user is logged in, if not, redirect to home page
+		$result = false;
+		$username = $this->session->userdata('username');	 
+		if($username == "") 
+		{
+			header('Location:'.site_url(''));	
+			$result = true;
+		}			
+		
+		return $result;
 	}
 
 

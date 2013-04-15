@@ -7,14 +7,11 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
        </a>
-       <a class="brand" href="../">BizWebSys</a>
+       <a class="brand" href="<?php echo site_url('');?>">BizWebSys</a>
        <div class="nav-collapse collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
           <li><a href="">About</a></li>
           <li><a href="">Contact</a></li>
-        </ul>
-        <ul class="nav pull-right" id="main-menu-right">
-          <li><a href="#signin_modal" data-toggle="modal">Sign in</a></li>
         </ul>
        </div>
 	   <div id="test"></div>

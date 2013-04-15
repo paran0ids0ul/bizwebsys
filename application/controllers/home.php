@@ -59,7 +59,7 @@ class Home extends MY_Controller {
 										}
 								    </script>';	
 		$this->template="main_no_header";							
-		$this->_render('home');
+		$this->_home_render('home');
 	}
 	
 	public function sign_in(){	

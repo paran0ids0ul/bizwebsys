@@ -8,7 +8,13 @@ class Reset_password extends MY_Controller {
 		$this->load->model('home_model');
 	}
 	
-	public function index(){	
+	public function view($guid){	
+		$session_guid = $this->session->userdata('guid');
+		if($session_guid!=$guid)
+		{
+			echo "Link has expired or is invalid.";
+			return;
+		}
 		$this->data["custom_css"]='
 		<style type="text/css">
 			.content
@@ -54,15 +60,12 @@ class Reset_password extends MY_Controller {
 										{
 											$(\'#errors\').text("");
 											$.ajax({
-												url: \''. site_url('forgot_password/email') .'\',
+												url: \''. site_url('reset_password/reset_pwd') .'\',
 												type: \'POST\',
-												data: {email:email},
+												data: {password:password},
 												success: function(response) {
 													if(response == "true")
-														window.location.href = \''.site_url('resetpwd_email_sent').'\';
-													else
-														//$(\'#errors\').text("Invalid work email!");
-														$(\'#errors\').html(response);
+														alert(response);
 												}
 											});
 										}
@@ -71,42 +74,21 @@ class Reset_password extends MY_Controller {
 									</script>';
 		$this->title="Reset password";							
 		$this->template="main_no_header";
-		$this->_render('account/reset_password');
+		$this->_home_render('account/reset_password');
 	}
 	
-	public function email(){
-	if(!isset($_POST["email"]))
-		return;
-		$email = $_POST["email"];	
-		if($this->home_model->check_email($email))
-		{
-			//$to = $email;
-			$to = "naomi.li@bizwebsys.tk";     //for testing
-			$subject = "BizWebSys Reset Password";
-			$message = "Click on the link to reset password:".site_url('home/reset_password');
-			$message = '
-							<html>
-							<head>
-							  <title>BizWebSys Reset Password</title>
-							</head>
-							<body>
-							  <p>Click on the link to reset password:<a href='.site_url('home/reset_password').'>'.site_url('home/reset_password').'</a></p>
-							</body>
-							</html>
-							';
-			$from = "admin@bizwebsys.tk";
+	public function reset_pwd()
+	{
+		if(!isset($_POST["password"]))
+			return;
 			
-			$headers  = 'MIME-Version: 1.0' . "\r\n";
-			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			$headers .= "From:" . $from;
-			mail($to,$subject,$message,$headers);
-			
+		$uid = $this->session->userdata('uid');
+		$password = $_POST["password"];
+		if($this->home_model->reset_password($uid,$password))
 			echo "true";
-			
-		}	
 		else
 			echo "false";
-	
-	
 	}
+	
+
 }
