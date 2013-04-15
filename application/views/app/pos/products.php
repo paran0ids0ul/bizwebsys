@@ -21,8 +21,9 @@
 
 
 				<?php foreach ($items as $item): ?>
+				<?php if ($item['Stock'] != 0): ?>
 					<li>
-						<a class="thumbnail" value="<?php echo $item['VATRate']?>" rel="<?php echo $item['DiscountRate']?>" id="<?php echo $item['ItemID']?>">
+						<a class="thumbnail" value="<?php echo $item['VATRate']?>" rel="<?php echo $item['DiscountRate']?>" stock="<?php echo $item['Stock']?>" id="<?php echo $item['ItemID']?>">
 							<span class="label label-info pull-right">£<?php echo $item['NetPrice']?></span>
 							<?php if ($item['DiscountRate'] < 1): ?>
 								<span class="label label-warning pull-right">£<?php echo $item['NetPrice'] * $item['DiscountRate'] ?></span>
@@ -37,6 +38,7 @@
 							<label class="text-center"><?php echo $item['Name']?></label>
 						</a>
 					</li>
+				<?php endif; ?>	
 				<?php endforeach ?>
 
 

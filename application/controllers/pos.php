@@ -112,12 +112,13 @@ class Pos extends MY_Controller {
 
 										var items=new Array();
 
-										function item(ProductID,name,NetPrice,VATRate,quantity,discount,selected)
+										function item(ProductID,name,NetPrice,VATRate,stock,quantity,discount,selected)
 										{
 											this.ProductID = ProductID;
 											this.name = name;
 											this.NetPrice = NetPrice;
 											this.VATRate = VATRate;
+											this.stock = stock;
 											this.quantity = quantity;
 											this.discount = discount;
 											this.selected = selected;
@@ -214,14 +215,14 @@ class Pos extends MY_Controller {
 											var name=$(this).children(\'label\').text();
 											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
 											var VATRate=parseFloat($(this).attr(\'value\'));
+											var stock=parseFloat($(this).attr(\'stock\'));
 											var DiscountRate=parseFloat($(this).attr(\'rel\'));
-
-											appendItem(ProductID, name, NetPrice, VATRate, DiscountRate);
-
+	                                        
+											appendItem(ProductID, name, NetPrice, VATRate, stock,DiscountRate);
 										});
 
 
-										function appendItem(ProductID, name, NetPrice, VATRate, DiscountRate) {
+										function appendItem(ProductID, name, NetPrice, VATRate,stock, DiscountRate) {
 
 											var isOnList = false;
 											for(i=0;i<items.length;i++)
@@ -229,17 +230,25 @@ class Pos extends MY_Controller {
 												if(items[i].ProductID == ProductID)
 												{
 													isOnList = true;
-													items[i].quantity+=1;
-													break;
+													if(items[i].quantity<items[i].stock)
+													{
+														items[i].quantity+=1;
+														break;
+													}
+													else
+													{
+														alert("Sorry! Product is out of stock.");
+														break;
+													}
 												}
 											}
 
-											if(isOnList == false) // boolean testing of a boolean value?
+											if(!isOnList) 
 											{
 												if(items.length==0)
-													NewItem = new item(ProductID,name,NetPrice,VATRate,1,DiscountRate,true);
+													NewItem = new item(ProductID,name,NetPrice,VATRate,stock,1,DiscountRate,true);
 												else
-													NewItem = new item(ProductID,name,NetPrice,VATRate,1,DiscountRate,false);
+													NewItem = new item(ProductID,name,NetPrice,VATRate,stock,1,DiscountRate,false);
 												items.push(NewItem);
 											}
 											renderItemList();
@@ -551,16 +560,7 @@ class Pos extends MY_Controller {
 											}).hide();
 										});
 
-										/*
-
-										I have a feeling the attributes of the DOM elements for each product is being arbitrarily used to store data.
-										value=VATRate, rel=DiscountRate... wtf
-
-										See https://github.com/horaceli/bizwebsys/issues/13
-
-										*/
-
-
+									
 
 										$(function(){
 
@@ -617,8 +617,9 @@ class Pos extends MY_Controller {
 		$this->load->view('app/pos/payment',$data);
 	}
 	public function process_order(){
-		if(!(isset($_POST["items"]) && isset($_POST["cash"])))
+				if(!(isset($_POST["items"]) && isset($_POST["cash"])))
 			return;
+
 		$date = date("Y_m_d");
 		$payment_method = "Cash";
 		$ref = "POS".date("d_m_Y_H_i_s");
