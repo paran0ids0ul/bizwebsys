@@ -78,7 +78,7 @@ class Pos extends MY_Controller {
 									}
 									.selected
 									{
-										background-color:#F9F9F9;
+										color:#A4A4EB;
 									}									
 									.item-list div
 									{
