@@ -30,7 +30,18 @@
                                     <select name="customer" id="customer_list">
                                         <option>Please Choose :</option>
                                         <?php foreach ($customers as $customer): ?>
-                                            <option value="<?php echo $customer['ContactID'] ?>"><?php echo $customer['lname'] ?></option>
+                                            <option value="<?php echo $customer['ContactID'] ?>"
+                                                <?php if ($selected_customer != NULL) {
+                                                    if ($selected_customer == $customer) {
+                                                        echo 'selected';
+                                                    }
+                                                } else {
+                                                    if ($p_customer == $customer) {
+                                                        echo 'selected';
+                                                 }
+                                            }
+
+                                                ?>><?php echo $customer['lname'] ?></option>
                                         <?php endforeach ?>
                                     </select>
 
