@@ -22,7 +22,7 @@
 <div class="container content"> 
 	<h4>Reset password</h4>
 	<form class="form-horizontal myform-container">
-	  
+	  <label  class="label label-warning" id="errors"></label>
 	  <div class="control-group">
 		<label class="control-label" for="inputUsername">New password</label>
 		<div class="controls">

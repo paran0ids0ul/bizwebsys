@@ -125,6 +125,8 @@ class Home_model extends MY_Model {
 	    
 	    $info = ldap_get_attributes($this->myldap->getLdapConnection(), $entry);
 		
+		$new_pwd = '{SHA}' . base64_encode(sha1($new_pwd, TRUE));
+		
 		$update['userPassword'][0] = $new_pwd;
 		
 		$result = ldap_modify($this->myldap->getLdapConnection(),'uid='.$id.',ou=people,dc=bizwebsys,dc=tk', $update);

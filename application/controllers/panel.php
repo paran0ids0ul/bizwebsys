@@ -10,11 +10,7 @@
 class Panel extends MY_Controller {
 	public function view($page='home'){	
 	    $this->pageName = $page;
-		$username = $this->session->userdata('username');
-		if($username == "")
-			header('Location:'.site_url(''));
-		else	
-			$this->_render('panel/'.$page);
+		$this->_render('panel/'.$page);
 	}
 	
 }

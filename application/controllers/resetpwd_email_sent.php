@@ -13,7 +13,7 @@ class Resetpwd_email_sent extends MY_Controller {
 		</style>	
 		';
 		$this->title = "Thank you";
-		$this->_render('account/resetpwd_email_sent');
+		$this->_home_render('account/resetpwd_email_sent');
 	}
 	
 }

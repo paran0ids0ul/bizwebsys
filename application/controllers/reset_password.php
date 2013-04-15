@@ -35,6 +35,7 @@ class Reset_password extends MY_Controller {
 									});
 									
 									$(\'#btn_done\').click(function(){
+										$(\'#errors\').val("");
 										var password = $(\'#field_pwd\').val().trim();
 										var ConfirmPassword = $(\'#field_confirm_pwd\').val().trim();
 										
@@ -58,14 +59,17 @@ class Reset_password extends MY_Controller {
 										}
 										else
 										{
-											$(\'#errors\').text("");
 											$.ajax({
 												url: \''. site_url('reset_password/reset_pwd') .'\',
 												type: \'POST\',
 												data: {password:password},
 												success: function(response) {
 													if(response == "true")
-														alert(response);
+														window.location.href = \''.site_url('reset_pwd_successful').'\';
+													else
+													{
+														$(\'#errors\').val("Failed to reset password. Please try again later.");
+													}
 												}
 											});
 										}

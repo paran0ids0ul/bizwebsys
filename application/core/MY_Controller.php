@@ -44,6 +44,8 @@ class MY_Controller extends CI_Controller
 		//render view
 		if($this->_check_login())
 			$this->load->view("template/skeleton", $toTpl);
+		else
+			header('Location:'.site_url(''));	
 	}
 	
 	//home render doesn't require login
@@ -102,6 +104,8 @@ class MY_Controller extends CI_Controller
 		//render view
 		if($this->_check_login())
 			$this->load->view("template/skeleton", $toTpl);
+		else
+			header('Location:'.site_url(''));	
 
 	}
 
@@ -148,9 +152,8 @@ class MY_Controller extends CI_Controller
 		//Check if user is logged in, if not, redirect to home page
 		$result = false;
 		$username = $this->session->userdata('username');	 
-		if($username == "") 
+		if($username != "") 
 		{
-			header('Location:'.site_url(''));	
 			$result = true;
 		}			
 		
