@@ -12,13 +12,14 @@ class Pos_model extends MY_Model {
 		return $query->result_array();
 	}
 	
-	public function set_order($ref,$date,$payment_method)
+	public function set_order($ref,$date,$payment_method,$employee_id)
 	{
 		$data = array(
 			'Ref' => $ref,
 			'DateInvoiced' => $date,
 			'DatePaid' => $date, 
-			'PaymentMethod' => $payment_method
+			'PaymentMethod' => $payment_method,
+			'EmployeeID' => $employee_id
 		);
 		
 		return $this->db->insert('SalesOrder', $data);

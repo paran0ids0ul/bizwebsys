@@ -623,9 +623,10 @@ class Pos extends MY_Controller {
 		$date = date("Y_m_d");
 		$payment_method = "Cash";
 		$ref = "POS".date("d_m_Y_H_i_s");
-
+		$employee_id = $this->session->userdata('employee_id');
+		
 		//create new order in salesorder table
-		$this->pos_model->set_order($ref,$date,$payment_method);
+		$this->pos_model->set_order($ref,$date,$payment_method,$employee_id);
 		$order_id = $this->pos_model->get_orderid($ref);
 
 		//save items in salesorderline table
