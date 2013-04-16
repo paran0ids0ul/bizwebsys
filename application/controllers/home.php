@@ -45,7 +45,7 @@ class Home extends MY_Controller {
 												data: {username:username,password:password},
 												success: function(response) {
 													if(response == "true")
-														window.location.href = \''.site_url('home').'\';
+														window.location.href = \''.site_url('workspace').'\';
 													else
 													{
 														$(\'#errors\').text("Username or Password is wrong");

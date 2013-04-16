@@ -8,7 +8,7 @@
  */
 
 class Panel extends MY_Controller {
-	public function view($page='home'){	
+	public function view($page='workspace'){	
 	    $this->pageName = $page;
 		$this->_render('panel/'.$page);
 	}
