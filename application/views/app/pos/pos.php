@@ -8,7 +8,6 @@
 		
 		<!-- Content -->
 		<div class="span7" id="content">
-			<?php echo $toProducts ?>
 		</div>
 	</div>	
 </div>

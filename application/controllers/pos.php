@@ -209,51 +209,7 @@ class Pos extends MY_Controller {
 											}
 										}
 
-										//Add item to list
-										$(\'.thumbnail\').click(function(){
-											var ProductID=$(this).attr(\'id\');
-											var name=$(this).children(\'label\').text();
-											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
-											var VATRate=parseFloat($(this).attr(\'value\'));
-											var stock=parseFloat($(this).attr(\'stock\'));
-											var DiscountRate=parseFloat($(this).attr(\'rel\'));
-	                                        
-											appendItem(ProductID, name, NetPrice, VATRate, stock,DiscountRate);
-										});
-
-
-										function appendItem(ProductID, name, NetPrice, VATRate,stock, DiscountRate) {
-
-											var isOnList = false;
-											for(i=0;i<items.length;i++)
-											{
-												if(items[i].ProductID == ProductID)
-												{
-													isOnList = true;
-													if(items[i].quantity<items[i].stock)
-													{
-														items[i].quantity+=1;
-														break;
-													}
-													else
-													{
-														alert("Sorry! Product is out of stock.");
-														break;
-													}
-												}
-											}
-
-											if(!isOnList) 
-											{
-												if(items.length==0)
-													NewItem = new item(ProductID,name,NetPrice,VATRate,stock,1,DiscountRate,true);
-												else
-													NewItem = new item(ProductID,name,NetPrice,VATRate,stock,1,DiscountRate,false);
-												items.push(NewItem);
-											}
-											renderItemList();
-
-										}
+									
 
 
 										//Click on list item effect
@@ -386,7 +342,7 @@ class Pos extends MY_Controller {
 												{
 													items.splice(i,1);
 													if(items.length>=1)
-														items[i].selected = true;
+														items[0].selected = true;
 												}
 												else
 												{
@@ -439,6 +395,7 @@ class Pos extends MY_Controller {
 														}
 														else
 														{
+															$(\'#btn_validate\').addClass("disabled");
 															remain = total - cash;
 															change = 0.0;
 														}
@@ -470,31 +427,109 @@ class Pos extends MY_Controller {
 													$(\'#content\').html(response);
 													$("#product_container").height(viewportHeight);
 													//Add item to list
-										$(\'.thumbnail\').click(function(){
-											var ProductID=$(this).attr(\'id\');
-											var name=$(this).children(\'label\').text();
-											var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
-											var VATRate=parseFloat($(this).attr(\'value\'));
+													$(\'.thumbnail\').click(function(){
+														var ProductID=$(this).attr(\'id\');
+														var name=$(this).children(\'label\').text();
+														var NetPrice=parseFloat($(this).children(\'span\').text().substr(1));
+														var VATRate=parseFloat($(this).attr(\'value\'));
+														var stock=parseFloat($(this).attr(\'stock\'));
+														var DiscountRate=parseFloat($(this).attr(\'rel\'));
+														
+														appendItem(ProductID, name, NetPrice, VATRate, stock,DiscountRate);
+													});
 
-											var isOnList = false;
-											for(i=0;i<items.length;i++)
-											{
-												if(items[i].ProductID == ProductID)
-												{
-													isOnList = true;
-													items[i].quantity+=1;
-													break;
-												}
-											}
 
-											if(isOnList == false)
-											{
-												NewItem = new item(ProductID,name,NetPrice,VATRate,1,1);
-												items.push(NewItem);
-											}
-											renderItemList();
+													function appendItem(ProductID, name, NetPrice, VATRate,stock, DiscountRate) {
 
-										});
+														var isOnList = false;
+														for(i=0;i<items.length;i++)
+														{
+															if(items[i].ProductID == ProductID)
+															{
+																isOnList = true;
+																if(items[i].quantity<items[i].stock)
+																{
+																	items[i].quantity+=1;
+																	break;
+																}
+																else
+																{
+																	alert("Sorry! Product is out of stock.");
+																	break;
+																}
+															}
+														}
+
+														if(!isOnList) 
+														{
+															if(items.length==0)
+																NewItem = new item(ProductID,name,NetPrice,VATRate,stock,1,DiscountRate,true);
+															else
+																NewItem = new item(ProductID,name,NetPrice,VATRate,stock,1,DiscountRate,false);
+															items.push(NewItem);
+														}
+														renderItemList();
+
+													}
+												
+													// Start HoraceLi
+
+
+
+
+													var productListings = $(\'#product-list li\');
+
+													$(\'#searchbox\').keyup(function() {
+														var val = $.trim($(this).val()).replace(/ +/g, \' \').toLowerCase();
+
+														productListings.show().filter(function() {
+															var text = $(this).find(\'label\').text().replace(/\s+/g, \' \').toLowerCase();
+															return !~text.indexOf(val);
+														}).hide();
+													});
+
+												
+
+													$(function(){
+
+														var productList;
+
+														$.ajax({
+															url: \''. site_url('inventory/product_list') .'\',
+															dataType: \'json\',
+															success: function(JSONstream) {
+															   productList = JSONstream;
+															   $(\'#search button\').removeAttr("disabled");
+																$(\'#search-feedback\').text("Ready").show(0).delay(1000).hide(0).text();
+															}
+														});
+
+													   $("form#search").submit(function(event){
+
+															event.preventDefault();
+
+															var val = $(\'#searchbox\').val();
+															$(\'#searchbox\').val("");
+
+															for (var i = 0; i < productList.length; i++){
+																if (productList[i].GTIN == val){
+																	appendItem(productList[i].ItemID, productList[i].Name, productList[i].NetPrice, productList[i].VATRate, productList[i].DiscountRate);
+																	return;
+																}
+															}
+
+															$(\'#search-feedback\').text("No products found with GTIN " + val).show(0).delay(1000).hide(0).text();
+
+															return;
+
+														});
+
+
+													});
+
+
+													// End HoraceLi
+												
 												}
 											});
 										}
@@ -541,72 +576,16 @@ class Pos extends MY_Controller {
 											});
 										}
 
-
-
-
-										// Start HoraceLi
-
-
-
-
-										var productListings = $(\'#product-list li\');
-
-										$(\'#searchbox\').keyup(function() {
-											var val = $.trim($(this).val()).replace(/ +/g, \' \').toLowerCase();
-
-											productListings.show().filter(function() {
-												var text = $(this).find(\'label\').text().replace(/\s+/g, \' \').toLowerCase();
-												return !~text.indexOf(val);
-											}).hide();
-										});
-
-									
-
 										$(function(){
-
-											var productList;
-
-											$.ajax({
-												url: \''. site_url('inventory/product_list') .'\',
-												dataType: \'json\',
-												success: function(JSONstream) {
-												   productList = JSONstream;
-												   $(\'#search button\').removeAttr("disabled");
-													$(\'#search-feedback\').text("Ready").show(0).delay(1000).hide(0).text();
-												}
-											});
-
-										   $("form#search").submit(function(event){
-
-												event.preventDefault();
-
-												var val = $(\'#searchbox\').val();
-												$(\'#searchbox\').val("");
-
-												for (var i = 0; i < productList.length; i++){
-													if (productList[i].GTIN == val){
-														appendItem(productList[i].ItemID, productList[i].Name, productList[i].NetPrice, productList[i].VATRate, productList[i].DiscountRate);
-														return;
-													}
-												}
-
-												$(\'#search-feedback\').text("No products found with GTIN " + val).show(0).delay(1000).hide(0).text();
-
-												return;
-
-											});
-
-
+											showProducts();
 										});
 
 
-										// End HoraceLi
+										
 
 									</script>';
-		$data['items'] = $this->pos_model->get_items();
-		$param['toProducts'] =  $this->load->view('app/pos/products',$data,true);
 
-		$this->_data_render('app/pos/pos',$param);
+		$this->_render('app/pos/pos');
 	}
 	public function products(){
 		$data['items'] = $this->pos_model->get_items();
