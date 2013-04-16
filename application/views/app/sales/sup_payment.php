@@ -21,6 +21,7 @@
 		</div>
 		<div class="row content">
 			<table class="table table-striped span10">
+				<thead>
 				<tr>
 					<td><input type="checkbox" id="sup_payment_all"><td/>
 					<td>Payment Date<td/>
@@ -28,11 +29,19 @@
 					<td>Supplier<td/>
 					<td>Total<td/>
 				</tr>
-					<td><input type="checkbox" class="checkboxs"><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
-					<td><td/>
+				</thead>
+
+				<?php foreach ($purchase_invoices as $purchase_invoice): ?>
+				<tr id="<?php echo $purchase_invoice['PurchaseInvoiceID'] ?>">
+					<td href="<?php echo site_url("sales/display_cust_order_by_id/") . $purchase_invoice['PurchaseInvoiceID'] ?>/">
+						<input type="checkbox" class="checkboxs"
+							   id=<?php echo $salesorder['PurchaseInvoiceID'] ?>><td/>
+					<td><?php echo $purchase_invoice['DatePaymentDue'] ?><td/>
+					<td><?php echo $purchase_invoice['IntRef'] ?><td/>
+					<td><?php echo $contact_list[$purchase_invoice['ContactID']]; ?><td/>
+					<td><?php echo $purchase_invoice['Total'] ?><td/>
+				</tr>
+				<?php endforeach ?>
 			</table>
 		</div>
     </div>

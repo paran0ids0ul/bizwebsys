@@ -7,6 +7,41 @@ class Sales_model extends MY_Model
 		$this->load->database();
 	}
 
+	public function dispatch_order($id, $date)
+	{
+
+		// check paid already
+		$this->db->select('DatePaid, DateDispatched');
+		$this->db->where('SalesOrderID', $id);
+		$query = $this->db->get('SalesOrder');
+
+	//	"SELECT DatePaid,DateDispatched from SalesOrder WHERE SalesOrderID = $id"
+
+		// check not dispatched yet
+
+
+		// check stock
+
+		$this->db->select('ItemID,ItemID,SalesOrderID');
+		$this->db->from('Inventory, SalesOrderLine,SalesOrder');
+		$this->db->join('itemID', 'Inventory.ItemID = SalesOrderLine.ItemID','SalesOrderID','SalesOrderLine.SalesOrderID = SalesOrder.SalesOrderID','inner');
+		$this->db->where('SalesOrder.SalesOrderID', $id);
+		$this->db->where('Inventory.Stock <', 'SalesOrderLine.Quantity');
+
+		$query = $this->db->get();
+
+
+		//"SELECT Inventory.ItemID from Inventory INNER JOIN SalesOrderLine USING ItemID INNER JOIN SalesOrder USING SalesOrderID WHERE SalesOrder.SalesOrderID=$id AND Inventory.Stock < SalesOrderLine.Quantity"
+
+		$data = array(
+			'DateDispatched' => $date
+		);
+
+		$this->db->where('SalesOrderID', $id);
+		return $this->db->update('SalesOrder', $data);
+
+	}
+
 	public function set_item()
 	{
 		$this->load->helper('url');

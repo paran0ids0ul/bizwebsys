@@ -20,24 +20,28 @@
 			<a href="<?php echo site_url("sales/new_payment")?>" class="btn btn-primary span1">Create</a>
 		</div>
 		<div class="row content">
+			<form name="form1" action="" id="cust_payment_form">
 			<table class="table table-striped span10">
+				<thead>
 				<tr>
-					<td><input type="checkbox" id="cust_payment_all"><td/>
-					<td>Payment Date<td/>
-					<td>Internal Reference<td/>
-					<td>Customer<td/>
-					<td>Total<td/>
+					<th><input type="checkbox" id="cust_payment_all"></th>
+					<th>Payment Date</th>
+					<th>Internal Reference</th>
+					<th>Customer</th>
+					<th>Total</th>
 				</tr>
-                <?php foreach ($purchaseinvoices as $purchaseinvoice): ?>
-                <tr>
-					<td id="<?php echo $purchaseinvoice['PurchaseInvoiceID']?>" href="<?php echo site_url("sales/display_cust_order_by_id/") . $purchaseinvoice['PurchaseInvoiceID'] ?>/"><input type="checkbox" class="checkboxs" id=<?php echo $purchaseinvoice['PurchaseInvoiceID'] ?>><td/>
-					<td><?php echo[$purchaseinvoice['DatePaymentDue']] ?><td/>
-					<td><?php echo $purchaseinvoice['IntRef'] ?><td/>
-					<td><?php echo $contact_list[$purchaseinvoice['ContactID']]; ?><td/>
-					<td><td/>
+				</thead>
+                <?php foreach ($salesorders as $salesorder): ?>
+                <tr id="<?php echo $salesorder['SalesOrderID']?>">
+					<td  href="<?php echo site_url("sales/display_order_by_id/") . $salesorder['SalesOrderID'] ?>/"><input type="checkbox" class="checkboxs" id=<?php echo $salesorder['SalesOrderID'] ?>></td>
+					<td><?php echo $salesorder['DatePaymentDue'] ?></td>
+					<td><?php echo $salesorder['Ref'] ?></td>
+					<td><?php echo $contact_list[$salesorder['ContactID']]; ?></td>
+					<td><?php echo $salesorder['Total'] ?></td>
                 </tr>
                 <?php endforeach ?>
 			</table>
+				</form>
 		</div>
     </div>
   </div>
