@@ -37,66 +37,35 @@
 
 <hr/>
 
-<!-- Marketing Apps-->
-<h3>Marketing</h3>
+<!-- Apps-->
+<h3>Apps</h3>
 <ul class="thumbnails">
   <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/icons128/newsletters.png")?> alt="newsletter">
-	  <div class="text-center">Newsletter</div>
+    <a href="http://mail.bizwebsys.tk" class="thumbnail">
+      <img src=<?php echo base_url("resources/images/icons128/newsletters.png")?> alt="Mail">
+	  <div class="text-center">Mail</div>
     </a>
   </li>
   <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/icons128/twitter.png")?> alt="Twitter">
-	  <div class="text-center">Twitter</div>
+    <a href="http://owncloud.bizwebsys.tk/" class="thumbnail">
+      <img src=<?php echo base_url("resources/images/icons128/owncloud.png")?> alt="OwnCloud">
+	  <div class="text-center">OwnCloud</div>
     </a>
   </li>
   <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/icons128/facebook.png")?> alt="Facebook">
-	  <div class="text-center">Facebook</div>
+    <a href="https://accounts.google.com/ServiceLoginAuth?continue=https%3A%2F%2Fwww.google.com%2Fwebmasters%2Ftools%2F%3Fhl%3Den&followup=https%3A%2F%2Fwww.google.com%2Fwebmasters%2Ftools%2F%3Fhl%3Den&service=sitemaps&hl=en" class="thumbnail">
+      <img src=<?php echo base_url("resources/images/icons128/googlewebmastertool.png")?> alt="Webmaster Tool">
+	  <div class="text-center">Webmaster Tool</div>
     </a>
-  </li>
-    <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/icons128/google_plus.png")?> alt="Google+">
-	  <div class="text-center">Google+</div>
-    </a>
-  </li>
-  <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/icons128/google_analytics.png")?> alt="Website Analytics">
-	  <div class="text-center">Website Analytics</div>
-    </a>
-  </li>   
+  </li>  
   <li class="span2">
     <a href="<?php echo site_url("socialnetwork");?>" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/Internet_Connection.png")?> alt="Connecting to the Public">
+      <img src=<?php echo base_url("resources/images/icons128/Internet_Connection.png")?> alt="Connecting to the Public">
 	  <div class="text-center">Connecting to the Public</div>
     </a>
   </li> 
   
 </ul> 
 
-<hr/>
 
-<!-- Office Apps-->
-<h3>Office</h3>
-<ul class="thumbnails">
-  <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="">
-    </a>
-  </li>
-  <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="">
-    </a>
-  </li>
-  <li class="span2">
-    <a href="#" class="thumbnail">
-      <img src=<?php echo base_url("resources/images/applogo.png")?> alt="">
-    </a>
-  </li>
-</ul> 
+
