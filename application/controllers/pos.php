@@ -122,6 +122,8 @@ class Pos extends MY_Controller {
 											this.quantity = quantity;
 											this.discount = discount;
 											this.selected = selected;
+											this.QuantityString = quantity.toString();
+											this.DiscountString = discount.toString();
 
 											this.getDisplayPrice = getDisplayPrice;
 											this.getTax = getTax;
@@ -175,9 +177,9 @@ class Pos extends MY_Controller {
 												{
 													var html = "<li value="+items[i].VATRate+" id=\'li_"+items[i].ProductID+"\' class=\'selected\'><div class=\'span2\'>"+items[i].name+"</div><div class=\'span1 price\'>£"+items[i].getDisplayPrice()+"</div>";
 													if(items[i].quantity>1)
-														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].quantity+"</b></div>";
+														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].QuantityString+"</b></div>";
 													if(items[i].discount<1)
-														html += "<div class=\"discount span2\">discount: x<b>"+items[i].discount+"</b></div>";
+														html += "<div class=\"discount span2\">discount: x<b>"+items[i].DiscountString+"</b></div>";
 													html += "</li>"	
 													$(\'.item-list\').append(html);
 												}
@@ -185,9 +187,9 @@ class Pos extends MY_Controller {
 												{
 													var html = "<li value="+items[i].VATRate+" id=\'li_"+items[i].ProductID+"\'><div class=\'span2\'>"+items[i].name+"</div><div class=\'span1 price\'>£"+items[i].getDisplayPrice()+"</div>";
 													if(items[i].quantity>1)
-														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].quantity+"</b></div>";
+														html += "<div class=\"quantity span2\">quantity: x<b>"+items[i].QuantityString+"</b></div>";
 													if(items[i].discount<1)
-														html += "<div class=\"discount span2\">discount: x<b>"+items[i].discount+"</b></div>";
+														html += "<div class=\"discount span2\">discount: x<b>"+items[i].DiscountString+"</b></div>";
 													html += "</li>"	
 													$(\'.item-list\').append(html);												
 												}
@@ -275,13 +277,17 @@ class Pos extends MY_Controller {
 											{
 												if(items[i].quantity == 1)
 												{
+													if($(this).text()=="0")
+														return;
+													
 													var quantity = $(this).text();
 												}
 												else
 												{
-													var quantity = items[i].quantity.toString();
+													var quantity = items[i].QuantityString;
 													quantity += $(this).text();
 												}
+												items[i].QuantityString = quantity;
 												items[i].quantity = parseInt(quantity);
 
 											}
@@ -289,13 +295,16 @@ class Pos extends MY_Controller {
 											{
 												if(items[i].discount == 1)
 												{
+													if($(this).text()=="0")
+														return;
 													var discount = "0."+ $(this).text();
 												}
 												else
 												{
-													var discount = items[i].discount.toString();
+													var discount = items[i].DiscountString;
 													discount += $(this).text();
 												}
+												items[i].DiscountString = discount;
 												items[i].discount = parseFloat(discount);
 											}
 
@@ -324,7 +333,7 @@ class Pos extends MY_Controller {
 												}
 												else
 												{
-													var quantity = items[i].quantity.toString();
+													var quantity = items[i].QuantityString;
 													if(quantity.length==1)
 													{
 														quantity = "1";
@@ -333,6 +342,7 @@ class Pos extends MY_Controller {
 													{
 														quantity = quantity.substr(0,quantity.length-1);
 													}
+													items[i].QuantityString = quantity;
 													items[i].quantity = parseInt(quantity);
 												}
 											}
@@ -346,7 +356,7 @@ class Pos extends MY_Controller {
 												}
 												else
 												{
-													var discount = items[i].discount.toString();
+													var discount = items[i].DiscountString;
 													if(discount.length <= 3)
 													{
 														discount = 1;
@@ -355,6 +365,7 @@ class Pos extends MY_Controller {
 													{
 														discount = discount.substr(0,discount.length-1);
 													}
+													items[i].DiscountString = discount;
 													items[i].discount = parseFloat(discount);
 												}
 											}
@@ -397,6 +408,7 @@ class Pos extends MY_Controller {
 														{
 															$(\'#btn_validate\').addClass("disabled");
 															remain = total - cash;
+															remain = toFixed(remain,2);
 															change = 0.0;
 														}
 														$(\'#paid\').text(paid);
@@ -450,6 +462,7 @@ class Pos extends MY_Controller {
 																if(items[i].quantity<items[i].stock)
 																{
 																	items[i].quantity+=1;
+																	items[i].QuantityString = items[i].quantity.toString();
 																	break;
 																}
 																else

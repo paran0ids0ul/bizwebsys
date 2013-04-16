@@ -55,6 +55,12 @@
 									<button class="btn btn-large keypad-button-big" id="btn_del">Del</button>										
 								</div>
 							</div>
+							<div class="row">
+								<div class="span3">
+									<button class="btn btn-large keypad-button key invisible"></button>
+									<button class="btn btn-large keypad-button key">0</button>										
+								</div>
+							</div>
 					</div>
 						
 				</div>	
