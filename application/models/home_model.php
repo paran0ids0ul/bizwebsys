@@ -76,11 +76,10 @@ class Home_model extends MY_Model {
 		}
 
 		$employee = $this->employee_model->get_admin();
-        $result = false;
+		$result = false;
 		if ($employee != false) {
-			if (array_key_exists("uniqueMember", $employee)) {
-				for ($y = 0 ; $y < $employee['uniqueMember']['count'] ; $y++) {
-					$e = $employee['uniqueMember'][$y];
+				foreach($employee as $e) {
+					
 					$pos = strpos($e, ',');
 					$e_uid = substr($e, 4, $pos-4); 
 					if($e_uid == $uid)
@@ -89,9 +88,7 @@ class Home_model extends MY_Model {
 						break;
 					}
 				}
-			}
 		}
-		
 		return $result;
 	}
 

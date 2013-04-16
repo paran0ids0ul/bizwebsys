@@ -78,6 +78,7 @@ class Home extends MY_Controller {
                );
 			$this->session->set_userdata($newdata);
 			echo "true";
+			
 		}
 		else
 			echo "false";
