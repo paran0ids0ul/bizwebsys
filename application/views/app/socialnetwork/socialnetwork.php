@@ -25,11 +25,7 @@
 					<input id="twitter"  type="checkbox"> Post onto Twitter
 				</label>
 			</div>
-			<div class="span8">
-				<label class="checkbox" style="HEIGHT:30px"  value ="Yes"> 
-					<input id="googlePlus" type="checkbox"> Post onto Google+
-				</label>
-			</div>
+			
 			<div class="span8">
 				<span class="input-xlarge uneditable-input" style="width:60%"; id="process"></span>				
 			</div>

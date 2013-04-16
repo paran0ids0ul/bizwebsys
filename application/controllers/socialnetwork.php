@@ -113,12 +113,10 @@ class SocialNetwork extends MY_Controller
 			
 			$("#button_post").click(function()
 			{
-				alert("1");
 				if ($("#twitter").prop("checked") == true) 
 				{ 
 					var ajaxurl = "http://" + (document.location.hostname) + "/socialnetwork/twitter"; 
 					var ajaxdata = $("#statusContext").val();
-					alert("2");
 					$.ajax
 					(
 						{
@@ -127,7 +125,7 @@ class SocialNetwork extends MY_Controller
 							data: {ajaxdata : ajaxdata},
 							success: function(results)
 							{
-								alert(results);
+								alert("Sucessfully Posted on Twitter");
 							},
 							error: function(xhr, textStatus, error)
 							{
@@ -142,19 +140,7 @@ class SocialNetwork extends MY_Controller
 				
 				if ($("#facebook").prop("checked") == true) 
 				{ 
-					alert("facebook");
 					getLogin();
-				}
-				
-				if ($("#googlePlus").prop("checked") == true) 
-				{ 
-					var googlePlus = true;
-				}
-				
-				
-				if (($("#facebook").prop("checked") == false) && ($("#twitter").prop("checked") == false) && ($("#googlePlus").prop("checked") == false)) 
-				{
-					alert("Nothing is done due to none of the checkbox is selected");
 				}				
 				
 				var status = $("#statusContext").val();
@@ -163,6 +149,13 @@ class SocialNetwork extends MY_Controller
 				{
 					alert("The content cannot be empty");
 				}
+				
+				if (($("#facebook").prop("checked") == false) && ($("#twitter").prop("checked") == false)) 
+				{
+					alert("Nothing is done due to none of the checkbox is selected");
+				}				
+				
+				
 				
 				
 			});			
@@ -174,26 +167,24 @@ class SocialNetwork extends MY_Controller
 	
 	public function twitter()
 	{
-		
-
 		$connection = $this->twitteroauth->create('qsyeIajydJgHRfLI9T4A', '9V5rqgTbwUdCvnlBiyF9eMegaaPJJWT1X05URm6cuU', '1327423556-7yRfZmvInpYuSDbbroXl1upBnt1n7zjjtAdoyiF', 'T6Ke1oIKVjOzKzVjVHyjFdwjLCNgTCIDpmHfz8jsNuk');
+	
 
-		
-		
-		
-			$content = $connection->get('account/verify_credentials');
+		$content = $connection->get('account/verify_credentials');
 			
-			if(isset($content->error))
-			{
-					return false;
-			};
+		if(isset($content->error))
+		{
+			return false;
+		};
 			
-			$status = $_POST["ajaxdata"];
+		$status = $_POST["ajaxdata"];
 			
-			$data = array(
+		$data = array
+		(
 			'status' => $status,
-			);
-			$result = $connection->post('statuses/update', $data);
+		);
+		
+		$result = $connection->post('statuses/update', $data);
 		
 		
 		
