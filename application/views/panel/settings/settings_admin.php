@@ -42,7 +42,7 @@
 				</div> <!-- close row-->
 			</div> <!-- close company content-->
 			
-			<div class="underlined span12">
+	<!--		<div class="underlined span12">
 				<h4 class="settings-header">Admin Configuration</h4>
 			</div>
 			
@@ -53,7 +53,7 @@
 				<a href="<?php echo site_url("change_password")?>" id="change_emp_preset_pass" class="span10">
 					<button class="btn btn-link">Change Preset password for new employee</button>
 				</a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
