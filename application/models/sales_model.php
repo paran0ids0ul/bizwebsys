@@ -22,16 +22,21 @@ class Sales_model extends MY_Model
 
 		// check stock
 
-		$this->db->select('ItemID,ItemID,SalesOrderID');
-		$this->db->from('Inventory, SalesOrderLine,SalesOrder');
-		$this->db->join('itemID', 'Inventory.ItemID = SalesOrderLine.ItemID','SalesOrderID','SalesOrderLine.SalesOrderID = SalesOrder.SalesOrderID','inner');
-		$this->db->where('SalesOrder.SalesOrderID', $id);
+		$this->db->select('ItemID');
+		$this->db->from('Inventory');
+		$this->db->join('SalesOrderLine', 'Inventory.ItemID = SalesOrderLine.ItemID');
+		$this->db->join('SalesOrder','SalesOrderLine.SalesOrderID = SalesOrder.SalesOrderID');
+		//$this->db->where('SalesOrder.SalesOrderID', $id);
 		$this->db->where('Inventory.Stock <', 'SalesOrderLine.Quantity');
-
+		//$this->db->count_all_results();
+//		$query->row()->ItemID;
 		$query = $this->db->get();
+		print_r($query->result_array());
+		$rowcount = $query->num_rows();
 
 
-		//"SELECT Inventory.ItemID from Inventory INNER JOIN SalesOrderLine USING ItemID INNER JOIN SalesOrder USING SalesOrderID WHERE SalesOrder.SalesOrderID=$id AND Inventory.Stock < SalesOrderLine.Quantity"
+
+		//"SELECT Inventory.ItemID from Inventory (INNER JOIN SalesOrderLine USING ItemID) (INNER JOIN SalesOrder USING SalesOrderID) WHERE SalesOrder.SalesOrderID=$id AND Inventory.Stock < SalesOrderLine.Quantity"
 
 		$data = array(
 			'DateDispatched' => $date

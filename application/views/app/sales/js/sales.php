@@ -13,17 +13,20 @@
 
 		$(".dispatch").on("click", function (event) {
 
-			var target = $(event.target);
 			event.preventDefault();
+
+			var parent = $(event.target).parent();
+			parent.text('Loading...');
+
 			var dispatch = confirm("Dispatch Order?");
 			if (dispatch === true) {
-				target.parent().text('Loading...');
+
 				$.ajax({
 					dataType: "json",
-					url: "<?php echo site_url('sales/dispatch_now/')?>/" + target.parentsUntil('tr').parent().attr('id'),
+					url: "<?php echo site_url('sales/dispatch_now/')?>/" + parent.parent().attr('id'),
 					statusCode: {
 						201: function () {
-							target.parent().text(date);
+							parent.text(date);
 						}
 					}
 				});
