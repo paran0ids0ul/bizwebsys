@@ -51,9 +51,7 @@ class Home extends MY_Controller {
 														$(\'#errors\').text("Username or Password is wrong");
 														$(\'#inputUsername\').val("");
 														$(\'#inputPassword\').val("");
-
 													}
-												//$(\'#test\').html(response);
 												}
 											});
 										}
@@ -75,7 +73,8 @@ class Home extends MY_Controller {
 			$newdata = array(
                   'username'  => $data["username"],
                   'email'     => $data["email"],
-				   'is_admin' => $is_admin
+				  'employee_id' => $data["employee_id"],
+				  'is_admin' => $is_admin
                );
 			$this->session->set_userdata($newdata);
 			echo "true";

@@ -53,11 +53,12 @@ class Home_model extends MY_Model {
 					$result = true;
 					$username = $employee["uid"][0];
 					$email = $employee["mail"][0];
+					$employee_id = $employee["employeenumber"][0];
 				}
 			}
 		}
 		
-		$data = array("result"=>$result,"username"=>$username,"email"=>$email);
+		$data = array("result"=>$result,"username"=>$username,"email"=>$email,"employee_id"=>$employee_id);
 		return $data;
 	}
 	

@@ -17,6 +17,7 @@ class Pos_model extends MY_Model {
 		$data = array(
 			'Ref' => $ref,
 			'DateInvoiced' => $date,
+			'DatePaid' => $date, 
 			'PaymentMethod' => $payment_method
 		);
 		
