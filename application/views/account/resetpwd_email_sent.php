@@ -13,9 +13,6 @@
           <li><a href="">About</a></li>
           <li><a href="">Contact</a></li>
         </ul>
-        <ul class="nav pull-right" id="main-menu-right">
-          <li><a href="#signin_modal" data-toggle="modal">Sign in</a></li>
-        </ul>
        </div>
 	   <div id="test"></div>
      </div>

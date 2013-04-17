@@ -38,10 +38,11 @@ class Home_model extends MY_Model {
 		}
 		
 		$result = false;
+		$email="";
+		$employee_id="";
 		$is_admin = false;
 		$password = '{SHA}' . base64_encode(sha1($password, TRUE));
 		$employees = $this->employee_model->get_all_employee(); 
-		
 		
 		foreach ($employees as $k => $employee)
 		{
@@ -130,8 +131,20 @@ class Home_model extends MY_Model {
 		$result = ldap_modify($this->myldap->getLdapConnection(),'uid='.$id.',ou=people,dc=bizwebsys,dc=tk', $update);
 		
 		return $result;
+	}
+	
+	public function change_password($id,$new_pwd,$old_pwd)
+	{
+		$auth = $this->authenticate($id,$old_pwd);
+		if($auth["result"])
+		{
+			if($this->reset_password($id,$new_pwd))
+				return "true";
+			else
+				return "false";
+		}
 		
-	
-	
+		return "fail";
+			
 	}
 }
