@@ -2,8 +2,8 @@
 
 <phpunit 
     colors="true" 
-    stopOnFailure="false" >
-    <!--bootstrap="../application/third_party/CIUnit/bootstrap_phpunit.php">-->
+    stopOnFailure="false"
+    bootstrap="../application/third_party/CIUnit/bootstrap_phpunit.php">
     <php>
         <server name="SERVER_NAME" value="http://bizwebsys.tk" />
     </php>
