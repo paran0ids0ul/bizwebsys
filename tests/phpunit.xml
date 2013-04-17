@@ -5,7 +5,7 @@
     stopOnFailure="false" 
     bootstrap="../application/third_party/CIUnit/bootstrap_phpunit.php">
     <php>
-        <server name="SERVER_NAME" value="http://example.com" />
+        <server name="SERVER_NAME" value="http://bizwebsys.tk" />
     </php>
     <testsuites>
         <testsuite name="ControllerTests">
