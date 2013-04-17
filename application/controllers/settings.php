@@ -268,12 +268,9 @@ class Settings extends MY_Controller {
 
 				$error = array('error' => $this->upload->display_errors());
 
-
 				$this->settings_model->update_company_info();
 
-
-				$this->index();
-
+				redirect("settings", "refresh");
 
 			}
 			else
@@ -281,16 +278,18 @@ class Settings extends MY_Controller {
 
 				$file_data  =   $this->upload->data();
 
-				$filepath = $file_data['file_name'].$file_data['file_ext'];
+				$filepath = $file_data['file_name'];
 
 				$this->settings_model->update_company_info_with_logo($filepath);
 
-				$this->index();
+				redirect("settings", "refresh");
 
 			}
 
 
 		}
+
+
 
 	}
 	
