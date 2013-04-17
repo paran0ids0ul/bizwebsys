@@ -1,7 +1,18 @@
 language: php
+
 php:
   - 5.4
+  
+env:
+  - DB=mysqli
 
-before_script: cd tests
+before_script:
+  - composer install --dev --no-progress
+  - sh -c "if [ '$DB' = 'mysql' ] || [ '$DB' = 'mysqli' ] || [ '$DB' = 'pdo/mysql' ]; then mysql -e 'create database IF NOT EXISTS ci_test;'; fi"
 
-script: phpunit --configuration phpunit.xml
+script: phpunit --coverage-text --configuration tests/travis/$DB.phpunit.xml
+
+branches:
+  only:
+    - develop
+    - /^feature\/.+$/
