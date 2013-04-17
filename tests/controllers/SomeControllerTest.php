@@ -4,6 +4,8 @@
  * @group Controller
  */
 
+include_once('../../application/third_party/CIUnit/bootstrap_phpunit.php');
+
 class SomeControllerTest extends CIUnit_TestCase
 {
 	public function setUp()
