@@ -2,6 +2,6 @@ language: php
 php:
   - 5.4
 
-before_script:
+before_script: cd tests
 
-script: phpunit tests
+script: vendor/bin/phpunit

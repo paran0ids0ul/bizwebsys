@@ -68,21 +68,5 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
-$db['ciunit']['hostname'] = 'bizwebsys.tk';
-$db['ciunit']['username'] = 'bizwebsys'; //root
-$db['ciunit']['password'] = 'Abcd1234*'; //q1w2e3
-$db['ciunit']['database'] = 'ciunit_test';
-$db['ciunit']['dbdriver'] = 'mysqli';
-$db['ciunit']['dbprefix'] = '';
-$db['ciunit']['pconnect'] = TRUE;
-$db['ciunit']['db_debug'] = TRUE;
-$db['ciunit']['cache_on'] = FALSE;
-$db['ciunit']['cachedir'] = '';
-$db['ciunit']['char_set'] = 'utf8';
-$db['ciunit']['dbcollat'] = 'utf8_general_ci';
-$db['ciunit']['swap_pre'] = '';
-$db['ciunit']['autoinit'] = TRUE;
-$db['ciunit']['stricton'] = FALSE;
-
 /* End of file database.php */
 /* Location: ./application/config/database.php */
