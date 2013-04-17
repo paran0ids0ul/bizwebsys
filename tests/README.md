@@ -1,6 +1,6 @@
 # CodeIgniter Unit Tests #
 
-Status : [![Build Status](https://secure.travis-ci.org/EllisLab/CodeIgniter.png?branch=develop)](http://travis-ci.org/EllisLab/CodeIgniter)
+Status : [![Build Status](https://travis-ci.org/horaceli/bizwebsys.png)](http://travis-ci.org/horaceli/bizwebsys)
 
 ### Introduction:
 
