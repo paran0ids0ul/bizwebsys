@@ -24,5 +24,7 @@ class SomeControllerTest extends CIUnit_TestCase
 		
 		// Check if the content is OK
 		$this->assertSame(0, preg_match('/(error|notice)/i', $out));
+
+		echo 'FooBar';
 	}
 }
