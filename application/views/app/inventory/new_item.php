@@ -124,7 +124,7 @@
 							<!-- Modal upload picture-->
 							<div id="uploadImageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="uploadImagelabel" aria-hidden="true">
 								<div class="modal-header">
-									<h3 id="stockuplabel">Upload Image</h3>
+									<h3 id="imagelabel">Upload Image</h3>
 								</div>
 								<div class="modal-body">
 		

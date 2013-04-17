@@ -44,7 +44,7 @@
 								<label>Category	
 								</label> 
 								<select name="item_category" id="item_category">
-									<option value="null">Please Choose :</option>
+									<option value="">Please Choose :</option>
 									<?php foreach ($itemType as $type): ?>
 											<option value="<?php echo $type ?>" <?php if ($selected_category != NULL) {
 																							if ($selected_category == $type) {
