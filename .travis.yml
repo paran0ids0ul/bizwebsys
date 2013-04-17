@@ -4,4 +4,4 @@ php:
 
 before_script: cd tests
 
-script: vendor/bin/phpunit
+#script:
