@@ -9,6 +9,13 @@
 
 		var sales_order = new Array();
 
+        var deduction = document.getElementById("deduction").value;
+		var paydue = document.getElementById("paydue").value;
+		var addtionalinfo = document.getElementById("addtionalinfo").value;
+		var deduction = document.getElementById("deduction").value;
+
+        var value = [deduction,paydue,addtionalinfo,deduction ];
+
 		$("#add").click(function () {
 			addRow();
 		});
@@ -61,6 +68,8 @@
 			});
 
 			//              salesrow.addRow();
+
+
 		}
 
 

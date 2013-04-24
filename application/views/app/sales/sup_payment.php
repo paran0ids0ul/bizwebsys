@@ -23,23 +23,23 @@
 			<table class="table table-striped span10">
 				<thead>
 				<tr>
-					<td><input type="checkbox" id="sup_payment_all"><td/>
-					<td>Payment Date<td/>
-					<td>Internal Reference<td/>
-					<td>Supplier<td/>
-					<td>Total<td/>
+					<th><input type="checkbox" id="sup_payment_all"></th>
+					<th>Payment Date</th>
+					<th>Internal Reference</th>
+					<th>Supplier</th>
+					<th>Total</th>
 				</tr>
 				</thead>
 
-				<?php foreach ($purchase_invoices as $purchase_invoice): ?>
-				<tr id="<?php echo $purchase_invoice['PurchaseInvoiceID'] ?>">
-					<td href="<?php echo site_url("sales/display_cust_order_by_id/") . $purchase_invoice['PurchaseInvoiceID'] ?>/">
+				<?php foreach ($purchaseinvoices as $purchaseinvoice): ?>
+				<tr id="<?php echo $purchaseinvoice['PurchaseInvoiceID'] ?>">
+					<td href="<?php echo site_url("sales/display_cust_order_by_id/") . $purchaseinvoice['PurchaseInvoiceID'] ?>/">
 						<input type="checkbox" class="checkboxs"
-							   id=<?php echo $salesorder['PurchaseInvoiceID'] ?>><td/>
-					<td><?php echo $purchase_invoice['DatePaymentDue'] ?><td/>
-					<td><?php echo $purchase_invoice['IntRef'] ?><td/>
-					<td><?php echo $contact_list[$purchase_invoice['ContactID']]; ?><td/>
-					<td><?php echo $purchase_invoice['Total'] ?><td/>
+							   id=<?php echo $purchaseinvoice['PurchaseInvoiceID'] ?>></td>
+					<td><?php echo $purchaseinvoice['DatePaymentDue'] ?></td>
+					<td><?php echo $purchaseinvoice['IntRef'] ?></td>
+					<td><?php echo $contact_list[$purchaseinvoice['ContactID']]; ?></td>
+<!--					<td>--><?php //echo $purchaseinvoice['Total'] ?><!--<td/>-->
 				</tr>
 				<?php endforeach ?>
 			</table>

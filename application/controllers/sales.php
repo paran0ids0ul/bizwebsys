@@ -243,9 +243,9 @@ class Sales extends MY_Controller
 
 		$data['contact_list'] = $this->contacts_model->contact_list('cn');
 
-		$data['purchase_invoice'] = $this->sales_model->get_cust_orders();
+		$data['purchaseinvoices'] = $this->sales_model->get_cust_orders();
 
-		$this->_render('app/sales/sup_payment');
+		$this->_data_render('app/sales/sup_payment',$data);
 	}
 
 	public function display_cust_order_by_id($purchaseinvoiceID)
@@ -253,14 +253,13 @@ class Sales extends MY_Controller
 
 		$contact_list = $this->contacts_model->contact_list('cn');
 
-		$data['purchase_invoice'] = $this->sales_model->get_by_cust_orderID($purchaseinvoiceID);
+		$data['purchaseinvoice'] = $this->sales_model->get_by_cust_orderID($purchaseinvoiceID);
 
 
-		$data['datepaymentdue'] = $data['purchase_invoice']['DatePaymentDue'];
-		$data['ref'] = $data['purchase_invoice']['IntRef'];
-		$data['contactCN'] = $contact_list[$data['purchase_invoice']['ContactID']];
-		$data['intref'] = $data['purchase_invoice']['IntRef'];
-	    $data['total'] = $data['purchase_invoice']['Total'];
+		$data['datepaymentdue'] = $data['purchaseinvoice']['DatePaymentDue'];
+		$data['contactCN'] = $contact_list[$data['purchaseinvoice']['ContactID']];
+		$data['intref'] = $data['purchaseinvoice']['IntRef'];
+//	    $data['total'] = $data['purchaseinvoice']['Total'];
 
 
 		$data['contacts'] = $this->contacts_model->get_all_contact();

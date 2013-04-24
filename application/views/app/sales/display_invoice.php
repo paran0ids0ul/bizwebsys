@@ -83,7 +83,7 @@
 									Days until Payment Due:
 								</div>
 								<div class="span1">
-									<input class="span2" id="term" type="text">
+									<input class="span2" id="paydue" type="text">
 								</div>
 							</div>
 							<div class="row">
@@ -91,7 +91,7 @@
 									Additional Information:
 								</div>
 								<div class="span1">
-									<textarea rows="2"></textarea>
+									<textarea rows="2" id="addtionalinfo"></textarea>
 								</div>
 							</div>
 						</div>
