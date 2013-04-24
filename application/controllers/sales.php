@@ -27,7 +27,7 @@ class Sales extends MY_Controller
 
 	public function index()
 	{
-		$js_data = [];
+		$js_data = array();
 		$this->data['custom_js'] = $this->load->view('app/sales/js/sales', $js_data, true);
 
 		$data['contact_list'] = $this->contacts_model->contact_list('cn');
