@@ -36,7 +36,7 @@
 					
 				   <?php foreach ($items as $item): ?>
 				   
-					<tr id="<?php echo $item['ItemID']?>" href="<?php echo site_url("inventory/display_item_byID/") . $item['ItemID'] ?>/" class="tr_clickable">
+					<tr id="<?php echo $item['ItemID']?>" href="<?php echo site_url("inventory/display_item_by_id")."/" . $item['ItemID'] ?>/" class="tr_clickable">
 						<td><input class="check_boxes" id="<?php echo $item['ItemID'] ?>" type="checkbox"></td>
 						<td><?php echo $item['SKU'] ?></td>
 						<td><?php echo $item['Name'] ?></td>

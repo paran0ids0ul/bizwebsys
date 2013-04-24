@@ -67,8 +67,7 @@ class Forgot_password extends MY_Controller {
                   'uid'     => $uid
                );
 			$this->session->set_userdata($newdata);
-			//$to = $email;
-			$to = "naomi.li@bizwebsys.tk";     //for testing
+			$to = $email;
 			$subject = "BizWebSys Reset Password";
 			$message = '
 							<html>
@@ -80,7 +79,7 @@ class Forgot_password extends MY_Controller {
 							</body>
 							</html>
 							';
-			$from = "naomi.li@bizwebsys.tk";    //for testing
+			$from = "admin@bizwebsys.tk"; 
 			
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

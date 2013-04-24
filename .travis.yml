@@ -1,10 +1,18 @@
 language: php
+
 php:
-  - 5.3
   - 5.4
+  
+env:
+  - DB=mysqli
 
 before_script:
-  - curl -s https://getcomposer.org/installer | php
-  - php composer.phar install --dev
+  - composer install --dev --no-progress
+  - sh -c "if [ '$DB' = 'mysql' ] || [ '$DB' = 'mysqli' ] || [ '$DB' = 'pdo/mysql' ]; then mysql -e 'create database IF NOT EXISTS ci_test;'; fi"
 
-script: vendor/bin/phpunit tests/MY_Model_test.php
+script: phpunit --coverage-text --configuration tests/travis/$DB.phpunit.xml
+
+branches:
+  only:
+    - develop
+    - /^feature\/.+$/
