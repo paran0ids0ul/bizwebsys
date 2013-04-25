@@ -1,7 +1,9 @@
 BizWebSys
 =====================
 
-[Updates/Blog](http://comp2013group10.wordpress.com/) (currently on hiatus)
+[Updates/Blog](http://comp2013group10.wordpress.com/)
+
+[Demo](http://bizwebsys.tk)
 
 Based on forks of:
 
