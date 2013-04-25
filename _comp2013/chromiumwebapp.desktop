@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Chromium Web App
+Exec=chromiumwebapp %U
+Terminal=false
+Icon=chromium
+Type=Application
+Categories=GTK;Network;WebBrowser;
+MimeType=x-scheme-handler/webapp;
