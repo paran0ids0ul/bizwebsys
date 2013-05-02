@@ -1,4 +1,4 @@
-<div class="container">
+	<div class="container">
 	<div class="row">
 		<div class="underlined span12">
 			<h4 class="settings-header">Connecting to the Public</h4>
@@ -27,10 +27,10 @@
 			</div>
 			
 			<div class="span8">
-				<span class="input-xlarge uneditable-input" style="width:60%"; id="process"></span>				
+				<span class="input-xlarge uneditable-input" style="width:60%"; id="status_output"></span>				
 			</div>
 			<div class="span8">
-				<span class="input-xlarge uneditable-input" style="width:60%"; id="status_output"></span>				
+				<span class="input-xlarge uneditable-input" style="width:60%"; id="process"></span>				
 			</div>
 			
 			<div id="tbox"></div>

@@ -112,11 +112,15 @@ class SocialNetwork extends MY_Controller
 			
 			
 			$("#button_post").click(function()
-			{
+			{	
+			
+				var process_note = "The status has been posted on ";
+				var status_note = $("#statusContext").val();
+				
 				if ($("#twitter").prop("checked") == true) 
 				{ 
 					var ajaxurl = "http://" + (document.location.hostname) + "/socialnetwork/twitter"; 
-					var ajaxdata = $("#statusContext").val();
+					var ajaxdata = status_note;
 					$.ajax
 					(
 						{
@@ -136,25 +140,36 @@ class SocialNetwork extends MY_Controller
 							}
 						}
 					);
+					
+					process_note = process_note + "Twitter ";
 				}
 				
 				if ($("#facebook").prop("checked") == true) 
 				{ 
 					getLogin();
+					
+					process_note = process_note + "Facebook ";
 				}				
 				
-				var status = $("#statusContext").val();
-				
-				if ($status = "")
+				if (status === "")
 				{
 					alert("The content cannot be empty");
+				}
+				else
+				{
+					$("#process").html(process_note);
+					$("#status_output").html(status_note);
 				}
 				
 				if (($("#facebook").prop("checked") == false) && ($("#twitter").prop("checked") == false)) 
 				{
 					alert("Nothing is done due to none of the checkbox is selected");
 				}				
-				
+				else
+				{
+					$("#process").html(process_note);
+					$("#status_output").html(status_note);
+				}
 				
 				
 				
