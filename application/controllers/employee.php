@@ -8,6 +8,7 @@ class Employee extends MY_Controller {
 
 		parent::__construct();
 		$this->load->model('employee_model');
+		$this->load->library('unit_test');
 
 	}
 
@@ -27,10 +28,16 @@ class Employee extends MY_Controller {
 		$data['x'] = 0;
 	
 		$this->title = "Employee";
-
 		$this->_data_render('app/employee/employee',$data);
-		
 		$this->employee_model->close_ldap();
+
+		$test = $this->employee_model->get_all_employee();					//test for employee retrieval datatype 
+		$test_name = "check employee array";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
+
+		$test = $data['employees']['count'];					//test for contact number variable used for layout , at time of testing, we have 7 contacts
+		$test_name = "number of employee";									
+		echo $this->unit->run($test, 7, $test_name);	
 		
 	}
 
@@ -51,6 +58,7 @@ class Employee extends MY_Controller {
 			$this->employee_model->close_ldap();
   			return TRUE;
   		}
+
 	}
 
 	public function check_edit($toCheck,$id)
@@ -451,10 +459,19 @@ class Employee extends MY_Controller {
 		$data = $this->employee_model->get_employee($id);
 
 		$this->title = "Employee : ".$data['uid'] ;
-
 		$this->_data_render('app/employee/display_employee',$data);
-
 		$this->employee_model->close_ldap();
+
+
+		$test = $id;					//test for $id datatype
+		$test_name = "check id datatype";									
+		echo $this->unit->run($test, 'is_string', $test_name);	
+
+		$test = $this->employee_model->get_employee($id);					//test for a single employee retrieval result datatype
+		$test_name = "check employee datatype";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
+
+
 	}
 
 
@@ -504,8 +521,16 @@ class Employee extends MY_Controller {
 
 		$data = $this->employee_model->get_employee($id);
 
-		$this->title = "Edit Employee";
+		$test = $id;					//test for $id datatype
+		$test_name = "check id datatype";									
+		echo $this->unit->run($test, 'is_string', $test_name);	
 
+		$test = $this->employee_model->get_employee($id);					//test for a single employee retrieval result datatype
+		$test_name = "check employee datatype";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
+
+
+		$this->title = "Edit Employee";
 		$data['job_titles'] = array("Chief Executive Officer (CEO)","Chief Operating Officer (COO)","Chief Financial Officer (CFO)",
 							    	"Vice President of Marketing","Vice President of Production","Operations manager","Quality control, safety, environmental manager",
 							    	"Accountant, bookkeeper","Office manager","Receptionist","Foreperson, supervisor, lead person","Marketing manager",
