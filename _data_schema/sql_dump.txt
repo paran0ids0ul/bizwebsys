@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2013 at 11:12 AM
+-- Generation Time: May 04, 2013 at 11:43 AM
 -- Server version: 5.5.31-0ubuntu0.12.04.1
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `Company` (
 --
 
 INSERT INTO `Company` (`id`, `Name`, `Street1`, `Street2`, `City`, `State`, `Zip`, `Country`, `Phone`, `VATCode`, `ImagePath`) VALUES
-(1, 'Green Leaf', 'Gower Street, London', '', '', '', '', 'Belize', '098765456789', '111111', 'company_logo.jpg');
+(1, 'Green Leaf', 'Gower Street, London', '', '', '', '', 'Belize', '098765456789', 'GB111111', 'company_logo.jpg');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `Inventory` (
   `Description` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Stock` int(10) unsigned DEFAULT NULL,
   `StockROP` int(10) unsigned DEFAULT NULL,
-  `Cost` decimal(10,2) unsigned zerofill DEFAULT NULL,
+  `Cost` decimal(10,2) unsigned DEFAULT NULL,
   `DiscountRate` decimal(4,3) unsigned NOT NULL DEFAULT '1.000',
   `VATRate` decimal(5,4) unsigned DEFAULT NULL,
   `GTIN` char(14) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -121,17 +121,18 @@ CREATE TABLE IF NOT EXISTS `Inventory` (
   UNIQUE KEY `Barcode_UNIQUE` (`GTIN`),
   UNIQUE KEY `SKU_UNIQUE` (`SKU`),
   KEY `ContactID_idx` (`ContactID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `Inventory`
 --
 
 INSERT INTO `Inventory` (`ItemID`, `ItemType`, `ContactID`, `SKU`, `Name`, `Description`, `Stock`, `StockROP`, `Cost`, `DiscountRate`, `VATRate`, `GTIN`, `NetPrice`, `Imagepath`) VALUES
-(1, 'Health', 3, 'S_B_TISSUE', 'Sainsbury''s Basics Tissue', 'Quality Tissue', 8, 1, 00000004.00, 1.000, 0.0250, '01179859', 2.00, NULL),
-(2, 'Food', 3, 'S_Butter', 'Butterlicious', 'Sainsbury''s Butterlicious', 978, 5, 00000005.00, 1.000, 0.2000, '01034752', 6.00, NULL),
+(1, 'Health', 3, 'S_B_TISSUE', 'Sainsbury''s Basics Tissue', 'Quality Tissue', 7, 1, 4.00, 1.000, 0.0250, '01179859', 2.00, NULL),
+(2, 'Food', 3, 'S_Butter', 'Butterlicious', 'Sainsbury''s Butterlicious', 977, 5, 5.00, 1.000, 0.2000, '01034752', 6.00, NULL),
 (4, NULL, NULL, NULL, 'Guitar', NULL, 100, 5, NULL, 0.800, 0.1000, NULL, 150.00, '31.gif'),
-(5, 'Baby & Toddler', 4, NULL, 'dfgdf', '', NULL, NULL, NULL, 1.000, NULL, NULL, NULL, NULL);
+(5, 'Baby & Toddler', 4, NULL, 'dfgdf', 'des1', NULL, NULL, 5.00, 1.000, 0.5000, NULL, 20.00, NULL),
+(6, 'null', 0, NULL, 'vx', '', NULL, NULL, NULL, 1.000, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -176,20 +177,12 @@ CREATE TABLE IF NOT EXISTS `PurchaseInvoiceLine` (
   KEY `PurchaseOrderID_idx` (`PurchaseInvoiceID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `PurchaseOrderPayment`
+-- Dumping data for table `PurchaseInvoiceLine`
 --
 
-CREATE TABLE IF NOT EXISTS `PurchaseOrderPayment` (
-  `PurchaseInvoiceID` int(10) unsigned NOT NULL,
-  `Reference` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `Method` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Amount` decimal(10,2) unsigned DEFAULT NULL,
-  `Date` date DEFAULT NULL,
-  PRIMARY KEY (`PurchaseInvoiceID`,`Reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `PurchaseInvoiceLine` (`PurchaseInvoiceID`, `SKU`, `Quantity`, `Cost`) VALUES
+(56, 'S_Butter', '55', 3.00);
 
 -- --------------------------------------------------------
 
@@ -214,19 +207,22 @@ CREATE TABLE IF NOT EXISTS `SalesOrder` (
   UNIQUE KEY `po_id_UNIQUE` (`SalesOrderID`),
   KEY `ContactID_idx` (`ContactID`),
   KEY `EmployeeID_idx` (`EmployeeID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `SalesOrder`
 --
 
 INSERT INTO `SalesOrder` (`SalesOrderID`, `ContactID`, `EmployeeID`, `Ref`, `DateInvoiced`, `DateDispatched`, `Deduction`, `DatePaid`, `DatePaymentDue`, `PaymentMethod`, `Remarks`, `Total`) VALUES
-(1, 3, 4, 'POS01_04_2013_12_00_37', NULL, '2013-04-16', NULL, '2013-04-01', NULL, 'Cash', NULL, NULL),
+(1, 3, 4, 'POS01_04_2013_12_00_37', '2013-04-03', '2013-04-16', 5.50, '2013-05-30', '2013-05-31', 'Cheque', 'remark1', NULL),
 (2, 3, 3, 'POS02_04_2013_10_23_39', NULL, '2013-04-16', NULL, '2013-04-02', NULL, 'Cash', NULL, NULL),
 (3, 3, 5, 'POS15_04_2013_16_06_25', '2013-04-15', '2013-04-16', NULL, NULL, NULL, 'Cash', NULL, NULL),
 (4, 3, 2, 'POS15_04_2013_16_11_26', '2013-04-15', '2013-04-16', NULL, NULL, NULL, 'Cash', NULL, NULL),
 (5, 3, 3, 'POS16_04_2013_12_31_16', '2013-04-16', NULL, NULL, '2013-04-16', NULL, 'Cash', NULL, NULL),
-(6, 4, 1, 'POS24_04_2013_03_53_47', '2013-04-24', NULL, NULL, '2013-04-24', NULL, 'Cash', NULL, NULL);
+(6, 4, 1, 'POS24_04_2013_03_53_47', '2013-04-24', NULL, NULL, '2013-04-24', NULL, 'Cash', NULL, NULL),
+(7, 4, 3, 'POS02_05_2013_14_19_01', '2013-05-02', NULL, NULL, '2013-05-02', NULL, 'Cash', NULL, NULL),
+(8, NULL, 3, 'POS03_05_2013_11_22_47', '2013-05-03', NULL, NULL, '2013-05-03', NULL, 'Cash', NULL, NULL),
+(9, NULL, 3, 'POS03_05_2013_11_25_26', '2013-05-03', NULL, NULL, '2013-05-03', NULL, 'Cash', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -254,7 +250,9 @@ INSERT INTO `SalesOrderLine` (`SalesOrderID`, `ItemID`, `Quantity`, `NetPrice`, 
 (4, 1, 2, 2.00, 0.10, 1.000),
 (5, 4, 1, 150.00, 12.00, 0.800),
 (6, 1, 3, 2.00, 0.15, 1.000),
-(6, 4, 2, 150.00, 24.00, 0.800);
+(6, 4, 2, 150.00, 24.00, 0.800),
+(7, 1, 1, 2.00, 0.05, 1.000),
+(7, 2, 1, 6.00, 1.20, 1.000);
 
 --
 -- Constraints for dumped tables
@@ -272,12 +270,6 @@ ALTER TABLE `PurchaseInvoice`
 ALTER TABLE `PurchaseInvoiceLine`
   ADD CONSTRAINT `PurchaseOrderID_PurchaseInvoiceLine` FOREIGN KEY (`PurchaseInvoiceID`) REFERENCES `PurchaseInvoice` (`PurchaseInvoiceID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `SKU` FOREIGN KEY (`SKU`) REFERENCES `Inventory` (`SKU`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `PurchaseOrderPayment`
---
-ALTER TABLE `PurchaseOrderPayment`
-  ADD CONSTRAINT `PurchaseOrderID_POP` FOREIGN KEY (`PurchaseInvoiceID`) REFERENCES `PurchaseInvoice` (`PurchaseInvoiceID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `SalesOrder`
