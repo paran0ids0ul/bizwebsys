@@ -394,9 +394,10 @@ class Employee extends MY_Controller {
 
 	public function delete_employee() {
 
-		$id = $_POST['delete'];
+		$uid = $_POST['delete_uid'];
+		$idnum = $_POST['delete_id'];
 
-		$result = $this->employee_model->delete_employee($id);
+		$result = $this->employee_model->delete_employee($uid,$idnum);
 
 		$this->employee_model->close_ldap();
 
@@ -426,6 +427,7 @@ class Employee extends MY_Controller {
 										    	e.preventDefault();
 	        									var href = this.href;
 										    	var id = $("#reference").text();
+										    	var idnum = $("#employeeNumber").text();
 
 										    	var ajaxurl = "http://" + (document.location.hostname) + "/employee/delete_employee"; 
 												var confirm_string = "Are you sure you want to delete this employee?";
@@ -434,7 +436,7 @@ class Employee extends MY_Controller {
 														$.ajax({
 													    	type: "POST",
 													    	url: ajaxurl,
-													    	data: {delete : id},
+													    	data: {delete_uid : id , delete_id : idnum },
 													    	success: function(results){ 
 													    		alert(results);
 													    		document.location.href = href;

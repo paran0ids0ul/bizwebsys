@@ -4,7 +4,7 @@
     <div class="span12 content">
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
-			<li><a href="<?php echo site_url("employee") ?>">Employee</a> <span class="divider">/</span></li>
+			<li><a href="<?php echo site_url("employee") ?>">Employee</a> <span class="divider">/</span><span id="employeeNumber"><?php echo $employeeNumber ?></span></li> 
 			<li class="active" id="reference"><?php echo $uid ?></li>
 		</ul>
 		<!-- Control Buttons -->

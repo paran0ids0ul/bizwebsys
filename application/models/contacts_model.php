@@ -427,8 +427,12 @@ class Contacts_model extends MY_Model {
 		$result = ldap_delete($this->myldap->getLdapConnection(), 'uid=' .$id. ',ou=contacts,dc=bizwebsys,dc=tk');   
 	    
 	    if ($result != true) { 
+	    	
             return false; 
         }
+
+        $this->db->where('ContactID', $id);
+		$this->db->delete('Contact');
         
         return true;
 
