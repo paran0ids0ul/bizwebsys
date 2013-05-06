@@ -11,6 +11,12 @@
 
 	$(document).ready(function () {
 
+		$("tr").click( function() {
+			window.location = $(this).attr("href") + $(this).attr("$salesorder");
+		}).hover( function() {
+				$(this).toggleClass("hover");
+			});
+
 		$(".dispatch").on("click", function (event) {
 
 			event.preventDefault();
