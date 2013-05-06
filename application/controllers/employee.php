@@ -457,6 +457,10 @@ class Employee extends MY_Controller {
 
 
 		$data = $this->employee_model->get_employee($id);
+		if($this->session->userdata('is_admin'))
+			$data['is_admin'] = "true";
+		else
+			$data['is_admin'] = "false";
 
 		$this->title = "Employee : ".$data['uid'] ;
 		$this->_data_render('app/employee/display_employee',$data);
