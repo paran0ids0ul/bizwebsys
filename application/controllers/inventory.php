@@ -10,7 +10,7 @@ class Inventory extends MY_Controller {
 
 		parent::__construct();
 		$this->load->model(array('inventory_model','contacts_model'));
-
+		$this->load->library('unit_test');
 
 
 	}
@@ -135,8 +135,14 @@ class Inventory extends MY_Controller {
 
 
 
+		$test = $data['items'];					//test if list of items is in an array
+		$test_name = "item list datatype check";									
+		echo $this->unit->run($test,'is_array', $test_name);	
 
 
+		$test = sizeof($data['items']);					//test if number of items in list is correct, at time of test, there are 5 items
+		$test_name = "item list length";									
+		echo $this->unit->run($test,5, $test_name);	
 
 
 	}
@@ -269,6 +275,10 @@ class Inventory extends MY_Controller {
 
 			$this->contacts_model->close_ldap();
 
+			$test = sizeof($data['contacts']) - 1;					//test if number of contacts retrieved is correct. -1 because the first value in the array is the number of count
+			$test_name = "contacts count";									//a.k.a $data['contacts']['count']
+			echo $this->unit->run($test,2, $test_name);							//currect count of contacts is 2
+
 		}
 		else 
 		{
@@ -323,6 +333,8 @@ class Inventory extends MY_Controller {
 
 	public function display_item_by_id($itemID)
 	{
+		
+
 		$data['item'] = $this->inventory_model->get_item_by_id($itemID);
 
 
@@ -425,6 +437,12 @@ class Inventory extends MY_Controller {
 
 		$this->contacts_model->close_ldap();
 
+
+
+
+		$test = $itemID;					//test if itemID is a string
+		$test_name = "itemID datatype";									
+		echo $this->unit->run($test,'is_string', $test_name);	
 
 
 	}
@@ -569,8 +587,6 @@ class Inventory extends MY_Controller {
 
 
 				rename($file_data['file_path'].$file_data['file_name'], $file_data['file_path'].$itemID.$file_data['file_ext']);
-
-
 
 
 				$this->inventory_model->set_imagepath($itemID, $itemID.$file_data['file_ext']);

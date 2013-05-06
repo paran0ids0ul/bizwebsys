@@ -92,7 +92,7 @@
 			
 			
 					<?php endforeach ?>
-			
+				
 			
 				</div>
 			</div>

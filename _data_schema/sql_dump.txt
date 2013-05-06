@@ -1,0 +1,290 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.0-beta1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: May 04, 2013 at 11:43 AM
+-- Server version: 5.5.31-0ubuntu0.12.04.1
+-- PHP Version: 5.3.10-1ubuntu3.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `bizwebsys`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Company`
+--
+
+CREATE TABLE IF NOT EXISTS `Company` (
+  `id` int(10) NOT NULL,
+  `Name` varchar(90) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Street1` varchar(70) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Street2` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `City` varchar(70) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `State` varchar(70) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Zip` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Country` varchar(70) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Phone` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `VATCode` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ImagePath` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Company`
+--
+
+INSERT INTO `Company` (`id`, `Name`, `Street1`, `Street2`, `City`, `State`, `Zip`, `Country`, `Phone`, `VATCode`, `ImagePath`) VALUES
+(1, 'Green Leaf', 'Gower Street, London', '', '', '', '', 'Belize', '098765456789', 'GB111111', 'company_logo.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Contact`
+--
+
+CREATE TABLE IF NOT EXISTS `Contact` (
+  `ContactID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ContactID`),
+  KEY `ContactID` (`ContactID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `Contact`
+--
+
+INSERT INTO `Contact` (`ContactID`) VALUES
+(3),
+(4),
+(5),
+(6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Employee`
+--
+
+CREATE TABLE IF NOT EXISTS `Employee` (
+  `EmployeeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`EmployeeID`),
+  KEY `EmployeeID` (`EmployeeID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `Employee`
+--
+
+INSERT INTO `Employee` (`EmployeeID`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Inventory`
+--
+
+CREATE TABLE IF NOT EXISTS `Inventory` (
+  `ItemID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ItemType` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ContactID` int(10) unsigned DEFAULT NULL,
+  `SKU` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Stock` int(10) unsigned DEFAULT NULL,
+  `StockROP` int(10) unsigned DEFAULT NULL,
+  `Cost` decimal(10,2) unsigned DEFAULT NULL,
+  `DiscountRate` decimal(4,3) unsigned NOT NULL DEFAULT '1.000',
+  `VATRate` decimal(5,4) unsigned DEFAULT NULL,
+  `GTIN` char(14) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `NetPrice` decimal(10,2) DEFAULT NULL,
+  `Imagepath` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ItemID`),
+  UNIQUE KEY `Barcode_UNIQUE` (`GTIN`),
+  UNIQUE KEY `SKU_UNIQUE` (`SKU`),
+  KEY `ContactID_idx` (`ContactID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `Inventory`
+--
+
+INSERT INTO `Inventory` (`ItemID`, `ItemType`, `ContactID`, `SKU`, `Name`, `Description`, `Stock`, `StockROP`, `Cost`, `DiscountRate`, `VATRate`, `GTIN`, `NetPrice`, `Imagepath`) VALUES
+(1, 'Health', 3, 'S_B_TISSUE', 'Sainsbury''s Basics Tissue', 'Quality Tissue', 7, 1, 4.00, 1.000, 0.0250, '01179859', 2.00, NULL),
+(2, 'Food', 3, 'S_Butter', 'Butterlicious', 'Sainsbury''s Butterlicious', 977, 5, 5.00, 1.000, 0.2000, '01034752', 6.00, NULL),
+(4, NULL, NULL, NULL, 'Guitar', NULL, 100, 5, NULL, 0.800, 0.1000, NULL, 150.00, '31.gif'),
+(5, 'Baby & Toddler', 4, NULL, 'dfgdf', 'des1', NULL, NULL, 5.00, 1.000, 0.5000, NULL, 20.00, NULL),
+(6, 'null', 0, NULL, 'vx', '', NULL, NULL, NULL, 1.000, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `PurchaseInvoice`
+--
+
+CREATE TABLE IF NOT EXISTS `PurchaseInvoice` (
+  `PurchaseInvoiceID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ContactID` int(10) unsigned DEFAULT NULL,
+  `IntRef` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ExtRef` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `DateOrdered` date DEFAULT NULL,
+  `DateInvoiced` date DEFAULT NULL,
+  `DateDelivered` date DEFAULT NULL,
+  `DatePaymentDue` date DEFAULT NULL,
+  `Deduction` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`PurchaseInvoiceID`),
+  KEY `ContactID_idx` (`ContactID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=57 ;
+
+--
+-- Dumping data for table `PurchaseInvoice`
+--
+
+INSERT INTO `PurchaseInvoice` (`PurchaseInvoiceID`, `ContactID`, `IntRef`, `ExtRef`, `DateOrdered`, `DateInvoiced`, `DateDelivered`, `DatePaymentDue`, `Deduction`) VALUES
+(56, 4, 'ds', 'gh', '2013-04-09', '2013-04-18', '2013-04-15', '2013-04-20', '2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `PurchaseInvoiceLine`
+--
+
+CREATE TABLE IF NOT EXISTS `PurchaseInvoiceLine` (
+  `PurchaseInvoiceID` int(10) unsigned NOT NULL,
+  `SKU` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `Quantity` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Cost` decimal(10,2) unsigned DEFAULT NULL,
+  PRIMARY KEY (`PurchaseInvoiceID`,`SKU`),
+  UNIQUE KEY `SKU_UNIQUE` (`SKU`),
+  KEY `PurchaseOrderID_idx` (`PurchaseInvoiceID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `PurchaseInvoiceLine`
+--
+
+INSERT INTO `PurchaseInvoiceLine` (`PurchaseInvoiceID`, `SKU`, `Quantity`, `Cost`) VALUES
+(56, 'S_Butter', '55', 3.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SalesOrder`
+--
+
+CREATE TABLE IF NOT EXISTS `SalesOrder` (
+  `SalesOrderID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ContactID` int(10) unsigned DEFAULT NULL,
+  `EmployeeID` int(10) unsigned DEFAULT NULL,
+  `Ref` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `DateInvoiced` date DEFAULT NULL,
+  `DateDispatched` date DEFAULT NULL,
+  `Deduction` decimal(10,2) DEFAULT NULL,
+  `DatePaid` date DEFAULT NULL,
+  `DatePaymentDue` date DEFAULT NULL,
+  `PaymentMethod` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Remarks` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Total` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`SalesOrderID`),
+  UNIQUE KEY `po_id_UNIQUE` (`SalesOrderID`),
+  KEY `ContactID_idx` (`ContactID`),
+  KEY `EmployeeID_idx` (`EmployeeID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `SalesOrder`
+--
+
+INSERT INTO `SalesOrder` (`SalesOrderID`, `ContactID`, `EmployeeID`, `Ref`, `DateInvoiced`, `DateDispatched`, `Deduction`, `DatePaid`, `DatePaymentDue`, `PaymentMethod`, `Remarks`, `Total`) VALUES
+(1, 3, 4, 'POS01_04_2013_12_00_37', '2013-04-03', '2013-04-16', 5.50, '2013-05-30', '2013-05-31', 'Cheque', 'remark1', NULL),
+(2, 3, 3, 'POS02_04_2013_10_23_39', NULL, '2013-04-16', NULL, '2013-04-02', NULL, 'Cash', NULL, NULL),
+(3, 3, 5, 'POS15_04_2013_16_06_25', '2013-04-15', '2013-04-16', NULL, NULL, NULL, 'Cash', NULL, NULL),
+(4, 3, 2, 'POS15_04_2013_16_11_26', '2013-04-15', '2013-04-16', NULL, NULL, NULL, 'Cash', NULL, NULL),
+(5, 3, 3, 'POS16_04_2013_12_31_16', '2013-04-16', NULL, NULL, '2013-04-16', NULL, 'Cash', NULL, NULL),
+(6, 4, 1, 'POS24_04_2013_03_53_47', '2013-04-24', NULL, NULL, '2013-04-24', NULL, 'Cash', NULL, NULL),
+(7, 4, 3, 'POS02_05_2013_14_19_01', '2013-05-02', NULL, NULL, '2013-05-02', NULL, 'Cash', NULL, NULL),
+(8, NULL, 3, 'POS03_05_2013_11_22_47', '2013-05-03', NULL, NULL, '2013-05-03', NULL, 'Cash', NULL, NULL),
+(9, NULL, 3, 'POS03_05_2013_11_25_26', '2013-05-03', NULL, NULL, '2013-05-03', NULL, 'Cash', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SalesOrderLine`
+--
+
+CREATE TABLE IF NOT EXISTS `SalesOrderLine` (
+  `SalesOrderID` int(10) unsigned NOT NULL,
+  `ItemID` int(10) unsigned NOT NULL,
+  `Quantity` float DEFAULT NULL,
+  `NetPrice` decimal(10,2) DEFAULT NULL,
+  `VAT` decimal(10,2) DEFAULT NULL,
+  `DiscountRate` decimal(4,3) NOT NULL DEFAULT '1.000',
+  PRIMARY KEY (`SalesOrderID`,`ItemID`),
+  KEY `ItemID_idx` (`ItemID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `SalesOrderLine`
+--
+
+INSERT INTO `SalesOrderLine` (`SalesOrderID`, `ItemID`, `Quantity`, `NetPrice`, `VAT`, `DiscountRate`) VALUES
+(1, 1, 200, 2.00, 0.10, 1.000),
+(4, 1, 2, 2.00, 0.10, 1.000),
+(5, 4, 1, 150.00, 12.00, 0.800),
+(6, 1, 3, 2.00, 0.15, 1.000),
+(6, 4, 2, 150.00, 24.00, 0.800),
+(7, 1, 1, 2.00, 0.05, 1.000),
+(7, 2, 1, 6.00, 1.20, 1.000);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `PurchaseInvoice`
+--
+ALTER TABLE `PurchaseInvoice`
+  ADD CONSTRAINT `ContactID_PurchaseInvoice` FOREIGN KEY (`ContactID`) REFERENCES `Contact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `PurchaseInvoiceLine`
+--
+ALTER TABLE `PurchaseInvoiceLine`
+  ADD CONSTRAINT `PurchaseOrderID_PurchaseInvoiceLine` FOREIGN KEY (`PurchaseInvoiceID`) REFERENCES `PurchaseInvoice` (`PurchaseInvoiceID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `SKU` FOREIGN KEY (`SKU`) REFERENCES `Inventory` (`SKU`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `SalesOrder`
+--
+ALTER TABLE `SalesOrder`
+  ADD CONSTRAINT `ContactID_SalesOrder` FOREIGN KEY (`ContactID`) REFERENCES `Contact` (`ContactID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `EmployeeID_SalesOrder` FOREIGN KEY (`EmployeeID`) REFERENCES `Employee` (`EmployeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `SalesOrderLine`
+--
+ALTER TABLE `SalesOrderLine`
+  ADD CONSTRAINT `ItemID_SalesOrderLine` FOREIGN KEY (`ItemID`) REFERENCES `Inventory` (`ItemID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `SalesOrderID_SalesOrderLine` FOREIGN KEY (`SalesOrderID`) REFERENCES `SalesOrder` (`SalesOrderID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

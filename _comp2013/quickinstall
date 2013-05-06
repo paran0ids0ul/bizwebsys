@@ -1,0 +1,90 @@
+#!/bin/bash
+sgdisk /dev/sda -Z -o -n 0:0:0 -g
+mkfs.ext4 /dev/sda1
+
+mount /dev/sda1 /mnt
+
+pacstrap /mnt base
+
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+sed -Ei 's/^#+(en_GB.UTF-8)/\1/' /mnt/etc/locale.gen
+arch-chroot /mnt locale-gen
+echo LANG=en_GB.UTF-8 > /mnt/etc/locale.conf
+ln -s /mnt/usr/share/zoneinfo/Europe/London /mnt/etc/localtime
+arch-chroot /mnt hwclock --systohc --utc
+
+arch-chroot /mnt hostnamectl set-hostname "archclient"
+echo "archclient" > /mnt/etc/hostname
+
+arch-chroot /mnt pacman -S wireless_tools wpa_supplicant wpa_actiond dialog sudo syslinux gptfdisk alsa-utils xf86-video-vesa xf86-input-synaptics xorg-server xorg-xinit xorg-server-utils xorg-twm xorg-xclock xterm chromium gamin cups cups-filters ghostscript gsfonts wicd-gtk ifplugd preload gutenprint foomatic-db foomatic-db-engine foomatic-db-nonfree foomatic-filters hplip splix ntfs-3g smbclient lxdm openbox-themes obconf ttf-liberation tumbler pcmanfm oxygen-icons gvfs tint2 --noconfirm
+
+arch-chroot /mnt systemctl enable net-auto-wireless.service
+arch-chroot /mnt systemctl enable net-auto-wired.service
+arch-chroot /mnt systemctl enable preload.service
+arch-chroot /mnt systemctl enable dhcpcd@eth0.service
+arch-chroot /mnt systemctl enable wicd.service
+arch-chroot /mnt systemctl enable cups.service
+arch-chroot /mnt systemctl enable lxdm.service
+
+echo -e "[multilib]\nSigLevel = PackageRequired\nInclude = /etc/pacman.d/mirrorlist" >> /mnt/etc/pacman.conf
+arch-chroot /mnt pacman -Sy --noconfirm
+
+arch-chroot /mnt useradd -m -g users -G wheel,storage,power,uucp,sys,scanner,optical,network,lp -s /bin/bash user
+echo -e "password\npassword" | arch-chroot /mnt passwd
+echo -e "password\npassword" | arch-chroot /mnt passwd user
+sed -Ei 's/^#+\s*(%wheel ALL=\(ALL\) ALL)$/\1/' /mnt/etc/sudoers
+
+echo "exec dbus-launch openbox-session" >> /mnt/home/user/.xinitrc
+sed -Ei 's/^#*\s*(session=).*$/\1"dbus-launch \/usr\/bin\/openbox-session"/' /mnt/etc/lxdm/lxdm.conf
+sed -Ei 's/^#*\s*(autologin=)\w*$/\1user/' /mnt/etc/lxdm/lxdm.conf
+sed -Ei 's/^#*\s*(disable=)[0-9]?$/\11/' /mnt/etc/lxdm/lxdm.conf
+sed -Ei 's/^#*\s*(lang=)[0-9]?$/\10/' /mnt/etc/lxdm/lxdm.conf
+rm /mnt/usr/share/xsessions/openbox-kde.desktop /mnt/usr/share/xsessions/openbox-gnome.desktop /mnt/usr/share/xsessions/openbox.desktop
+
+curl https://raw.github.com/horaceli/bizwebsys/master/_comp2013/chromiumwebapp.desktop > /mnt/usr/share/applications/chromiumwebapp.desktop
+echo -e "!/bin/bash\nchromium --app=\${1:7}" > /mnt/usr/local/bin/chromiumwebapp
+arch-chroot /mnt chmod +x /usr/local/bin/chromiumwebapp
+
+echo 'gtk-icon-theme-name = "oxygen"' >> /mnt/etc/gtk-2.0/gtkrc
+mkdir -p /mnt/home/user/.config/openbox/ /mnt/home/user/.config/tint2/ /mnt/home/user/.local/share/applications
+
+cp /mnt/etc/xdg/openbox/rc.xml /mnt/home/user/.config/openbox/rc.xml
+sed -Ei 's/<action name="ShowMenu"><menu>root-menu<\/menu><\/action>/<action name="Execute"><command>chromium --app=http:\/\/smartbusinesscloud\.azurewebsites\.net<\/command><\/action>/' /mnt/home/user/.config/openbox/rc.xml
+sed -Ei 's/<number>4<\/number>/<number>1<\/number>/' /mnt/home/user/.config/openbox/rc.xml
+
+curl https://raw.github.com/horaceli/bizwebsys/master/_comp2013/tint2rc > /mnt/home/user/.config/tint2/tint2rc
+
+echo -e "[Default Applications]\nx-scheme-handler/webapp=chromiumwebapp.desktop" > /mnt/home/user/.local/share/applications/mimeapps.list
+echo -e "tint2 &\nwicd-client --tray &\nchromium --app=http://smartbusinesscloud.azurewebsites.net" > /mnt/home/user/.config/openbox/autostart
+
+arch-chroot /mnt chown -R user:users /home/user
+
+arch-chroot /mnt syslinux-install_update -i -a -m
+sed -Ei 's/(APPEND root=\/dev\/sda)3/\11/' /mnt/boot/syslinux/syslinux.cfg
+
+for i in Master Headphone PCM Front Surround Center LFE Side CD Video Phone Aux; do
+    arch-chroot /mnt amixer -c 0 set "$i" playback unmute 0dB
+done
+
+lspci | grep VGA | tr "[:upper:]" "[:lower:]" | grep nvidia
+if [ $? -eq 0 ]; then
+arch-chroot /mnt pacman -S nvidia lib32-nvidia-utils --noconfirm
+else
+  lspci | grep VGA | tr "[:upper:]" "[:lower:]" | grep "intel corporation"
+	if [ $? -eq 0 ]; then
+		arch-chroot /mnt pacman -S xf86-video-intel lib32-intel-dri --noconfirm
+	else
+		lspci | grep VGA | tr "[:upper:]" "[:lower:]" | grep "advanced micro devices"
+		if [ $? -eq 0 ]; then
+			arch-chroot /mnt pacman -S catalyst-dkms lib32-catalyst-utils --noconfirm
+		else
+			lspci | grep VGA | tr "[:upper:]" "[:lower:]" | grep "vmware"
+			if [ $? -eq 0 ]; then
+				arch-chroot /mnt pacman -S xf86-input-vmmouse xf86-video-vmware svga-dri --noconfirm
+			fi
+		fi
+	fi
+fi
+
+reboot

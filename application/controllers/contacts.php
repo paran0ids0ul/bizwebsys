@@ -6,6 +6,7 @@ class Contacts extends MY_Controller {
     {
 		parent::__construct();
 		$this->load->model('contacts_model');
+		$this->load->library('unit_test');
 	
 	}
 
@@ -20,53 +21,26 @@ class Contacts extends MY_Controller {
 
     }
 
-	public function index(){		
+	public function index(){				
 		
 
-		/*$this->data["custom_js"] ='			
-		
-							  
-								    <script>
-									   
-									     
-									   (function($) {
-									   		$.fn.uniformHeight = function() {
-									   			var maxHeight   = 0,
-									   			max = Math.max;
-
-									   			return this.each(function() {
-									   				maxHeight = max(maxHeight, $(this).height());
-									   			}).height(maxHeight);
-									   		}
-									   	})(jQuery);
-
-									    
-									   
-									    $(document).ready(function() {   
-									    	$(".thumbnails").find(".thumbnail").uniformHeight();
-									    });
-									   
-									
-									   
-									   
-									  									   
-								    </script>';	*/
-
-		
-		
-		
 		$data['contacts'] = $this->contacts_model->get_all_contact();		
 		$data['ldap'] = $this->contacts_model->get_ldap();
 		$data['x'] = 0;
 
 		$this->title = "Contacts";
-		
-	
 		$this->_data_render('app/contacts/contacts',$data);
-		
 		$this->contacts_model->close_ldap();
 
-		
+
+		$test = $this->contacts_model->get_all_contact();					//test for contact retrieval datatype 
+		$test_name = "check contact array";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
+
+		$test = $data['contacts']['count'];					//test for contact number variable used for layout , at time of testing, we have 2 contacts
+		$test_name = "number of contacts";									
+		echo $this->unit->run($test, 2, $test_name);	
+
 	
 	}
 	
@@ -292,6 +266,7 @@ class Contacts extends MY_Controller {
 		{
 		
 			$data['selected_country'] = $this->input->post('contact_hcountry');
+			
 			$this->_data_render('app/contacts/new_contact',$data);
 		
 		}
@@ -424,6 +399,10 @@ class Contacts extends MY_Controller {
 
 
 		$data = $this->contacts_model->get_contact($id);
+
+		$test = $this->contacts_model->get_contact($id);				//test for contact retrieval datatype 
+		$test_name = "check single contact datatype";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
 
 		$this->title = "Contact : ".$data['sn'];
 

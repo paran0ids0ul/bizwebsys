@@ -128,6 +128,7 @@ class Employee_model extends MY_Model {
 				$dt['cn'] = $employee['cn'][0];
 				$dt['sn'] = $employee['sn'][0];
 		 		$dt['mail'] = $employee['mail'][0];
+		 		$dt['employeeNumber'] = array_key_exists("employeeNumber",$employee) ? $employee['employeeNumber'][0] : NULL;
 		 		$dt['gn'] = array_key_exists("givenName",$employee) ? $employee['givenName'][0] : NULL;
 				$dt['homephone'] = array_key_exists("homePhone",$employee) ? $employee['homePhone'][0] : NULL;
 				$dt['mobile'] = array_key_exists("mobile",$employee) ? $employee['mobile'][0] : NULL;
@@ -388,7 +389,7 @@ class Employee_model extends MY_Model {
 	}
 	
 
-	public function delete_employee($id) {
+	public function delete_employee($uid,$idnum) {
 		
 		try {
 			$this->myldap = new MyLdap();
@@ -398,11 +399,14 @@ class Employee_model extends MY_Model {
 			exit();   
 		}
 
-		$result = ldap_delete($this->myldap->getLdapConnection(), 'uid=' .$id. ',ou=people,dc=bizwebsys,dc=tk');   
+		$result = ldap_delete($this->myldap->getLdapConnection(), 'uid=' .$uid. ',ou=people,dc=bizwebsys,dc=tk');   
 	    
 	    if ($result != true) { 
             return false; 
         }
+
+        $this->db->where('EmployeeID', $idnum);
+		$this->db->delete('Employee');
         
         return true;
 

@@ -4,7 +4,7 @@
     <div class="span12 content">
 		<!-- Breadcrumb -->
 		<ul class="breadcrumb">
-			<li><a href="<?php echo site_url("employee") ?>">Employee</a> <span class="divider">/</span></li>
+			<li><a href="<?php echo site_url("employee") ?>">Employee</a> <span class="divider">/</span><span id="employeeNumber"><?php echo $employeeNumber ?></span></li> 
 			<li class="active" id="reference"><?php echo $uid ?></li>
 		</ul>
 		<!-- Control Buttons -->
@@ -14,11 +14,13 @@
 					<button class="btn btn-primary same-btn-width">Back</button>
 				</a>
 			</div>
+			<?php if($is_admin=="true"):?>
 			<div class="span1">
 				<a href="<?php echo site_url("employee/edit_employee/$uid") ?>">
-					<button class="btn btn-primary same-btn-width">Edit</button>
+					<button class="btn btn-primary same-btn-width" id="btn_edit">Edit</button>
 				</a>
 			</div>	
+			<?php endif; ?>
 			<div class="span1">
 				<button class="btn btn-primary same-btn-width">Print</button>
 			</div>

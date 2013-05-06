@@ -8,6 +8,7 @@ class Employee extends MY_Controller {
 
 		parent::__construct();
 		$this->load->model('employee_model');
+		$this->load->library('unit_test');
 
 	}
 
@@ -27,10 +28,16 @@ class Employee extends MY_Controller {
 		$data['x'] = 0;
 	
 		$this->title = "Employee";
-
 		$this->_data_render('app/employee/employee',$data);
-		
 		$this->employee_model->close_ldap();
+
+		$test = $this->employee_model->get_all_employee();					//test for employee retrieval datatype 
+		$test_name = "check employee array";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
+
+		$test = $data['employees']['count'];					//test for contact number variable used for layout , at time of testing, we have 7 contacts
+		$test_name = "number of employee";									
+		echo $this->unit->run($test, 7, $test_name);	
 		
 	}
 
@@ -51,6 +58,7 @@ class Employee extends MY_Controller {
 			$this->employee_model->close_ldap();
   			return TRUE;
   		}
+
 	}
 
 	public function check_edit($toCheck,$id)
@@ -386,9 +394,10 @@ class Employee extends MY_Controller {
 
 	public function delete_employee() {
 
-		$id = $_POST['delete'];
+		$uid = $_POST['delete_uid'];
+		$idnum = $_POST['delete_id'];
 
-		$result = $this->employee_model->delete_employee($id);
+		$result = $this->employee_model->delete_employee($uid,$idnum);
 
 		$this->employee_model->close_ldap();
 
@@ -418,6 +427,7 @@ class Employee extends MY_Controller {
 										    	e.preventDefault();
 	        									var href = this.href;
 										    	var id = $("#reference").text();
+										    	var idnum = $("#employeeNumber").text();
 
 										    	var ajaxurl = "http://" + (document.location.hostname) + "/employee/delete_employee"; 
 												var confirm_string = "Are you sure you want to delete this employee?";
@@ -426,7 +436,7 @@ class Employee extends MY_Controller {
 														$.ajax({
 													    	type: "POST",
 													    	url: ajaxurl,
-													    	data: {delete : id},
+													    	data: {delete_uid : id , delete_id : idnum },
 													    	success: function(results){ 
 													    		alert(results);
 													    		document.location.href = href;
@@ -449,12 +459,25 @@ class Employee extends MY_Controller {
 
 
 		$data = $this->employee_model->get_employee($id);
+		if($this->session->userdata('is_admin'))
+			$data['is_admin'] = "true";
+		else
+			$data['is_admin'] = "false";
 
 		$this->title = "Employee : ".$data['uid'] ;
-
 		$this->_data_render('app/employee/display_employee',$data);
-
 		$this->employee_model->close_ldap();
+
+
+		$test = $id;					//test for $id datatype
+		$test_name = "check id datatype";									
+		echo $this->unit->run($test, 'is_string', $test_name);	
+
+		$test = $this->employee_model->get_employee($id);					//test for a single employee retrieval result datatype
+		$test_name = "check employee datatype";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
+
+
 	}
 
 
@@ -504,8 +527,16 @@ class Employee extends MY_Controller {
 
 		$data = $this->employee_model->get_employee($id);
 
-		$this->title = "Edit Employee";
+		$test = $id;					//test for $id datatype
+		$test_name = "check id datatype";									
+		echo $this->unit->run($test, 'is_string', $test_name);	
 
+		$test = $this->employee_model->get_employee($id);					//test for a single employee retrieval result datatype
+		$test_name = "check employee datatype";									
+		echo $this->unit->run($test, 'is_array', $test_name);	
+
+
+		$this->title = "Edit Employee";
 		$data['job_titles'] = array("Chief Executive Officer (CEO)","Chief Operating Officer (COO)","Chief Financial Officer (CFO)",
 							    	"Vice President of Marketing","Vice President of Production","Operations manager","Quality control, safety, environmental manager",
 							    	"Accountant, bookkeeper","Office manager","Receptionist","Foreperson, supervisor, lead person","Marketing manager",
