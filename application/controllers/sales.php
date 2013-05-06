@@ -75,17 +75,17 @@ class Sales extends MY_Controller
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//display invoice
 
-	public function display_invoice()
+	public function new_invoice()
 	{
 
 		$js_data['item_list'] = json_encode($this->inventory_model->get_item_list());
-		$this->data['custom_js'] = $this->load->view('app/sales/js/display_invoice', $js_data, true);
+		$this->data['custom_js'] = $this->load->view('app/sales/js/new_invoice', $js_data, true);
 
 		//customer list
 		$this->data['customers'] = $this->contacts_model->contact_list('cn');
 
 
-		$this->_data_render('app/sales/display_invoice', $this->data);
+		$this->_data_render('app/sales/new_invoice', $this->data);
 	}
 
 	public function get_item_list()
@@ -102,44 +102,47 @@ class Sales extends MY_Controller
 
 	}
 
+	public function asdf($salesorder)
+	{
+
+		//$this->data["orderid"] = $this->sales_model->get_by_sorderID($salesorder);
+		print_r( $this->data['items'] = $this->sales_model->get_order_lines_by_id($salesorder));
+	}
+
 	//********************************************************************************************************/
 
-	public function super_invoice($orderid)
+	public function view_invoice($salesorder = "1")
 	{
-		//data
+
+//        $something = $this->input->post('something');
+        $order_id =  $this->input->post('orderid');
+        $payment_type = $this->input->post("paymenttype");
+        $date = $this->input->post("date");
+        if(!empty($payment_type)){
+            $this->sales_model->update_sales_payment($order_id,$payment_type,$date);
+        }
 
 
-		$data = $this->sales_model->get_order($orderid);
-		$data['salesorders'] = $this->sales_model->get_orders();
+		//display data
+		$this->data['order'] = $this->sales_model->get_by_orderID($salesorder);
+        $this->data['contact_list'] = $this->contacts_model->contact_list('cn');
+
+//        $data['itemid'] = $data['order']['itemID'];
+        $this->data['items'] = $this->sales_model->get_order_lines_by_id($salesorder);
+
+        //insert data
 
 
-		$this->_render('app/sales/super_invoice');
-	}
 
-	public function edit_invoice($orderid = "SAJ/2013/002", $customer = "cust1", $date = "7/03/2013", $paymentterm = "12 days", $additioninfo = "none")
-	{
-		//data
-		$this->data["orderid"] = $orderid;
-		$this->data["customer"] = $customer;
-		$this->data["date"] = $date;
-		$this->data["paymentterm"] = $paymentterm;
-		$this->data["additioninfo"] = $additioninfo;
 
-		$data['salesorders'] = $this->sales_model->get_orders();
+//        $data['salesorder'] = $data['SalesOrder']['SalesOrderID'];
 
-		$this->_render('app/sales/edit_invoice');
-	}
 
-	public function payed_super_invoice($orderid = "SAJ/2013/002", $customer = "cust1", $date = "7/03/2013", $paymentterm = "12 days", $additioninfo = "none")
-	{
-		//data
-		$this->data["orderid"] = $orderid;
-		$this->data["customer"] = $customer;
-		$this->data["date"] = $date;
-		$this->data["paymentterm"] = $paymentterm;
-		$this->data["additioninfo"] = $additioninfo;
+//		$data = $this->sales_model->get_order($orderid);
+//		$data['salesorders'] = $this->sales_model->get_orders();
 
-		$this->_render('app/sales/payed_super_invoice');
+
+		$this->_render('app/sales/view_invoice', $this->data);
 	}
 
 	//customer payment
@@ -149,7 +152,7 @@ class Sales extends MY_Controller
 		$this->data["custom_js"] = '
 		  <script>
 		 $(document).ready(function(){
-		  
+
 			$("#cust_payment_all").click(function(){
 				if ($(this).prop("checked") == true) { 
 					$(".checkboxs").each(function() {
@@ -181,8 +184,6 @@ class Sales extends MY_Controller
 	}
 
 
-
-
 	public function new_payment()
 	{
 		$this->_render('app/sales/new_payment');
@@ -203,17 +204,20 @@ class Sales extends MY_Controller
 
 	//supplier invoice
 
-	public function sup_invoice($invoiceid = "EXJ/2013/0001", $supplier = "cust1", $invdate = "7/03/2013", $supplierno = "012345", $duedate = "09/03/2013")
+	public function sup_invoice($invoicelineid = "56")
 	{
 		//data
-		$this->data["invoiceid"] = $invoiceid;
-		$this->data["supplier"] = $supplier;
-		$this->data["invdate"] = $invdate;
-		$this->data["duedate"] = $duedate;
-		$this->data["supplierno"] = $supplierno;
+		$this->data['pinvoice'] = $this->sales_model->get_by_purchaselineID($invoicelineid);
 
+		$this->data['supplier'] = $this->contacts_model->contact_list('cn');
+		$this->data['items'] = $this->sales_model->get_invoice_lines_by_id($invoicelineid);
 
-		$this->_render('app/sales/sup_invoice');
+		$this->_render('app/sales/sup_invoice',$this->data);
+	}
+
+	public function ds($invoicelineid)
+	{
+		print_r( $this->data['pinvoice'] = $this->sales_model->get_by_purchaselineID($invoicelineid));
 	}
 
 	//supplier payment
@@ -223,7 +227,7 @@ class Sales extends MY_Controller
 		$this->data["custom_js"] = '
 		  <script>
 		 $(document).ready(function(){
-		  
+
 			$("#cust_payment_all").click(function(){
 				if ($(this).prop("checked") == true) { 
 					$(".checkboxs").each(function() {
@@ -236,8 +240,8 @@ class Sales extends MY_Controller
 					});
 				}
 			});
-			
-			
+
+
 			});
 			</script>';
 
@@ -245,7 +249,7 @@ class Sales extends MY_Controller
 
 		$data['purchaseinvoices'] = $this->sales_model->get_cust_orders();
 
-		$this->_data_render('app/sales/sup_payment',$data);
+		$this->_data_render('app/sales/sup_payment', $data);
 	}
 
 	public function display_cust_order_by_id($purchaseinvoiceID)

@@ -25,7 +25,7 @@
 		<div class="row myform-container">
 			<div class="span8 offset1 myform box-shadow">
 				<div class="span6">
-					<h4>Invoice <?php echo $invoiceid?></h4>
+					<h4>Invoice <?php echo $pinvoice['PurchaseInvoiceID']?></h4>
 					<form>
 						<div class="row">
 							<div class="span3 ">
@@ -34,7 +34,7 @@
 										Supplier :
 									</div>
 									<div class="span1">
-										<?php echo $supplier?>
+										<?php echo $supplier[$pinvoice['ContactID']]?>
 									</div>							
 								</div>
 								<div class="row">
@@ -42,7 +42,7 @@
 										Suppiler No. :
 									</div>
 									<div class="span1">
-										<?php echo $supplierno?>
+										<?php echo $pinvoice['ContactID']?>
 									</div>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 										Invoice Date :
 									</div>
 									<div class="span1">
-										<?php echo $invdate?>
+										<?php echo $pinvoice['DateInvoiced']?>
 									</div>							
 								</div>
 								<div class="row">
@@ -60,7 +60,7 @@
 										Due Date :
 									</div>
 									<div class="span1">
-										<?php echo $duedate?>
+										<?php echo $pinvoice['DatePaymentDue']?>
 									</div>
 								</div>
 							</div>
@@ -77,26 +77,31 @@
 						  <th>Quantity</th>
 						  <th>Taxes</th>
 						  <th>Unit Price</th>
-						  <th>Amount</th>
+						  <th>Untaxed Amount</th>
 						</tr>
 					  </thead>
 					    <tbody>
+						<?php
+						$totals = array();
+						$taxes = array();
+						$gtotal = array();
+						foreach ($items as $item):
+							$total = $item['NetPrice'] * $item['Quantity'];
+							$tax = $item['VAT'] * $total;
+							$gtotal = $total + $tax ;
+							$totals[] = $total;
+							$taxes[] = $tax;
+							$gtotals[] = $gtotal;
+							?>
 							<tr>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
+							  <td><?php echo $item['Name']?></td>
+							  <td><?php echo $item['Description']?></td>
+							  <td><?php echo $item['Quantity']?></td>
+							  <td><?php echo $tax ?></td>
+							  <td><?php echo $item['Cost']?></td>
+							  <td><?php echo $total ?></td>
 							</tr>
-							<tr>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							  <td>...</td>
-							</tr>
+							 <?php endforeach ?>
 						  </tbody>
 				</table>
 				<!-- Total Display -->
@@ -107,7 +112,7 @@
 								Untaxed Amount:
 							</div>
 							<div class="span1">
-								0.00
+								<?php echo array_sum($totals); ?>
 							</div>							
 						</div>
 						<div class="row">
@@ -115,7 +120,7 @@
 								Taxes:
 							</div>
 							<div class="span1">
-								0.00
+								<?php echo array_sum($taxes); ?>
 							</div>							
 						</div>
 						<hr>
@@ -124,7 +129,7 @@
 								<b>Total:</b>
 							</div>
 							<div class="span1">
-								<b>0.00</b>
+								<b><?php echo array_sum($gtotals); ?></b>
 							</div>							
 						</div>						
 					</div>
@@ -170,11 +175,11 @@
 			</div>
 	  </div>
 	  <div class="control-group">
-		<label class="control-label" for="payamount">Paid Amount</label>
-		<div class="controls">
-		  <input type="text" id="payamount" placeholder="00.00">
-		</div>
-	  </div>
+            <label class="control-label" for="payamount">Paid Amount</label>
+            <div class="controls">
+                <input type="text" id="payamount" placeholder="00.00">
+            </div>
+        </div>
 	  <div class="control-group">
 		<label class="control-label" for="paymethod">Payment Method</label>
 			<div class="controls">

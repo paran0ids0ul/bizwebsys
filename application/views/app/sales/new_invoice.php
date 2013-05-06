@@ -14,19 +14,15 @@
 			</ul>
 			<!-- Control Buttons -->
 			<div class="row">
-				<button class="btn btn-primary same-btn-width">Save</button>
+				<button class="btn btn-primary same-btn-width" onclick="window.location='<?php echo site_url("sales/view_invoice") ?>'">Save</button>
 				<button class="btn btn-link">Discard</button>
 			</div>
 
-			<!-- Form Headbar -->
-			<div class="row content myform-headbar">
-				<a class="btn btn-small" href="<?php echo site_url("sales/super_invoice") ?>">Validate</a>
-			</div>
 			<!-- Form Container -->
 			<div class="row myform-container">
 				<div class="span8 offset1 myform box-shadow">
 					<div class="span6">
-						<h4>Quotation</h4>
+						<h4>Order</h4>
 
 						<form>
 							<div class="row">

@@ -102,11 +102,31 @@ class Sales_model extends MY_Model
 	public function get_by_orderID($SalesOrderID)
 	{
 
+//        $this->db->select('SalesOrderID');
+//        $this->db->where( 'ContactID = 4');
+//        $this->db->where( 'DateInvoiced'== "2013-04-16");
+//        $query = $this->db->get('SalesOrder');
 		$query = $this->db->get_where('SalesOrder', array('SalesOrderID' => $SalesOrderID));
+
+
 		return $query->row_array();
+
+//        get_item_by_id($ItemID);
+
+//        $SalesOrderID = [SalesOrderID];
 
 
 	}
+
+    public function get_order_lines_by_id($SalesOrderID){
+        $this->db->select('*');
+        $this->db->from('Inventory');
+        $this->db->join('SalesOrderLine', 'SalesOrderLine.ItemID = Inventory.ItemID');
+        $this->db->where( array('SalesOrderID' => $SalesOrderID));
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
 
 	public function close_ldap()
 	{
@@ -134,6 +154,38 @@ class Sales_model extends MY_Model
 		$query = $this->db->get_where('PurchaseInvoice', array('PurchaseInvoiceID' => $PurchaseInvoiceID));
 		return $query->row_array();
 
+
+	}
+
+    public function update_sales_payment($order_id,$payment_type,$date){
+        $data = array(
+            'PaymentMethod' =>$payment_type,
+            'DatePaid'=>$date
+
+        );
+        $this->db->where('SalesOrderID',$order_id);
+        return
+            $this->db->update('SalesOrder',$data);
+
+    }
+
+	public function get_by_purchaselineID($invoicelineid)
+	{
+		$this->db->select('*');
+		$this->db->from('PurchaseInvoice');
+		$this->db->join('PurchaseInvoiceLine', 'PurchaseInvoiceLine.PurchaseInvoiceID = PurchaseInvoice.PurchaseInvoiceID');
+		$this->db->where( array('PurchaseInvoiceLine.PurchaseInvoiceID' => $invoicelineid));
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function get_invoice_lines_by_id($invoicelineid){
+		$this->db->select('*');
+		$this->db->from('Inventory');
+		$this->db->join('PurchaseInvoiceLine', 'PurchaseInvoiceLine.SKU = Inventory.SKU');
+		$this->db->where( array('PurchaseInvoiceID' => $invoicelineid));
+		$query = $this->db->get();
+		return $query->result_array();
 
 	}
 }

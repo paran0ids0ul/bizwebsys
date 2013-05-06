@@ -19,7 +19,7 @@
 				<!--			</form>-->
 			</div>
 			<div class="row">
-				<a href="<?php echo site_url("sales/display_invoice") ?>" class="btn btn-primary span1">Create</a>
+				<a href="<?php echo site_url("sales/new_invoice") ?>" class="btn btn-primary span1">Create</a>
 			</div>
 			<div class="row content">
 				<form name="form1" action="" id="invoice_form">
@@ -43,7 +43,7 @@
 								<td href="<?php echo site_url("sales/display_order_by_id/") . $salesorder['SalesOrderID'] ?>/">
 									<input type="checkbox" class="checkboxs"
 										   id=<?php echo $salesorder['SalesOrderID'] ?>></td>
-								<td><?php echo $contact_list[$salesorder['ContactID']]; ?></td>
+								<td><?php echo (empty($salesorder['ContactID'])) ? '': $contact_list[$salesorder['ContactID']] ?></td>
 								<td><?php echo $salesorder['DateInvoiced'] ?></td>
 								<td><?php echo $salesorder['Ref'] ?></td>
 								<td><?php echo $employee_list[$salesorder['EmployeeID']]; ?></td>
