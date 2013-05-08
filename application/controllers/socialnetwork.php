@@ -151,21 +151,18 @@ class SocialNetwork extends MY_Controller
 					process_note = process_note + "Facebook ";
 				}				
 				
-				if (status === "")
+				if (status_note === "")
 				{
 					alert("The content cannot be empty");
 				}
-				else
-				{
-					$("#process").html(process_note);
-					$("#status_output").html(status_note);
-				}
+				
 				
 				if (($("#facebook").prop("checked") == false) && ($("#twitter").prop("checked") == false)) 
 				{
 					alert("Nothing is done due to none of the checkbox is selected");
 				}				
-				else
+				
+				if ((($("#facebook").prop("checked") == true) || ($("#twitter").prop("checked") == true)) && (status_note != "")) 
 				{
 					$("#process").html(process_note);
 					$("#status_output").html(status_note);
