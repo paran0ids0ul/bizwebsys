@@ -18,6 +18,13 @@ class Home extends MY_Controller {
 				//load local js
 		$this->data["custom_js"] ='								  
 								    <script>
+										$("input").keypress(function(event) {
+											if (event.which == 13) {
+												event.preventDefault();
+												$(\'#btn_signin\').click();
+											}
+										});
+										
 										$(\'#btn_signin\').click(function(){
 											var username = $(\'#inputUsername\').val().trim();
 											var password = $(\'#inputPassword\').val().trim();
