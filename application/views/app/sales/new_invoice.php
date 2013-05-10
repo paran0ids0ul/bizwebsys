@@ -4,7 +4,6 @@
 		<div class="span2">
 			<?php echo $sidemenu ?>
 		</div>
-
 		<!-- Content -->
 		<div class="span10 content">
 			<!-- Breadcrumb -->
@@ -14,10 +13,11 @@
 			</ul>
 			<!-- Control Buttons -->
 			<div class="row">
-				<button class="btn btn-primary same-btn-width" onclick="window.location='<?php echo site_url("sales/view_invoice") ?>'">Save</button>
+				<button class="btn btn-primary same-btn-width"
+						onclick="window.location='<?php echo site_url("sales/view_invoice") ?>'">Save
+				</button>
 				<button class="btn btn-link">Discard</button>
 			</div>
-
 			<!-- Form Container -->
 			<div class="row myform-container">
 				<div class="span8 offset1 myform box-shadow">
@@ -35,7 +35,6 @@
 												value="<?php echo $customer_id ?>"><?php echo $customer_name ?></option>
 										<?php } ?>
 									</select>
-
 								</div>
 								<div class="span3">
 									<label>Date</label>
@@ -68,7 +67,6 @@
 							<td></td>
 							<td></td>
 						</tr>
-
 						</tbody>
 					</table>
 					<!-- Total Display -->
@@ -116,7 +114,6 @@
 									<input class="span1" id="deduction" type="text">
 								</div>
 							</div>
-
 							<hr>
 							<div class="row">
 								<div class="span2">
@@ -130,7 +127,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>

@@ -28,6 +28,7 @@
 		}
 
 		$("#add").click(function () {
+			//add a new order
 			addRow();
 		});
 
@@ -62,9 +63,10 @@
 
 			value += '<td class="amount">0</td></tr>';
 
-
+			// add a new row in the last
 			$("#sales_table tr:last").before(value);
 
+			//get select item
 			$('.item_select').on("change", function (event) {
 
 				update_order_line($(event.target).parentsUntil('tr').parent());
@@ -77,7 +79,8 @@
 				var item_id = $(event.target).parentsUntil('tr').parent().find('.item_select').first().val();
 				var quantity = $(event.target).val();
 				var row = $(event.target).parentsUntil('tr').parent();
-				//alert(item_id);
+
+				//when add item which was chosen in previous salesorder line
 				if (false) {
 
 					if (confirm(raw_item_list[item_id] + " already selected, amend quantity?")) {
@@ -99,12 +102,9 @@
 
 			});
 
-			//              salesrow.addRow();
-
-
 		}
 
-
+		//calculate unit price, unit tax, untaxed amount
 		function update_order_line(row) {
 
 			var item_id = row.find('.item_select').first().val();

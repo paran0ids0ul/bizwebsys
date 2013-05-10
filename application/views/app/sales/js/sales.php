@@ -11,22 +11,20 @@
 
 	$(document).ready(function () {
 
-		$("tr").click( function() {
-			window.location = $(this).attr("href") + $(this).attr("$salesorder");
-		}).hover( function() {
-				$(this).toggleClass("hover");
-			});
-
+		// Button Dispatch
 		$(".dispatch").on("click", function (event) {
 
 			event.preventDefault();
 
+			//once click change to text Loading....
 			var parent = $(event.target).parent();
 			parent.text('Loading...');
 
+			//alert to confirm
 			var dispatch = confirm("Dispatch Order?");
 			if (dispatch === true) {
 
+				//change the data in pispatch date in database
 				$.ajax({
 					dataType: "json",
 					url: "<?php echo site_url('sales/dispatch_now/')?>/" + parent.parent().attr('id'),
@@ -37,9 +35,6 @@
 					}
 				});
 			}
-
 		})
-
-
 	});
 </script>

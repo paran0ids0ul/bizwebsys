@@ -10,33 +10,21 @@ class Sales_model extends MY_Model
 	public function dispatch_order($id, $date)
 	{
 
-		// check paid already
+		// check paid already "SELECT DatePaid,DateDispatched from SalesOrder WHERE SalesOrderID = $id"
 		$this->db->select('DatePaid, DateDispatched');
 		$this->db->where('SalesOrderID', $id);
 		$query = $this->db->get('SalesOrder');
 
-	//	"SELECT DatePaid,DateDispatched from SalesOrder WHERE SalesOrderID = $id"
-
-		// check not dispatched yet
-
-
-		// check stock
-
+		// check stock "SELECT Inventory.ItemID from Inventory (INNER JOIN SalesOrderLine USING ItemID) (INNER JOIN SalesOrder USING SalesOrderID) WHERE SalesOrder.SalesOrderID=$id AND Inventory.Stock < SalesOrderLine.Quantity"
 		$this->db->select('ItemID');
 		$this->db->from('Inventory');
 		$this->db->join('SalesOrderLine', 'Inventory.ItemID = SalesOrderLine.ItemID');
 		$this->db->join('SalesOrder','SalesOrderLine.SalesOrderID = SalesOrder.SalesOrderID');
-		//$this->db->where('SalesOrder.SalesOrderID', $id);
 		$this->db->where('Inventory.Stock <', 'SalesOrderLine.Quantity');
-		//$this->db->count_all_results();
-//		$query->row()->ItemID;
+
 		$query = $this->db->get();
 		print_r($query->result_array());
 		$rowcount = $query->num_rows();
-
-
-
-		//"SELECT Inventory.ItemID from Inventory (INNER JOIN SalesOrderLine USING ItemID) (INNER JOIN SalesOrder USING SalesOrderID) WHERE SalesOrder.SalesOrderID=$id AND Inventory.Stock < SalesOrderLine.Quantity"
 
 		$data = array(
 			'DateDispatched' => $date
@@ -47,77 +35,36 @@ class Sales_model extends MY_Model
 
 	}
 
-	public function set_item()
-	{
-		$this->load->helper('url');
-
-
-		$data = array(
-			'Name' => $this->input->post('item_name'),
-			//	'ItemType' => $this->input->post('item_category'),
-			'ContactID' => $this->input->post('customer'),
-			'DateOrdered' => $this->input->post('item_date'),
-			//	'Description' => $this->input->post('item_description'),
-			//'Stock' => $this->input->post('item_stock'),
-			//'StockROP' => $this->input->post('item_rop'),
-			//'Cost' => $this->input->post('item_costprice'),
-			//'VATRate' => $this->input->post('item_vatrate'),
-			//'GTIN' => $this->input->post('item_gtin'),
-			//'NetPrice' => $this->input->post('item_netprice')
-
-		);
-
-
-		$this->db->insert('SalesOrder', $data);
-
-		$id = $this->db->insert_id();
-
-		return $id;
-
-	}
-
-	public function get_item_byID($itemID)
-	{
-
-		$query = $this->db->get_where('Inventory', array('ItemID' => $itemID));
-		return $query->row_array();
-
-
-	}
-
-	public function get_orders() //return 2D array: cust_name,invoice_date,internal_ref,sales_person,due_date,outstanding,total(plz don't change the names)
+	//return 2D array: cust_id,invoice_date,internal_ref,sales_person,due_date,outstanding,total
+	public function get_orders()
 	{
 		$query = $this->db->get('SalesOrder');
 		return $query->result_array();
 	}
 
-	public function get_order_list()
-	{
-
-		$query = $this->db->get('SalesOrder');
-		return $query->result_array();
-
-	}
-
+	//get sales order with SalesOrderID
 	public function get_by_orderID($SalesOrderID)
 	{
 
-//        $this->db->select('SalesOrderID');
-//        $this->db->where( 'ContactID = 4');
-//        $this->db->where( 'DateInvoiced'== "2013-04-16");
-//        $query = $this->db->get('SalesOrder');
 		$query = $this->db->get_where('SalesOrder', array('SalesOrderID' => $SalesOrderID));
-
-
 		return $query->row_array();
-
-//        get_item_by_id($ItemID);
-
-//        $SalesOrderID = [SalesOrderID];
-
 
 	}
 
+	//update payment method and date paid
+	public function update_sales_payment($order_id,$payment_type,$date){
+		$data = array(
+			'PaymentMethod' =>$payment_type,
+			'DatePaid'=>$date
+
+		);
+		$this->db->where('SalesOrderID',$order_id);
+		return
+			$this->db->update('SalesOrder',$data);
+
+	}
+
+	//join Inventory and SalesOrderLine
     public function get_order_lines_by_id($SalesOrderID){
         $this->db->select('*');
         $this->db->from('Inventory');
@@ -133,16 +80,8 @@ class Sales_model extends MY_Model
 		//TODO
 	}
 
-	/* public function get_order($orderid) {
-
-			$query = $this->db->get_where('Inventory', array('ItemID' => $itemID));
-			return $query->row_array();
-
-
-		}
-	*/
-
-	public function get_cust_orders() //return 2D array: cust_name,invoice_date,internal_ref,sales_person,due_date,outstanding,total(plz don't change the names)
+//return 2D array: cust_id,invoice_date,internal_ref,sales_person,due_date,outstanding,total
+	public function get_cust_orders()
 	{
 		$query = $this->db->get('PurchaseInvoice');
 		return $query->result_array();
@@ -154,21 +93,9 @@ class Sales_model extends MY_Model
 		$query = $this->db->get_where('PurchaseInvoice', array('PurchaseInvoiceID' => $PurchaseInvoiceID));
 		return $query->row_array();
 
-
 	}
 
-    public function update_sales_payment($order_id,$payment_type,$date){
-        $data = array(
-            'PaymentMethod' =>$payment_type,
-            'DatePaid'=>$date
-
-        );
-        $this->db->where('SalesOrderID',$order_id);
-        return
-            $this->db->update('SalesOrder',$data);
-
-    }
-
+	//join PurchaseInvoiceLine and PurchaseInvoice
 	public function get_by_purchaselineID($invoicelineid)
 	{
 		$this->db->select('*');
@@ -179,6 +106,7 @@ class Sales_model extends MY_Model
 		return $query->result_array();
 	}
 
+	//join PurchaseInvoiceLine and Inventory
 	public function get_invoice_lines_by_id($invoicelineid){
 		$this->db->select('*');
 		$this->db->from('Inventory');
