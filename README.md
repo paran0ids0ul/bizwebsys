@@ -3,7 +3,7 @@ BizWebSys
 
 [Updates/Blog](http://comp2013group10.wordpress.com/)
 
-[Demo](http://bizwebsys.tk)
+~~[Demo](http://bizwebsys.tk)~~ Demo Offline
 
 Based on forks of:
 
