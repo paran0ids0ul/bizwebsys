@@ -1,9 +1,11 @@
 BizWebSys
-=====================
+=========
 
 [Updates/Blog](http://comp2013group10.wordpress.com/)
 
 ~~[Demo](http://bizwebsys.tk)~~ Demo Offline
+
+[Presentation](http://www.slideshare.net/horaceli1/comp2014-presentation-23077907)
 
 Based on forks of:
 
@@ -25,12 +27,4 @@ Based on forks of:
 
 [jquery-json / jquery-json] (https://code.google.com/p/jquery-json/) v2.4
 
-
-
-
-
-Getting lazy with documentation:
-
-adLdap
-
-CIUnit
+[adLdap](http://adldap.sourceforge.net/)
