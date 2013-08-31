@@ -3,11 +3,9 @@ BizWebSys
 
 [Updates/Blog](http://comp2013group10.wordpress.com/)
 
-~~[Demo](http://bizwebsys.tk)~~ Demo Offline
-
 [Presentation](http://www.slideshare.net/horaceli1/comp2014-presentation-23077907)
 
-Based on forks of:
+Based on:
 
 [vesparny / codeigniter-html5boilerplate-twitter-bootstrap](https://github.com/vesparny/codeigniter-html5boilerplate-twitter-bootstrap) v1.1.2
 
