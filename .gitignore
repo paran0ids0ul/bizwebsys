@@ -1,7 +1,7 @@
-.settings/
+.settings/*
 .buidpath
 .project
 .idea
-.metadata
+.metadata/*
 application/logs
 resources/images/company_logo
