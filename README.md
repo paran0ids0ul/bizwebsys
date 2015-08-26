@@ -3,26 +3,23 @@ BizWebSys
 
 [Updates/Blog](http://comp2013group10.wordpress.com/)
 
-[Presentation](http://www.slideshare.net/horaceli1/comp2014-presentation-23077907)
+Project : UCL CS department-COMP2013-group10
 
-Based on:
+Project name: Ready-­to-­Go Web Sales and Small Businesses Kit
 
-[vesparny / codeigniter-html5boilerplate-twitter-bootstrap](https://github.com/vesparny/codeigniter-html5boilerplate-twitter-bootstrap) v1.1.2
+Project supervisor: Dean Mohamedally
 
-[philsturgeon / codeigniter-restserver](https://github.com/philsturgeon/codeigniter-restserver) v2.6.2
+Team leader: Horace Li
 
-[twitter / bootstrap](https://github.com/twitter/bootstrap/) v2.3.0
+Secondary team leader: Jing Li
 
-[jQuery](http://jquery.com/) v1.9.1
+Team member: Eeren Tan, Cheung Tin Timothy Szeto, Weiwei Liang
 
-[jamierumbelow / codeigniter-base-model](https://github.com/jamierumbelow/codeigniter-base-model) v2.0.0
+Project description:
 
-[thomaspark / bootswatch / united](https://github.com/thomaspark/bootswatch/tree/gh-pages/united) v2.3.1
-
-[addyosmani / jquery-ui-bootstrap](https://github.com/addyosmani/jquery-ui-bootstrap) v0.5
-
-[FortAwesome / Font-Awesome](https://github.com/FortAwesome/Font-Awesome) v3.0.2
-
-[jquery-json / jquery-json] (https://code.google.com/p/jquery-json/) v2.4
-
-[adLdap](http://adldap.sourceforge.net/)
+Create a low power always-­on, thin web services solution that runs off a CD on any bootable PC. This is for new and small businesses, which traditionally do not use much technology, e.g. a local florist.
+a) Enable users to store their deployed company work on the cloud with branding.
+b) Presents opportunities for hosting a website and taking payments, e.g. via Paypal.
+c) A HTML5 apps panel that provides business services, such as product inventory, buyers listings, P & L sheets, tax filings and due reminders.
+d) A suite of office and project management tools installed including tax filing and accounting.
+e) Dynamic generation of webpages from sales models. Marketing and branding opportunities e.g. on products that are selling well or not well, to enable Search Engine Optimisation of special deals on auto-­‐ enerated WordPress webpages.
