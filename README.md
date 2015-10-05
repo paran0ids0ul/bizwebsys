@@ -1,17 +1,15 @@
 BizWebSys
 =========
 
-[Updates/Blog](http://comp2013group10.wordpress.com/)
-
 Project : UCL CS department-COMP2013-group10
 
 Project name: Ready-­to-­Go Web Sales and Small Businesses Kit
 
 Project supervisor: Dean Mohamedally
 
-Team leader: Horace Li
+Tech Lead: Horace Li
 
-Secondary team leader: Jing Li
+Team Lead: Jing Li
 
 Team member: Eeren Tan, Cheung Tin Timothy Szeto, Weiwei Liang
 
